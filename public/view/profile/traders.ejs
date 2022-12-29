@@ -59,11 +59,16 @@
                 <div class="flex justify-between lg:border-t border-gray-100 flex-col-reverse lg:flex-row pt-2">
                   <nav class="responsive-nav pl-3">
                     <ul uk-switcher="connect: #timeline-tab; animation: uk-animation-fade">
-                      <li class="active orbitron" id="liTabCompanyDetails"><a href="#" id="tabCompanyDetails">About</a></li>
-                      <li id="liTabMediaFiles"><a href="#" class="orbitron" id="tabMediaFiles">Brochure </a></li>
-                      <li id="liTabVideos"><a href="#" class="orbitron" id="tabVideos">Videos</a></li>
-                      <li><a href="#0" class="orbitron">Dashboard</a></li>
+                      <li class="active orbitron" id="liTabCompanyDetails"><a href="#" id="tabCompanyDetails">About</a>
+                      </li>
+                      <li id="liTabMediaFiles" style="display: none;"><a href="#" class="orbitron"
+                          id="tabMediaFiles">Brochure </a></li>
+                      <li id="liTabVideos" style="display: none;"><a href="#" class="orbitron" id="tabVideos">Videos</a>
+                      </li>
+                      <li style="display: none;"><a href="#0" class="orbitron">Dashboard</a></li>
                       <li id="liTabSettings"><a href="#0" class="orbitron" id="tabSettings">Settings</a></li>
+                      <li id="liTabPaymentAccount"><a href="#0" class="orbitron" id="tabPaymentAccount">Payment
+                          Account</a></li>
                     </ul>
                   </nav>
 
@@ -143,11 +148,13 @@
                       <div class="text-right">
                         <button class="button blue-white-hover orbitron" type="button" id="btnCompanyDetailsEdit"
                           style="display: none;">Edit</button>
-                        <button class="button blue-white-hover orbitron" type="button" onclick="editProfile()"> Update Profile
+                        <button class="button blue-white-hover orbitron" type="button" onclick="editProfile()"> Update
+                          Profile
                         </button>
                       </div>
                       <div class="text-right" id="btnForUpdateCompanyDetails" style="display: none;">
-                        <button class="p-2 px-4 rounded bg-gray-50 text-red-500 orbitron" id="btnCompanyDetailsCancelEdit">
+                        <button class="p-2 px-4 rounded bg-gray-50 text-red-500 orbitron"
+                          id="btnCompanyDetailsCancelEdit">
                           Cancel
                         </button>
                         <button type="button" class="button bg-blue-700"> Save </button>
@@ -241,7 +248,8 @@
                       </div>
                     </div>
                     <div class="flex-1 space-y-4 p-6">
-                      <h4 class="text-base text-gray-500 font-medium mb-2 orbitron" id="displayReprestativeFullname"> </h4>
+                      <h4 class="text-base text-gray-500 font-medium mb-2 orbitron" id="displayReprestativeFullname">
+                      </h4>
                       <p class="orbitron" id="displayReprestativeEmailAddress"> </p>
                       <p class="orbitron" id="displayReprestativeContactNumber"> </p>
                       <p class="orbitron">
@@ -714,6 +722,100 @@
                     <!-- =============================== -->
                     <!-- Trader Visibility Details - END -->
                     <!-- =============================== -->
+
+                  </div>
+                </div>
+              </div>
+              <!-- ===========================  -->
+              <!-- Settings Div - END  -->
+              <!-- ===========================  -->
+
+              <!-- ===========================  -->
+              <!-- Settings Div - START  -->
+              <!-- ===========================  -->
+              <div uk-sticky="media @m ; offset:80 ; bottom : true" class="card">
+                <div id="divPaymentAccount" style="display: none;">
+                  <div class="border-b flex items-center justify-between p-4">
+                    <div>
+                      <h2 class="text-lg font-semibold">Payment Account</h2>
+                    </div>
+                  </div>
+                  <div id="">
+                    <!-- ================================= -->
+                    <!-- Trader Visibility Details - START -->
+                    <!-- ================================= -->
+                    <div class="bg-white rounded-md lg:shadow-lg shadow col-span-2 lg:p-6 p-4 lg:mx-16">
+                      <div class="space-y-3">
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white orbitron">
+                          How to send payment details
+                        </h5>
+                        <ul class="list-disc pl-8 mt-2 mb-2 space-y-1 orbitron">
+                          <li>To join a Trade Show, forward the Trade Show rate of PhP 2,500 (per account per 2 to 4 days
+                            Trade Show) via our GCash or Bank Account(s)</li>
+                          <li>You may join with more than one account by registering another account with different account
+                            names.</li>
+                          <li>Payment Details are as follow:</li>
+                          <!-- ... -->
+                        </ul>
+                        <!-- <div class="grid grid-cols-1 gap-1 md:grid-cols-2 lg:grid-cols-2 mb-4"> -->
+                          <div class="columns-2">
+                          <div class="flex items-center rounded-lg border border-gray-200 shadow-md m-1">
+                            <div
+                              class="max-w-sm bg-white border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+                              <a href="#">
+                                <img class="rounded-t-lg w-full" src="/uploads/payment_accounts/3.png" alt="" />
+                              </a>
+                              <div class="p-5">
+                                <a href="#">
+                                  <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white orbitron">
+                                  BDO
+                                  </h5>
+                                </a>
+                                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400 orbitron">Charlie Pena</p>
+                                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400 orbitron">000 260 103 497</p>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="flex items-center rounded-lg border border-gray-200 shadow-md m-1">
+                            <div
+                              class="max-w-sm bg-white border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+                              <a href="#">
+                                <img class="rounded-t-lg w-full" src="/uploads/payment_accounts/4.png" alt=""  />
+                              </a>
+                              <div class="p-5">
+                                <a href="#">
+                                  <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white orbitron">
+                                  GCash
+                                  </h5>
+                                </a>
+                                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400 orbitron">Charlie Pena</p>
+                                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400 orbitron">0922 8954554</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <ul class="list-disc pl-8 mt-2 mb-2 space-y-1 orbitron">
+                          <li>Please send back image or screen shot of "PROOF OF PAYMENT" using the "EMAIL ADDRESS TO BE SEND", together with some essential information:</li>
+                          <ul class="list-disc pl-8 mt-2 mb-2 space-y-1 list-inside">
+                            <li>Account Name (Exactly the same as profile):</li>
+                            <li>Major Category:</li>
+                            <li>Subcategory:</li>
+                            <li>Minor Subcategory (optional):</li>
+                            <li>Trade Show Date:</li>
+                            <!-- ... -->
+                        </ul>
+                          <li>If payment is received after the cut-off time (one month before Trade Show) it will be
+                            automatically considered as payment for joining the Trade Show for the succeeding
+                            month.</li>
+                          <li>Expect a confirmation email showing your status of Joining of Trade Show.</li>
+                          <!-- ... -->
+                        </ul>
+                      </div>
+                    </div>
+                    <!-- =============================== -->
+                    <!-- Trader Visibility Details - END -->
+                    <!-- =============================== -->
+
                   </div>
                 </div>
               </div>
@@ -726,14 +828,14 @@
 
         </div>
         <%- include('../includes/scripts/index.ejs') %>
-          <script  src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.3.0/sweetalert2.min.js"></script>
-          <script  src="assets/js/traders-profile.js"></script>
-          <script  src="assets/js/global-countries.js"></script>
-          <script  src="assets/js/getStatesNameToBeDisplayUsingCode.js"></script>
-          <script  src="assets/js/getCityNameToBeDisplayUsingCode.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.3.0/sweetalert2.min.js"></script>
+          <script src="assets/js/traders-profile.js"></script>
+          <script src="assets/js/global-countries.js"></script>
+          <script src="assets/js/getStatesNameToBeDisplayUsingCode.js"></script>
+          <script src="assets/js/getCityNameToBeDisplayUsingCode.js"></script>
 
 
-          <script  type="text/javascript">
+          <script type="text/javascript">
             function calcTime(city, offset) {
               var b = new Date()
               var utc = b.getTime() + (b.getTimezoneOffset() * 60000);
@@ -751,9 +853,9 @@
             // ----------------------------------------------------
             // for profile_dropdown [START]
             // ----------------------------------------------------
-           
+
             // const sessionUuid = `<%= data.uuid %>`;
-            
+
             let sessionType = `<%= data.type %>`;
             let sessionFirstName = `<%= data.first_name %>`;
             let sessionLastName = `<%= data.last_name %>`;
@@ -801,14 +903,14 @@
         // ----------------------------------------------------
 
 
-        
+
 
 
           </script>
           <script src="assets/js/payment_account.js"></script>
-          <script type = "text/javascript" >  
-            
-          </script> 
+          <script type="text/javascript">
+
+          </script>
 
     </body>
 

@@ -15,16 +15,19 @@ let liTabCompanyDetails;
 let liTabMediaFiles;
 let liTabVideos;
 let liTabSettings;
+let liTabPaymentAccount;
 
 let tabCompanyDetails;
 let tabMediaFiles;
 let tabVideos;
 let tabSettings;
+let tabPaymentAccount
 
 let divCompanyDetails;
 let divMediaFiles;
 let divVideos;
 let divSettings;
+let divPaymentAccount;
 
 let videoLists;
 let videoPlay;
@@ -85,16 +88,19 @@ liTabCompanyDetails = getId('liTabCompanyDetails');
 liTabMediaFiles = getId('liTabMediaFiles');
 liTabVideos = getId('liTabVideos');
 liTabSettings = getId('liTabSettings');
+liTabPaymentAccount = getId('liTabPaymentAccount');
 
 tabCompanyDetails = getId('tabCompanyDetails');
 tabMediaFiles = getId('tabMediaFiles');
 tabVideos = getId('tabVideos');
 tabSettings = getId('tabSettings');
+tabPaymentAccount = getId('tabPaymentAccount');
 
 divCompanyDetails = getId('divCompanyDetails');
 divMediaFiles = getId('divMediaFiles');
 divVideos = getId('divVideos');
 divSettings = getId('divSettings');
+divPaymentAccount = getId('divPaymentAccount');
 
 videoLists = getId('videoLists');
 videoPlay = getId('videoPlay');
@@ -155,6 +161,7 @@ tabCompanyDetails.addEventListener('click', (e) => {
     liTabVideos.classList.remove('active');
     liTabMediaFiles.classList.remove('active');
     liTabSettings.classList.remove('active');
+    liTabPaymentAccount.classList.remove('active');
     liTabCompanyDetails.classList.add('active');
 
     divCompanyDetails.style.display = 'block';
@@ -164,6 +171,7 @@ tabCompanyDetails.addEventListener('click', (e) => {
     videoLists.style.display = 'none';
     videoPlay.style.display = 'none';
     divSettings.style.display = 'none';
+    divPaymentAccount.style.display = 'none';
 });
 
 btnCompanyDetailsEdit.addEventListener('click', (e) => {
@@ -260,16 +268,36 @@ tabMediaFiles.addEventListener('click', (e) => {
     videoLists.style.display = 'none';
     videoPlay.style.display = 'none';
     divSettings.style.display = 'none';
+    divPaymentAccount.style.display = 'none';
     divMediaFiles.style.display = 'block';
 
     liTabCompanyDetails.classList.remove('active');
     liTabVideos.classList.remove('active');
     liTabSettings.classList.remove('active');
+    liTabPaymentAccount.classList.remove('active');
     liTabMediaFiles.classList.add('active');
 });
 
 tabSettings.addEventListener('click', (e) => {
     liTabSettings.classList.add('active');
+    liTabCompanyDetails.classList.remove('active');
+    liTabVideos.classList.remove('active');
+    liTabMediaFiles.classList.remove('active');
+    liTabPaymentAccount.classList.remove('active');
+
+    divCompanyDetails.style.display = 'none';
+    divCompanyRepresentative.style.display = 'none';
+    divVideos.style.display = 'none';
+    videoLists.style.display = 'none';
+    videoPlay.style.display = 'none';
+    divMediaFiles.style.display = 'none';
+    divPaymentAccount.style.display = 'none';
+    divSettings.style.display = 'block';
+});
+
+tabPaymentAccount.addEventListener('click', (e) => {
+    liTabPaymentAccount.classList.add('active');
+    liTabSettings.classList.remove('active');
     liTabCompanyDetails.classList.remove('active');
     liTabVideos.classList.remove('active');
     liTabMediaFiles.classList.remove('active');
@@ -280,16 +308,19 @@ tabSettings.addEventListener('click', (e) => {
     videoLists.style.display = 'none';
     videoPlay.style.display = 'none';
     divMediaFiles.style.display = 'none';
-    divSettings.style.display = 'block';
+    divSettings.style.display = 'none';
+    divPaymentAccount.style.display = 'block';
 });
 
 tabVideos.addEventListener('click', (e) => {
+    liTabPaymentAccount.classList.remove('active');
     liTabSettings.classList.remove('active');
     liTabCompanyDetails.classList.remove('active');
     liTabMediaFiles.classList.remove('active');
     liTabVideos.classList.add('active');
 
     divSettings.style.display = 'none';
+    divPaymentAccount.style.display = 'none';
     divMediaFiles.style.display = 'none';
     divCompanyDetails.style.display = 'none';
     divCompanyRepresentative.style.display = 'none';
