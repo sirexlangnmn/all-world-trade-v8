@@ -1,0 +1,44 @@
+module.exports = (app) => {
+    const controllers = require('../db_controllers');
+    const middleware = require('../middleware');
+
+    const smallScaleCompanyRegistrationValidation = middleware.smallScaleCompanyRegistrationValidation;
+    const smallScaleCompanyRegistrationController = controllers.small_scale_company_registration;
+
+    const mediumScaleCompanyRegistrationValidation = middleware.mediumScaleCompanyRegistrationValidation;
+    const mediumScaleCompanyRegistrationController = controllers.medium_scale_company_registration;
+
+    const largeScaleCompanyRegistrationValidation = middleware.largeScaleCompanyRegistrationValidation;
+    const largeScaleCompanyRegistrationController = controllers.large_scale_company_registration;
+
+    const traderScaleCompanyRegistrationValidation = middleware.traderScaleCompanyRegistrationValidation;
+    const traderScaleCompanyRegistrationController = controllers.trader_scale_company_registration;
+
+
+
+    app.post(
+        ['/api/v2/post/small-scale-company-registration'],
+        smallScaleCompanyRegistrationValidation,
+        smallScaleCompanyRegistrationController.create,
+    );
+
+    app.post(
+        ['/api/v2/post/medium-scale-company-registration'],
+        mediumScaleCompanyRegistrationValidation,
+        mediumScaleCompanyRegistrationController.create,
+    );
+
+    app.post(
+        ['/api/v2/post/large-scale-company-registration'],
+        largeScaleCompanyRegistrationValidation,
+        largeScaleCompanyRegistrationController.create,
+    );
+
+    app.post(
+        ['/api/v2/post/trader-scale-company-registration'],
+        traderScaleCompanyRegistrationValidation,
+        traderScaleCompanyRegistrationController.create,
+    );
+
+    
+};
