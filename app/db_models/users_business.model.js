@@ -10,7 +10,7 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING,
         },
         business_language_of_communication: {
-            type: Sequelize.STRING,
+            type: Sequelize.TEXT('long'),
         },
         business_tagline: {
             type: Sequelize.STRING,
@@ -19,7 +19,7 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING,
         },
         business_social_media_contact_type: {
-            type: Sequelize.STRING,
+            type: Sequelize.TINYINT,
         },
         business_social_media_contact_number: {
             type: Sequelize.STRING,
