@@ -1803,8 +1803,8 @@ module.exports = (app) => {
             port: process.env.EMAIL_PORT,
             secure: false,
             auth: {
-                user: process.env.EMAIL_USER,
-                pass: process.env.EMAIL_PASSWORD,
+                user: process.env.PAYMENT_EMAIL_ADDRESS,
+                pass: process.env.PAYMENT_EMAIL_ADDRESS_PASSWORD,
             },
             tls: {
                 rejectUnauthorized: false,
@@ -1825,7 +1825,7 @@ module.exports = (app) => {
 
         // setup email data with unicode symbols
         let mailOptions = {
-            from: process.env.EMAIL_SENDER_ADDRESS,
+            from: process.env.PAYMENT_EMAIL_ADDRESS,
             to: receiverEmailAddress,
             subject: 'All World Trade Payment Account Information',
             template: 'payment-account',
