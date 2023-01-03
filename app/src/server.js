@@ -229,9 +229,17 @@ require('../routes/encrypt.route.js')(app);
 app.get(['/'], (req, res) => {
     if (req.session.user === undefined) {
         const sessionData = {
+            uuid: '',
+            type: '',
+            first_name: '',
+            last_name: '',
+            email: '',
+            country: '',
+            state_or_province: '',
             ourGenerateNonce: lodashNonce,
         };
-        res.render(path.join(__dirname, '../../', 'public/view/login/index'), {
+
+        res.render(path.join(__dirname, '../../', 'public/view/home/index'), {
             data: sessionData,
         });
     } else {
