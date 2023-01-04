@@ -392,22 +392,57 @@ const countriesData = readFileSync(path.join(__dirname, '../../', 'public/assets
 const statesData = readFileSync(path.join(__dirname, '../../', 'public/assets/json/states.json'));
 const citiesData = readFileSync(path.join(__dirname, '../../', 'public/assets/json/cities.json'));
 
-app.get(['/rewirte-countries'], (req, res) => {
-    let countries = JSON.parse(countriesData);
+//const countriesData2 = readFileSync(path.join(__dirname, '../../', 'public/assets/json/cities-ready-to-delete.json'));
 
-    // console.log('countries.length: ', countries.length);
-    // console.log('countries.length: ', countries[1]);
-    delete countries['latitude'];
-
-    console.log('newData2: ', newData2);
-    var newData2 = JSON.stringify(countries);
+// app.get(['/rewirte-json'], (req, res) => {
+//     let value = "latitude";
+//     let arr = JSON.parse(citiesData);
     
+//    // iterate and delete time property
+//     arr.forEach(o => delete o.state_name);
+//     arr.forEach(o => delete o.country_name);
+//     arr.forEach(o => delete o.latitude);
+//     arr.forEach(o => delete o.longitude);
+//     arr.forEach(o => delete o.wikiDataId);
 
-    // writeFile(path.join(__dirname, '../../', 'public/assets/json/rewrite-countries.json'), newData2, (err) => {
-    //         // Error checking
-    //         if (err) throw err;
-    //         console.log("New data added");
-    //     });
+//     // convert back to JSON string
+//     let json = JSON.stringify(arr);
+
+//     writeFile(path.join(__dirname, '../../', 'public/assets/json/rewrite-states.json'), json, (err) => {
+//         // Error checking
+//         if (err) throw err;
+//         console.log("New data added");
+//     });
+// });
+
+app.get(['/rewirte-json'], (req, res) => {
+    let arr = JSON.parse(countriesData);
+    
+   // iterate and delete time property
+    arr.forEach(o => delete o.phone_code);
+    arr.forEach(o => delete o.capital);
+    arr.forEach(o => delete o.currency);
+    arr.forEach(o => delete o.currency_name);
+    arr.forEach(o => delete o.currency_symbol);
+    arr.forEach(o => delete o.tld);
+    arr.forEach(o => delete o.native);
+    arr.forEach(o => delete o.region);
+    arr.forEach(o => delete o.subregion);
+    arr.forEach(o => delete o.timezones);
+    arr.forEach(o => delete o.translations);
+    arr.forEach(o => delete o.latitude);
+    arr.forEach(o => delete o.longitude);
+    arr.forEach(o => delete o.emoji);
+    arr.forEach(o => delete o.emojiU);
+
+    // convert back to JSON string
+    let json = JSON.stringify(arr);
+
+    writeFile(path.join(__dirname, '../../', 'public/assets/json/rewrite-countries.json'), json, (err) => {
+        // Error checking
+        if (err) throw err;
+        console.log("New data added");
+    });
 });
 
 app.get(['/download-current-visitor-data'], (req, res) => {

@@ -1827,7 +1827,7 @@ module.exports = (app) => {
         let mailOptions = {
             from: process.env.PAYMENT_EMAIL_ADDRESS,
             to: receiverEmailAddress,
-            subject: 'All World Trade Payment Account Information',
+            subject: 'All World Trade - Trade Show Payment Information',
             template: 'payment-account',
             // context: {
             //     code: verification_code
