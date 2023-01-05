@@ -927,6 +927,8 @@ function downloadCurrentVisitorData() {
                         window.location = host + '/download-current-visitor-data';
                     }
                 });
+            } else {
+                Swal.fire('Success', 'Currently No Visitors', 'success');
             }
         },
     });

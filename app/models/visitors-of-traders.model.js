@@ -15,47 +15,58 @@ const Model = function (model) {
 };
 
 Model.getCurrentVisitor = (newModel, result) => {
-    let trader_uuid = newModel.uuid;
+    const bytes = CryptoJS.AES.decrypt(newModel.uuid, JWT_SECRET);
+    const trader_uuid = bytes.toString(CryptoJS.enc.Utf8);
+  
     sql.query(TRADERS_VISITORS.SELECT_CURRENT_VISITOR, [trader_uuid], (err, res) => {
-        let visitor_uuid = res[0].visitor_id;
-        newModel.session.current_visitor_date_created = res[0].date_created;
+        if (res.length > 0) {
+            let visitor_uuid = res[0].visitor_id;
+            
+            newModel.session.current_visitor_date_created = res[0].date_created;
 
-        if (err) {
-            result(null, err);
-            return;
-        } else {
-            sql.query(USERS_ADDRESS.ADDRESS, [visitor_uuid], (err, res) => {
-                if (err) {
-                    return;
-                } else {
-                    newModel.session.current_visitor_address = res[0];
-                }
-            });
+            if (err) {
+                result(null, err);
+                return;
+            } else {
+                sql.query(USERS_ADDRESS.ADDRESS, [visitor_uuid], (err, res) => {
+                    if (err) {
+                        return;
+                    } else {
+                        newModel.session.current_visitor_address = res[0];
+                    }
+                });
 
-            sql.query(USERS_BUSINESS.LANGUAGE, [visitor_uuid], (err, res) => {
-                if (err) {
-                    return;
-                } else {
-                    newModel.session.current_visitor_language = res[0];
-                }
-            });
+                sql.query(USERS_BUSINESS.LANGUAGE, [visitor_uuid], (err, res) => {
+                    if (err) {
+                        return;
+                    } else {
+                        newModel.session.current_visitor_language = res[0];
+                    }
+                });
 
-            sql.query(USERS_ACCOUNTS.SELECT_CURRENT_VISITOR, [visitor_uuid], (err, res) => {
-                if (err) {
-                    result(null, err);
-                    return;
-                } else {
-                    newModel.session.current_visitor = res[0];
-                    result(null, res);
-                }
-            });
+                sql.query(USERS_ACCOUNTS.SELECT_CURRENT_VISITOR, [visitor_uuid], (err, res) => {
+                    if (err) {
+                        result(null, err);
+                        return;
+                    } else {
+                        newModel.session.current_visitor = res[0];
+                        result(null, res);
+                    }
+                });
+            } 
+        }else {
+            result(null, res);
         }
+       
     });
 };
 
 Model.connectVisitorAndTrader = (newModel, result) => {
+    const bytes = CryptoJS.AES.decrypt(newModel.uuid, JWT_SECRET);
+    const originalUuid = bytes.toString(CryptoJS.enc.Utf8);
+
     const visitorTraderObject = {
-        visitor_id: newModel.uuid,
+        visitor_id: originalUuid,
         trader_id: newModel.trader_uuid,
         date_created: date_time(),
         createdAt: date_time(),
