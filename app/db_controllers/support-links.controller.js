@@ -104,11 +104,13 @@ exports.getSupportLinks = async (req, res) => {
 
 exports.updateAsOccupied = async (req, res) => {
 
-    let originalUuid = 0; // uuid value for no session data
+    let originalUuid; // uuid value for no session data
     if(req.session.user) {
         const encryptedUuid = req.session.user.uuid;
         const bytes = CryptoJS.AES.decrypt(encryptedUuid, JWT_SECRET);
-        const originalUuid = bytes.toString(CryptoJS.enc.Utf8);
+        originalUuid = bytes.toString(CryptoJS.enc.Utf8);
+    } else {
+        originalUuid = 0;
     }
     
 
