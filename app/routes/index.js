@@ -169,8 +169,7 @@ module.exports = (app) => {
     
     app.post(['/api/post/record-the-meeting-of-visitor-and-trader'], visitorsOfTraders.connectVisitorAndTrader);
 
-    // app.get('/api/get/communicator-link/:room_id/:call_id/:section_id/:peer_id', usersBusiness.findCommunicator);
-    app.get('/api/get/communicator-link/:link', usersBusiness.findCommunicator);
+    // app.get('/api/get/communicator-link/:link', usersBusiness.findCommunicator);
 
     app.post(['/api/get/create-communicator-link'], usersBusiness.createCommunicatorLink);
 

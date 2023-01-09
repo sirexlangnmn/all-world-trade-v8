@@ -6,5 +6,7 @@ controller.small_scale_company_registration = require('./small-scale-company-reg
 controller.trader_scale_company_registration = require('./trader-scale-company-registration.controller.js');
 controller.help_and_support_registration = require('./help-and-support.controller.js');
 controller.support_links = require('./support-links.controller.js');
+controller.communicator = require('./communicator.controller.js');
+
 
 module.exports = controller;

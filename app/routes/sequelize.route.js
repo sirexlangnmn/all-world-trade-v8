@@ -16,6 +16,7 @@ module.exports = (app) => {
 
     const helpAndSupportRegistrationController = controllers.help_and_support_registration;
     const supportLinksController = controllers.support_links;
+    const communicatorController = controllers.communicator;
 
     app.post(
         ['/api/v2/post/small-scale-company-registration'],
@@ -59,7 +60,9 @@ module.exports = (app) => {
 
     app.post(
         ['/api/post/go-to-help-and-suggestion-page'],
-        supportLinksController.getCommunicatorLink
+        supportLinksController.getSupportLinks 
     );
+
+    app.get('/api/get/communicator-link/:link', communicatorController.findCommunicator);
     
 };

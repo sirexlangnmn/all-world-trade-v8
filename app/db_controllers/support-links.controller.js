@@ -86,7 +86,7 @@ exports.create = async (req, res) => {
 
 
 
-exports.getCommunicatorLink = async (req, res) => {
+exports.getSupportLinks = async (req, res) => {
     const encryptedUuid = req.session.user.uuid;
     const bytes = CryptoJS.AES.decrypt(encryptedUuid, JWT_SECRET);
     const originalUuid = bytes.toString(CryptoJS.enc.Utf8);
