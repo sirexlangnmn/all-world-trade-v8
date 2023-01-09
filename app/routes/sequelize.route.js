@@ -63,6 +63,12 @@ module.exports = (app) => {
         supportLinksController.getSupportLinks 
     );
 
+    
+    app.post(
+        ['/api/post/update-as-occupied'],
+        supportLinksController.updateAsOccupied 
+    );
+
     app.get('/api/get/communicator-link/:link', communicatorController.findCommunicator);
     
 };

@@ -19,7 +19,7 @@ exports.create = async (req, res) => {
         communicator_link: communicator_link + '-all-world-trade-help-suggestion',
         support_accounts_uuid: originalUuid,
         isOccupied: 0,
-        status: 0
+        status: 0,
     };
 
     const updateObject = {
@@ -38,7 +38,7 @@ exports.create = async (req, res) => {
             return data;
         })
         .catch((err) => {
-            console.log('Some error occurred while retrieving tutorials.');
+            console.log('support-links.controller.js exports.create | Some error occurred while retrieving tutorials.');
             return 'Some error occurred while retrieving tutorials.';
         });
 
@@ -49,14 +49,14 @@ exports.create = async (req, res) => {
         })
             .then((num) => {
                 if (num > 0) {
-                    console.log('updated successfully');
+                    console.log('support-links.controller.js exports.create | updated successfully');
                     return num;
                 } else {
-                    console.log('Some error occurred while updating the help and suggest communicator link status');
+                    console.log('support-links.controller.js exports.create | Some error occurred while updating the help and suggest communicator link status');
                 }
             })
             .catch((err) => {
-                console.log('Error updating help and suggest communicator link status with uuid=' + originalUuid);
+                console.log('support-links.controller.js exports.create | Error updating help and suggest communicator link status with uuid=' + originalUuid);
             });
     }
 
@@ -85,25 +85,66 @@ exports.create = async (req, res) => {
     }
 };
 
-
-
 exports.getSupportLinks = async (req, res) => {
-    const encryptedUuid = req.session.user.uuid;
-    const bytes = CryptoJS.AES.decrypt(encryptedUuid, JWT_SECRET);
-    const originalUuid = bytes.toString(CryptoJS.enc.Utf8);
-
     var condition = { isOccupied: 0, status: 0 };
 
-    const getRows = await Support_links.findAll({ 
+    const getRows = await Support_links.findAll({
         limit: 1,
         where: condition,
-        order: [ [ 'createdAt', 'DESC' ]]
+        order: [['createdAt', 'DESC']],
     })
         .then((data) => {
+            console.log('getSupportLinks data', data);
             res.send(data);
         })
         .catch((err) => {
             return 'Some error occurred while retrieving tutorials.';
         });
+};
 
+exports.updateAsOccupied = async (req, res) => {
+
+    let originalUuid = 0; // uuid value for no session data
+    if(req.session.user) {
+        const encryptedUuid = req.session.user.uuid;
+        const bytes = CryptoJS.AES.decrypt(encryptedUuid, JWT_SECRET);
+        const originalUuid = bytes.toString(CryptoJS.enc.Utf8);
+    }
+    
+
+    let communicator_link = req.body.communicator_link;
+    let support_accounts_uuid = req.body.support_accounts_uuid;
+
+    const updateObject = {
+        users_accounts_uuid: originalUuid,
+        isOccupied: 1,
+    };
+
+    let conditionObject = {
+        communicator_link: communicator_link,
+        support_accounts_uuid: support_accounts_uuid,
+        isOccupied: 0,
+        status: 0,
+    };
+
+    Support_links.update(updateObject, {
+        where: { 
+            communicator_link: communicator_link,
+            support_accounts_uuid: support_accounts_uuid,
+            isOccupied: 0,
+            status: 0
+        },
+    })
+        .then((num) => {
+            if (num > 0) {
+                console.log('support-links.controller.js exports.updateAsOccupied | updated successfully');
+                console.log('support-links.controller.js exports.updateAsOccupied | updated successfully num', num);
+                // res.send(num);
+            } else {
+                console.log('support-links.controller.js exports.updateAsOccupied | Some error occurred while updating the help and suggest communicator link status');
+            }
+        })
+        .catch((err) => {
+            console.log('support-links.controller.js exports.updateAsOccupied | Error updating help and suggest communicator link status with uuid=' + originalUuid);
+        });
 };
