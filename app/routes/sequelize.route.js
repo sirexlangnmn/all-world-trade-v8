@@ -14,7 +14,8 @@ module.exports = (app) => {
     const traderScaleCompanyRegistrationValidation = middleware.traderScaleCompanyRegistrationValidation;
     const traderScaleCompanyRegistrationController = controllers.trader_scale_company_registration;
 
-
+    const helpAndSupportRegistrationController = controllers.help_and_support_registration;
+    const supportLinksController = controllers.support_links;
 
     app.post(
         ['/api/v2/post/small-scale-company-registration'],
@@ -40,5 +41,25 @@ module.exports = (app) => {
         traderScaleCompanyRegistrationController.create,
     );
 
+    app.post(
+        ['/api/v2/post/trader-scale-company-registration'],
+        traderScaleCompanyRegistrationValidation,
+        traderScaleCompanyRegistrationController.create,
+    );
+
+    app.post(
+        ['/api/post/help-and-support-registration-process'],
+        helpAndSupportRegistrationController.create
+    );
+
+    app.post(
+        ['/api/get/create-help-and-support-communicator-link'],
+        supportLinksController.create
+    );
+
+    app.post(
+        ['/api/post/go-to-help-and-suggestion-page'],
+        supportLinksController.getCommunicatorLink
+    );
     
 };

@@ -384,7 +384,32 @@ app.get(['/profile2'], (req, res) => {
 });
 
 app.get(['/help-and-support-profile'], (req, res) => {
-    res.render(path.join(__dirname, '../../', 'public/view/profile/help-and-support-profile'));
+
+    if (req.session.user === undefined) {
+        const sessionData = {
+            ourGenerateNonce: lodashNonce,
+        };
+
+        res.render(path.join(__dirname, '../../', 'public/view/login/help-and-support-login'), {
+            data: sessionData,
+        });
+    } else {
+        const sessionData = {
+            uuid: req.session.user.uuid,
+            type: "",
+            status: req.session.user.type,
+            first_name: req.session.user.first_name,
+            last_name: req.session.user.last_name,
+            email: req.session.user.email_address,
+            ourGenerateNonce: lodashNonce,
+        };
+
+        if (req.session.user.status == 1) {
+            res.render(path.join(__dirname, '../../', 'public/view/profile/help-and-support'), {
+                data: sessionData,
+            });
+        }
+    }
 });
 
 const { readFileSync, writeFile } = require('fs');

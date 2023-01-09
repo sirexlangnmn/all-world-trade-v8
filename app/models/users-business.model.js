@@ -87,19 +87,9 @@ Tutorial.createCommunicatorLink = (uuid, result) => {
 
     sql.query(USERS_BUSINESS.UPDATE_COMMUNICATOR_LINK, [...Object.values(linkObject), originalUuid], (err, rows) => {
         if (err) {
-            sql.rollback(function () {
-                throw err;
-            });
+            console.log(err);
         } else {
-            sql.commit(function (err) {
-                if (err) {
-                    sql.rollback(function () {
-                        throw err;
-                    });
-                } else {
-                    result(null, { id: rows.insertId, ...linkObject });
-                }
-            });
+            result(null, { id: rows.insertId, ...linkObject });
         }
     });
 };

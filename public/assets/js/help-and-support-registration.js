@@ -147,11 +147,15 @@ function helpAndSupportRegistrationSubmitHandler(e) {
             type: 'POST',
             data: helpAndSupportRegistrationForm.serialize(),
             success: function (res) {
-                if (res.uuid) {
+                console.log(res);
+                if (res.message === 'account has been created') {
                     // registrationEmailVerification(res.uuid, res.verification_code, res.email_or_social_media);
                     location.replace(host + '/help-and-support-login');
                     Swal.fire('Success', 'Registration Success.', 'success');
-                } else {
+                } else if (res.message === 'email already in use') {
+                    Swal.fire('Warning', 'Email already in use.', 'warning');
+                }
+                 else {
                     Swal.fire('Warning', 'Something went wrong. Contact the administrator.', 'warning');
                 }
             },

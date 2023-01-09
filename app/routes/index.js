@@ -47,6 +47,7 @@ module.exports = (app) => {
     const forgotPassword = require('../controllers/forgot-password.controller.js');
     const visitorsOfTraders = require('../controllers/visitors-of-traders.controller.js');
     const helpAndSupport = require('../controllers/help-and-support.controller.js');
+    const helpAndSupportLogin = require('../controllers/help-and-support-login.controller.js');
 
     // Retrieve all Tutorials
     app.get(['/api/get/tutorials'], tutorials.findAll);
@@ -93,6 +94,8 @@ module.exports = (app) => {
     app.get('/api/get/minor-sub-category-by-title/:title', minorSubCategories.getMinorSubCategoryByTitle);
 
     app.post(['/api/post/login-process'], middleware.login_process, login.create);
+
+    app.post(['/api/post/help-and-support-login-process'], helpAndSupportLogin.create);
 
     app.post(['/api/post/forgot-password-process'], forgotPassword.create);
 
@@ -171,6 +174,5 @@ module.exports = (app) => {
 
     app.post(['/api/get/create-communicator-link'], usersBusiness.createCommunicatorLink);
 
-    app.post(['/api/post/help-and-support-registration-process'], helpAndSupport.create);
 
 };
