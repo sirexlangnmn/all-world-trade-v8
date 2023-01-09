@@ -18,7 +18,8 @@ exports.create = async (req, res) => {
     const linkObject = {
         communicator_link: communicator_link + '-all-world-trade-help-suggestion',
         support_accounts_uuid: originalUuid,
-        status: 0,
+        isOccupied: 0,
+        status: 0
     };
 
     const updateObject = {
@@ -91,12 +92,7 @@ exports.getSupportLinks = async (req, res) => {
     const bytes = CryptoJS.AES.decrypt(encryptedUuid, JWT_SECRET);
     const originalUuid = bytes.toString(CryptoJS.enc.Utf8);
 
-    const updateObject = {
-        users_accounts_uuid: originalUuid,
-        status: 1
-    };
-
-    var condition = { status: 0 };
+    var condition = { isOccupied: 0, status: 0 };
 
     const getRows = await Support_links.findAll({ 
         limit: 1,

@@ -9,6 +9,9 @@ module.exports = (sequelize, Sequelize) => {
         users_accounts_uuid: {
             type: Sequelize.STRING,
         },
+        isOccupied: {
+            type: Sequelize.TINYINT,
+        },
         status: {
             type: Sequelize.TINYINT,
         },
