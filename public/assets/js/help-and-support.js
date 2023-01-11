@@ -1,10 +1,6 @@
 // document.getElementById("btnCreateHelpAndSupportCommunicatorLink").addEventListener("click", createHelpAndSupportCommunicatorLink);
 
 function goToHelpSuggestionPage() {
-    // // const URL = 'https://meet2.allworldtrade.com/groupcall/ae7d6180-1078-4ed9-aabd-d7e50935a3d3-all-world-trade-help-suggestion';
-    // const URL = 'https://meet.allworldtrade.com/join/ae7d6180-1078-4ed9-aabd-d7e50935a3d3-all-world-trade-help-suggestion';
-    // window.open(URL, '_blank');
-
     $.ajax({
         url: '/api/post/go-to-help-and-suggestion-page',
         type: 'POST',
@@ -14,10 +10,10 @@ function goToHelpSuggestionPage() {
                 window.open(URL, '_blank');
                 occupied(data[0].communicator_link, data[0].support_accounts_uuid);
             } else {
-                
-                let emailifHelpAndSuggestLinkNotAvailableModal = UIkit.modal('#email-if-help-and-suggest-link-not-available-modal');
+                let emailifHelpAndSuggestLinkNotAvailableModal = UIkit.modal(
+                    '#email-if-help-and-suggest-link-not-available-modal',
+                );
                 emailifHelpAndSuggestLinkNotAvailableModal.show();
-                //$('#email-if-help-and-suggest-link-not-available-modal').modal('show');
             }
         },
     });
@@ -33,6 +29,35 @@ function occupied(communicator_link, support_accounts_uuid) {
         },
         success: function (data) {
             console.log(data);
+        },
+    });
+}
+
+document
+    .getElementById('btnEmailIfHelpAndSuggestLinkNotAvailable')
+    .addEventListener('click', submitEmailIfHelpAndSuggestLinkNotAvailable);
+document
+    .getElementById('btnHiddenEmailIfHelpAndSuggestLinkNotAvailable')
+    .addEventListener('click', submitEmailIfHelpAndSuggestLinkNotAvailable);
+
+function submitEmailIfHelpAndSuggestLinkNotAvailable(e) {
+    e.preventDefault();
+    const formSubmit = $('#formEmailIfHelpAndSuggestLinkNotAvailable');
+
+    $.ajax({
+        url: '/api/post/submit-email-if-help-and-suggest-link-not-available',
+        type: 'POST',
+        data: formSubmit.serialize(),
+        success: function (res) {
+            console.log(res);
+            if (res.message === 'message has been submitted successfully') {
+                $('#email-if-help-and-suggest-link-not-available-modal form')[0].reset();
+                var modal = UIkit.modal('#email-if-help-and-suggest-link-not-available-modal');
+                modal.hide();
+                // Swal.fire('Success', 'Message has been submitted successfully.', 'success');
+            } else {
+                // Swal.fire('Warning', 'Something went wrong. Please contact the administrator', 'warning');
+            }
         },
     });
 }

@@ -16,6 +16,7 @@ module.exports = (app) => {
 
     const helpAndSupportRegistrationController = controllers.help_and_support_registration;
     const supportLinksController = controllers.support_links;
+    const supportMessagesController = controllers.support_messages;
     const communicatorController = controllers.communicator;
 
     app.post(
@@ -48,27 +49,15 @@ module.exports = (app) => {
         traderScaleCompanyRegistrationController.create,
     );
 
-    app.post(
-        ['/api/post/help-and-support-registration-process'],
-        helpAndSupportRegistrationController.create
-    );
+    app.post(['/api/post/help-and-support-registration-process'], helpAndSupportRegistrationController.create);
 
-    app.post(
-        ['/api/get/create-help-and-support-communicator-link'],
-        supportLinksController.create
-    );
+    app.post(['/api/get/create-help-and-support-communicator-link'], supportLinksController.create);
 
-    app.post(
-        ['/api/post/go-to-help-and-suggestion-page'],
-        supportLinksController.getSupportLinks 
-    );
+    app.post(['/api/post/go-to-help-and-suggestion-page'], supportLinksController.getSupportLinks);
 
-    
-    app.post(
-        ['/api/post/update-as-occupied'],
-        supportLinksController.updateAsOccupied 
-    );
+    app.post(['/api/post/update-as-occupied'], supportLinksController.updateAsOccupied);
 
     app.get('/api/get/communicator-link/:link', communicatorController.findCommunicator);
-    
+
+    app.post('/api/post/submit-email-if-help-and-suggest-link-not-available', supportMessagesController.create);
 };

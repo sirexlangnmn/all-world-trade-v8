@@ -17,6 +17,7 @@ db.tutorial2s = require('./tutorial2.model.js')(sequelize, Sequelize);
 db.reset_tokens = require('./reset_tokens.model.js')(sequelize, Sequelize);
 db.support_accounts = require('./support_accounts.model.js')(sequelize, Sequelize);
 db.support_links = require('./support_links.model.js')(sequelize, Sequelize);
+db.support_messages = require('./support_messages.model.js')(sequelize, Sequelize);
 db.traders_visitors = require('./traders_visitors.model.js')(sequelize, Sequelize);
 db.users_business_characteristics = require('./users_business_characteristics.model.js')(sequelize, Sequelize);
 db.users_business_medias = require('./users_business_medias.model.js')(sequelize, Sequelize);

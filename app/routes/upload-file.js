@@ -1848,4 +1848,5 @@ module.exports = (app) => {
             // res.render('Email has been sent');
         });
     });
+    
 };

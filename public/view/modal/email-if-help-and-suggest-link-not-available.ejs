@@ -18,17 +18,26 @@
 
       <div class="create-post-modal-body space-x-6 p-5 overflow-x-hidden mr-1" data-simplebar>
 
-          <form action="" class="space-y-4 g:w-8/12">
+          <form 
+            action="javascript:void(0);"
+            method="POST"
+            id="formEmailIfHelpAndSuggestLinkNotAvailable"
+            name="formEmailIfHelpAndSuggestLinkNotAvailable"
+            enctype="multipart/form-data"
+            accept-charset="utf-8"
+            class="space-y-4 g:w-8/12" 
+          >
               
             <p class="leading-6 pr-4 line-clamp-2 md:block hidden mb-12"> Currently our line is full, you can try again later or send us an email. </p>
             <div>
               <label> Your Email Address </label>
-              <input type="text" class="with-border" placeholder="" id="" name="">
+              <input type="text" class="with-border" placeholder="" id="eihaslna_email_address" name="eihaslna_email_address">
             </div>
             <div>
               <label> Message </label>
               <textarea rows="4" class="with-border w-full p-4" placeholder=""
-                id="" name=""></textarea>
+                id="eihaslna_message" name="eihaslna_message">
+              </textarea>
             </div>
 
           </form>
@@ -45,12 +54,12 @@
 
           <div class="flex space-x-2">
               
-              <a href="#"
+              <a href="#" id="btnEmailIfHelpAndSuggestLinkNotAvailable"
                   class="bg-blue-600 flex h-9 items-center justify-center rounded-md text-white px-5 font-medium">
                   Send </a>
           </div>
 
-          <a href="#" hidden
+          <a href="#" id="btnHiddenEmailIfHelpAndSuggestLinkNotAvailable" hidden
               class="bg-blue-600 flex h-9 items-center justify-center rounded-lg text-white px-12 font-semibold">
               Send </a>
       </div>
