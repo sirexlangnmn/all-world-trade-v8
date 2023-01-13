@@ -789,13 +789,13 @@ function getBusinessScaleTitle(id) {
     let value;
 
     switch (id) {
-        case '1':
+        case 1:
             value = 'Small Scale';
             break;
-        case '2':
+        case 2:
             value = 'Medium Scale';
             break;
-        case '3':
+        case 3:
             value = 'Large Scale';
             break;
         case '':

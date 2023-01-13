@@ -6,7 +6,7 @@ const JWT_SECRET = process.env.JWT_SECRET;
 const Visibility = function () {};
 
 Visibility.get = (uuid, result) => {
-    let query = 'SELECT * FROM users_business_visibility';
+    let query = 'SELECT * FROM users_business_visibilities';
 
     const bytes = CryptoJS.AES.decrypt(uuid, JWT_SECRET);
     const originalUuid = bytes.toString(CryptoJS.enc.Utf8);

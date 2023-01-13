@@ -59,7 +59,7 @@ Model.create = (newModel, result) => {
     const usersAccountsQuery = `INSERT INTO users_accounts
     (user_id, email_or_social_media, social_media_contact_type, contact_number, password,  type, verification_code, uuid) VALUES (?, ?, ?, ?, ?, ?, ?, ?);`;
 
-    const usersBusinessQuery = `INSERT INTO users_business
+    const usersBusinessQuery = `INSERT INTO users_businesses
     (user_id, business_name, business_email, business_contact, business_language_of_communication, business_tagline, business_website, business_social_media_contact_type, business_social_media_contact_number, business_address, business_country, business_states, business_city, uuid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`;
 
     const usersAddressQuery = `INSERT INTO users_address

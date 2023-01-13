@@ -1,0 +1,3 @@
+UPDATE users_business
+
+users_business_visibilities

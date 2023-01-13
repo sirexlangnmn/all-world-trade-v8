@@ -203,16 +203,18 @@ function getMinorSubCategoriesTitleById(id) {
 }
 
 function getBusinessScaleTitle(id) {
+    
+    console.log('getBusinessScaleTitle id', id);
     let value;
 
     switch (id) {
-        case '1':
+        case 1:
             value = 'Small Scale';
             break;
-        case '2':
+        case 2:
             value = 'Medium Scale';
             break;
-        case '3':
+        case 3:
             value = 'Large Scale';
             break;
         default:
@@ -295,6 +297,11 @@ function getUsersBusinessScale(data) {
     let x = getBusinessScaleTitle(value);
     document.getElementById('editBusinessScale').innerHTML = '<option value="' + value + '">' + x + '</option>';
 
+    
+    console.log('getUsersBusinessScale(data)', data);
+    console.log('getUsersBusinessScale data[0].business_scale', data[0].business_scale);
+    console.log('getUsersBusinessScale value', value);
+
     let jsonObj =
         '{ "companyDetails" : [' +
         '{ "id":"1" , "title":"Small Scale" },' +
@@ -305,6 +312,10 @@ function getUsersBusinessScale(data) {
     let companyDetails = parsedObj.companyDetails;
     let leng = companyDetails.length;
 
+    console.log('getUsersBusinessScale companyDetails', companyDetails);
+    console.log('getUsersBusinessScale leng', leng);
+    console.log('getUsersBusinessScale x', x);
+
     for (let i = 0; i < leng; i++) {
         document.getElementById('editBusinessScale').innerHTML =
             document.getElementById('editBusinessScale').innerHTML +
@@ -313,6 +324,10 @@ function getUsersBusinessScale(data) {
             '">' +
             companyDetails[i]['title'] +
             '</option>';
+
+            if (i + 1 == leng) {
+                $('#editBusinessScale').selectpicker('refresh');
+            }
     }
 }
 

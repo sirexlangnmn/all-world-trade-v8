@@ -265,7 +265,7 @@ Model.update = (newModel, result) => {
                             newModel.uuid,
                         ];
 
-                        const usersBusinessVisibilityQuery = `UPDATE users_business_visibility SET 
+                        const usersBusinessVisibilityQuery = `UPDATE users_business_visibilities SET 
                             i_operate_on_a_world_wide_level = ?, 
                             i_operate_on_a_global_regional_level = ?, 
                             i_operate_on_a_national_level = ?, 

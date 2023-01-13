@@ -4,10 +4,10 @@
     <!-- Navbar goes here -->
     <%- include('../includes/nav/nav-outside-home-page.ejs') %>
 
-    <div id="wrapper" class="is-collapse is-active">
-      <!-- === HEADER - START === -->
-      
-      <!-- === HEADER - END === -->
+      <div id="wrapper" class="is-collapse is-active">
+        <!-- === HEADER - START === -->
+
+        <!-- === HEADER - END === -->
 
         <!-- Main Contents -->
         <div class="main_content">
@@ -18,8 +18,8 @@
             <!-- Profile cover -->
             <div class="profile user-profile">
               <div class="profiles_banner image-upload">
-                <form action="javascript:void(0);" method="POST" id="editcompanyBanner"
-                  name="editcompanyBanner" enctype="multipart/form-data" accept-charset="utf-8">
+                <form action="javascript:void(0);" method="POST" id="editcompanyBanner" name="editcompanyBanner"
+                  enctype="multipart/form-data" accept-charset="utf-8">
                   <label for="companyBanner">
                     <img id="companyBannerPreview" src="uploads/placeholder/banner-placeholder2.jpg" />
                   </label>
@@ -52,81 +52,72 @@
               <div class="flex justify-between lg:border-t border-gray-100 flex-col-reverse lg:flex-row pt-2">
                 <nav class="responsive-nav pl-3">
                   <ul uk-switcher="connect: #timeline-tab; animation: uk-animation-fade">
-                    <li class="active" id="liTabCompanyDetails"><a href="#" id="tabCompanyDetails">About</a></li>
-                    <li id="liTabMediaFilesx"><a href="#" id="tabMediaFilesx">Brochure </a></li>
-                    <li id="liTabVideosx"><a href="#" id="tabVideosx">Videos</a></li>
-                    <li><a href="#0">Dashboard</a></li>
-                    <li id="liTabSettingsx"><a href="#0" id="tabSettingsx">Settings</a></li>
+                    <li class="active orbitron" id="liTabCompanyDetails"><a href="#" id="tabCompanyDetails">About</a>
+                    </li>
+                    <li id="liTabMediaFiles" style="display: none;"><a href="#" class="orbitron"
+                        id="tabMediaFiles">Brochure </a></li>
+                    <li id="liTabVideos" style="display: none;"><a href="#" class="orbitron" id="tabVideos">Videos</a>
+                    </li>
+                    <li style="display: none;"><a href="#0" class="orbitron">Dashboard</a></li>
+                    <li id="liTabSettings"><a href="#0" class="orbitron" id="tabSettings">Settings</a></li>
+                    <li id="liTabPaymentAccount"><a href="#0" class="orbitron" id="tabPaymentAccount">Payment
+                        Account</a></li>
                   </ul>
                 </nav>
+              </div>
+              <div class="flex justify-between lg:border-t border-gray-100 flex-col-reverse lg:flex-row pt-2 mx-3.5">
+                <div class="grid md:grid-cols-4 grid-cols-1 gap-1">
+                  <div>
+                    <div class="m-1">
+                      <!-- create communicator links -->
+                      <a href="#" onclick="createCommunicatorLink();"
+                        class="my-3.5 bg-blue-100 flex font-medium h-9 items-center justify-center px-5 rounded-md bg-blue-600 font-medium text-white text-sm hover:text-white blue-white-hover">
+                        <svg class="h-5 pr-1 rounded-full w-6 fill-current" id="veiw-more" fill="none"
+                          stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                          aria-hidden="false" style="">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z">
+                          </path>
+                        </svg>
+                        Create Links </a>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="m-1">
+                      <!-- download current visitor data -->
+                      <a href="#" onclick="downloadCurrentVisitorData();"
+                        class="my-3.5 bg-blue-100 flex font-medium h-9 items-center justify-center px-5 rounded-md bg-blue-600 font-medium text-white text-sm hover:text-white blue-white-hover">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5">
+                          <path fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
+                            clip-rule="evenodd"></path>
+                        </svg>
+                        <span> Current Visitor </span>
+                      </a>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="m-1">
+                      <!-- Payment Account -->
+                      <a href="#" onclick="paymentAccount();"
+                        class="my-3.5 bg-blue-100 flex font-medium h-9 items-center justify-center px-5 rounded-md bg-blue-600 font-medium text-white text-sm hover:text-white blue-white-hover">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5">
+                          <path fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
+                            clip-rule="evenodd"></path>
+                        </svg>
+                        <span> Trade Show Payment </span>
+                      </a>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="m-1">
 
-                <!-- button actions -->
-                <div class="flex items-center space-x-1.5 flex-shrink-0 pr-4 mb-2 justify-center order-1 relative">
-
-                  <!-- go to website -->
-                  <a href="#"
-                    class="flex items-center justify-center h-10 px-5 rounded-md bg-blue-600 text-white space-x-1.5 hover:text-white blue-white-hover">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5">
-                      <path fill-rule="evenodd"
-                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
-                        clip-rule="evenodd"></path>
-                    </svg>
-                    <span> Traders Website </span>
-                  </a>
-
-                  <img alt="bookmark icon"
-                    srcset="https://img.icons8.com/external-kiranshastry-gradient-kiranshastry/452/external-bookmark-interface-kiranshastry-gradient-kiranshastry.png 2x"
-                    class="icon-custom" />
-
-                  <img alt="phone icon" srcset="https://img.icons8.com/color/2x/apple-phone.png 2x"
-                    class="icon-custom" />
-
-                  <!-- more icon -->
-                  <a href="#" class="flex items-center justify-center h-10 w-10 rounded-md bg-gray-100">
-                    <ion-icon name="ellipsis-horizontal" class="text-xl"></ion-icon>
-                  </a>
-                  <!-- more drowpdown -->
-                  <div
-                    class="bg-white w-56 shadow-md mx-auto p-2 mt-12 rounded-md text-gray-500 hidden border border-gray-100 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700"
-                    uk-drop="mode: click;pos: bottom-right;animation: uk-animation-slide-bottom-small; offset:5">
-                    <ul class="space-y-1">
-                      <li>
-                        <a href="#"
-                          class="flex items-center px-3 py-2 hover:bg-gray-100 hover:text-gray-800 rounded-md dark:hover:bg-gray-800">
-                          <ion-icon name="arrow-redo-outline" class="pr-2 text-xl"></ion-icon> Share Profile
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#"
-                          class="flex items-center px-3 py-2 hover:bg-gray-100 hover:text-gray-800 rounded-md dark:hover:bg-gray-800">
-                          <ion-icon name="create-outline" class="pr-2 text-xl"></ion-icon> Account setting
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#"
-                          class="flex items-center px-3 py-2 hover:bg-gray-100 hover:text-gray-800 rounded-md dark:hover:bg-gray-800">
-                          <ion-icon name="notifications-off-outline" class="pr-2 text-lg"></ion-icon> Disable
-                          notifications
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#"
-                          class="flex items-center px-3 py-2 hover:bg-gray-100 hover:text-gray-800 rounded-md dark:hover:bg-gray-800">
-                          <ion-icon name="star-outline" class="pr-2 text-xl"></ion-icon> Add favorites
-                        </a>
-                      </li>
-                      <li>
-                        <hr class="-mx-2 my-2 dark:border-gray-800">
-                      </li>
-                      <li>
-                        <a href="#"
-                          class="flex items-center px-3 py-2 text-red-500 hover:bg-red-50 hover:text-red-500 rounded-md dark:hover:bg-red-600">
-                          <ion-icon name="stop-circle-outline" class="pr-2 text-xl"></ion-icon> Unfriend
-                        </a>
-                      </li>
-                    </ul>
+                    </div>
                   </div>
                 </div>
+
+
               </div>
             </div>
             <!-- =============================  -->
@@ -282,13 +273,14 @@
                       </div> -->
                       <div>
                         <label for="minorSubCategory" class="orbitron">Minor Sub Category (Optional)</label>
-                        <input list="minorSubCategories" name="minorSubCategory" id="minorSubCategory" autocomplete="off">
+                        <input list="minorSubCategories" name="minorSubCategory" id="minorSubCategory"
+                          autocomplete="off">
                         <datalist id="minorSubCategories">
                         </datalist>
                       </div>
                       <div style="display: none;">
                         <label for="minorSubCategory" class="orbitron">Minor Sub Category Input</label>
-                        <input type="hidden" name="minorSubCategoryInput" id="minorSubCategoryInput" >
+                        <input type="hidden" name="minorSubCategoryInput" id="minorSubCategoryInput">
                       </div>
                       <div>
                         <label for="" class="orbitron">Search Keywords (Maximum of 10)</label>
@@ -354,10 +346,13 @@
                       </div>
                     </div>
                     <div class="flex-1 space-y-4 p-6">
-                      <h4 class="text-base text-gray-500 font-medium mb-2 orbitron" id="displayReprestativeFullname"> </h4>
-                      <p class="orbitron" style="text-align: justify; text-justify: inter-word;" id="displayReprestativeEmailAddress">
+                      <h4 class="text-base text-gray-500 font-medium mb-2 orbitron" id="displayReprestativeFullname">
+                      </h4>
+                      <p class="orbitron" style="text-align: justify; text-justify: inter-word;"
+                        id="displayReprestativeEmailAddress">
                       </p>
-                      <p class="orbitron" style="text-align: justify; text-justify: inter-word;" id="displayReprestativeContactNumber">
+                      <p class="orbitron" style="text-align: justify; text-justify: inter-word;"
+                        id="displayReprestativeContactNumber">
                       </p>
                       <p class="orbitron">
                         <span id="displayReprestativeAddress"> </span>
@@ -395,7 +390,7 @@
                     </div>
                     <div class="flex-1 space-y-4 p-6">
                       <div class="space-y-3">
-    
+
                         <div class="flex justify-between items-center">
                           <div>
                             <h4>I operate on a World Wide Level</h4>
@@ -412,14 +407,14 @@
                           </div>
                         </div>
                         <hr>
-    
+
                         <div id="editRegionOfOperationDiv">
                           <label for="" class="orbitron">Global Region of Operation</label>
                           <!-- <span class="icon-feather-info" style="font-size: 16px; font-family: inherit"
                               uk-tooltip="title: Leave this part if you dont cater in global regional level.; pos: right">
                             </span> -->
-    
-    
+
+
                           <div id="iOperateOnAGlobalRegionalLevelDiv">
                             <div class="flex justify-between items-center">
                               <div>
@@ -437,7 +432,7 @@
                               </div>
                             </div>
                           </div>
-    
+
                           <label for=""></label>
                           <div id="editRegionOfOperationInput">
                             <select id="traderRegionOfOperation" name="traderRegionOfOperation"
@@ -451,7 +446,7 @@
                         </div>
                         <div id="countryOfOperationDiv">
                           <label for="" class="orbitron">Country of Operation</label>
-    
+
                           <div class="" id="iOperateOnANationalLevelDiv">
                             <div class="flex justify-between items-center">
                               <div>
@@ -469,7 +464,7 @@
                               </div>
                             </div>
                           </div>
-    
+
                           <label for=""></label>
                           <div id="countryOfOperationInput">
                             <select id="traderCountryOfOperation" name="traderCountryOfOperation"
@@ -481,10 +476,10 @@
                           </div>
                           <p class="text-red-500" id="traderCountryOfOperationValidation"></p>
                         </div>
-    
+
                         <div id="statesOfOperationDiv">
                           <label for="" class="orbitron">State / Province of Operation</label>
-    
+
                           <div id="iOperateOnAProvincialLevelDiv">
                             <div class="flex justify-between items-center">
                               <div>
@@ -502,7 +497,7 @@
                               </div>
                             </div>
                           </div>
-    
+
                           <label for=""></label>
                           <div id="countryOfOperationInput2" style="display: none;">
                             <select id="traderCountryOfOperation2" name="traderCountryOfOperation2"
@@ -520,7 +515,7 @@
                           </div>
                           <p class="text-red-500" id="traderStatesOfOperationValidation"></p>
                         </div>
-    
+
                         <div id="cityOfOperationDiv">
                           <label for="" class="orbitron">City of Operation</label>
                           <div id="cityOfOperationInput">
@@ -539,7 +534,7 @@
                   </div>
                 </div>
                 <div class="lg:w-1/3 w-full">
-    
+
                 </div>
               </div>
               <!-- ===============================  -->
@@ -551,56 +546,57 @@
         </div>
 
 
-    </div>
-    <%- include('../includes/scripts/index.ejs') %>
-      <script  src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.3.0/sweetalert2.min.js"></script>
-      <script  src="assets/js/edit-traders-profile-countries.js"></script>
-      <script  src="assets/js/edit-traders-profile-dropdowns.js"></script>
-      <script  src="assets/js/getCategoryOptions.js"></script>
-      <script  src="assets/js/edit-traders-profile.js"></script>
-      <script  src="assets/js/traders-registration-operation-toogle.js"></script>
-      <script  src="assets/js/edit-traders-profile-validations.js"></script>
-      <script  src="assets/js/getBusinessCountryLocationToBeEditAndOptions.js"></script>
-      <script  src="assets/js/getBusinessStatesLocationToBeEditAndOptions.js"></script>
-      <script  src="assets/js/getBusinessCityLocationToBeEditAndOptions.js"></script>
-      <script  src="assets/js/getStatesNameToBeDisplayUsingCode.js"></script>
-      <script  src="assets/js/getCityNameToBeDisplayUsingCode.js"></script>
-       
-     
-      <script >
-        // ----------------------------------------------------
-        // for profile_dropdown [START]
-        // ----------------------------------------------------
-        // let sessionUuid =  `<%= data.uuid %>`;
-        let sessionType =  `<%= data.type %>`;
-        let sessionFirstName =  `<%= data.first_name %>`;
-        let sessionLastName =  `<%= data.last_name %>`;
-        let sessionEmail =  `<%= data.email %>`;
-        
-        sessionFirstName ? document.getElementById('user-name').innerHTML = sessionFirstName + ' ' + sessionLastName : '';
-        if (sessionType == 1) {
-            $('#upgrade-account').prop('disabled', true);
-            document.getElementById('upgrade-account').style.display = 'none';
-            document.getElementById('user-type').innerHTML = 'Trader';
-        }
-        if (sessionType == 2) {
-            $('#upgrade-account').prop('disabled', false);
-            document.getElementById('upgrade-account').style.display = 'block';
-            document.getElementById('user-type').innerHTML = 'Large Scale';
-        }
-        if (sessionType == 3) {
-            $('#upgrade-account').prop('disabled', false);
-            document.getElementById('upgrade-account').style.display = 'block';
-            document.getElementById('user-type').innerHTML = 'Medium Scale';
-        }
-        if (sessionType == 4) {
-            document.getElementById('user-type').innerHTML = 'Small Scale';
-        }
+      </div>
+        <%- include('../modal/email-if-help-and-suggest-link-not-available.ejs') %>
+        <%- include('../includes/scripts/index.ejs') %>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.3.0/sweetalert2.min.js"></script>
+          <script src="assets/js/edit-traders-profile-countries.js"></script>
+          <script src="assets/js/edit-traders-profile-dropdowns.js"></script>
+          <script src="assets/js/getCategoryOptions.js"></script>
+          <script src="assets/js/edit-traders-profile.js"></script>
+          <script src="assets/js/traders-registration-operation-toogle.js"></script>
+          <script src="assets/js/edit-traders-profile-validations.js"></script>
+          <script src="assets/js/getBusinessCountryLocationToBeEditAndOptions.js"></script>
+          <script src="assets/js/getBusinessStatesLocationToBeEditAndOptions.js"></script>
+          <script src="assets/js/getBusinessCityLocationToBeEditAndOptions.js"></script>
+          <script src="assets/js/getStatesNameToBeDisplayUsingCode.js"></script>
+          <script src="assets/js/getCityNameToBeDisplayUsingCode.js"></script>
+
+
+          <script>
+            // ----------------------------------------------------
+            // for profile_dropdown [START]
+            // ----------------------------------------------------
+            // let sessionUuid =  `<%= data.uuid %>`;
+            let sessionType = `<%= data.type %>`;
+            let sessionFirstName = `<%= data.first_name %>`;
+            let sessionLastName = `<%= data.last_name %>`;
+            let sessionEmail = `<%= data.email %>`;
+
+            sessionFirstName ? document.getElementById('user-name').innerHTML = sessionFirstName + ' ' + sessionLastName : '';
+            if (sessionType == 1) {
+              $('#upgrade-account').prop('disabled', true);
+              document.getElementById('upgrade-account').style.display = 'none';
+              document.getElementById('user-type').innerHTML = 'Trader';
+            }
+            if (sessionType == 2) {
+              $('#upgrade-account').prop('disabled', false);
+              document.getElementById('upgrade-account').style.display = 'block';
+              document.getElementById('user-type').innerHTML = 'Large Scale';
+            }
+            if (sessionType == 3) {
+              $('#upgrade-account').prop('disabled', false);
+              document.getElementById('upgrade-account').style.display = 'block';
+              document.getElementById('user-type').innerHTML = 'Medium Scale';
+            }
+            if (sessionType == 4) {
+              document.getElementById('user-type').innerHTML = 'Small Scale';
+            }
 
         // ----------------------------------------------------
         // for profile_dropdown [END]
         // ----------------------------------------------------
-      </script>
+          </script>
   </body>
 
   </html>

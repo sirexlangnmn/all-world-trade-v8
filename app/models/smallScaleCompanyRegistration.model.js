@@ -32,7 +32,7 @@ Model.create = (newModel, result) => {
     const usersDataQuery = `INSERT INTO users
     (first_name, last_name, middle_name, uuid) VALUES (?, ?, ?, ?);`;
 
-    const usersBusinessQuery = `INSERT INTO users_business
+    const usersBusinessQuery = `INSERT INTO users_businesses
     (user_id, business_language_of_communication, uuid) VALUES (?, ?, ?);`;
 
     const usersAccountsQuery = `INSERT INTO users_accounts

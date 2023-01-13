@@ -59,7 +59,7 @@ Model.update = (data, result) => {
         contact_number = ?
         WHERE uuid = ?`;
 
-    const usersBusinessQuery = `UPDATE users_business SET 
+    const usersBusinessQuery = `UPDATE users_businesses SET 
         business_language_of_communication = ?
         WHERE uuid = ?`;
 

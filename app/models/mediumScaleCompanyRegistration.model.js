@@ -51,7 +51,7 @@ Model.create = (newModel, result) => {
     const usersAddressQuery = `INSERT INTO users_address
     (user_id, country, state_or_province, city, uuid) VALUES (?, ?, ?, ?, ?);`;
 
-    const usersBusinessQuery = `INSERT INTO users_business
+    const usersBusinessQuery = `INSERT INTO users_businesses
     (user_id, business_name, business_email, business_contact, business_language_of_communication, business_website, business_social_media_contact_type, business_social_media_contact_number, business_country, business_states, business_city, uuid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`;
 
     /* Begin transaction */

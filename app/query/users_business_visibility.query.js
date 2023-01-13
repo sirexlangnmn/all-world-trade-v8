@@ -1,6 +1,6 @@
 const QUERY = {
 
-    CREATE: 'INSERT INTO users_business_visibility (' +
+    CREATE: 'INSERT INTO users_business_visibilities (' +
             'user_business_id, ' +
             'i_operate_on_a_world_wide_level, ' +
             'i_operate_on_a_global_regional_level, ' +

@@ -98,7 +98,7 @@ Model.update = (newModel, result) => {
         newModel.uuid,
     ];
 
-    const usersBusinessQuery = `UPDATE users_business SET 
+    const usersBusinessQuery = `UPDATE users_businesses SET 
         business_name = ?, 
         business_tagline = ?, 
         business_website = ?, 

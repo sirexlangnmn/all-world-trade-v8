@@ -29,7 +29,7 @@ Tutorial.getAll = (uuid, result) => {
 
 Tutorial.getBusinessLocationCode = (uuid, result) => {
     let query =
-        'SELECT business_country, business_states, business_city, region_of_operation, country_of_operation, country_for_state, states_of_operation, city_of_operation FROM users_business';
+        'SELECT business_country, business_states, business_city, region_of_operation, country_of_operation, country_for_state, states_of_operation, city_of_operation FROM users_businesses';
 
     const bytes = CryptoJS.AES.decrypt(uuid, JWT_SECRET);
     const originalUuid = bytes.toString(CryptoJS.enc.Utf8);
