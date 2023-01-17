@@ -113,7 +113,8 @@
                         <label for="" class="orbitron"> Mobile Number </label>
                         <div>
                           <input type="text" placeholder="Mobile Number" class="shadow-none with-border"
-                            id="businessSocialMediaContactNumber" name="businessSocialMediaContactNumber">
+                            id="businessSocialMediaContactNumber" name="businessSocialMediaContactNumber"
+                            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
                           <p class="text-red-500" id="businessSocialMediaContactNumberValidation"></p>
                         </div>
                         <div>
@@ -222,7 +223,8 @@
                         <label for="" class="orbitron"> Mobile Number (Optional)</label>
                         <div>
                           <input type="text" placeholder="Mobile Number" class="shadow-none with-border"
-                            id="personalSocialMediaContactNumber" name="personalSocialMediaContactNumber">
+                            id="personalSocialMediaContactNumber" name="personalSocialMediaContactNumber"
+                            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
                           <p class="text-red-500" id="personalSocialMediaContactNumberValidation"></p>
                         </div>
                         <div>

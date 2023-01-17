@@ -11,6 +11,8 @@ Tutorial.getAll = (uuid, result) => {
     const bytes = CryptoJS.AES.decrypt(uuid, JWT_SECRET);
     const originalUuid = bytes.toString(CryptoJS.enc.Utf8);
 
+    // console.log('Tutorial.getAll originalUuid', originalUuid);
+
     if (originalUuid) {
         query += ` WHERE uuid = "${originalUuid}"`;
     }

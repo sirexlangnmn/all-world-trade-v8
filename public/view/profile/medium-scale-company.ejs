@@ -2,7 +2,7 @@
 
   <body>
     <!-- Navbar goes here -->
-    <%- include('../includes/nav/nav-outside-home-page.ejs') %>
+    <%- include('../includes/nav/primary-navigation.ejs') %>
 
     <div id="wrapper" class="is-collapse is-active">
       <!-- === HEADER - START === -->
@@ -49,6 +49,7 @@
                 <div class="profile_info">
                   <h1 id="displayBusinessNameH1" class="orbitron"> </h1>
                   <p class="orbitron" style="text-align: center;" id="displayBusinessTagLineH1"> </p>
+                  <h1 id="userType" class="orbitron" style="text-align: center;"></h1>
                 </div>
 
               </div>
@@ -239,19 +240,23 @@
             $('#upgrade-account').prop('disabled', true);
             document.getElementById('upgrade-account').style.display = 'none';
             document.getElementById('user-type').innerHTML = 'Trader';
+            document.getElementById('userType').innerHTML = 'Trader';
         }
         if (sessionType == 2) {
             $('#upgrade-account').prop('disabled', false);
             document.getElementById('upgrade-account').style.display = 'block';
             document.getElementById('user-type').innerHTML = 'Large Scale';
+            document.getElementById('userType').innerHTML = 'Large Scale';
         }
         if (sessionType == 3) {
             $('#upgrade-account').prop('disabled', false);
             document.getElementById('upgrade-account').style.display = 'block';
             document.getElementById('user-type').innerHTML = 'Medium Scale';
+            document.getElementById('userType').innerHTML = 'Medium Scale';
         }
         if (sessionType == 4) {
             document.getElementById('user-type').innerHTML = 'Small Scale';
+            document.getElementById('userType').innerHTML = 'Small Scale';
         }
 
         // ----------------------------------------------------

@@ -91,7 +91,9 @@
                   </div>
                   <div>
                     <label for="" class="orbitron"> Business Contact Number: </label>
-                    <input type="text" placeholder="" class="shadow-none with-border" id="traderBusinessContactNumber" name="traderBusinessContactNumber">
+                    <input type="text" placeholder="" class="shadow-none with-border" 
+                    id="traderBusinessContactNumber" name="traderBusinessContactNumber"
+                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
                     <p class="text-red-500" id="traderBusinessContactNumberValidation"></p>
                   </div>
                   <label for="" class="orbitron"> Social Media / Messaging App </label>
@@ -104,7 +106,9 @@
                   </div>
                   <label for="" class="orbitron"> Social Media / Messaging App Contact Number</label>
                   <div>
-                    <input type="text" placeholder="Mobile Number" class="shadow-none with-border" id="traderBusinessSocialMediaContactNumber" name="traderBusinessSocialMediaContactNumber">
+                    <input type="text" placeholder="Mobile Number" class="shadow-none with-border" 
+                    id="traderBusinessSocialMediaContactNumber" name="traderBusinessSocialMediaContactNumber"
+                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
                     <p class="text-red-500" id="traderBusinessSocialMediaContactNumberValidation"></p>
                   </div>
                   <div>

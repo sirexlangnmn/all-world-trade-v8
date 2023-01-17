@@ -61,14 +61,31 @@
 </div>
 
 
-
+<script  src="assets/js/header_avatar.js"></script>
 <script >
-  function goToProfilePage() {
-      location.replace(host + '/profile');
+  // ----------------------------------------------------
+  // for profile_dropdown [START]
+  // ----------------------------------------------------
+  let sessionUuidOutsideProfile =  `<%= data.uuid %>`;
+  let sessionTypeOutsideProfile =  `<%= data.type %>`;
+  let sessionFirstNameOutsideProfile =  `<%= data.first_name %>`;
+  let sessionLastNameOutsideProfile =  `<%= data.last_name %>`;
+  
+  sessionFirstNameOutsideProfile ? document.getElementById('user-name').innerHTML = sessionFirstNameOutsideProfile + ' ' + sessionLastNameOutsideProfile : '';
+  if (sessionTypeOutsideProfile == 1) {
+      document.getElementById('user-type').innerHTML = 'Trader';
+  }
+  if (sessionTypeOutsideProfile == 2) {
+      document.getElementById('user-type').innerHTML = 'Large Scale';
+  }
+  if (sessionTypeOutsideProfile == 3) {
+      document.getElementById('user-type').innerHTML = 'Medium Scale';
+  }
+  if (sessionTypeOutsideProfile == 4) {
+      document.getElementById('user-type').innerHTML = 'Small Scale';
   }
 
-  
-  function goToUpgradeAccountPage() {
-      location.replace(host + '/upgrade-plan');
-  }
+  // ----------------------------------------------------
+  // for profile_dropdown [END]
+  // ----------------------------------------------------
 </script>

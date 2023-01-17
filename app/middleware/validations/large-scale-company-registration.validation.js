@@ -11,7 +11,7 @@ const validationMiddleware = [
     check('traderBusinessCountryLocation').not().isEmpty().withMessage('S: Business Country Location is required.').trim().escape(),
     check('traderBusinessCityLocation').not().isEmpty().withMessage('S: Business States Location is required.').trim().escape(),
     check('traderBusinessCityLocations').not().isEmpty().withMessage('S: Business City Location is required.').trim().escape(),
-    check('traderLanguagesOfCommunication').not().isEmpty().withMessage('S: Language is required.').trim().escape(),  
+    check('traderLanguagesOfCommunication').not().isEmpty().withMessage('S: Language is required.'),  
     check('traderTradeCategory').not().isEmpty().withMessage('S: Trade Category is required.').trim().escape(),
     check('traderSubCategoryToggleField').not().isEmpty().withMessage('S: Sub Category is required.').trim().escape(),
     check('traderMinorSubCategoryToggleField').trim().escape(),

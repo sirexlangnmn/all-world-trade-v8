@@ -16,7 +16,7 @@ const validationMiddleware = [
     check('country').not().isEmpty().withMessage('S: Country is required.').trim().escape(),
     check('states').not().isEmpty().withMessage('S: States is required.').trim().escape(),
     check('city').not().isEmpty().withMessage('S: City is required.').trim().escape(),
-    check('language').not().isEmpty().withMessage('S: Language is required.').trim().escape(),    
+    check('language').not().isEmpty().withMessage('S: Language is required.'),    
     check('emailAddress').not().isEmpty().withMessage('S: Email Address is required').trim().escape().isEmail().normalizeEmail().withMessage('S: Invalid Email Address.'),
     check('personalSocialMediaContactNumber').not().isEmpty().withMessage('S: Personal Contact number is required.').trim().escape(),    
     check('password').not().isEmpty().withMessage('S: Password is required.'),
