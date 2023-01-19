@@ -1,3 +1,2 @@
-UPDATE users_business
 
-users_business_visibilities
+Social Media / Messaging App Mobile Number (Optional)

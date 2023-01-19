@@ -321,7 +321,7 @@ function tradersRegistrationValidation() {
         traderGivenNameOfRepresentativeValidation.innerHTML = 'Given name of representative required';
     }
     if (traderHomeAddress.value.length == 0) {
-        output = 'empty Representative country of residence';
+        output = 'empty Representative Representative home address';
         traderHomeAddressValidation.innerHTML = 'Representative home address required';
     }
     if (traderCountryofResidence.value.length == 0) {
@@ -337,8 +337,8 @@ function tradersRegistrationValidation() {
         traderCityOfResidencesValidation.innerHTML = 'Representative city of residence requiredd';
     }
     if (traderCellphone.value.length == 0) {
-        output = 'empty Representative cell phone';
-        traderCellphoneValidation.innerHTML = 'Representative cell phone required';
+        // output = 'empty Representative cell phone';
+        // traderCellphoneValidation.innerHTML = '';
     }
     if (traderEmailAddress.value.length == 0) {
         output = 'empty Representative email address';
@@ -366,6 +366,7 @@ function tradersRegistrationValidation() {
             output = 'empty region of operation';
             document.getElementById('traderRegionOfOperationValidation').innerHTML = 'Region of Operation is required';
         }
+        
     } else {
         document.getElementById('traderRegionOfOperationValidation').innerHTML = '';
     }
@@ -377,6 +378,9 @@ function tradersRegistrationValidation() {
             document.getElementById('traderCountryOfOperationValidation').innerHTML =
                 'Country of Operation is required';
         }
+        document.getElementById('traderCountryOfOperation').addEventListener("change", function() {
+            document.getElementById('traderCountryOfOperationValidation').innerHTML = '';
+        });
     } else {
         document.getElementById('traderCountryOfOperationValidation').innerHTML = '';
     }

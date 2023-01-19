@@ -314,6 +314,7 @@ btnTraderRegistrationForm.addEventListener('click', (e) => {
 
     // uncomment the following line after to finish the server side validation
     let validation = tradersRegistrationValidation();
+    console.log('validation', validation);
     // let validation = 'true';
 
     if (validation === 'true') {
