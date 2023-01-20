@@ -4,7 +4,7 @@ const validationMiddleware = [
     check('traderCompanyName').not().isEmpty().withMessage('S: Trader Company Name is required.').trim().escape(),
     check('traderCompanyTagline').trim().escape(),
     check('traderWebsite').not().isEmpty().withMessage('S: Business Website is required').trim().escape(),
-    check('traderBusinessEmailAddress').not().isEmpty().withMessage('S: Business Email Address is required.').trim().escape().isEmail().normalizeEmail().withMessage('S: Invalid Email Address.'),
+    check('traderBusinessEmailAddress').not().isEmpty().withMessage('S: Business Email Address is required.').trim().escape().isEmail().withMessage('S: Invalid Email Address.'),
     check('traderBusinessContactNumber').not().isEmpty().withMessage('S: Business Contact Number is required.').trim().escape(),
     check('traderBusinessSocialMediaContactNumber').not().isEmpty().withMessage('S: Social Media / Messaging App Contact Number is required.').trim().escape(),
     check('traderBusinessAddress').not().isEmpty().withMessage('S: Business Address is required.').trim().escape(),
@@ -23,7 +23,7 @@ const validationMiddleware = [
     check('traderCityOfResidence').not().isEmpty().withMessage('S: States is required.').trim().escape(),
     check('traderCityOfResidences').not().isEmpty().withMessage('S: City is required.').trim().escape(),
     check('traderCellphone').trim().escape(), 
-    check('emailAddress').not().isEmpty().withMessage('S: Email Address is required').trim().escape().isEmail().normalizeEmail().withMessage('S: Invalid Email Address.'),
+    check('emailAddress').not().isEmpty().withMessage('S: Email Address is required').trim().escape().isEmail().withMessage('S: Invalid Email Address.'),
     check('traderPassword').not().isEmpty().withMessage('S: Password is required.'),
     check('traderConfirmPassword', 'S: Passwords do not match').custom((value, { req }) => value === req.body.traderPassword),
 ];

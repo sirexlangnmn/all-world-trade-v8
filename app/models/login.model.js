@@ -4,14 +4,16 @@ const CryptoJS = require('crypto-js');
 const JWT_SECRET = process.env.JWT_SECRET;
 
 const Model = function (model) {
+    console.log('model', model);
     this.email_or_social_media = model.email_or_social_media;
+    // this.email_or_social_media = "a.dimaano.awt@gmail.com"
     this.password = model.password;
     this.session = model.session;
 };
 
 Model.create = (newModel, result) => {
     //const usersAccountsQuery = `SELECT id, uuid, email_or_social_media, password, type FROM users_accounts WHERE email_or_social_media = "${newModel.email_or_social_media}"`;
-
+    console.log('newModel', newModel);
     const usersAccountsQuery = `SELECT password FROM users_accounts WHERE email_or_social_media = "${newModel.email_or_social_media}"`;
 
     sql.query(usersAccountsQuery, (err, res) => {

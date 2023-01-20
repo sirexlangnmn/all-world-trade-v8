@@ -32,6 +32,8 @@ exports.create = (req, res) => {
 
     if (req.body.loginEmailAddress && req.body.loginPassword) {
 
+        console.log('req.body.loginEmailAddress', req.body.loginEmailAddress);
+
         // Create a Controller
         const inputData = new Controller({
             email_or_social_media: req.body.loginEmailAddress,
