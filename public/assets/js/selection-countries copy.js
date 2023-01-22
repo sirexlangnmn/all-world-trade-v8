@@ -19,8 +19,8 @@ function getUsersAddress() {
             selectedCity.value = data[0].city;
 
             getCountryOfOperation(data, 'selectionCountry');
-            // getStatesLocation(data, 'selectionState');
-            // getCityLocation(data, 'selectionCity');
+            getStatesLocation(data, 'selectionState');
+            getCityLocation(data, 'selectionCity');
         },
     });
 }
@@ -34,11 +34,9 @@ function getCountryOfOperation(value, elementId) {
             let selectionCountry;
             selectionCountry = getId(elementId);
 
-            // let countryCode = value[0].country; //ni comment ko ito para hindi lumabas sa seleccion yung country ng user
-            let countryCode = null;
+            let countryCode = value[0].country;
 
             if (countryCode == null || countryCode == '') {
-                displaySelectedCountry.innerHTML = 'Any';
                 selectionCountry.innerHTML +=
                     '<div class="filterByCountryClass text-md font-md text-white-900 dark:text-white-300 p-2 hover:bg-gray-50 orbitron" data-el="">Any</div>';
             } else {

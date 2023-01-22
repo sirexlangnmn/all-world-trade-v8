@@ -577,8 +577,8 @@ async function getTradeCategories() {
 
 // display all trade categories in frontend select option
 getTradeCategories().then((data) => {
-    tradeCategories.innerHTML +=
-        '<div class="filterByTradeCategoryClass text-md font-md text-white-900 dark:text-white-300 p-2 hover:bg-gray-50 orbitron" data-el="Trade Everyday">Trade Everyday</div>';
+    // tradeCategories.innerHTML +=
+    //     '<div class="filterByTradeCategoryClass text-md font-md text-white-900 dark:text-white-300 p-2 hover:bg-gray-50 orbitron" data-el="Trade Everyday">Trade Everyday</div>';
     for (var i = 0; i < data.length; i++) {
         tradeCategories.innerHTML +=
             '<div class="filterByTradeCategoryClass text-md font-md text-white-900 dark:text-white-300 p-2 hover:bg-gray-50 orbitron" data-el="' +

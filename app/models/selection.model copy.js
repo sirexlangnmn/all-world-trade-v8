@@ -5,6 +5,7 @@ const sql = require('./db.js');
 const Model = function (model) {};
 
 Model.getCompaniesRelatedToCurrentUser = (param, result) => {
+  
     sql.query('SELECT id FROM trade_categories WHERE status = 1', (err, res) => {
         let tradeCategoryId = res[0].id;
         if (err) {
@@ -60,7 +61,8 @@ Model.getCompaniesRelatedToCurrentUser = (param, result) => {
                             ON users_businesses.uuid = users_business_characteristics.uuid 
                             JOIN users_business_medias 
                             ON users_businesses.uuid = users_business_medias.uuid 
-                            AND users_businesses.isPaid = 1
+                            WHERE users_business_characteristics.business_major_category = '${tradeCategoryId}' 
+                            AND users_businesses.country_of_operation LIKE '%${param.country}%'
                             AND users_business_medias.banner != ''
                             OR users_business_medias.banner != null
                             ORDER BY RAND()  
@@ -70,6 +72,7 @@ Model.getCompaniesRelatedToCurrentUser = (param, result) => {
                                     result(null, err);
                                     return;
                                 } else {
+                                    
                                     result(null, res);
                                 }
                             },
@@ -208,6 +211,8 @@ Model.getRandomCompanies = (result) => {
                 result(null, err);
                 return;
             } else {
+                
+                
                 result(null, res);
             }
         },
