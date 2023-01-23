@@ -949,6 +949,7 @@ function selectionSearchParameter() {
     let product_service_input = document.getElementById('product_service_input').value;
     let company_name_input = document.getElementById('company_name_input').value;
 
+    console.log('selectionSearchParameter countryCode', countryCode)
     $.ajax({
         url: '/api/post/selection-search-parameter',
         type: 'POST',
