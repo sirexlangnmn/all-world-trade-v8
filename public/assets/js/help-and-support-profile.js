@@ -15,3 +15,21 @@ function createHelpAndSupportCommunicatorLink() {
         },
     });
 }
+
+document.getElementById("btnDropHelpAndSupportCommunicatorLink").addEventListener("click", btnDropHelpAndSupportCommunicatorLink);
+
+function btnDropHelpAndSupportCommunicatorLink() {
+    $.ajax({
+        url: '/api/get/drop-help-and-support-communicator-link',
+        type: 'POST',
+        success: function (data) {
+            if (data === 'drop successfully') {
+                Swal.fire('Sucess', 'Succesfully drop communicator link.', 'success');
+            } else if (data === 'no created link found') {
+                Swal.fire('Sucess', 'No created link found', 'success');
+            } else {
+                Swal.fire('Warning', 'Something went wrong. Please contact the administrator.', 'warning');
+            }
+        },
+    });
+}

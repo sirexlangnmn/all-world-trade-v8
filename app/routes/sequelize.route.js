@@ -53,6 +53,8 @@ module.exports = (app) => {
 
     app.post(['/api/get/create-help-and-support-communicator-link'], supportLinksController.create);
 
+    app.post(['/api/get/drop-help-and-support-communicator-link'], supportLinksController.drop);
+
     app.post(['/api/post/go-to-help-and-suggestion-page'], supportLinksController.getSupportLinks);
 
     app.post(['/api/post/update-as-occupied'], supportLinksController.updateAsOccupied);
