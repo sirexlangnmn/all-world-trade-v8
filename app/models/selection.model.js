@@ -114,8 +114,7 @@ Model.getAllBySearchParameter = (param, result) => {
         ON users_businesses.uuid = users_business_characteristics.uuid 
         JOIN users_business_medias 
         ON users_businesses.uuid = users_business_medias.uuid 
-        WHERE users_business_medias.banner != ''
-        AND users_businesses.isPaid = 1`;
+        WHERE users_business_medias.banner != ''`;
 
     if (param.trade_categories) {
         query += ` AND users_business_characteristics.business_major_category = '${param.trade_categories}'`;
@@ -152,6 +151,8 @@ Model.getAllBySearchParameter = (param, result) => {
     if (param.company_name_input) {
         query += ` AND users_businesses.business_name LIKE '%${param.company_name_input}%'`;
     }
+    
+    query += `AND users_businesses.isPaid = 1`;
 
     // query += ` AND users_business_medias.banner != ''`;
     query += ` ORDER BY RAND () LIMIT 50`;
