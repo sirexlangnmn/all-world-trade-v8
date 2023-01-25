@@ -61,7 +61,7 @@ module.exports = (app) => {
 
     app.post(['/api/v2/post/update-as-occupied'], supportLinksController.updateAsOccupied);
 
-    app.get('/api/v2/get/communicator-link/:link', communicatorController.findCommunicator);
+    app.get('/api/get/communicator-link/:link', communicatorController.findCommunicator);
 
     app.post('/api/v2/post/submit-email-if-help-and-suggest-link-not-available', supportMessagesController.create);
 
