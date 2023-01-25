@@ -26,7 +26,7 @@ db.users_business_visibility = require('./users_business_visibility.model.js')(s
 
 db.users_accounts = require('./users_accounts.model.js')(sequelize, Sequelize);
 db.users_address = require('./users_address.model.js')(sequelize, Sequelize);
-db.users_business = require('./users_business.model.js')(sequelize, Sequelize);
+db.users_businesses = require('./users_businesses.model.js')(sequelize, Sequelize);
 db.users = require('./users.model.js')(sequelize, Sequelize);
 
 module.exports = db;

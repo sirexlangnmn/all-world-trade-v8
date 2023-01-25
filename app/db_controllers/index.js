@@ -8,6 +8,7 @@ controller.help_and_support_registration = require('./help-and-support.controlle
 controller.support_links = require('./support-links.controller.js');
 controller.support_messages = require('./support_messages.controller.js');
 controller.communicator = require('./communicator.controller.js');
-
+controller.users_businesses = require('./users-businesses.controller.js');
+controller.users_accounts = require('./users-accounts.controller.js');
 
 module.exports = controller;

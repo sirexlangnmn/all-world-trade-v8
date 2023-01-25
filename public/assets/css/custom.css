@@ -172,6 +172,32 @@ div.ex4 {
     height: 800px;
 }
 
+#selections-prev-slide, #selections-next-slide {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgba(128,128,128,0.1); /* Transparent gray */
+    border: 2px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#selections-prev-slide:hover, #selections-next-slide:hover {
+    background-color: gray; /* Normal gray */
+}
+
+#companiesProfilePictureDiv{
+    height: auto;
+    overflow: hidden;
+}
+
+#selectionMidColumnCompanyBanner{
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
 .edit-company-details-height {
     height: 400px;
     /* margin: 0 auto !important;
@@ -885,37 +911,11 @@ div.ex4 {
     height: auto;
 }
 
-
-#selections-prev-slide, #selections-next-slide {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: rgba(128,128,128,0.1); /* Transparent gray */
-    border: 2px solid white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#selections-prev-slide:hover, #selections-next-slide:hover {
-    background-color: gray; /* Normal gray */
-}
-
-#companiesProfilePictureDiv{
-    height: auto;
-    overflow: hidden;
-}
-
-#selectionMidColumnCompanyBanner{
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-}
 /* ===================================== */
 /* landing page background image [end]   */
 /* ===================================== */
 
-  
+
 
 /* Extra small devices (phones, 600px and down) */
 /* @media only screen and (max-width: 600px) {...} */

@@ -143,7 +143,7 @@ function helpAndSupportRegistrationSubmitHandler(e) {
 
     if (validation === 'true') {
         $.ajax({
-            url: '/api/post/help-and-support-registration-process',
+            url: '/api/v2/post/help-and-support-registration-process',
             type: 'POST',
             data: helpAndSupportRegistrationForm.serialize(),
             success: function (res) {

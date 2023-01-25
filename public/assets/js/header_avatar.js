@@ -8,12 +8,10 @@ window.onload = function () {
 };
 
 function getUsersLogoAndBanner() {
-    console.log('getUsersLogoAndBanner one');
     $.ajax({
         url: '/api/get/users-logo-and-banners',
         type: 'GET',
         success: function (data) {
-            console.log('getUsersLogoAndBanner one', data);
             if (data.length > 0) {
                 if (data[0].logo) {
                     userImageOutsideProfile.src = host + '/uploads/users_upload_files/' + data[0].logo;

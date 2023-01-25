@@ -18,6 +18,8 @@ module.exports = (app) => {
     const supportLinksController = controllers.support_links;
     const supportMessagesController = controllers.support_messages;
     const communicatorController = controllers.communicator;
+    const usersBusinessesController = controllers.users_businesses;
+    const usersAccountsController = controllers.users_accounts;
 
     app.post(
         ['/api/v2/post/small-scale-company-registration'],
@@ -49,17 +51,21 @@ module.exports = (app) => {
         traderScaleCompanyRegistrationController.create,
     );
 
-    app.post(['/api/post/help-and-support-registration-process'], helpAndSupportRegistrationController.create);
+    app.post(['/api/v2/post/help-and-support-registration-process'], helpAndSupportRegistrationController.create);
 
-    app.post(['/api/get/create-help-and-support-communicator-link'], supportLinksController.create);
+    app.post(['/api/v2/get/create-help-and-support-communicator-link'], supportLinksController.create);
 
-    app.post(['/api/get/drop-help-and-support-communicator-link'], supportLinksController.drop);
+    app.post(['/api/v2/get/drop-help-and-support-communicator-link'], supportLinksController.drop);
 
-    app.post(['/api/post/go-to-help-and-suggestion-page'], supportLinksController.getSupportLinks);
+    app.post(['/api/v2/post/go-to-help-and-suggestion-page'], supportLinksController.getSupportLinks);
 
-    app.post(['/api/post/update-as-occupied'], supportLinksController.updateAsOccupied);
+    app.post(['/api/v2/post/update-as-occupied'], supportLinksController.updateAsOccupied);
 
-    app.get('/api/get/communicator-link/:link', communicatorController.findCommunicator);
+    app.get('/api/v2/get/communicator-link/:link', communicatorController.findCommunicator);
 
-    app.post('/api/post/submit-email-if-help-and-suggest-link-not-available', supportMessagesController.create);
+    app.post('/api/v2/post/submit-email-if-help-and-suggest-link-not-available', supportMessagesController.create);
+
+    app.get(['/api/v2/get/number-of-trader-members'], usersBusinessesController.numberOfTraderMembers);
+
+    app.get(['/api/v2/get/number-of-visitor-members'], usersAccountsController.numberOfVisitorMembers);
 };

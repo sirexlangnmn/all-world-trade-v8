@@ -2,7 +2,7 @@
 
 function goToHelpSuggestionPage() {
     $.ajax({
-        url: '/api/post/go-to-help-and-suggestion-page',
+        url: '/api/v2/post/go-to-help-and-suggestion-page',
         type: 'POST',
         success: function (data) {
             if (data.length > 0) {
@@ -21,7 +21,7 @@ function goToHelpSuggestionPage() {
 
 function occupied(communicator_link, support_accounts_uuid) {
     $.ajax({
-        url: '/api/post/update-as-occupied',
+        url: '/api/v2/post/update-as-occupied',
         type: 'POST',
         data: {
             communicator_link: communicator_link,
@@ -45,7 +45,7 @@ function submitEmailIfHelpAndSuggestLinkNotAvailable(e) {
     const formSubmit = $('#formEmailIfHelpAndSuggestLinkNotAvailable');
 
     $.ajax({
-        url: '/api/post/submit-email-if-help-and-suggest-link-not-available',
+        url: '/api/v2/post/submit-email-if-help-and-suggest-link-not-available',
         type: 'POST',
         data: formSubmit.serialize(),
         success: function (res) {

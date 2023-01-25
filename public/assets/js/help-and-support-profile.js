@@ -2,7 +2,7 @@ document.getElementById("btnCreateHelpAndSupportCommunicatorLink").addEventListe
 
 function createHelpAndSupportCommunicatorLink() {
     $.ajax({
-        url: '/api/get/create-help-and-support-communicator-link',
+        url: '/api/v2/get/create-help-and-support-communicator-link',
         type: 'POST',
         success: function (data) {
             if (data.communicator_link) {
@@ -20,7 +20,7 @@ document.getElementById("btnDropHelpAndSupportCommunicatorLink").addEventListene
 
 function btnDropHelpAndSupportCommunicatorLink() {
     $.ajax({
-        url: '/api/get/drop-help-and-support-communicator-link',
+        url: '/api/v2/get/drop-help-and-support-communicator-link',
         type: 'POST',
         success: function (data) {
             if (data === 'drop successfully') {
