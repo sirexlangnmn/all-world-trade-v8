@@ -2,7 +2,7 @@ const db = require('../db_models');
 const sequelizeConfig = require('../config/sequelize.config.js');
 
 const Support_links = db.support_links;
-const Users_business = db.users_business;
+const Users_businesses = db.users_businesses;
 
 const Op = db.Sequelize.Op;
 
@@ -22,7 +22,7 @@ exports.findCommunicator = async (req, res) => {
             return 'Some error occurred while retrieving tutorials.';
         });
 
-    const getRowsInUsersBusinesses = await Users_business.findAll({ where: usersBusinessesCondition })
+    const getRowsInUsersBusinesses = await Users_businesses.findAll({ where: usersBusinessesCondition })
         .then((data) => {
             return data;
         })
