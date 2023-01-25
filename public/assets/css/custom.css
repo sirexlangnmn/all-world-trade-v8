@@ -73,7 +73,7 @@
 }
 
 .main_content_custom {
-    padding-top: 65px;
+    padding-top: 39px;
 }
 
 
@@ -844,6 +844,10 @@ div.ex4 {
         width: auto !important;
         height: inherit;
     }
+
+    .main_content_custom {
+        padding-top: 90px;
+    }
 }
 
 @media screen and (min-width: 769px) and (max-width: 5000px) {
@@ -897,6 +901,16 @@ div.ex4 {
     background-color: gray; /* Normal gray */
 }
 
+#companiesProfilePictureDiv{
+    height: auto;
+    overflow: hidden;
+}
+
+#selectionMidColumnCompanyBanner{
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
 /* ===================================== */
 /* landing page background image [end]   */
 /* ===================================== */
