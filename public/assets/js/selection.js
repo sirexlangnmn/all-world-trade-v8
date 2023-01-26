@@ -1138,12 +1138,12 @@ function openCommunicator(filename) {
 
     Swal.fire({
         title: '',
-        text: `Do you want to download the details of ${companyName} Company ?`,
+        text: `How do you want to engage the ${companyName} Company ?`,
         icon: 'info',
         showDenyButton: true,
         showCancelButton: true,
-        confirmButtonText: 'Proceed to call',
-        denyButtonText: 'Download',
+        confirmButtonText: 'Contact Directly',
+        denyButtonText: 'Download Details',
         denyButtonColor: 'blue',
         customClass: {
             actions: 'my-actions',
