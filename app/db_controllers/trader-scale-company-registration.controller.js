@@ -5,7 +5,8 @@ const sequelizeConfig = require('../config/sequelize.config.js');
 
 const Users_accounts = db.users_accounts;
 const Users_address = db.users_address;
-const Users_business = db.users_business;
+// const Users_business = db.users_business;
+const Users_business = db.users_businesses;
 const Users_business_characteristics = db.users_business_characteristics;
 const Users_business_visibility = db.users_business_visibility;
 const Users = db.users;
