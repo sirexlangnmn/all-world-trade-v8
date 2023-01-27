@@ -152,6 +152,7 @@ function registrationUploadCompanyLogoBanner(uuid) {
         timeout: 800000,
         async: false,
         success: function (data) {
+            console.log('registrationUploadCompanyLogoBanner | client side:'. data)
             value = data;
         },
         error: function (e) {
