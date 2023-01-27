@@ -100,7 +100,7 @@ btnRegistration.addEventListener('click', (e) => {
         }).done((res) => {
             if (res.message === 'account has been created') {
                 registrationUploadBusinessMedias(res.uuid);
-                // registrationEmailVerification(res.uuid, res.verification_code, res.email_or_social_media);
+                registrationEmailVerification(res.uuid, res.verification_code, res.email_or_social_media);
                 Swal.fire('Success', 'Registration Success.', 'success');
             }
 
