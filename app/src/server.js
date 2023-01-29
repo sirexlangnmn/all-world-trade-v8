@@ -794,6 +794,15 @@ app.get(['/traders-registration'], (req, res) => {
     });
 });
 
+app.get(['/file-and-input-test'], (req, res) => {
+    const sessionData = {
+        ourGenerateNonce: lodashNonce,
+    };
+    res.render(path.join(__dirname, '../../', 'public/view/registration/file-and-input-test'), {
+        data: sessionData,
+    });
+});
+
 // help and support registration
 app.get(['/help-and-support-registration'], (req, res) => {
     res.render(path.join(__dirname, '../../', 'public/view/registration/help-and-support-registration'));

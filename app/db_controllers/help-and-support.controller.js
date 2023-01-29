@@ -35,7 +35,6 @@ exports.create = async (req, res) => {
             return err.message || 'Some error occurred while retrieving tutorials.';
         });
 
-
     if (emailExist.length > 0) {
         let responseData = {
             message: 'email already in use',
@@ -47,35 +46,30 @@ exports.create = async (req, res) => {
         let agreeInTermsAndConditions = 1;
         if (agreeInTermsAndConditions) {
             let uuid = uuidV4();
-            
-     
-                let usersObjects = {
-                    first_name: req.body.hasrFirstname,
-                    last_name: req.body.hasrLastname,
-                    email_address: req.body.hasrEmailAddress,
-                    password: req.body.hasrHashedPassword,
-                    status: 0,
-                    uuid: uuid
-                };
 
-                Support_accounts.create(usersObjects)
-                .then(data => {
+            let usersObjects = {
+                first_name: req.body.hasrFirstname,
+                last_name: req.body.hasrLastname,
+                email_address: req.body.hasrEmailAddress,
+                password: req.body.hasrHashedPassword,
+                status: 0,
+                uuid: uuid,
+            };
+
+            Support_accounts.create(usersObjects)
+                .then((data) => {
                     // res.send(data);
                     let responseData = {
-                        message: 'account has been created'
+                        message: 'account has been created',
                     };
-    
-                    res.send(responseData);
 
-                    })
-                .catch(err => {
+                    res.send(responseData);
+                })
+                .catch((err) => {
                     res.status(500).send({
-                        message:
-                        err.message || "Some error occurred while creating the Tutorial."
+                        message: err.message || 'Some error occurred while creating the Tutorial.',
                     });
                 });
-               
-
         } else {
             console.log('agreeInTermsAndConditions NO');
             let responseData = {

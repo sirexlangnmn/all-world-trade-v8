@@ -1351,7 +1351,6 @@ module.exports = (app) => {
                 originalUuid,
             ];
 
-
             let updateQuery =
                 'UPDATE users_business_medias SET brochure = ?, brochure_title = ?, date_created = ? WHERE uuid = ?';
 
@@ -1397,18 +1396,44 @@ module.exports = (app) => {
             const bytes = CryptoJS.AES.decrypt(req.session.user.uuid, JWT_SECRET);
             const originalUuid = bytes.toString(CryptoJS.enc.Utf8);
 
-            let updateData = [
-                req.files['companyBanner'][0].filename,
-                new Date().toISOString().replace('T', ' ').substr(0, 19),
-                originalUuid,
-            ];
-            let updateQuery = 'UPDATE users_business_medias SET banner = ?, date_created = ? WHERE uuid = ?';
+            const updateData = {
+                banner: req.files['companyBanner'][0].filename,
+                date_created: new Date().toISOString().replace('T', ' ').substr(0, 19),
+            };
 
-            db.query(updateQuery, updateData, (err, result) => {
+            const inputObject = {
+                banner: req.files['companyBanner'][0].filename,
+                uuid: originalUuid,
+                date_created: new Date().toISOString().replace('T', ' ').substr(0, 19),
+            };
+
+            db.query(USERS_BUSINESS_MEDIAS.SELECT_ROW, originalUuid, (err, res) => {
                 if (err) {
-                    throw err;
+                    console.log('USERS_BUSINESS_MEDIAS.SELECT_ROW err', err);
                 } else {
-                    res.send('success');
+                    if (res.length > 0) {
+                        db.query(
+                            USERS_BUSINESS_MEDIAS.UPDATE_BANNER,
+                            [...Object.values(updateData), originalUuid],
+                            function (err, result) {
+                                if (err) {
+                                    //throw err;
+                                    console.log(err);
+                                } else {
+                                    console.log('success update/upload files');
+                                }
+                            },
+                        );
+                    } else {
+                        db.query(USERS_BUSINESS_MEDIAS.CREATE_BANNER, Object.values(inputObject), (err, result) => {
+                            if (err) {
+                                //throw err;
+                                console.log(err);
+                            } else {
+                                console.log('success insert/upload files');
+                            }
+                        });
+                    }
                 }
             });
         }
@@ -1848,5 +1873,4 @@ module.exports = (app) => {
             // res.render('Email has been sent');
         });
     });
-    
 };

@@ -3,6 +3,8 @@ const QUERY = {
 
     SELECT_BANNER: 'SELECT id, banner FROM users_business_medias',
 
+    SELECT_ROW: 'SELECT * FROM users_business_medias WHERE uuid = ?',
+
     CREATE_NO: 'INSERT INTO users_business_medias (' + 'uuid, ' + 'date_created) VALUES' + '(?, ?)',
 
     CREATE_ALL:
@@ -372,6 +374,9 @@ const QUERY = {
         'uuid, ' +
         'date_created) VALUES' +
         '(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+
+
+    UPDATE_BANNER: `UPDATE users_business_medias SET banner = ?, date_created = ? WHERE uuid = ?`,
 
     // ======================================================
     // upgrade to traders upload media files [START]
