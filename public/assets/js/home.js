@@ -1,12 +1,12 @@
-document.onreadystatechange = function () {
-    if (document.readyState === "complete") {
-        // setInterval(function () {
-            var myElement = document.getElementById("my-element");
-            myElement.style.visibility = "visible";
-        // }, 2000);
+// document.onreadystatechange = function () {
+//     if (document.readyState === "complete") {
+//         // setInterval(function () {
+//             var myElement = document.getElementById("my-element");
+//             myElement.style.visibility = "visible";
+//         // }, 2000);
         
-    }
-}
+//     }
+// }
 
 let numberOfTraderMembers;
 let numberOfVisitorMembers;
