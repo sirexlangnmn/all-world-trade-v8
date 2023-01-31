@@ -803,6 +803,67 @@ app.get(['/file-and-input-test'], (req, res) => {
     });
 });
 
+
+app.get(['/multer-sharp-and-sequelize-test'], (req, res) => {
+    const sessionData = {
+        ourGenerateNonce: lodashNonce,
+    };
+    res.render(path.join(__dirname, '../../', 'public/view/profile/multer-sharp-and-sequelize-test'), {
+        data: sessionData,
+    });
+});
+
+// const express = require('express');
+const multer = require('multer');
+const sharp = require('sharp');
+const Sequelize = require('sequelize');
+
+// const app = express();
+// const sequelize = new Sequelize('database', 'username', 'password', {
+//   host: 'localhost',
+//   dialect: 'sqlite',
+//   storage: './db.sqlite',
+// });
+
+// const Image = sequelize.define('image', {
+//   data: Sequelize.BLOB,
+// });
+
+
+
+//! Use of Multer
+const storage = multer.diskStorage({
+    destination: (req, file, callBack) => {
+        callBack(null, './public/uploads/users_upload_files/'); // './public/images/' directory name where save the file
+    },
+    filename: (req, file, callBack) => {
+        callBack(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    },
+});
+
+const upload = multer({
+    storage: storage,
+});
+
+const updatecompanyBannerMiddleware = upload.fields([{ name: 'image', maxCount: 1 }]);
+// const storage = multer.memoryStorage();
+// const upload = multer({ storage: storage });
+
+app.post('/upload', upload.single('image'), async (req, res) => {
+    const imagePath = path.join(__dirname, '../../', 'public/uploads/users_upload_files/', req.file.filename);
+  const image = await sharp(imagePath)
+    .resize(800, 600)
+    .webp()
+    .toFile(imagePath + '.webp');
+    console.log('Image uploaded and converted successfully!');
+    //res.send('Image uploaded and converted successfully!');
+});
+
+// app.listen(3000, () => {
+//   console.log('Server listening on port 3000');
+// });
+
+
 // help and support registration
 app.get(['/help-and-support-registration'], (req, res) => {
     res.render(path.join(__dirname, '../../', 'public/view/registration/help-and-support-registration'));

@@ -129,6 +129,9 @@ traderTradeCategoryValidation = getId('traderTradeCategoryValidation');
 traderSubCategoryValidation = getId('traderSubCategoryValidation');
 traderMinorSubCategoryValidation = getId('traderMinorSubCategoryValidation');
 traderTagsValidation = getId('traderTagsValidation');
+btnAddKeyword = getId('btnAddKeyword');
+inputAddKeyword = getId('inputAddKeyword');
+textAreaAddKeywords = getId('textAreaAddKeywords');
 traderBusinessScale = getId('traderBusinessScale');
 traderBusinessScaleValidation = getId('traderBusinessScaleValidation');
 

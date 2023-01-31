@@ -115,7 +115,7 @@ Model.getAllBySearchParameter = (param, result) => {
         JOIN users_business_medias 
         ON users_businesses.uuid = users_business_medias.uuid 
         WHERE users_business_medias.banner != ''`;
-
+        
     if (param.trade_categories) {
         query += ` AND users_business_characteristics.business_major_category = '${param.trade_categories}'`;
         //query += `users_business_characteristics.business_major_category = '${param.trade_categories}'`;
@@ -123,6 +123,7 @@ Model.getAllBySearchParameter = (param, result) => {
     if (param.regionOfOperationCode) {
         query += `AND users_businesses.region_of_operation LIKE '%${param.regionOfOperationCode}%'`;
     }
+    query += `AND users_businesses.isPaid = 1`;
     if (param.countryCode) {
         // query += ` AND users_business.country_of_operation = '${param.countryCode}'`;
         query += ` AND users_businesses.country_of_operation LIKE '%${param.countryCode}%'`;
@@ -152,7 +153,7 @@ Model.getAllBySearchParameter = (param, result) => {
         query += ` AND users_businesses.business_name LIKE '%${param.company_name_input}%'`;
     }
     
-    query += `AND users_businesses.isPaid = 1`;
+    // query += `AND users_businesses.isPaid = 1`;
 
     // query += ` AND users_business_medias.banner != ''`;
     query += ` ORDER BY RAND () LIMIT 50`;
@@ -203,6 +204,7 @@ Model.getRandomCompanies = (result) => {
         ON users_businesses.uuid = users_business_medias.uuid 
         WHERE users_business_characteristics.business_major_category = 1
         AND users_business_medias.banner != ''
+        AND users_businesses.isPaid = 1
         ORDER BY RAND()  
         LIMIT 50`,
         (err, res) => {

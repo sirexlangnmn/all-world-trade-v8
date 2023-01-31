@@ -36,9 +36,9 @@ traderHashedPassword = getId('traderHashedPassword');
 traderHashedPasswordInput = getId('traderHashedPasswordInput');
 traderPlainPasswordInput = getId('traderPlainPasswordInput');
 
-btnAddKeyword = getId('btnAddKeyword');
-inputAddKeyword = getId('inputAddKeyword');
-textAreaAddKeywords = getId('textAreaAddKeywords');
+// btnAddKeyword = getId('btnAddKeyword');
+// inputAddKeyword = getId('inputAddKeyword');
+// textAreaAddKeywords = getId('textAreaAddKeywords');
 
 // consume api to get all trade categories
 async function getRegionOfOperations() {
