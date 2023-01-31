@@ -19,10 +19,6 @@ let traderConfirmPassword;
 let traderHashedPassword;
 let traderHashedPasswordInput;
 
-let btnAddKeyword;
-let inputAddKeyword;
-let textAreaAddKeywords;
-
 traderRegionOfOperation = getId('traderRegionOfOperation');
 
 traderLanguagesOfCommunication = getId('traderLanguagesOfCommunication');
@@ -293,15 +289,6 @@ function passwordComparison(tags1, tags2) {
             Swal.fire('Warning', 'Password does not match.', 'warning');
         }
     }
-}
-
-btnAddKeyword.addEventListener('click', addKeyword);
-
-const data = [];
-function addKeyword() {
-    let add = inputAddKeyword.value;
-    data.push(add);
-    textAreaAddKeywords.value = data;
 }
 
 let btnTraderRegistrationForm;

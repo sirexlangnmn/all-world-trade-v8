@@ -45,6 +45,9 @@ let traderTradeCategoryValidation;
 let traderSubCategoryValidation;
 let traderMinorSubCategoryValidation;
 let traderTagsValidation;
+let btnAddKeyword;
+let inputAddKeyword;
+let textAreaAddKeywords;
 let traderBusinessScale;
 let traderBusinessScaleValidation;
 
@@ -366,7 +369,6 @@ function tradersRegistrationValidation() {
             output = 'empty region of operation';
             document.getElementById('traderRegionOfOperationValidation').innerHTML = 'Region of Operation is required';
         }
-        
     } else {
         document.getElementById('traderRegionOfOperationValidation').innerHTML = '';
     }
@@ -378,7 +380,7 @@ function tradersRegistrationValidation() {
             document.getElementById('traderCountryOfOperationValidation').innerHTML =
                 'Country of Operation is required';
         }
-        document.getElementById('traderCountryOfOperation').addEventListener("change", function() {
+        document.getElementById('traderCountryOfOperation').addEventListener('change', function () {
             document.getElementById('traderCountryOfOperationValidation').innerHTML = '';
         });
     } else {
@@ -822,5 +824,20 @@ function displayServerValidationToggle(elementIdValidation, message) {
     } else {
         elementIdValidation.style.display = 'none';
         elementIdValidation.innerHTML = '';
+    }
+}
+
+btnAddKeyword.addEventListener('click', addKeyword);
+const data = [];
+function addKeyword() {
+    let add = inputAddKeyword.value;
+
+    let dataLength = data.length;
+    if (add != '' && dataLength < 10) {
+        data.push(add);
+        textAreaAddKeywords.value = data;
+    } else {
+        traderTagsValidation.style.display = 'block';
+        traderTagsValidation.innerHTML = 'Maximum of 10 tags!';
     }
 }
