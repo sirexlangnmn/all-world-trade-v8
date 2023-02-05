@@ -128,6 +128,7 @@ app.use(function (req, res, next) {
 
     const origin = req.headers.origin
     if (corsWhitelist.indexOf(origin) !== -1) {
+        console.log('Access-Control-Allow-Origin origin', origin);
         res.setHeader('Access-Control-Allow-Origin', origin)
     }
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
@@ -145,6 +146,7 @@ app.use(function (req, res, next) {
 
     next();
 });
+
 
 const isHttps = false; // must be the same to client.js isHttps
 const port = process.env.PORT; // must be the same to client.js signalingServerPort
