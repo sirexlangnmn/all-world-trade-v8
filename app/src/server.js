@@ -54,38 +54,18 @@ const app = express();
 
 //app.use(cors(corsOptions));
 
-// app.use(
-//     cors({
-//         origin: [
-//             'https://allworldtrade.com',
-//             'https://dev.allworldtrade.com',
-//             'http://localhost:3000/',
-//             'https://meet.allworldtrade.com',
-//             'https://meet2.allworldtrade.com',
-//         ],
-//     }),
-// );
+app.use(
+    cors({
+        origin: [
+            'https://allworldtrade.com',
+            'https://dev.allworldtrade.com',
+            'http://localhost:3000/',
+            'https://meet.allworldtrade.com',
+            'https://meet2.allworldtrade.com',
+        ],
+    }),
+);
 //app.use(cors()); // Enable All CORS Requests for all origins
-
-const corsWhitelist = [
-    'http://localhost:3000',
-    'https://meet.allworldtrade.com',
-    'https://meet2.allworldtrade.com',
-    'https://allworldtrade.com',
-    'https://dev.allworldtrade.com',
-];
-
-const corsOptions = {
-    origin: function (origin, callback) {
-      if (corsWhitelist.indexOf(origin) !== -1 || !origin) {
-        callback(null, true)
-      } else {
-        callback(new Error('Not allowed by CORS'))
-      }
-    }
-  }
-
-app.use(cors(corsOptions));
 
 app.use(compression()); // Compress all HTTP responses using GZip
 
@@ -126,16 +106,20 @@ app.use(function (req, res, next) {
     //     host = 'https://' + location_hostname;
     // }
 
-    const origin = req.headers.origin
-    if (corsWhitelist.indexOf(origin) !== -1) {
-        console.log('Access-Control-Allow-Origin origin', origin);
-        res.setHeader('Access-Control-Allow-Origin', origin);
-    }
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization')
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Authorization, Accept');
+    const corsWhitelist = [
+        'http://localhost:3000/',
+        'https://meet.allworldtrade.com',
+        'https://meet2.allworldtrade.com',
+        'https://allworldtrade.com',
+        'https://dev.allworldtrade.com',
+    ];
 
     //console.log('check: ', 'Content-Security-Policy-Report-Only', "font-src 'self' https://fonts.gstatic.com; img-src 'self'; script-src 'self' https://code.jquery.com/jquery-3.6.0.min.js https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.3.0/sweetalert2.min.js https://unpkg.com/ionicons@5.2.3/dist/ionicons/ionicons.esm.js https://unpkg.com/ionicons@5.2.3/dist/ionicons.js 'nonce-" + lodashNonce +"'; frame-ancestors 'self'; frame-src 'self'");
+    if (corsWhitelist.indexOf(req.headers.origin) !== -1) {
+        res.header('Access-Control-Allow-Origin', req.headers.origin);
+        res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    }
+
     res.set('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
     // res.setHeader('Content-Security-Policy', "frame-ancestors 'self'; frame-src 'self'");
     // res.setHeader(
@@ -146,7 +130,6 @@ app.use(function (req, res, next) {
 
     next();
 });
-
 
 const isHttps = false; // must be the same to client.js isHttps
 const port = process.env.PORT; // must be the same to client.js signalingServerPort
