@@ -1161,18 +1161,31 @@ function openCommunicator(filename) {
 }
 
 function recordTheMeetingOfVisitorAndTrader(trader_uuid, communicator_link) {
+    console.log('trader_uuid', trader_uuid);
+    console.log('communicator_link', communicator_link);
+
     $.ajax({
         url: '/api/post/record-the-meeting-of-visitor-and-trader',
         type: 'POST',
         data: { trader_uuid: trader_uuid },
+        async: true,
         success: function (res) {
+            console.log('trader_uuid', trader_uuid);
+            console.log('communicator_link', communicator_link);
+            console.log('res.id ', res.id);
+
             if (res.id > 0) {
                 // const domainLink = 'https://meet.allworldtrade.com/groupcall/'; old
                 const domainLink = 'https://meet.allworldtrade.com/join/'; //new
                 window.open(domainLink + communicator_link, '_blank');
+                console.log('domain link', domainLink + communicator_link)
             } else {
             }
         },
+        error: function(error) {
+            // handle the error
+            console.error(error);
+        }
     });
 }
 
