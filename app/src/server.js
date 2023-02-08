@@ -813,6 +813,15 @@ app.get(['/multer-sharp-and-sequelize-test'], (req, res) => {
     });
 });
 
+app.get(['/test-slides'], (req, res) => {
+    const sessionData = {
+        ourGenerateNonce: lodashNonce,
+    };
+    res.render(path.join(__dirname, '../../', 'public/view/test/slides'), {
+        data: sessionData,
+    });
+});
+
 // const express = require('express');
 const multer = require('multer');
 const sharp = require('sharp');
