@@ -406,12 +406,34 @@ function displayFirstCompanyDetails() {
     }
 }
 
+// function displayTopCompany() {
+//     // top 20 search
+//     let leng = companyDetailsJsonObj2[0].length;
+
+//     document.getElementById('top-selection-results').innerHTML = '';
+//     for (let i = 0; i < leng; i++) {
+//         document.getElementById('top-selection-results').innerHTML +=
+//             '<div class="flex items-center space-x-4 rounded-md -mx-2 p-2 hover:bg-gray-50">';
+//         document.getElementById('top-selection-results').innerHTML += '<div class="flex-1" id="test">';
+//         document.getElementById('top-selection-results').innerHTML +=
+//             '<a href="#" onclick="displayTopCompanyDetails(\'' +
+//             companyDetailsJsonObj2[0][i].business_name +
+//             '\')" class="text-base font-semibold capitalize">' +
+//             companyDetailsJsonObj2[0][i].business_name +
+//             '</a>';
+//         document.getElementById('top-selection-results').innerHTML += '</div>';
+//         document.getElementById('top-selection-results').innerHTML += '</div>';
+//     }
+// }
+
 function displayTopCompany() {
     // top 20 search
-    let leng = companyDetailsJsonObj2[0].length;
+    let leng = companyDetailsJsonObj2[0].length - 1;
 
     document.getElementById('top-selection-results').innerHTML = '';
-    for (let i = 0; i < leng; i++) {
+    for (let i = leng; i >= 0; i--) {
+        console.log('i', i);
+        console.log('companyDetailsJsonObj2[0][i].business_name: ', companyDetailsJsonObj2[0][i].business_name);
         document.getElementById('top-selection-results').innerHTML +=
             '<div class="flex items-center space-x-4 rounded-md -mx-2 p-2 hover:bg-gray-50">';
         document.getElementById('top-selection-results').innerHTML += '<div class="flex-1" id="test">';
@@ -949,7 +971,7 @@ function selectionSearchParameter() {
     let product_service_input = document.getElementById('product_service_input').value;
     let company_name_input = document.getElementById('company_name_input').value;
 
-    console.log('selectionSearchParameter countryCode', countryCode)
+    console.log('selectionSearchParameter countryCode', countryCode);
     $.ajax({
         url: '/api/post/selection-search-parameter',
         type: 'POST',
@@ -1178,14 +1200,14 @@ function recordTheMeetingOfVisitorAndTrader(trader_uuid, communicator_link) {
                 // const domainLink = 'https://meet.allworldtrade.com/groupcall/'; old
                 const domainLink = 'https://meet.allworldtrade.com/join/'; //new
                 window.open(domainLink + communicator_link, '_blank');
-                console.log('domain link', domainLink + communicator_link)
+                console.log('domain link', domainLink + communicator_link);
             } else {
             }
         },
-        error: function(error) {
+        error: function (error) {
             // handle the error
             console.error(error);
-        }
+        },
     });
 }
 
