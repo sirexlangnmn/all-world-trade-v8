@@ -167,6 +167,9 @@ module.exports = (app) => {
         let bytes = CryptoJS.AES.decrypt(decoded, SECRET);
         let originalText = bytes.toString(CryptoJS.enc.Utf8);
 
+        console.log('decoded', decoded);
+        console.log('EMAIL', EMAIL);
+
         var email = await User({ where: { email: EMAIL } });
 
         try {
