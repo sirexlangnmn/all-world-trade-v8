@@ -1138,7 +1138,7 @@ function openCommunicator(filename) {
 
     Swal.fire({
         title: '',
-        text: `How do you want to engage the ${companyName} Company ?`,
+        text: `How do you want to engage with ${companyName}  ?`,
         icon: 'info',
         showDenyButton: true,
         showCancelButton: true,
