@@ -264,8 +264,6 @@ selectionsNextSlide.addEventListener('mouseleave', (e) => {
 //     intervalId = setInterval(getImageName, 1500);
 // };
 
-document.getElementById("selections-next-slide").addEventListener("transitionend", getImageName);
-
 function getImageName() {
     if (varCounter < 4) {
         // console.log('varCounter: ', varCounter);
