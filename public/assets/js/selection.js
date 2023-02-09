@@ -295,6 +295,11 @@ function displayCompanyDetailsUsingImageName(filename) {
 
     for (let i = 0; i < leng; i++) {
         if (companyDetailsJsonObj2[0][i].banner === filename) {
+            
+            console.log('business_country: ', companyDetailsJsonObj2[0][i].business_country);
+            console.log('returnCountryNameUsingCode: ', returnCountryNameUsingCode(companyDetailsJsonObj2[0][i].business_country));
+            console.log('companyDetailsJsonObj2[0][i].start_operating_hour: ', convertTimeToInternationalStart(companyDetailsJsonObj2[0][i].start_operating_hour, 'Philippines', 'UTC'));
+            console.log('companyDetailsJsonObj2[0][i].end_operating_hour', convertTimeToInternationalEnd(companyDetailsJsonObj2[0][i].end_operating_hour, 'Philippines', 'UTC'));
             document.getElementById('selection-company-name').innerHTML = companyDetailsJsonObj2[0][i].business_name;
             if (companyDetailsJsonObj2[0][i].business_tagline) {
                 document.getElementById('selection-company-tagline').innerHTML =
@@ -344,6 +349,18 @@ function displayCompanyDetailsUsingImageName(filename) {
                     companyDetailsJsonObj2[0][i].region_of_operation;
             } else {
                 document.getElementById('selection-company-region-of-operations').innerHTML = 'N/A';
+            }
+
+            if (companyDetailsJsonObj2[0][i].start_operating_hour && companyDetailsJsonObj2[0][i].end_operating_hour) {
+                document.getElementById('local-operating-time').innerHTML = companyDetailsJsonObj2[0][i].start_operating_hour + ' - ' + companyDetailsJsonObj2[0][i].end_operating_hour;
+            } else {
+                document.getElementById('local-operating-time').innerHTML = 'N/A';
+            }
+
+            if (companyDetailsJsonObj2[0][i].start_operating_hour && companyDetailsJsonObj2[0][i].end_operating_hour) {
+                document.getElementById('uct-operating-time').innerHTML = convertTimeToInternationalStart(companyDetailsJsonObj2[0][i].start_operating_hour, 'Philippines', 'UTC') + ' - ' + convertTimeToInternationalEnd(companyDetailsJsonObj2[0][i].end_operating_hour, 'Philippines', 'UTC');
+            } else {
+                document.getElementById('uct-operating-time').innerHTML = 'N/A';
             }
         }
     }
@@ -532,6 +549,24 @@ function getCountryNameUsingCode(code, elementId) {
             });
     } else {
         document.getElementById(elementId).innerHTML = 'N/A ';
+    }
+}
+
+function returnCountryNameUsingCode(code) {
+    if (code) {
+        fetch('assets/json/countries.json')
+            .then(function (resp) {
+                return resp.json();
+            })
+            .then(function (data) {
+                let countryCode = code;
+                console.log('countryCode', countryCode);
+                for (var i = 0; i < countryCode.length; i++) {
+
+                    console.log('countryCode[i]', countryCode[i]);
+                    return data.filter((d) => d.iso2 == countryCode[i]);
+                }
+            });
     }
 }
 
@@ -1054,7 +1089,7 @@ function replaceDashCompanyDetailsDiv() {
     document.getElementById('selection-company-city-of-operations').innerHTML = '-';
     document.getElementById('selection-company-region-of-operations').innerHTML = '-';
     document.getElementById('selection-business-scale').innerHTML = '-';
-    document.getElementById('operating-time').innerHTML = '-';
+    document.getElementById('local-operating-time').innerHTML = '-';
 
     noRecordFoundImageSrc();
     showRandomChoices();
@@ -1122,7 +1157,7 @@ function emptyCompanyDetailsDiv() {
     $('#selection-company-city-of-operations').empty();
     $('#selection-company-region-of-operations').empty();
     $('#selection-business-scale').empty();
-    $('#operating-time').empty();
+    $('#local-operating-time').empty();
 }
 
 // $('.uk-active uk-transition-active')[0].click(function() {
