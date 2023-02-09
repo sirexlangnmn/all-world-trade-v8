@@ -267,9 +267,9 @@ selectionsNextSlide.addEventListener('mouseleave', (e) => {
 document.getElementById("selections-next-slide").addEventListener("transitionend", getImageName);
 
 function getImageName() {
-    if (varCounter < 4) {
-        // console.log('varCounter: ', varCounter);
-        varCounter++;
+    // if (varCounter < 4) {
+    //     // console.log('varCounter: ', varCounter);
+    //     varCounter++;
         // get the active parent div to get the active image
         activeDivOfCarousel = getEcN('uk-active uk-transition-active')[0];
         // console.log("getEcN('uk-active uk-transition-active')[0]: ", activeDivOfCarousel);
@@ -284,9 +284,9 @@ function getImageName() {
 
         displayCompanyDetailsUsingImageName(imageNameOfActiveImageInCarousel);
         //alert(imageNameOfActiveImageInCarousel);
-    } else {
-        clearInterval(intervalId);
-    }
+    // } else {
+    //     clearInterval(intervalId);
+    // }
 }
 
 function displayCompanyDetailsUsingImageName(filename) {
