@@ -296,10 +296,10 @@ function displayCompanyDetailsUsingImageName(filename) {
     for (let i = 0; i < leng; i++) {
         if (companyDetailsJsonObj2[0][i].banner === filename) {
             
-            console.log('business_country: ', companyDetailsJsonObj2[0][i].business_country);
-            console.log('returnCountryNameUsingCode: ', returnCountryNameUsingCode(companyDetailsJsonObj2[0][i].business_country));
-            console.log('companyDetailsJsonObj2[0][i].start_operating_hour: ', convertTimeToInternationalStart(companyDetailsJsonObj2[0][i].start_operating_hour, 'Philippines', 'UTC'));
-            console.log('companyDetailsJsonObj2[0][i].end_operating_hour', convertTimeToInternationalEnd(companyDetailsJsonObj2[0][i].end_operating_hour, 'Philippines', 'UTC'));
+            // console.log('business_country: ', companyDetailsJsonObj2[0][i].business_country);
+            // console.log('returnCountryNameUsingCode: ', returnCountryNameUsingCode(companyDetailsJsonObj2[0][i].business_country));
+            // console.log('companyDetailsJsonObj2[0][i].start_operating_hour: ', convertTimeToInternationalStart(companyDetailsJsonObj2[0][i].start_operating_hour, 'Philippines', 'UTC'));
+            // console.log('companyDetailsJsonObj2[0][i].end_operating_hour', convertTimeToInternationalEnd(companyDetailsJsonObj2[0][i].end_operating_hour, 'Philippines', 'UTC'));
             document.getElementById('selection-company-name').innerHTML = companyDetailsJsonObj2[0][i].business_name;
             if (companyDetailsJsonObj2[0][i].business_tagline) {
                 document.getElementById('selection-company-tagline').innerHTML =
