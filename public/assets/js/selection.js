@@ -310,7 +310,6 @@ function displayCompanyDetailsUsingImageName(filename) {
     } = companyDetails;
 
 
-    const countryOfOperationsId = getId('selection-company-country-of-operations')
     const businessIndustryBelongId = getId('selection-business-industry-belong');
     const businessLanguageOfCommunicationId = getId('selection-business-language-of-communication');
     const companyNameId = getId('selection-company-name');
@@ -320,11 +319,16 @@ function displayCompanyDetailsUsingImageName(filename) {
     const businessMinorSubCategoryId = getId('selection-business-minor-sub-category');
     const businessScaleId = getId('selection-business-scale');
     const companyRegionOfOperationsId = getId('selection-company-region-of-operations');
+    const countryOfOperationsId = getId('selection-company-country-of-operations');
+    const stateOfOperationsId = getId('selection-company-state-of-operations');
     const localOperatingTimeId = getId('local-operating-time');
     const uctOperatingTimeId = getId('uct-operating-time');
 
     businessIndustryBelongId.innerHTML = '';
     businessLanguageOfCommunicationId.innerHTML = '';
+    companyRegionOfOperationsId.innerHTML = '';
+    countryOfOperationsId.innerHTML = '';
+    stateOfOperationsId.innerHTML = '';
 
     if (!companyDetails) return;
     console.log('companyDetails', companyDetails);
@@ -345,7 +349,7 @@ function displayCompanyDetailsUsingImageName(filename) {
         ? getStatesNameToBeDisplayUsingCode(statesOfOperation, 'selection-company-state-of-operations')
         : '';
     cityOfOperation ? getCityNameToBeDisplayUsingCode(cityOfOperation, 'selection-company-city-of-operations') : '';
-    companyRegionOfOperationsId.innerHTML = regionOfOperation || 'N/A';
+    companyRegionOfOperationsId.innerHTML = regionOfOperation ? regionOfOperation : 'N/A';
     localOperatingTimeId.innerHTML =
         startOperatingHour && endOperatingHour ? `${startOperatingHour} - ${endOperatingHour}` : 'N/A';
     uctOperatingTimeId.innerHTML =
