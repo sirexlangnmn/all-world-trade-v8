@@ -267,27 +267,35 @@ selectionsNextSlide.addEventListener('mouseleave', (e) => {
 document.getElementById("selections-next-slide").addEventListener("transitionend", getImageName);
 document.getElementById("selections-prev-slide").addEventListener("transitionend", getImageName);
 
+let isTransitioning = false;
 function getImageName() {
-    // if (varCounter < 4) {
-    //     // console.log('varCounter: ', varCounter);
-    //     varCounter++;
-        // get the active parent div to get the active image
-        activeDivOfCarousel = getEcN('uk-active uk-transition-active')[0];
-        // console.log("getEcN('uk-active uk-transition-active')[0]: ", activeDivOfCarousel);
-        // get the active image inside parent div
-        activeImageOfCarousel = activeDivOfCarousel.getElementsByTagName('img')[0];
-        // get the image src
-        imageSrcOfActiveImageInCarousel = activeImageOfCarousel.getAttribute('src');
-        // remove "uploads/" part of image src name
-        imageNameOfActiveImageInCarousel = imageSrcOfActiveImageInCarousel.split('/').pop();
-        // exclude extension from filename
-        //fileNameOfActiveImageInCarousel = imageNameOfActiveImageInCarousel.split('.').slice(0, -1).join('.');
-
-        displayCompanyDetailsUsingImageName(imageNameOfActiveImageInCarousel);
-        //alert(imageNameOfActiveImageInCarousel);
-    // } else {
-    //     clearInterval(intervalId);
-    // }
+    if (!isTransitioning) {
+        if (varCounter < 3) {
+            isTransitioning = true;
+            // console.log('varCounter: ', varCounter);
+            varCounter++;
+            // get the active parent div to get the active image
+            activeDivOfCarousel = getEcN('uk-active uk-transition-active')[0];
+            // console.log("getEcN('uk-active uk-transition-active')[0]: ", activeDivOfCarousel);
+            // get the active image inside parent div
+            activeImageOfCarousel = activeDivOfCarousel.getElementsByTagName('img')[0];
+            // get the image src
+            imageSrcOfActiveImageInCarousel = activeImageOfCarousel.getAttribute('src');
+            // remove "uploads/" part of image src name
+            imageNameOfActiveImageInCarousel = imageSrcOfActiveImageInCarousel.split('/').pop();
+            // exclude extension from filename
+            //fileNameOfActiveImageInCarousel = imageNameOfActiveImageInCarousel.split('.').slice(0, -1).join('.');
+    
+            console.log('imageNameOfActiveImageInCarousel: ', imageNameOfActiveImageInCarousel);
+            displayCompanyDetailsUsingImageName(imageNameOfActiveImageInCarousel);
+            //alert(imageNameOfActiveImageInCarousel);
+            setTimeout(function() {
+                isTransitioning = false;
+            }, 500);
+        } else {
+            clearInterval(intervalId);
+        }
+    }
 }
 
 function displayCompanyDetailsUsingImageName(filename) {
