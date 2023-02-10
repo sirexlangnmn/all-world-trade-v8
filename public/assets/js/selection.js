@@ -422,113 +422,98 @@ function displayFirstCompanyDetails() {
 }
 
 function displayTopCompany() {
-    // top 20 search
-    let leng = companyDetailsJsonObj2[0].length - 1;
+    const elementId = document.getElementById('top-selection-results');
+    elementId.innerHTML = '';
 
-    document.getElementById('top-selection-results').innerHTML = '';
-    for (let i = leng; i >= 0; i--) {
-        console.log('i', i);
-        console.log('companyDetailsJsonObj2[0][i].business_name: ', companyDetailsJsonObj2[0][i].business_name);
-        document.getElementById('top-selection-results').innerHTML +=
-            '<div class="flex items-center space-x-4 rounded-md -mx-2 p-2 hover:bg-gray-50">';
-        document.getElementById('top-selection-results').innerHTML += '<div class="flex-1" id="test">';
-        document.getElementById('top-selection-results').innerHTML +=
-            '<a href="#" onclick="displayTopCompanyDetails(\'' +
-            companyDetailsJsonObj2[0][i].business_name +
-            '\')" class="text-base font-semibold capitalize">' +
-            companyDetailsJsonObj2[0][i].business_name +
-            '</a>';
-        document.getElementById('top-selection-results').innerHTML += '</div>';
-        document.getElementById('top-selection-results').innerHTML += '</div>';
+    const leng = companyDetailsJsonObj2[0].length;
+    for (let i = leng - 1; i >= 0; i--) {
+        elementId.innerHTML += `<div class="flex items-center space-x-4 rounded-md -mx-2 p-2 hover:bg-gray-50">
+                <div class="flex-1">
+                    <a href="#" onclick="displayTopCompanyDetails('${companyDetailsJsonObj2[0][i].business_name}')" class="text-base font-semibold capitalize">
+                        ${companyDetailsJsonObj2[0][i].business_name}
+                    </a>
+                </div>
+            </div>`;
     }
 }
 
 function displaySearchParameter() {
-    document.getElementById('displaySearchParameter').innerHTML = '';
-    document.getElementById('displaySearchParameter').innerHTML += '<li>';
-    document.getElementById('displaySearchParameter').innerHTML += '<a href="index.html">Home</a>';
-    document.getElementById('displaySearchParameter').innerHTML += '</li>';
-    document.getElementById('displaySearchParameter').innerHTML += '<li class="active">';
-    document.getElementById('displaySearchParameter').innerHTML += '<a href="#">Selection </a>';
-    document.getElementById('displaySearchParameter').innerHTML += '</li>';
-    if (dataForDisplaySearchParameter[0].business_major_category) {
-        document.getElementById('displaySearchParameter').innerHTML += '<li class="">';
-        document.getElementById('displaySearchParameter').innerHTML +=
-            '<a href="#">' +
-            getTradeCategoriesTitleById(dataForDisplaySearchParameter[0].business_major_category) +
-            '</a>';
-        document.getElementById('displaySearchParameter').innerHTML += '</li>';
+    const displaySearchParameterEl = document.getElementById('displaySearchParameter');
+    let html = `
+      <li>
+        <a href="index.html">Home</a>
+      </li>
+      <li class="active">
+        <a href="#">Selection </a>
+      </li>
+    `;
+    const data = dataForDisplaySearchParameter[0];
+
+    if (data.business_major_category) {
+        html += `
+        <li class="">
+          <a href="#">${getTradeCategoriesTitleById(data.business_major_category)}</a>
+        </li>
+      `;
     }
-    if (dataForDisplaySearchParameter[0].business_sub_category) {
-        document.getElementById('displaySearchParameter').innerHTML += '<li class="">';
-        document.getElementById('displaySearchParameter').innerHTML +=
-            '<a href="#">' + getSubCategoriesTitleById(dataForDisplaySearchParameter[0].business_sub_category) + '</a>';
-        document.getElementById('displaySearchParameter').innerHTML += '</li>';
+    if (data.business_sub_category) {
+        html += `
+        <li class="">
+          <a href="#">${getSubCategoriesTitleById(data.business_sub_category)}</a>
+        </li>
+      `;
+    }
+    if (data.business_minor_sub_category) {
+        html += `
+        <li class="">
+          <a href="#">${getMinorSubCategoriesTitleById(data.business_minor_sub_category)}</a>
+        </li>
+      `;
+    }
+    if (data.region_of_operation) {
+        html += `
+        <li class="">
+          <a href="#">${data.region_of_operation}</a>
+        </li>
+      `;
+    }
+    if (data.country_of_operation) {
+        html += `
+        <li class="">
+          <a href="#" id="displaySearchParameter_countryOperation"></a>
+        </li>
+      `;
+        getCountryNameUsingCode(data.country_of_operation, 'displaySearchParameter_countryOperation');
+    }
+    if (data.states_of_operation) {
+        html += `
+        <li class="">
+          <a href="#" id="displaySearchParameter_stateOperation"></a>
+        </li>
+      `;
+        getStatesNameToBeDisplayUsingCode(data.states_of_operation, 'displaySearchParameter_stateOperation');
     }
 
-    if (dataForDisplaySearchParameter[0].business_minor_sub_category) {
-        document.getElementById('displaySearchParameter').innerHTML += '<li class="">';
-        document.getElementById('displaySearchParameter').innerHTML +=
-            '<a href="#">' +
-            getMinorSubCategoriesTitleById(dataForDisplaySearchParameter[0].business_minor_sub_category) +
-            '</a>';
-        document.getElementById('displaySearchParameter').innerHTML += '</li>';
-    }
-    if (dataForDisplaySearchParameter[0].region_of_operation) {
-        document.getElementById('displaySearchParameter').innerHTML += '<li class="">';
-        document.getElementById('displaySearchParameter').innerHTML +=
-            '<a href="#">' + dataForDisplaySearchParameter[0].region_of_operation + '</a>';
-        document.getElementById('displaySearchParameter').innerHTML += '</li>';
-    }
-    if (dataForDisplaySearchParameter[0].country_of_operation) {
-        document.getElementById('displaySearchParameter').innerHTML += '<li class="">';
-        document.getElementById('displaySearchParameter').innerHTML +=
-            '<a href="#" id="displaySearchParameter_countryOperation"></a>';
-        document.getElementById('displaySearchParameter').innerHTML += '</li>';
-        getCountryNameUsingCode(
-            dataForDisplaySearchParameter[0].country_of_operation,
-            'displaySearchParameter_countryOperation',
-        );
-    }
-    if (dataForDisplaySearchParameter[0].states_of_operation) {
-        document.getElementById('displaySearchParameter').innerHTML += '<li class="">';
-        document.getElementById('displaySearchParameter').innerHTML +=
-            '<a href="#" id="displaySearchParameter_stateOperation"></a>';
-        document.getElementById('displaySearchParameter').innerHTML += '</li>';
-        getStatesNameToBeDisplayUsingCode(
-            dataForDisplaySearchParameter[0].states_of_operation,
-            'displaySearchParameter_stateOperation',
-        );
-    }
+    displaySearchParameterEl.innerHTML = html;
 }
 
 function getCountryNameUsingCode(code, elementId) {
-    $('#' + elementId).empty();
-
-    if (code) {
-        fetch('assets/json/countries.json')
-            .then(function (resp) {
-                return resp.json();
-            })
-            .then(function (data) {
-                let countryCode = code.split(',');
-
-                for (var i = 0; i < countryCode.length; i++) {
-                    let filtered = data.filter((d) => d.iso2 == countryCode[i]);
-                    let countryName;
-                    if (countryCode.length > 1 || i == countryCode.length + 1) {
-                        countryName = filtered[0].name + ', ';
-                    } else {
-                        countryName = filtered[0].name;
-                    }
-                    document.getElementById(elementId).innerHTML =
-                        document.getElementById(elementId).innerHTML + countryName;
-                }
-            });
-    } else {
-        document.getElementById(elementId).innerHTML = 'N/A ';
+    if (!code) {
+        return document.getElementById(elementId).innerHTML = 'N/A';
     }
+
+    fetch('assets/json/countries.json')
+        .then((resp) => resp.json())
+        .then((data) => {
+            let countryCode = code.split(',');
+            let countryName = countryCode.reduce((acc, currCode) => {
+                let filtered = data.find(d => d.iso2 == currCode);
+                return acc + filtered[0].name + ', ';
+            }, '');
+            document.getElementById(elementId).innerHTML = countryName.slice(0, -2);
+        });
 }
+
 
 function returnCountryNameUsingCode(code) {
     if (code) {
