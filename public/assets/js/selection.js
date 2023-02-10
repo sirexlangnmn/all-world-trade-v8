@@ -290,7 +290,6 @@ function getImageName() {
 }
 
 function displayCompanyDetailsUsingImageName(filename) {
-    replaceNACompanyDetailsDiv()
     const companyDetails = companyDetailsJsonObj2[0].find((details) => details.banner === filename);
 
     const {
@@ -358,7 +357,6 @@ function displayCompanyDetailsUsingImageName(filename) {
 }
 
 function displayFirstCompanyDetails() {
-    replaceNACompanyDetailsDiv();
     const [firstCompany] = companyDetailsJsonObj2[0];
 
     if (firstCompany === undefined) {
