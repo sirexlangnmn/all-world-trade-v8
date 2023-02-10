@@ -498,22 +498,33 @@ function displaySearchParameter() {
 }
 
 function getCountryNameUsingCode(code, elementId) {
-    if (!code) {
-        return document.getElementById(elementId).innerHTML = 'N/A';
+    console.log('getCountryNameUsingCode code: ', code);
+    $('#' + elementId).empty();
+
+    if (code) {
+        fetch('assets/json/countries.json')
+            .then(function (resp) {
+                return resp.json();
+            })
+            .then(function (data) {
+                let countryCode = code.split(',');
+
+                for (var i = 0; i < countryCode.length; i++) {
+                    let filtered = data.filter((d) => d.iso2 == countryCode[i]);
+                    let countryName;
+                    if (countryCode.length > 1 || i == countryCode.length + 1) {
+                        countryName = filtered[0].name + ', ';
+                    } else {
+                        countryName = filtered[0].name;
+                    }
+                    document.getElementById(elementId).innerHTML =
+                        document.getElementById(elementId).innerHTML + countryName;
+                }
+            });
+    } else {
+        document.getElementById(elementId).innerHTML = 'N/A ';
     }
-
-    fetch('assets/json/countries.json')
-        .then((resp) => resp.json())
-        .then((data) => {
-            let countryCode = code.split(',');
-            let countryName = countryCode.reduce((acc, currCode) => {
-                let filtered = data.find(d => d.iso2 == currCode);
-                return acc + filtered[0].name + ', ';
-            }, '');
-            document.getElementById(elementId).innerHTML = countryName.slice(0, -2);
-        });
 }
-
 
 function returnCountryNameUsingCode(code) {
     if (code) {
