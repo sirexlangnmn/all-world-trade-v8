@@ -269,157 +269,226 @@ document.getElementById('selections-prev-slide').addEventListener('transitionend
 
 let isTransitioning = false;
 function getImageName() {
-    if (!isTransitioning && varCounter < 3) {
-        isTransitioning = true;
-        varCounter++;
+    if (!isTransitioning) {
+        if (varCounter < 3) {
+            isTransitioning = true;
+            // console.log('varCounter: ', varCounter);
+            varCounter++;
+            // get the active parent div to get the active image
+            activeDivOfCarousel = getEcN('uk-active uk-transition-active')[0];
+            // console.log("getEcN('uk-active uk-transition-active')[0]: ", activeDivOfCarousel);
+            // get the active image inside parent div
+            activeImageOfCarousel = activeDivOfCarousel.getElementsByTagName('img')[0];
+            // get the image src
+            imageSrcOfActiveImageInCarousel = activeImageOfCarousel.getAttribute('src');
+            // remove "uploads/" part of image src name
+            imageNameOfActiveImageInCarousel = imageSrcOfActiveImageInCarousel.split('/').pop();
+            // exclude extension from filename
+            //fileNameOfActiveImageInCarousel = imageNameOfActiveImageInCarousel.split('.').slice(0, -1).join('.');
 
-        const activeDivOfCarousel = getSl('.uk-active.uk-transition-active');
-        const activeImageOfCarousel = activeDivOfCarousel.getElementsByTagName('img')[0];
-        const imageSrcOfActiveImageInCarousel = activeImageOfCarousel.src;
-        const imageNameOfActiveImageInCarousel = imageSrcOfActiveImageInCarousel.split('/').pop();
-
-        console.log('imageNameOfActiveImageInCarousel: ', imageNameOfActiveImageInCarousel);
-        displayCompanyDetailsUsingImageName(imageNameOfActiveImageInCarousel);
-
-        setTimeout(() => {
-            isTransitioning = false;
-        }, 500);
-    } else if (varCounter >= 3) {
-        clearInterval(intervalId);
+            console.log('imageNameOfActiveImageInCarousel: ', imageNameOfActiveImageInCarousel);
+            displayCompanyDetailsUsingImageName(imageNameOfActiveImageInCarousel);
+            //alert(imageNameOfActiveImageInCarousel);
+            setTimeout(function () {
+                isTransitioning = false;
+            }, 500);
+        } else {
+            clearInterval(intervalId);
+        }
     }
 }
 
+// function displayCompanyDetailsUsingImageName(filename) {
+//     document.getElementById('selection-business-industry-belong').innerHTML = '';
+//     document.getElementById('selection-business-language-of-communication').innerHTML = '';
+
+//     const companyDetails = companyDetailsJsonObj2[0].find((details) => details.banner === filename);
+
+//     if (!companyDetails) return;
+//     console.log('companyDetails', companyDetails);
+//     document.getElementById('selection-company-name').innerHTML = companyDetails.business_name;
+//     document.getElementById('selection-company-tagline').innerHTML = companyDetails.business_tagline || '';
+//     document.getElementById('selection-business-major-category').innerHTML = companyDetails.business_major_category
+//         ? getTradeCategoriesTitleById(companyDetails.business_major_category)
+//         : 'N/A';
+//     document.getElementById('selection-business-sub-category').innerHTML = companyDetails.business_sub_category
+//         ? getSubCategoriesTitleById(companyDetails.business_sub_category)
+//         : 'N/A';
+//     document.getElementById('selection-business-minor-sub-category').innerHTML =
+//         companyDetails.business_minor_sub_category
+//             ? getMinorSubCategoriesTitleById(companyDetails.business_minor_sub_category)
+//             : 'N/A';
+//     document.getElementById('selection-business-scale').innerHTML = companyDetails.business_scale
+//         ? getBusinessScaleTitle(companyDetails.business_scale)
+//         : 'N/A';
+//     companyDetails.business_language_of_communication
+//         ? formattingLanguageName(companyDetails.business_language_of_communication)
+//         : '';
+//     companyDetails.business_industry_belong_to
+//         ? formattingBusinessTags(companyDetails.business_industry_belong_to)
+//         : '';
+//     companyDetails.country_of_operation
+//         ? getCountryNameUsingCode(companyDetails.country_of_operation, 'selection-company-country-of-operations')
+//         : '';
+//     console.log('companyDetails.states_of_operation', companyDetails.states_of_operation);
+//     companyDetails.states_of_operation
+//         ? getStatesNameToBeDisplayUsingCode(companyDetails.states_of_operation, 'selection-company-state-of-operations')
+//         : '';
+//     companyDetails.city_of_operation
+//         ? getCityNameToBeDisplayUsingCode(companyDetails.city_of_operation, 'selection-company-city-of-operations')
+//         : '';
+//     document.getElementById('selection-company-region-of-operations').innerHTML =
+//         companyDetails.region_of_operation || 'N/A';
+//     document.getElementById('local-operating-time').innerHTML =
+//         companyDetails.start_operating_hour && companyDetails.end_operating_hour
+//             ? `${companyDetails.start_operating_hour} - ${companyDetails.end_operating_hour}`
+//             : 'N/A';
+//     document.getElementById('uct-operating-time').innerHTML =
+//         companyDetails.start_operating_hour && companyDetails.end_operating_hour
+//             ? convertTimeToInternationalStart(companyDetails.start_operating_hour, 'Philippines', 'UTC') +
+//               ' - ' +
+//               convertTimeToInternationalEnd(companyDetails.end_operating_hour, 'Philippines', 'UTC')
+//             : 'N/A';
+// }
+
 function displayCompanyDetailsUsingImageName(filename) {
-    const companyDetails = companyDetailsJsonObj2[0].find((details) => details.banner === filename);
+    const businessIndustryBelong = getId('selection-business-industry-belong');
+    const businessLanguageOfCommunication = getId('selection-business-language-of-communication');
+    const companyName = getId('selection-company-name');
+    const companyTagline = getId('selection-company-tagline');
+    const businessMajorCategory = getId('selection-business-major-category');
+    const businessSubCategory = getId('selection-business-sub-category');
+    const businessMinorSubCategory = getId('selection-business-minor-sub-category');
+    const businessScale = getId('selection-business-scale');
+    const companyRegionOfOperations = getId('selection-company-region-of-operations');
+    const localOperatingTime = getId('local-operating-time');
+    const uctOperatingTime = getId('uct-operating-time');
 
-    const {
-        business_name: businessName,
-        business_tagline: businessTagline,
-        business_language_of_communication: businessLanguageOfCommunication,
-        business_major_category: businessMajorCategory,
-        business_sub_category: businessSubCategory,
-        business_minor_sub_category: businessMinorSubCategory,
-        business_scale: businessScale,
-        business_industry_belong_to: businessIndustryBelongTo,
-        country_of_operation: countryOfOperation,
-        states_of_operation: statesOfOperation,
-        city_of_operation: cityOfOperation,
-        region_of_operation: regionOfOperation,
-        start_operating_hour: startOperatingHour,
-        end_operating_hour: endOperatingHour,
-    } = companyDetails;
+    businessIndustryBelong.innerHTML = '';
+    businessLanguageOfCommunication.innerHTML = '';
 
-    const businessIndustryBelongId = getId('selection-business-industry-belong');
-    const businessLanguageOfCommunicationId = getId('selection-business-language-of-communication');
-    const companyNameId = getId('selection-company-name');
-    const companyTaglineId = getId('selection-company-tagline');
-    const businessMajorCategoryId = getId('selection-business-major-category');
-    const businessSubCategoryId = getId('selection-business-sub-category');
-    const businessMinorSubCategoryId = getId('selection-business-minor-sub-category');
-    const businessScaleId = getId('selection-business-scale');
-    const companyRegionOfOperationsId = getId('selection-company-region-of-operations');
-    const localOperatingTimeId = getId('local-operating-time');
-    const uctOperatingTimeId = getId('uct-operating-time');
+    const data = companyDetailsJsonObj2[0].find((details) => details.banner === filename);
 
-    businessIndustryBelongId.innerHTML = '';
-    businessLanguageOfCommunicationId.innerHTML = '';
-
-    if (!companyDetails) return;
-    console.log('companyDetails', companyDetails);
-    companyNameId.innerHTML = businessName;
-    companyTaglineId.innerHTML = businessTagline || '';
-    businessMajorCategoryId.innerHTML = businessMajorCategory
-        ? getTradeCategoriesTitleById(businessMajorCategory)
+    if (!data) return;
+    console.log('data', data);
+    companyName.innerHTML = data.business_name;
+    companyTagline.innerHTML = data.business_tagline || '';
+    businessMajorCategory.innerHTML = data.business_major_category
+        ? getTradeCategoriesTitleById(data.business_major_category)
         : 'N/A';
-    businessSubCategoryId.innerHTML = businessSubCategory ? getSubCategoriesTitleById(businessSubCategory) : 'N/A';
-    businessMinorSubCategoryId.innerHTML = businessMinorSubCategory
-        ? getMinorSubCategoriesTitleById(businessMinorSubCategory)
+    businessSubCategory.innerHTML = data.business_sub_category
+        ? getSubCategoriesTitleById(data.business_sub_category)
         : 'N/A';
-    businessScaleId.innerHTML = businessScale ? getBusinessScaleTitle(businessScale) : 'N/A';
-    businessLanguageOfCommunication ? formattingLanguageName(businessLanguageOfCommunication) : '';
-    businessIndustryBelongTo ? formattingBusinessTags(businessIndustryBelongTo) : '';
-    countryOfOperation ? getCountryNameUsingCode(countryOfOperation, 'selection-company-country-of-operations') : '';
-    statesOfOperation
-        ? getStatesNameToBeDisplayUsingCode(statesOfOperation, 'selection-company-state-of-operations')
+    businessMinorSubCategory.innerHTML = data.business_minor_sub_category
+        ? getMinorSubCategoriesTitleById(data.business_minor_sub_category)
+        : 'N/A';
+    businessScale.innerHTML = data.business_scale 
+        ? getBusinessScaleTitle(data.business_scale) 
+        : 'N/A';
+    data.business_language_of_communication 
+        ? formattingLanguageName(data.business_language_of_communication) 
         : '';
-    cityOfOperation ? getCityNameToBeDisplayUsingCode(cityOfOperation, 'selection-company-city-of-operations') : '';
-    companyRegionOfOperationsId.innerHTML = regionOfOperation || 'N/A';
-    localOperatingTimeId.innerHTML =
-        startOperatingHour && endOperatingHour ? `${startOperatingHour} - ${endOperatingHour}` : 'N/A';
-    uctOperatingTimeId.innerHTML =
-        startOperatingHour && endOperatingHour
-            ? convertTimeToInternationalStart(startOperatingHour, 'Philippines', 'UTC') +
+    data.business_industry_belong_to 
+        ? formattingBusinessTags(data.business_industry_belong_to) 
+        : '';
+    data.country_of_operation
+        ? getCountryNameUsingCode(data.country_of_operation, 'selection-company-country-of-operations')
+        : '';
+    data.states_of_operation
+        ? getStatesNameToBeDisplayUsingCode(data.states_of_operation, 'selection-company-state-of-operations')
+        : '';
+    data.city_of_operation
+        ? getCityNameToBeDisplayUsingCode(data.city_of_operation, 'selection-company-city-of-operations')
+        : '';
+    companyRegionOfOperations.innerHTML = data.region_of_operation || 'N/A';
+    localOperatingTime.innerHTML =
+        data.start_operating_hour && data.end_operating_hour
+            ? `${data.start_operating_hour} - ${data.end_operating_hour}`
+            : 'N/A';
+    uctOperatingTime.innerHTML =
+        data.start_operating_hour && data.end_operating_hour
+            ? convertTimeToInternationalStart(data.start_operating_hour, 'Philippines', 'UTC') +
               ' - ' +
-              convertTimeToInternationalEnd(endOperatingHour, 'Philippines', 'UTC')
+              convertTimeToInternationalEnd(data.end_operating_hour, 'Philippines', 'UTC')
             : 'N/A';
 }
 
 function displayFirstCompanyDetails() {
-    const [firstCompany] = companyDetailsJsonObj2[0];
+    if (companyDetailsJsonObj2[0][0] !== undefined) {
+        document.getElementById('selection-company-name').innerHTML = companyDetailsJsonObj2[0][0].business_name;
+        if (companyDetailsJsonObj2[0][0].business_tagline) {
+            document.getElementById('selection-company-tagline').innerHTML =
+                companyDetailsJsonObj2[0][0].business_tagline;
+        }
+        if (companyDetailsJsonObj2[0][0].business_language_of_communication) {
+            formattingLanguageName(companyDetailsJsonObj2[0][0].business_language_of_communication);
+        }
+        if (companyDetailsJsonObj2[0][0].business_major_category) {
+            document.getElementById('selection-business-major-category').innerHTML = getTradeCategoriesTitleById(
+                companyDetailsJsonObj2[0][0].business_major_category,
+            );
+        }
+        if (companyDetailsJsonObj2[0][0].business_sub_category) {
+            document.getElementById('selection-business-sub-category').innerHTML = getSubCategoriesTitleById(
+                companyDetailsJsonObj2[0][0].business_sub_category,
+            );
+        }
+        if (companyDetailsJsonObj2[0][0].business_minor_sub_category) {
+            document.getElementById('selection-business-minor-sub-category').innerHTML = getMinorSubCategoriesTitleById(
+                companyDetailsJsonObj2[0][0].business_minor_sub_category,
+            );
+        }
+        if (companyDetailsJsonObj2[0][0].business_scale) {
+            document.getElementById('selection-business-scale').innerHTML = getBusinessScaleTitle(
+                companyDetailsJsonObj2[0][0].business_scale,
+            );
+        }
+        if (companyDetailsJsonObj2[0][0].business_industry_belong_to) {
+            formattingBusinessTags(companyDetailsJsonObj2[0][0].business_industry_belong_to);
+        }
 
-    if (firstCompany === undefined) {
+        getCountryNameUsingCode(
+            companyDetailsJsonObj2[0][0].country_of_operation,
+            'selection-company-country-of-operations',
+        );
+        getStatesNameToBeDisplayUsingCode(
+            companyDetailsJsonObj2[0][0].states_of_operation,
+            'selection-company-state-of-operations',
+        );
+        getCityNameToBeDisplayUsingCode(
+            companyDetailsJsonObj2[0][0].city_of_operation,
+            'selection-company-city-of-operations',
+        );
+        if (companyDetailsJsonObj2[0][0].region_of_operation) {
+            document.getElementById('selection-company-region-of-operations').innerHTML =
+                companyDetailsJsonObj2[0][0].region_of_operation;
+        } else {
+            document.getElementById('selection-company-region-of-operations').innerHTML = 'N/A';
+        }
+    } else {
         replaceDashCompanyDetailsDiv();
-        return;
     }
-
-    const {
-        business_name: businessName,
-        business_tagline: businessTagline,
-        business_language_of_communication: businessLanguageOfCommunication,
-        business_major_category: businessMajorCategory,
-        business_sub_category: businessSubCategory,
-        business_minor_sub_category: businessMinorSubCategory,
-        business_scale: businessScale,
-        business_industry_belong_to: businessIndustryBelongTo,
-        country_of_operation: countryOfOperation,
-        states_of_operation: statesOfOperation,
-        city_of_operation: cityOfOperation,
-        region_of_operation: regionOfOperation,
-        start_operating_hour: startOperatingHour,
-        end_operating_hour: endOperatingHour,
-    } = firstCompany;
-
-    const businessIndustryBelongId = getId('selection-business-industry-belong');
-    const businessLanguageOfCommunicationId = getId('selection-business-language-of-communication');
-    const companyNameId = getId('selection-company-name');
-    const companyTaglineId = getId('selection-company-tagline');
-    const businessMajorCategoryId = getId('selection-business-major-category');
-    const businessSubCategoryId = getId('selection-business-sub-category');
-    const businessMinorSubCategoryId = getId('selection-business-minor-sub-category');
-    const businessScaleId = getId('selection-business-scale');
-    const companyRegionOfOperationsId = getId('selection-company-region-of-operations');
-    const localOperatingTimeId = getId('local-operating-time');
-    const uctOperatingTimeId = getId('uct-operating-time');
-
-    companyNameId.innerHTML = businessName;
-    companyTaglineId.innerHTML = businessTagline || 'N/A';
-    businessLanguageOfCommunication ? formattingLanguageName(businessLanguageOfCommunication) : '';
-    businessMajorCategoryId.innerHTML = businessMajorCategory
-        ? getTradeCategoriesTitleById(businessMajorCategory)
-        : 'N/A';
-    businessSubCategoryId.innerHTML = businessSubCategory ? getSubCategoriesTitleById(businessSubCategory) : 'N/A';
-    businessMinorSubCategoryId.innerHTML = businessMinorSubCategory
-        ? getMinorSubCategoriesTitleById(businessMinorSubCategory)
-        : 'N/A';
-    businessScaleId.innerHTML = businessScale ? getBusinessScaleTitle(businessScale) : 'N/A';
-
-    businessIndustryBelongTo ? formattingBusinessTags(businessIndustryBelongTo) : '';
-
-    countryOfOperation ? getCountryNameUsingCode(countryOfOperation, 'selection-company-country-of-operations') : '';
-    statesOfOperation
-        ? getStatesNameToBeDisplayUsingCode(statesOfOperation, 'selection-company-state-of-operations')
-        : '';
-    cityOfOperation ? getCityNameToBeDisplayUsingCode(cityOfOperation, 'selection-company-city-of-operations') : '';
-    companyRegionOfOperationsId.innerHTML = regionOfOperation || 'N/A';
-    localOperatingTimeId.innerHTML =
-        startOperatingHour && endOperatingHour ? `${startOperatingHour} - ${endOperatingHour}` : 'N/A';
-    uctOperatingTimeId.innerHTML =
-        startOperatingHour && endOperatingHour
-            ? convertTimeToInternationalStart(startOperatingHour, 'Philippines', 'UTC') +
-              ' - ' +
-              convertTimeToInternationalEnd(endOperatingHour, 'Philippines', 'UTC')
-            : 'N/A';
 }
+
+// function displayTopCompany() {
+//     // top 20 search
+//     let leng = companyDetailsJsonObj2[0].length;
+
+//     document.getElementById('top-selection-results').innerHTML = '';
+//     for (let i = 0; i < leng; i++) {
+//         document.getElementById('top-selection-results').innerHTML +=
+//             '<div class="flex items-center space-x-4 rounded-md -mx-2 p-2 hover:bg-gray-50">';
+//         document.getElementById('top-selection-results').innerHTML += '<div class="flex-1" id="test">';
+//         document.getElementById('top-selection-results').innerHTML +=
+//             '<a href="#" onclick="displayTopCompanyDetails(\'' +
+//             companyDetailsJsonObj2[0][i].business_name +
+//             '\')" class="text-base font-semibold capitalize">' +
+//             companyDetailsJsonObj2[0][i].business_name +
+//             '</a>';
+//         document.getElementById('top-selection-results').innerHTML += '</div>';
+//         document.getElementById('top-selection-results').innerHTML += '</div>';
+//     }
+// }
 
 function displayTopCompany() {
     // top 20 search
