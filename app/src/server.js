@@ -544,13 +544,15 @@ app.get(['/download-current-trader-data'], (req, res) => {
 
     tradeCategory = sessionData.current_trader_major_category;
 
-    businessSubCategoryStr = sessionData.current_trader_business_characteristics.business_sub_category_str;
+    // businessSubCategoryStr = sessionData.current_trader_business_characteristics.business_sub_category_str;
     businessSubCategory = sessionData.current_trader_sub_category;
-    businessSubCategory = businessSubCategory ? businessSubCategory : businessSubCategoryStr;
+    // businessSubCategory = businessSubCategory ? businessSubCategory : businessSubCategoryStr;
+    businessSubCategory = businessSubCategory ? businessSubCategory : 'N/A';
 
-    businessMinorsubCategoryStr = sessionData.current_trader_business_characteristics.business_minor_sub_category_str;
+    //businessMinorsubCategoryStr = sessionData.current_trader_business_characteristics.business_minor_sub_category_str;
     businessMinorsubCategory = sessionData.current_trader_minor_sub_category;
-    businessMinorsubCategory = businessMinorsubCategory ? businessMinorsubCategory : businessMinorsubCategoryStr;
+    //businessMinorsubCategory = businessMinorsubCategory ? businessMinorsubCategory : businessMinorsubCategoryStr;
+    businessMinorsubCategory = businessMinorsubCategory ? businessMinorsubCategory : 'N/A';
 
     tags = sessionData.current_trader_business_characteristics.business_industry_belong_to;
     tags = tags ? formattingBusinessTags(tags) : 'N/A';
