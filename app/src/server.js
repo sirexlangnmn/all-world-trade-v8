@@ -514,8 +514,21 @@ app.get(['/download-current-visitor-data'], (req, res) => {
 
 app.get(['/download-current-trader-data'], (req, res) => {
     const sessionData = req.session;
-    console.log('download-current-trader-data sessionData: ', sessionData);
-    console.log('download-current-trader-data sessionData.current_trader: ', sessionData.current_trader);
+    const sessionDataItems = sessionData.items
+
+    const currentTraderCategoryItem = sessionDataItems.find(item => item.current_trader_major_category);
+    const currentTraderSubCategoryItem = sessionDataItems.find(item => item.current_trader_sub_category);
+    const currentTraderMinorSubCategoryItem = sessionDataItems.find(item => item.current_trader_minor_sub_category);
+
+    const currentTraderCategory = currentTraderCategoryItem ? currentTraderCategoryItem.current_trader_major_category : '';
+    const currentTraderSubCategory = currentTraderSubCategoryItem ? currentTraderSubCategoryItem.current_trader_sub_category : '';
+    const currentTraderMinorSubCategory = currentTraderMinorSubCategoryItem ? currentTraderMinorSubCategoryItem.current_trader_minor_sub_category : '';
+    
+    console.log('download-current-trader-data sessionData.items: ', sessionData.items);
+    console.log('download-current-trader-data currentTraderCategory: ', currentTraderCategory);
+    console.log('download-current-trader-data currentTraderSubCategory: ', currentTraderSubCategory);
+    console.log('download-current-trader-data currentTraderMinorSubCategory: ', currentTraderMinorSubCategory);
+
     const countries = JSON.parse(countriesData);
     const states = JSON.parse(statesData);
     const cities = JSON.parse(citiesData);
@@ -530,14 +543,6 @@ app.get(['/download-current-trader-data'], (req, res) => {
     const businessEmail = sessionData.current_trader.business_email;
     const businessContact = sessionData.current_trader.business_contact;
     const businessAddress = sessionData.current_trader.business_address;
-    const tradeCategory = sessionData.current_trader_major_category;
-    const businessSubCategory = sessionData.current_trader_sub_category;
-    const businessMinorsubCategory = sessionData.current_trader_minor_sub_category;
-
-    console.log('download-current-trader-data tradeCategory: ', tradeCategory);
-    console.log('download-current-trader-data businessSubCategory: ', businessSubCategory);
-    console.log('download-current-trader-data businessMinorsubCategory: ', businessMinorsubCategory);
-
     const tags = sessionData.current_trader_business_characteristics.business_industry_belong_to;
     const businessScale = sessionData.current_trader_business_characteristics.business_scale;
     const regionOfOperation = sessionData.current_trader.region_of_operation;
@@ -554,9 +559,9 @@ app.get(['/download-current-trader-data'], (req, res) => {
         business_country: country,
         business_states: state,
         business_city: city,
-        trade_categories: tradeCategory,
-        sub_categories: businessSubCategory,
-        minor_sub_categories: businessMinorsubCategory,
+        trade_categories: currentTraderCategory,
+        sub_categories: currentTraderSubCategory,
+        minor_sub_categories: currentTraderMinorSubCategory,
         tags: formattingBusinessTags(tags) || 'N/A',
         businessScale: formattingBusinessScale(businessScale) || 'N/A',
         region_of_operation: formattingBusinessTags(regionOfOperation) || 'N/A',
@@ -565,7 +570,7 @@ app.get(['/download-current-trader-data'], (req, res) => {
         date_created: date_created,
     };
 
-    console.log('pdfServiceForTrader traderData: ', traderData);
+    // console.log('pdfServiceForTrader traderData: ', traderData);
     // console.log('pdfServiceForTrader sessionData: ', sessionData);
 
     const stream = res.writeHead(200, {

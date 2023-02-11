@@ -87,9 +87,8 @@ Model.connectVisitorAndTrader = (newModel, result) => {
 
 
 Model.getCurrentTrader = (newModel, result) => {
-    newModel.session.current_trader_major_category = null;
-    newModel.session.current_trader_sub_category = null;
-    newModel.session.current_trader_minor_sub_category = null;
+    newModel.session.items = [];
+
     let trader_uuid = newModel.trader_uuid;
   
     newModel.session.current_trader_date_created = date_time();
@@ -102,11 +101,10 @@ Model.getCurrentTrader = (newModel, result) => {
             if (id && id != null) {
                 sql.query(`SELECT title FROM ${table} WHERE id = "${id}"`, (err, res) => {
                     if (err) {
-                        // console.log('fetchTitle err' + table + ': ', err);
-                        newModel.session[target] = null;
+                        console.log('fetchTitle err' + table + ': ', err);
                     } else {
-                        // console.log('fetchTitle res[0]' + table + ': ', res[0]);
-                        newModel.session[target] = res[0].title;
+                        console.log('fetchTitle res[0]' + table + ': ', res[0]);
+                        newModel.session.items.push(({[target]: res[0].title}));
                     }
                 });
             } else {
@@ -124,6 +122,7 @@ Model.getCurrentTrader = (newModel, result) => {
                 result(null, err);
             } else {
                 newModel.session.current_trader = res[0];
+                newModel.session.items.push(res[0]);
                 result(null, res);
             }
         });
