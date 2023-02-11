@@ -110,6 +110,7 @@ Model.getCurrentTrader = (newModel, result) => {
                     }
 
                     if (res) {
+                        newModel.session.current_trader_major_category = null;
                         newModel.session.current_trader_major_category = res[0].title;
                     }
                 });
@@ -121,6 +122,7 @@ Model.getCurrentTrader = (newModel, result) => {
                     }
 
                     if (res) {
+                        newModel.session.current_trader_sub_category = null;
                         newModel.session.current_trader_sub_category = res[0].title;
                     }
                 });
@@ -132,6 +134,7 @@ Model.getCurrentTrader = (newModel, result) => {
                     }
 
                     if (res) {
+                        newModel.session.current_trader_minor_sub_category = null;
                         newModel.session.current_trader_minor_sub_category = res[0].title;
                     }
                 });
@@ -142,6 +145,7 @@ Model.getCurrentTrader = (newModel, result) => {
                     result(null, err);
                     return;
                 } else {
+                    newModel.session.current_trader = null;
                     newModel.session.current_trader = res[0];
 
                     result(null, res);
