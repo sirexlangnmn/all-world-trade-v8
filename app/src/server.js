@@ -529,6 +529,17 @@ app.get(['/download-current-trader-data'], (req, res) => {
     states = JSON.parse(statesData);
     cities = JSON.parse(citiesData);
 
+    tradeCategory = sessionData.current_trader_major_category;
+    businessSubCategory = sessionData.current_trader_sub_category;
+    businessMinorsubCategory = sessionData.current_trader_minor_sub_category;
+
+    
+    // console.log('pdfServiceForTrader sessionData: ', sessionData);
+    // console.log('pdfServiceForTrader tradeCategory: ', tradeCategory);
+    // console.log('pdfServiceForTrader businessSubCategory: ', businessSubCategory);
+    // console.log('pdfServiceForTrader businessMinorsubCategory: ', businessMinorsubCategory);
+
+    //================================================================================================
     traderCountryCode = sessionData.current_trader.business_country;
     visitorStateCode = sessionData.current_trader.business_states;
     visitorCityCode = sessionData.current_trader.business_city;
@@ -543,16 +554,8 @@ app.get(['/download-current-trader-data'], (req, res) => {
     businessAddress = sessionData.current_trader.business_address;
 
     tradeCategory = sessionData.current_trader_major_category;
-
-    // businessSubCategoryStr = sessionData.current_trader_business_characteristics.business_sub_category_str;
     businessSubCategory = sessionData.current_trader_sub_category;
-    // businessSubCategory = businessSubCategory ? businessSubCategory : businessSubCategoryStr;
-    businessSubCategory = businessSubCategory ? businessSubCategory : 'N/A';
-
-    //businessMinorsubCategoryStr = sessionData.current_trader_business_characteristics.business_minor_sub_category_str;
     businessMinorsubCategory = sessionData.current_trader_minor_sub_category;
-    //businessMinorsubCategory = businessMinorsubCategory ? businessMinorsubCategory : businessMinorsubCategoryStr;
-    businessMinorsubCategory = businessMinorsubCategory ? businessMinorsubCategory : 'N/A';
 
     tags = sessionData.current_trader_business_characteristics.business_industry_belong_to;
     tags = tags ? formattingBusinessTags(tags) : 'N/A';
@@ -589,6 +592,7 @@ app.get(['/download-current-trader-data'], (req, res) => {
     };
 
     console.log('pdfServiceForTrader traderData: ', traderData);
+    console.log('pdfServiceForTrader sessionData: ', sessionData);
 
     const stream = res.writeHead(200, {
         'Content-Type': 'application/pdf',
