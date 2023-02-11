@@ -586,6 +586,8 @@ app.get(['/download-current-trader-data'], (req, res) => {
         date_created: date_created,
     };
 
+    console.log('pdfServiceForTrader traderData: ', traderData);
+
     const stream = res.writeHead(200, {
         'Content-Type': 'application/pdf',
         'Content-Disposition': `attachment;filename=data_of_current_trader-${businessName}.pdf`,

@@ -88,6 +88,11 @@ Model.getCurrentTrader = (newModel, result) => {
     let trader_uuid = newModel.trader_uuid;
 
     newModel.session.current_trader_date_created = date_time();
+    newModel.session.current_trader_business_characteristics = '';
+    newModel.session.current_trader_major_category = '';
+    newModel.session.current_trader_sub_category = '';
+    newModel.session.current_trader_minor_sub_category = '';
+    newModel.session.current_trader = '';
 
     sql.query(USERS_BUSINESS_CHARACTERISTICS.BUSINESS_CHARACTERISTIC, [trader_uuid], (err, res) => {
         if (err) {
