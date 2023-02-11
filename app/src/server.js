@@ -524,6 +524,8 @@ app.get(['/download-current-trader-data'], (req, res) => {
     const currentTraderSubCategory = currentTraderSubCategoryItem ? currentTraderSubCategoryItem.current_trader_sub_category : '';
     const currentTraderMinorSubCategory = currentTraderMinorSubCategoryItem ? currentTraderMinorSubCategoryItem.current_trader_minor_sub_category : '';
     
+    
+    console.log('download-current-trader-data sessionData.items: ', sessionData);
     console.log('download-current-trader-data sessionData.items: ', sessionData.items);
     console.log('download-current-trader-data currentTraderCategory: ', currentTraderCategory);
     console.log('download-current-trader-data currentTraderSubCategory: ', currentTraderSubCategory);
