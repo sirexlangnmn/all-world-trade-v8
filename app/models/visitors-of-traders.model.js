@@ -102,10 +102,10 @@ Model.getCurrentTrader = (newModel, result) => {
             if (id && id != null) {
                 sql.query(`SELECT title FROM ${table} WHERE id = "${id}"`, (err, res) => {
                     if (err) {
-                        console.log('fetchTitle err' + table + ': ', err);
+                        // console.log('fetchTitle err' + table + ': ', err);
                         newModel.session[target] = null;
                     } else {
-                        console.log('fetchTitle res[0]' + table + ': ', res[0]);
+                        // console.log('fetchTitle res[0]' + table + ': ', res[0]);
                         newModel.session[target] = res[0].title;
                     }
                 });
