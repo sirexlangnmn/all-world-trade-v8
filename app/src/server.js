@@ -785,16 +785,7 @@ const multer = require('multer');
 const sharp = require('sharp');
 const Sequelize = require('sequelize');
 
-// const app = express();
-// const sequelize = new Sequelize('database', 'username', 'password', {
-//   host: 'localhost',
-//   dialect: 'sqlite',
-//   storage: './db.sqlite',
-// });
 
-// const Image = sequelize.define('image', {
-//   data: Sequelize.BLOB,
-// });
 
 
 
