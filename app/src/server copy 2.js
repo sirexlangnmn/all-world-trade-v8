@@ -48,11 +48,24 @@ const cookieSession = require('cookie-session');
 const path = require('path');
 const app = express();
 
+// let corsOptions = {
+//     origin: "dev.allworldtrade.com"
+// };
+
+//app.use(cors(corsOptions));
+
+app.use(
+    cors({
+        origin: [
+            'https://allworldtrade.com',
+            'https://dev.allworldtrade.com',
+            'http://localhost:3000/',
+            'https://meet.allworldtrade.com',
+            'https://meet2.allworldtrade.com',
+        ],
+    }),
+);
 //app.use(cors()); // Enable All CORS Requests for all origins
-app.use(cors({
-    origin: ['http://localhost:3000', 'https://allworldtrade.com', 'https://dev.allworldtrade.com', 'https://meet.allworldtrade.com', 'https://meet2.allworldtrade.com'],
-    credentials: true
-}));
 
 app.use(compression()); // Compress all HTTP responses using GZip
 
@@ -82,15 +95,39 @@ let { lodashNonce } = require("../middleware/nonces");
 // const helmet = require("../middleware/helmet")
 // app.use(helmet);
 
+
 app.use(function (req, res, next) {
-    const allowedOrigins = ['http://localhost:3000', 'https://allworldtrade.com', 'https://dev.allworldtrade.com', 'https://meet.allworldtrade.com', 'https://meet2.allworldtrade.com'];
-    const origin = req.headers.origin;
-    if (allowedOrigins.includes(origin)) {
-      res.header('Access-Control-Allow-Origin', origin);
-      res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    // let location_hostname = req.hostname;
+    // let host = '';
+    // if (location_hostname === 'localhost') {
+    //     host = 'http://' + location_hostname + ':' + 3000;
+    // }
+    // if (location_hostname === 'allworldtrade.com' || location_hostname.endsWith('.allworldtrade.com') || location_hostname === 'meet.allworldtrade.com' || location_hostname === 'meet2.allworldtrade.com') {
+    //     host = 'https://' + location_hostname;
+    // }
+
+    const corsWhitelist = [
+        'http://localhost:3000/',
+        'https://meet.allworldtrade.com',
+        'https://meet2.allworldtrade.com',
+        'https://allworldtrade.com',
+        'https://dev.allworldtrade.com',
+    ];
+
+    //console.log('check: ', 'Content-Security-Policy-Report-Only', "font-src 'self' https://fonts.gstatic.com; img-src 'self'; script-src 'self' https://code.jquery.com/jquery-3.6.0.min.js https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.3.0/sweetalert2.min.js https://unpkg.com/ionicons@5.2.3/dist/ionicons/ionicons.esm.js https://unpkg.com/ionicons@5.2.3/dist/ionicons.js 'nonce-" + lodashNonce +"'; frame-ancestors 'self'; frame-src 'self'");
+    if (corsWhitelist.indexOf(req.headers.origin) !== -1) {
+        res.header('Access-Control-Allow-Origin', req.headers.origin);
+        res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     }
+
     res.set('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+    // res.setHeader('Content-Security-Policy', "frame-ancestors 'self'; frame-src 'self'");
+    // res.setHeader(
+    //     'Content-Security-Policy-Report-Only', "default-src 'self'; font-src 'self' https://fonts.gstatic.com/s/orbitron/v25/yMJMMIlzdpvBhQQL_SC3X9yhF25-T1nyGy6BoWgz.woff2; img-src 'self'; script-src 'self' 'nonce-" + lodashNonce +"' ; style-src 'self' 'nonce-" + lodashNonce +"' https://fonts.googleapis.com; frame-ancestors 'self'; form-action 'self'; frame-src 'self'",
+    // );
+    
     res.setHeader('X-Frame-Options', 'sameorigin');
+
     next();
 });
 
