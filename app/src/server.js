@@ -1,13 +1,10 @@
 /*
-
 http://patorjk.com/software/taag/#p=display&f=ANSI%20Regular&t=Server
-
 ███████ ███████ ██████  ██    ██ ███████ ██████
 ██      ██      ██   ██ ██    ██ ██      ██   ██
 ███████ █████   ██████  ██    ██ █████   ██████
      ██ ██      ██   ██  ██  ██  ██      ██   ██
 ███████ ███████ ██   ██   ████   ███████ ██   ██
-
 dependencies: {
     compression     : https://www.npmjs.com/package/compression
     cors            : https://www.npmjs.com/package/cors
@@ -30,7 +27,6 @@ dependencies: {
     jsonwebtoken    : https://www.npmjs.com/package/jsonwebtoken
     pdfkit          : https://www.npmjs.com/package/pdfkit
 }
-
 */
 
 'use strict'; // https://www.w3schools.com/js/js_strict.asp
@@ -48,7 +44,8 @@ const cookieSession = require('cookie-session');
 const path = require('path');
 const app = express();
 
-//app.use(cors()); // Enable All CORS Requests for all origins
+
+// Enable All CORS Requests for all origins
 app.use(cors({
     origin: ['http://localhost:3000', 'https://allworldtrade.com', 'https://dev.allworldtrade.com', 'https://meet.allworldtrade.com', 'https://meet2.allworldtrade.com'],
     credentials: true
@@ -82,15 +79,13 @@ let { lodashNonce } = require("../middleware/nonces");
 // const helmet = require("../middleware/helmet")
 // app.use(helmet);
 
+
 app.use(function (req, res, next) {
     const allowedOrigins = ['http://localhost:3000', 'https://allworldtrade.com', 'https://dev.allworldtrade.com', 'https://meet.allworldtrade.com', 'https://meet2.allworldtrade.com'];
     const origin = req.headers.origin;
     if (allowedOrigins.includes(origin)) {
-        res.header('Access-Control-Allow-Origin', origin);
-        // res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+      res.header('Access-Control-Allow-Origin', origin);
     }
-    // res.set('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
-    // res.setHeader('X-Frame-Options', 'sameorigin');
     next();
 });
 
@@ -119,6 +114,7 @@ const api_key_secret = process.env.API_KEY_SECRET;
 require('../routes/index.js')(app);
 require('../routes/password.js')(app);
 require('../routes/upload-file.js')(app);
+require('../routes/upload-file-2.js')(app);
 require('../routes/forgot-password.js')(app);
 
 const pdfService = require('../service/pdf-service');
@@ -756,11 +752,21 @@ app.get(['/file-and-input-test'], (req, res) => {
 });
 
 
-app.get(['/multer-sharp-and-sequelize-test'], (req, res) => {
+app.get(['/test-multer-sharp-and-sequelize'], (req, res) => {
     const sessionData = {
         ourGenerateNonce: lodashNonce,
     };
-    res.render(path.join(__dirname, '../../', 'public/view/profile/multer-sharp-and-sequelize-test'), {
+    res.render(path.join(__dirname, '../../', 'public/view/test/multer-sharp-and-sequelize-test'), {
+        data: sessionData,
+    });
+});
+
+
+app.get(['/test/two-file-and-text-input-multer-sharp-sequelize'], (req, res) => {
+    const sessionData = {
+        ourGenerateNonce: lodashNonce,
+    };
+    res.render(path.join(__dirname, '../../', 'public/view/test/two-file-and-text-input-multer-sharp-sequelize'), {
         data: sessionData,
     });
 });
@@ -816,9 +822,10 @@ app.post('/upload', upload.single('image'), async (req, res) => {
     .resize(800, 600)
     .webp()
     .toFile(imagePath + '.webp');
-    console.log('Image uploaded and converted successfully!');
+    console.log('/upload Image uploaded and converted successfully!');
     //res.send('Image uploaded and converted successfully!');
 });
+
 
 // app.listen(3000, () => {
 //   console.log('Server listening on port 3000');
@@ -1120,14 +1127,12 @@ app.post('/session-checker/:random', function (req, res, next) {
 server.listen(port, null, () => {
     log.debug(
         `%c
-
 	███████╗██╗ ██████╗ ███╗   ██╗      ███████╗███████╗██████╗ ██╗   ██╗███████╗██████╗ 
 	██╔════╝██║██╔════╝ ████╗  ██║      ██╔════╝██╔════╝██╔══██╗██║   ██║██╔════╝██╔══██╗
 	███████╗██║██║  ███╗██╔██╗ ██║█████╗███████╗█████╗  ██████╔╝██║   ██║█████╗  ██████╔╝
 	╚════██║██║██║   ██║██║╚██╗██║╚════╝╚════██║██╔══╝  ██╔══██╗╚██╗ ██╔╝██╔══╝  ██╔══██╗
 	███████║██║╚██████╔╝██║ ╚████║      ███████║███████╗██║  ██║ ╚████╔╝ ███████╗██║  ██║
 	╚══════╝╚═╝ ╚═════╝ ╚═╝  ╚═══╝      ╚══════╝╚══════╝╚═╝  ╚═╝  ╚═══╝  ╚══════╝╚═╝  ╚═╝ started...
-
 	`,
         'font-family:monospace',
     );
