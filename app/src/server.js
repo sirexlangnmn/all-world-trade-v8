@@ -86,8 +86,8 @@ app.use(function (req, res, next) {
     const allowedOrigins = ['http://localhost:3000', 'https://allworldtrade.com', 'https://dev.allworldtrade.com', 'https://meet.allworldtrade.com', 'https://meet2.allworldtrade.com'];
     const origin = req.headers.origin;
     if (allowedOrigins.includes(origin)) {
-      res.header('Access-Control-Allow-Origin', origin);
-      res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+        res.header('Access-Control-Allow-Origin', origin);
+        //res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     }
     res.set('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
     res.setHeader('X-Frame-Options', 'sameorigin');
