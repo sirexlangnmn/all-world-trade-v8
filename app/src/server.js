@@ -1,10 +1,13 @@
 /*
+
 http://patorjk.com/software/taag/#p=display&f=ANSI%20Regular&t=Server
+
 ███████ ███████ ██████  ██    ██ ███████ ██████
 ██      ██      ██   ██ ██    ██ ██      ██   ██
 ███████ █████   ██████  ██    ██ █████   ██████
      ██ ██      ██   ██  ██  ██  ██      ██   ██
 ███████ ███████ ██   ██   ████   ███████ ██   ██
+
 dependencies: {
     compression     : https://www.npmjs.com/package/compression
     cors            : https://www.npmjs.com/package/cors
@@ -27,6 +30,7 @@ dependencies: {
     jsonwebtoken    : https://www.npmjs.com/package/jsonwebtoken
     pdfkit          : https://www.npmjs.com/package/pdfkit
 }
+
 */
 
 'use strict'; // https://www.w3schools.com/js/js_strict.asp
@@ -44,12 +48,24 @@ const cookieSession = require('cookie-session');
 const path = require('path');
 const app = express();
 
+// let corsOptions = {
+//     origin: "dev.allworldtrade.com"
+// };
 
-// Enable All CORS Requests for all origins
-app.use(cors({
-    origin: ['http://localhost:3000', 'https://allworldtrade.com', 'https://dev.allworldtrade.com', 'https://meet.allworldtrade.com', 'https://meet2.allworldtrade.com'],
-    credentials: true
-}));
+//app.use(cors(corsOptions));
+
+app.use(
+    cors({
+        origin: [
+            'https://allworldtrade.com',
+            'https://dev.allworldtrade.com',
+            'http://localhost:3000/',
+            'https://meet.allworldtrade.com',
+            'https://meet2.allworldtrade.com',
+        ],
+    }),
+);
+//app.use(cors()); // Enable All CORS Requests for all origins
 
 app.use(compression()); // Compress all HTTP responses using GZip
 
@@ -81,11 +97,37 @@ let { lodashNonce } = require("../middleware/nonces");
 
 
 app.use(function (req, res, next) {
-    const allowedOrigins = ['http://localhost:3000', 'https://allworldtrade.com', 'https://dev.allworldtrade.com', 'https://meet.allworldtrade.com', 'https://meet2.allworldtrade.com'];
-    const origin = req.headers.origin;
-    if (allowedOrigins.includes(origin)) {
-      res.header('Access-Control-Allow-Origin', origin);
+    // let location_hostname = req.hostname;
+    // let host = '';
+    // if (location_hostname === 'localhost') {
+    //     host = 'http://' + location_hostname + ':' + 3000;
+    // }
+    // if (location_hostname === 'allworldtrade.com' || location_hostname.endsWith('.allworldtrade.com') || location_hostname === 'meet.allworldtrade.com' || location_hostname === 'meet2.allworldtrade.com') {
+    //     host = 'https://' + location_hostname;
+    // }
+
+    const corsWhitelist = [
+        'http://localhost:3000/',
+        'https://meet.allworldtrade.com',
+        'https://meet2.allworldtrade.com',
+        'https://allworldtrade.com',
+        'https://dev.allworldtrade.com',
+    ];
+
+    //console.log('check: ', 'Content-Security-Policy-Report-Only', "font-src 'self' https://fonts.gstatic.com; img-src 'self'; script-src 'self' https://code.jquery.com/jquery-3.6.0.min.js https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.3.0/sweetalert2.min.js https://unpkg.com/ionicons@5.2.3/dist/ionicons/ionicons.esm.js https://unpkg.com/ionicons@5.2.3/dist/ionicons.js 'nonce-" + lodashNonce +"'; frame-ancestors 'self'; frame-src 'self'");
+    if (corsWhitelist.indexOf(req.headers.origin) !== -1) {
+        res.header('Access-Control-Allow-Origin', req.headers.origin);
+        res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     }
+
+    res.set('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+    // res.setHeader('Content-Security-Policy', "frame-ancestors 'self'; frame-src 'self'");
+    // res.setHeader(
+    //     'Content-Security-Policy-Report-Only', "default-src 'self'; font-src 'self' https://fonts.gstatic.com/s/orbitron/v25/yMJMMIlzdpvBhQQL_SC3X9yhF25-T1nyGy6BoWgz.woff2; img-src 'self'; script-src 'self' 'nonce-" + lodashNonce +"' ; style-src 'self' 'nonce-" + lodashNonce +"' https://fonts.googleapis.com; frame-ancestors 'self'; form-action 'self'; frame-src 'self'",
+    // );
+    
+    res.setHeader('X-Frame-Options', 'sameorigin');
+
     next();
 });
 
@@ -114,7 +156,6 @@ const api_key_secret = process.env.API_KEY_SECRET;
 require('../routes/index.js')(app);
 require('../routes/password.js')(app);
 require('../routes/upload-file.js')(app);
-// require('../routes/upload-file-2.js')(app); // remove this because it has sqlite support
 require('../routes/forgot-password.js')(app);
 
 const pdfService = require('../service/pdf-service');
@@ -752,21 +793,11 @@ app.get(['/file-and-input-test'], (req, res) => {
 });
 
 
-app.get(['/test-multer-sharp-and-sequelize'], (req, res) => {
+app.get(['/multer-sharp-and-sequelize-test'], (req, res) => {
     const sessionData = {
         ourGenerateNonce: lodashNonce,
     };
-    res.render(path.join(__dirname, '../../', 'public/view/test/multer-sharp-and-sequelize-test'), {
-        data: sessionData,
-    });
-});
-
-
-app.get(['/test/two-file-and-text-input-multer-sharp-sequelize'], (req, res) => {
-    const sessionData = {
-        ourGenerateNonce: lodashNonce,
-    };
-    res.render(path.join(__dirname, '../../', 'public/view/test/two-file-and-text-input-multer-sharp-sequelize'), {
+    res.render(path.join(__dirname, '../../', 'public/view/profile/multer-sharp-and-sequelize-test'), {
         data: sessionData,
     });
 });
@@ -785,7 +816,16 @@ const multer = require('multer');
 const sharp = require('sharp');
 const Sequelize = require('sequelize');
 
+// const app = express();
+// const sequelize = new Sequelize('database', 'username', 'password', {
+//   host: 'localhost',
+//   dialect: 'sqlite',
+//   storage: './db.sqlite',
+// });
 
+// const Image = sequelize.define('image', {
+//   data: Sequelize.BLOB,
+// });
 
 
 
@@ -813,10 +853,9 @@ app.post('/upload', upload.single('image'), async (req, res) => {
     .resize(800, 600)
     .webp()
     .toFile(imagePath + '.webp');
-    console.log('/upload Image uploaded and converted successfully!');
+    console.log('Image uploaded and converted successfully!');
     //res.send('Image uploaded and converted successfully!');
 });
-
 
 // app.listen(3000, () => {
 //   console.log('Server listening on port 3000');
@@ -1118,12 +1157,14 @@ app.post('/session-checker/:random', function (req, res, next) {
 server.listen(port, null, () => {
     log.debug(
         `%c
+
 	███████╗██╗ ██████╗ ███╗   ██╗      ███████╗███████╗██████╗ ██╗   ██╗███████╗██████╗ 
 	██╔════╝██║██╔════╝ ████╗  ██║      ██╔════╝██╔════╝██╔══██╗██║   ██║██╔════╝██╔══██╗
 	███████╗██║██║  ███╗██╔██╗ ██║█████╗███████╗█████╗  ██████╔╝██║   ██║█████╗  ██████╔╝
 	╚════██║██║██║   ██║██║╚██╗██║╚════╝╚════██║██╔══╝  ██╔══██╗╚██╗ ██╔╝██╔══╝  ██╔══██╗
 	███████║██║╚██████╔╝██║ ╚████║      ███████║███████╗██║  ██║ ╚████╔╝ ███████╗██║  ██║
 	╚══════╝╚═╝ ╚═════╝ ╚═╝  ╚═══╝      ╚══════╝╚══════╝╚═╝  ╚═╝  ╚═══╝  ╚══════╝╚═╝  ╚═╝ started...
+
 	`,
         'font-family:monospace',
     );
