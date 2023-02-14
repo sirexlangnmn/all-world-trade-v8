@@ -304,31 +304,31 @@ document.getElementById('selections-prev-slide').addEventListener('transitionend
 
 let isTransitioning = false;
 function getImageName() {
-    //=========================================================
-    // SET image height in selection [START]
-    //=========================================================
-    const screenHeight = window.innerHeight;
-    const adjustedScreenHeight = screenHeight - 125;
-
-    // Select the ul element by its class name
-    const ul = document.querySelector('.uk-slideshow-items');
-
-    // Get all the images inside the ul element
-    const images = ul.querySelectorAll('img');
- 
-    // Loop through each image and set its height to 1000px
-    images.forEach(function(image) {
-         image.style.height = `${adjustedScreenHeight}px`;
-    });
-     
-    //=========================================================
-    // SET image height in selection [END]
-    //=========================================================
-
     if (!isTransitioning && varCounter < 3) {
         isTransitioning = true;
         varCounter++;
 
+        //=========================================================
+        // SET image height in selection [START]
+        //=========================================================
+        const screenHeight = window.innerHeight;
+        const adjustedScreenHeight = screenHeight - 125;
+
+        // Select the ul element by its class name
+        const ul = document.querySelector('.uk-slideshow-items');
+
+        // Get all the images inside the ul element
+        const images = ul.querySelectorAll('img');
+    
+        // Loop through each image and set its height to 1000px
+        images.forEach(function(image) {
+            image.style.height = `${adjustedScreenHeight}px`;
+        });
+        
+        //=========================================================
+        // SET image height in selection [END]
+        //=========================================================
+        
         const activeDivOfCarousel = getSl('.uk-active.uk-transition-active');
         const activeImageOfCarousel = activeDivOfCarousel.getElementsByTagName('img')[0];
         const imageSrcOfActiveImageInCarousel = activeImageOfCarousel.src;
