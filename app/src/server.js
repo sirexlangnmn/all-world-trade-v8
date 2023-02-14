@@ -116,8 +116,7 @@ app.use(function (req, res, next) {
 
     //console.log('check: ', 'Content-Security-Policy-Report-Only', "font-src 'self' https://fonts.gstatic.com; img-src 'self'; script-src 'self' https://code.jquery.com/jquery-3.6.0.min.js https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.3.0/sweetalert2.min.js https://unpkg.com/ionicons@5.2.3/dist/ionicons/ionicons.esm.js https://unpkg.com/ionicons@5.2.3/dist/ionicons.js 'nonce-" + lodashNonce +"'; frame-ancestors 'self'; frame-src 'self'");
     if (corsWhitelist.indexOf(req.headers.origin) !== -1) {
-        // res.header('Access-Control-Allow-Origin', req.headers.origin);
-        res.header('Access-Control-Allow-Origin', '*');
+        res.header('Access-Control-Allow-Origin', req.headers.origin);
         res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     }
 
