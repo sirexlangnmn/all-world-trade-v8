@@ -114,7 +114,7 @@ const api_key_secret = process.env.API_KEY_SECRET;
 require('../routes/index.js')(app);
 require('../routes/password.js')(app);
 require('../routes/upload-file.js')(app);
-require('../routes/upload-file-2.js')(app);
+// require('../routes/upload-file-2.js')(app); // remove this because it has sqlite support
 require('../routes/forgot-password.js')(app);
 
 const pdfService = require('../service/pdf-service');
