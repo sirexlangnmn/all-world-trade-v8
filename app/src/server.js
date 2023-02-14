@@ -58,8 +58,9 @@ app.use(
     cors({
         origin: [
             'https://allworldtrade.com',
+            'https://www.allworldtrade.com',
             'https://dev.allworldtrade.com',
-            'http://localhost:3000/',
+            'http://localhost:3000',
             'https://meet.allworldtrade.com',
             'https://meet2.allworldtrade.com',
         ],
@@ -107,10 +108,11 @@ app.use(function (req, res, next) {
     // }
 
     const corsWhitelist = [
-        'http://localhost:3000/',
+        'http://localhost:3000',
         'https://meet.allworldtrade.com',
         'https://meet2.allworldtrade.com',
         'https://allworldtrade.com',
+        'https://www.allworldtrade.com',
         'https://dev.allworldtrade.com',
     ];
 
