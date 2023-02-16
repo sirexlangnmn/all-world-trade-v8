@@ -181,11 +181,17 @@ div.ex4 {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    
 }
 
 #selections-prev-slide:hover, #selections-next-slide:hover {
     background-color: gray; /* Normal gray */
 }
+
 
 #companiesProfilePictureDiv{
     height: auto;
