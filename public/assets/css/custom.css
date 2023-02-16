@@ -181,10 +181,6 @@ div.ex4 {
     display: flex;
     justify-content: center;
     align-items: center;
-
-    position: absolute;
-    transform: translateY(-50%);
-    
 }
 
 #selections-prev-slide:hover, #selections-next-slide:hover {
