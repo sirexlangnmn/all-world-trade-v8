@@ -305,20 +305,6 @@ function getImageName() {
         //=========================================================
         // SET image height in selection [START]
         //=========================================================
-        // const screenHeight = window.innerHeight;
-        // const adjustedScreenHeight = screenHeight - 125;
-
-        // // Select the ul element by its class name
-        // const ul = document.querySelector('.uk-slideshow-items');
-
-        // // Get all the images inside the ul element
-        // const images = ul.querySelectorAll('img');
-    
-        // // Loop through each image and set its height to 1000px
-        // images.forEach(function(image) {
-        //     image.style.height = `${adjustedScreenHeight}px`;
-        // });
-        
         // Get the adjusted screen height by subtracting the height of the header
         const adjustedScreenHeight = window.innerHeight - 125;
 
@@ -797,20 +783,32 @@ function getCompaniesRelatedToCurrentUser() {
             if (data.length > 0) {
                 companyDetailsJsonObj2.push(data);
                 dataForDisplaySearchParameter.push(data[0]);
-                companiesProfilePicture.innerHTML = '';
-                // for (var i = 0; i < data.length; i++) {
-                for (var i = data.length - 1; i > -1; i--) {
-                    let bannerTitle = getCompaniesProfilePicture(data[i]['id'], data[i]['uuid']);
-                    let bannerSrc = host + '/uploads/users_upload_files/' + bannerTitle[0].banner;
 
-                    companiesProfilePicture.innerHTML =
-                        companiesProfilePicture.innerHTML +
-                        '<li>' +
-                        '<img src="' +
-                        bannerSrc +
-                        '" class="companyBannerPreview" id="companyBannerPreview" alt="" uk-cover>' +
-                        '</li>';
+                companiesProfilePicture.innerHTML = '';
+
+                const fragment = document.createDocumentFragment();
+
+                const adjustedScreenHeight = window.innerHeight - 125;
+                const img = new Image();
+                img.className = 'companyBannerPreview';
+                img.id = 'companyBannerPreview';
+                img.onload = function() {
+                    this.style.height = '';
+                    this.style.height = `${adjustedScreenHeight}px`;
+                };
+                
+                for (let i = data.length - 1; i >= 0; i--) {
+                    const bannerTitle = getCompaniesProfilePicture(data[i]['id'], data[i]['uuid']);
+                    const bannerSrc = host + '/uploads/users_upload_files/' + bannerTitle[0].banner;
+                  
+                    img.src = bannerSrc;
+                    const li = document.createElement('li');
+                    li.appendChild(img.cloneNode());
+                    fragment.appendChild(li);
                 }
+                  
+                companiesProfilePicture.appendChild(fragment);
+                
                 displaySearchParameter();
             } else {
                 const data = {
