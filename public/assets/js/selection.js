@@ -1006,160 +1006,160 @@ document.getElementById('trade-categories').addEventListener('change', function 
 
 
 
-// function selectionSearchParameter() {
-//     let regionOfOperationCode = document.getElementById('selectedRegionOfOperation').value;
-//     let countryCode = document.getElementById('selectedCountry').value;
-//     let selectionState = document.getElementById('selectedState').value;
-//     let selectionCity = document.getElementById('selectedCity').value;
-//     let language = document.getElementById('selectedLanguage').value;
-//     let business_scale = document.getElementById('selectedBusinessScale').value;
-//     let trade_categories = document.getElementById('selectedTradeCategories').value;
-//     let sub_categories = document.getElementById('selectedSubCategories').value;
-//     let minor_sub_categories = document.getElementById('selectedMinorSubCategories').value;
-//     let product_service_input = document.getElementById('product_service_input').value;
-//     let company_name_input = document.getElementById('company_name_input').value;
-
-//     console.log('selectionSearchParameter countryCode', countryCode);
-//     $.ajax({
-//         url: '/api/post/selection-search-parameter',
-//         type: 'POST',
-//         data: {
-//             regionOfOperationCode: regionOfOperationCode,
-//             countryCode: countryCode,
-//             selectionState: selectionState,
-//             selectionCity: selectionCity,
-//             language: language,
-//             business_scale: business_scale,
-//             trade_categories: trade_categories,
-//             sub_categories: sub_categories,
-//             minor_sub_categories: minor_sub_categories,
-//             product_service_input: product_service_input,
-//             company_name_input: company_name_input,
-//         },
-//         success: function (data) {
-//             if (data.length == 0) {
-//                 replaceDashCompanyDetailsDiv();
-//             } else {
-//                 emptyCompanyDetailsDiv();
-//                 while (companyDetailsJsonObj2.length > 0) {
-//                     companyDetailsJsonObj2.pop();
-//                 }
-//                 companyDetailsJsonObj2.push(data);
-
-//                 companiesProfilePicture.innerHTML = '';
-//                 // for (var i = 0; i < data.length; i++) {
-//                 for (var i = data.length - 1; i > -1; i--) {
-//                     let bannerTitle = getCompaniesProfilePicture(data[i]['id'], data[i]['uuid']);
-
-//                     companiesProfilePicture.innerHTML =
-//                         companiesProfilePicture.innerHTML +
-//                         '<li>' +
-//                         '<img src="' +
-//                         host +
-//                         '/uploads/users_upload_files/' +
-//                         bannerTitle[0].banner +
-//                         '" alt="" uk-cover>' +
-//                         '</li>';
-//                 }
-//                 displayFirstCompanyDetails();
-//                 displayTopCompany();
-//                 // displaySearchParameter();
-//             }
-
-//             while (dataForDisplaySearchParameter.length > 0) {
-//                 dataForDisplaySearchParameter.pop();
-//             }
-//             const dataSearchParameter = {
-//                 business_major_category: trade_categories,
-//                 business_sub_category: sub_categories,
-//                 business_minor_sub_category: minor_sub_categories,
-//                 region_of_operation: regionOfOperationCode,
-//                 country_of_operation: countryCode,
-//                 states_of_operation: selectionState,
-//             };
-//             dataForDisplaySearchParameter.push(dataSearchParameter);
-//             displaySearchParameter();
-//         },
-//     });
-// }
-
-
-
 function selectionSearchParameter() {
-    const regionOfOperationCode = document.getElementById('selectedRegionOfOperation').value;
-    const countryCode = document.getElementById('selectedCountry').value;
-    const selectionState = document.getElementById('selectedState').value;
-    const selectionCity = document.getElementById('selectedCity').value;
-    const language = document.getElementById('selectedLanguage').value;
-    const business_scale = document.getElementById('selectedBusinessScale').value;
-    const trade_categories = document.getElementById('selectedTradeCategories').value;
-    const sub_categories = document.getElementById('selectedSubCategories').value;
-    const minor_sub_categories = document.getElementById('selectedMinorSubCategories').value;
-    const product_service_input = document.getElementById('product_service_input').value;
-    const company_name_input = document.getElementById('company_name_input').value;
+    let regionOfOperationCode = document.getElementById('selectedRegionOfOperation').value;
+    let countryCode = document.getElementById('selectedCountry').value;
+    let selectionState = document.getElementById('selectedState').value;
+    let selectionCity = document.getElementById('selectedCity').value;
+    let language = document.getElementById('selectedLanguage').value;
+    let business_scale = document.getElementById('selectedBusinessScale').value;
+    let trade_categories = document.getElementById('selectedTradeCategories').value;
+    let sub_categories = document.getElementById('selectedSubCategories').value;
+    let minor_sub_categories = document.getElementById('selectedMinorSubCategories').value;
+    let product_service_input = document.getElementById('product_service_input').value;
+    let company_name_input = document.getElementById('company_name_input').value;
 
     console.log('selectionSearchParameter countryCode', countryCode);
     $.ajax({
         url: '/api/post/selection-search-parameter',
         type: 'POST',
         data: {
-            regionOfOperationCode,
-            countryCode,
-            selectionState,
-            selectionCity,
-            language,
-            business_scale,
-            trade_categories,
-            sub_categories,
-            minor_sub_categories,
-            product_service_input,
-            company_name_input,
+            regionOfOperationCode: regionOfOperationCode,
+            countryCode: countryCode,
+            selectionState: selectionState,
+            selectionCity: selectionCity,
+            language: language,
+            business_scale: business_scale,
+            trade_categories: trade_categories,
+            sub_categories: sub_categories,
+            minor_sub_categories: minor_sub_categories,
+            product_service_input: product_service_input,
+            company_name_input: company_name_input,
         },
-        success: (data) => {
-            if (data.length === 0) {
+        success: function (data) {
+            if (data.length == 0) {
                 replaceDashCompanyDetailsDiv();
             } else {
                 emptyCompanyDetailsDiv();
-            
                 while (companyDetailsJsonObj2.length > 0) {
                     companyDetailsJsonObj2.pop();
                 }
                 companyDetailsJsonObj2.push(data);
-    
-                companiesProfilePicture.innerHTML = '';
-                for (let i = data.length - 1; i >= 0; i--) {
-                    const { id, uuid } = data[i];
-                    const bannerTitle = getCompaniesProfilePicture(id, uuid);
-    
-                    companiesProfilePicture.innerHTML += `
-                        <li>
-                            <img src="${host}/uploads/users_upload_files/${bannerTitle[0].banner}" alt="" uk-cover>
-                        </li>
-                    `;
-                }
 
+                companiesProfilePicture.innerHTML = '';
+                // for (var i = 0; i < data.length; i++) {
+                for (var i = data.length - 1; i > -1; i--) {
+                    let bannerTitle = getCompaniesProfilePicture(data[i]['id'], data[i]['uuid']);
+
+                    companiesProfilePicture.innerHTML =
+                        companiesProfilePicture.innerHTML +
+                        '<li>' +
+                        '<img src="' +
+                        host +
+                        '/uploads/users_upload_files/' +
+                        bannerTitle[0].banner +
+                        '" alt="" uk-cover>' +
+                        '</li>';
+                }
                 displayFirstCompanyDetails();
                 displayTopCompany();
-    
-                while (dataForDisplaySearchParameter.length > 0) {
-                    dataForDisplaySearchParameter.pop();
-                }
-
-                const dataSearchParameter = {
-                    business_major_category: trade_categories,
-                    business_sub_category: sub_categories,
-                    business_minor_sub_category: minor_sub_categories,
-                    region_of_operation: regionOfOperationCode,
-                    country_of_operation: countryCode,
-                    states_of_operation: selectionState,
-                };
-                dataForDisplaySearchParameter.push(dataSearchParameter);
-                displaySearchParameter();
+                // displaySearchParameter();
             }
+
+            while (dataForDisplaySearchParameter.length > 0) {
+                dataForDisplaySearchParameter.pop();
+            }
+            const dataSearchParameter = {
+                business_major_category: trade_categories,
+                business_sub_category: sub_categories,
+                business_minor_sub_category: minor_sub_categories,
+                region_of_operation: regionOfOperationCode,
+                country_of_operation: countryCode,
+                states_of_operation: selectionState,
+            };
+            dataForDisplaySearchParameter.push(dataSearchParameter);
+            displaySearchParameter();
         },
     });
-    
 }
+
+
+
+// function selectionSearchParameter() {
+//     const regionOfOperationCode = document.getElementById('selectedRegionOfOperation').value;
+//     const countryCode = document.getElementById('selectedCountry').value;
+//     const selectionState = document.getElementById('selectedState').value;
+//     const selectionCity = document.getElementById('selectedCity').value;
+//     const language = document.getElementById('selectedLanguage').value;
+//     const business_scale = document.getElementById('selectedBusinessScale').value;
+//     const trade_categories = document.getElementById('selectedTradeCategories').value;
+//     const sub_categories = document.getElementById('selectedSubCategories').value;
+//     const minor_sub_categories = document.getElementById('selectedMinorSubCategories').value;
+//     const product_service_input = document.getElementById('product_service_input').value;
+//     const company_name_input = document.getElementById('company_name_input').value;
+
+//     console.log('selectionSearchParameter countryCode', countryCode);
+//     $.ajax({
+//         url: '/api/post/selection-search-parameter',
+//         type: 'POST',
+//         data: {
+//             regionOfOperationCode,
+//             countryCode,
+//             selectionState,
+//             selectionCity,
+//             language,
+//             business_scale,
+//             trade_categories,
+//             sub_categories,
+//             minor_sub_categories,
+//             product_service_input,
+//             company_name_input,
+//         },
+//         success: (data) => {
+//             if (data.length === 0) {
+//                 replaceDashCompanyDetailsDiv();
+//             } else {
+//                 emptyCompanyDetailsDiv();
+            
+//                 while (companyDetailsJsonObj2.length > 0) {
+//                     companyDetailsJsonObj2.pop();
+//                 }
+//                 companyDetailsJsonObj2.push(data);
+    
+//                 companiesProfilePicture.innerHTML = '';
+//                 for (let i = data.length - 1; i >= 0; i--) {
+//                     const { id, uuid } = data[i];
+//                     const bannerTitle = getCompaniesProfilePicture(id, uuid);
+    
+//                     companiesProfilePicture.innerHTML += `
+//                         <li>
+//                             <img src="${host}/uploads/users_upload_files/${bannerTitle[0].banner}" alt="" uk-cover>
+//                         </li>
+//                     `;
+//                 }
+
+//                 displayFirstCompanyDetails();
+//                 displayTopCompany();
+    
+//                 while (dataForDisplaySearchParameter.length > 0) {
+//                     dataForDisplaySearchParameter.pop();
+//                 }
+
+//                 const dataSearchParameter = {
+//                     business_major_category: trade_categories,
+//                     business_sub_category: sub_categories,
+//                     business_minor_sub_category: minor_sub_categories,
+//                     region_of_operation: regionOfOperationCode,
+//                     country_of_operation: countryCode,
+//                     states_of_operation: selectionState,
+//                 };
+//                 dataForDisplaySearchParameter.push(dataSearchParameter);
+//                 displaySearchParameter();
+//             }
+//         },
+//     });
+    
+// }
 
 
 
