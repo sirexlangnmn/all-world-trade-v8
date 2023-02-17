@@ -1026,7 +1026,7 @@ function displayTopCompanyDetails(companyName) {
                 const img = document.querySelector('#companiesProfilePicture li img');
                 // Remove the height style property
                 img.style.height = `${adjustedScreenHeight}px`;
-            }, 1000);
+            }, 500);
             
 
         }
