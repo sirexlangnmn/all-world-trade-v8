@@ -1,4 +1,26 @@
-<%- include('../includes/head/index.ejs') %>"
+<%- include('../includes/head/index.ejs') %>
+<script>
+    const ip = window.location.host;
+    const url = 'https://get.geojs.io/v1/ip/geo.json';
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        const location = `${data.city}, ${data.region}, ${data.country}`;
+        console.log(`IP address: ${ip}`);
+        console.log(`Location: ${location}`);
+    });
+</script>
+<!-- <script>
+    const ip = window.location.host;
+    const url = 'https://freegeoip.app/json/';
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        const location = `${data.city}, ${data.region_name}, ${data.country_name}`;
+        console.log(`IP address: ${ip}`);
+        console.log(`Location: ${location}`);
+      });
+  </script> -->
 <style >
     .ml-15px {
         margin-left: 15px;
