@@ -1020,12 +1020,14 @@ function displayTopCompanyDetails(companyName) {
                 '</li>';
 
 
-
-            const adjustedScreenHeight = window.innerHeight - 125;
-            // Get the image element
-            const img = document.querySelector('#companiesProfilePicture li img');
-            // Remove the height style property
-            img.style.height = `${adjustedScreenHeight}px`;
+            setTimeout(() => {
+                const adjustedScreenHeight = window.innerHeight - 125;
+                // Get the image element
+                const img = document.querySelector('#companiesProfilePicture li img');
+                // Remove the height style property
+                img.style.height = `${adjustedScreenHeight}px`;
+            }, 1000);
+            
 
         }
     }
