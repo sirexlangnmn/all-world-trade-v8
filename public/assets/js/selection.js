@@ -948,15 +948,6 @@ function displayTopCompanyDetails(companyName) {
     $('#selection-business-industry-belong').empty();
     $('#selection-business-language-of-communication').empty();
     
-    const adjustedScreenHeight = window.innerHeight - 125;
-    const img = new Image();
-    img.className = 'companiesProfilePicture';
-    img.id = 'companiesProfilePicture';
-    img.onload = function() {
-        this.style.height = '';
-        this.style.height = `${adjustedScreenHeight}px`;
-    };
-
     let leng = companyDetailsJsonObj2[0].length;
 
     for (let i = 0; i < leng; i++) {
@@ -1027,6 +1018,16 @@ function displayTopCompanyDetails(companyName) {
                 bannerTitle[0].banner +
                 '" alt="" uk-cover>' +
                 '</li>';
+
+
+
+            const adjustedScreenHeight = window.innerHeight - 125;
+            // Get the image element
+            const img = document.querySelector('#companiesProfilePicture li img');
+            // Remove the height style property
+            img.style.height = '';
+            img.style.height = `${adjustedScreenHeight}px`;
+
         }
     }
 }
