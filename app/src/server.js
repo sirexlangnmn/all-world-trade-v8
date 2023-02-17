@@ -231,10 +231,6 @@ require('../routes/encrypt.route.js')(app);
 
 // home
 app.get(['/'], (req, res) => {
-    const ip = req.socket.remoteAddress;
-    console.log(`IP address: ${ip}`);
-
-    
     if (req.session.user === undefined) {
         const sessionData = {
             uuid: '',
