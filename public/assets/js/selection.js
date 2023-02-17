@@ -1025,7 +1025,6 @@ function displayTopCompanyDetails(companyName) {
             // Get the image element
             const img = document.querySelector('#companiesProfilePicture li img');
             // Remove the height style property
-            img.style.height = '';
             img.style.height = `${adjustedScreenHeight}px`;
 
         }
