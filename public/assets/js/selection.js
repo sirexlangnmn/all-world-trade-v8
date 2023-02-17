@@ -799,7 +799,7 @@ function getCompaniesRelatedToCurrentUser() {
                 document.getElementById('selections-prev-slide').style.top = `${adjustedScreenHeight2}px`;
                 document.getElementById('selections-next-slide').style.top = `${adjustedScreenHeight2}px`;
 
-                
+
                 companiesProfilePicture.innerHTML = '';
                 const fragment = document.createDocumentFragment();
 
@@ -947,6 +947,15 @@ function getLanguageNameByCode(code) {
 function displayTopCompanyDetails(companyName) {
     $('#selection-business-industry-belong').empty();
     $('#selection-business-language-of-communication').empty();
+
+    const adjustedScreenHeight = window.innerHeight - 125;
+    const img = new Image();
+    img.className = 'companyBannerPreview';
+    img.id = 'companyBannerPreview';
+    img.onload = function() {
+        this.style.height = '';
+        this.style.height = `${adjustedScreenHeight}px`;
+    };
 
     let leng = companyDetailsJsonObj2[0].length;
 
