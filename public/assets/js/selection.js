@@ -1007,7 +1007,10 @@ function displayTopCompanyDetails(companyName) {
             const localOperatingTimeId = getId('local-operating-time');
             const uctOperatingTimeId = getId('uct-operating-time');
             const startOperatingHour = companyDetailsJsonObj2[0][i].start_operating_hour;
-            const endOperatingHour = companyDetailsJsonObj2[0][i].end_operating;
+            const endOperatingHour = companyDetailsJsonObj2[0][i].end_operating_hour;
+
+            console.log('startOperatingHour', startOperatingHour);
+            console.log('endOperatingHour', endOperatingHour);
             
             if (startOperatingHour || endOperatingHour) {
                 localOperatingTimeId.innerHTML =
