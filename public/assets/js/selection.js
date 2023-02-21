@@ -908,12 +908,16 @@ function getBusinessScaleTitle(id) {
             break;
         case "3":
             value = 'Large Scale';
+            break;
         case '':
             value = 'Any';
             break;
         default:
             value = 'N/A';
     }
+
+    console.log('getBusinessScaleTitle potek ka id', id);
+    console.log('getBusinessScaleTitle potek ka value', value);
 
     return value;
 }

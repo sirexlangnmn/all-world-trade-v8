@@ -259,6 +259,7 @@ document.addEventListener(
         }
         if (has_class(e.target, 'filterByBusinessScaleClass')) {
             console.log('displaySelectedBusinessScale e.target.getAttribute(data-el)', e.target.getAttribute('data-el'));
+            console.log('displaySelectedBusinessScale getBusinessScaleTitle(e.target.getAttribute', getBusinessScaleTitle(e.target.getAttribute('data-el')));
             displaySelectedBusinessScale.innerHTML = e.target.getAttribute('data-el')
                 ? getBusinessScaleTitle(e.target.getAttribute('data-el'))
                 : 'Any';
