@@ -1,3 +1,9 @@
+144256
+150093
+
+selectedState
+selectedCity
+
 pdfServiceForTrader traderData:  {
   business_name: 'Little Twinkle Star',
   business_website: 'dadadad05270418.com',

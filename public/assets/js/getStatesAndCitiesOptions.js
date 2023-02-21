@@ -77,6 +77,8 @@ function getStatesOptions(countryElementId, stateElementId, cityElementId) {
                             filtered[i].name +
                             '</div>';
                     }
+
+                    document.getElementById(cityElementId).innerHTML = '<div class="filterByCityClass text-md font-md text-white-900 dark:text-white-300 p-2 hover:bg-gray-50 orbitron" data-el="">Any</div>';
                 } else {
                     document.getElementById(stateElementId).innerHTML =
                         '<div class="filterByStateClass text-md font-md text-white-900 dark:text-white-300 p-2 hover:bg-gray-50" data-el="No States Found">No States Found</div>';
@@ -97,6 +99,8 @@ function getStatesOptions(countryElementId, stateElementId, cityElementId) {
     } else {
         displaySelectedState.innerHTML = 'Any';
         displaySelectedCity.innerHTML = 'Any';
+        document.getElementById(stateElementId).innerHTML = '<div class="filterByStateClass text-md font-md text-white-900 dark:text-white-300 p-2 hover:bg-gray-50 orbitron" data-el="">Any</div>';
+        document.getElementById(cityElementId).innerHTML = '<div class="filterByCityClass text-md font-md text-white-900 dark:text-white-300 p-2 hover:bg-gray-50 orbitron" data-el="">Any</div>';
     }
 }
 

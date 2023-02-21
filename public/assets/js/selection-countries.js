@@ -204,13 +204,15 @@ document.addEventListener(
             selectedCountry.value = e.target.getAttribute('data-el');
             carouselOptionsRemoveActiveClass('filterByCountryClass');
             e.target.classList.add('bg-gray-200');
-            selectionSearchParameter();
-            displaySelectedState.innerHTML = '';
             selectedState.value = '';
-            displaySelectedCity.innerHTML = '';
             selectedCity.value = '';
+            displaySelectedState.innerHTML = 'Any';
+            displaySelectedCity.innerHTML = 'Any';
             getStatesOptions('selectedCountry', 'selectionState', 'selectionCity');
             closeAccordion('selectionCountryAccordion');
+            setTimeout(() => {
+                selectionSearchParameter();
+            }, 500);
         }
         if (has_class(e.target, 'filterByStateClass')) {
             if (e.target.getAttribute('data-el')) {
@@ -222,11 +224,14 @@ document.addEventListener(
             selectedState.value = e.target.getAttribute('data-el');
             carouselOptionsRemoveActiveClass('filterByStateClass');
             e.target.classList.add('bg-gray-200');
-            selectionSearchParameter();
             displaySelectedCity.innerHTML = '';
             selectedCity.value = '';
+            displaySelectedCity.innerHTML = 'Any';
             getCitiesOptions('selectedCountry', 'selectedState', 'selectionCity');
             closeAccordion('selectionStateAccordion');
+            setTimeout(() => {
+                selectionSearchParameter();
+            }, 500);
         }
         if (has_class(e.target, 'filterByCityClass')) {
             if (e.target.getAttribute('data-el')) {

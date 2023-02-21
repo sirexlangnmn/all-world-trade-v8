@@ -180,15 +180,15 @@ Model.getAllBySearchParameter = (param, result) => {
         query += `AND users_businesses.region_of_operation = '${param.regionOfOperationCode}'`;
     }
     query += `AND users_businesses.isPaid = 1`;
-    if (param.countryCode) {
+    if (param.countryCode && !param.selectionState && !param.selectionCity) {
         // query += ` AND users_business.country_of_operation = '${param.countryCode}'`;
-        query += ` OR users_businesses.country_of_operation LIKE '%${param.countryCode}%'`;
+        query += ` AND users_businesses.country_of_operation LIKE '%${param.countryCode}%'`;
     }
-    if (param.selectionState) {
-        query += ` OR users_businesses.states_of_operation = '${param.selectionState}'`;
+    if (param.countryCode && param.selectionState && !param.selectionCity) {
+        query += ` AND users_businesses.states_of_operation = '${param.selectionState}'`;
     }
-    if (param.selectionCity) {
-        query += ` OR users_businesses.city_of_operation = '${param.selectionCity}'`;
+    if (param.countryCode && param.selectionState && param.selectionCity) {
+        query += ` AND users_businesses.city_of_operation = '${param.selectionCity}'`;
     }
     if (param.language) {
         query += ` AND users_businesses.business_language_of_communication LIKE '%${param.language}%'`;
