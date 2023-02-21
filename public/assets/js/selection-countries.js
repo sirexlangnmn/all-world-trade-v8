@@ -14,9 +14,22 @@ function getUsersAddress() {
         success: function (data) {
         
             displayselectedRegionOfOperation.innerHTML = 'Any';
-            selectedCountry.value = data[0].country;
-            selectedState.value = data[0].state_or_province;
-            selectedCity.value = data[0].city;
+            displaySelectedCountry.innerHTML = 'Any';
+            displaySelectedState.innerHTML = 'Any';
+            displaySelectedCity.innerHTML = 'Any';
+            displaySelectedlanguage.innerHTML = 'Any';
+            displaySelectedBusinessScale.innerHTML = 'Any';
+            displaySelectedTradeCategories.innerHTML = 'Any';
+            displaySelectedSubCategories.innerHTML = 'Any';
+            displaySelectedMinorSubCategories.innerHTML = 'Any';
+
+            selectionState.innerHTML += '<div class="filterByStateClass text-md font-md text-white-900 dark:text-white-300 p-2 hover:bg-gray-50 orbitron" data-el="">Any</div>';
+            selectionCity.innerHTML += '<div class="filterByCityClass text-md font-md text-white-900 dark:text-white-300 p-2 hover:bg-gray-50 orbitron" data-el="">Any</div>';
+            subCategories.innerHTML += '<div class="filterBySubCategoryClass text-md font-md text-white-900 dark:text-white-300 p-2 hover:bg-gray-50" data-el="">Any</div>';
+            minorSubCategories.innerHTML += '<div class="filterByMinorSubCategoryClass text-md font-md text-white-900 dark:text-white-300 p-2 hover:bg-gray-50" data-el="">Any</div>';
+            // selectedCountry.value = data[0].country;
+            // selectedState.value = data[0].state_or_province;
+            // selectedCity.value = data[0].city;
 
             getCountryOfOperation(data, 'selectionCountry');
             // getStatesLocation(data, 'selectionState');
@@ -240,6 +253,7 @@ document.addEventListener(
             closeAccordion('selectionLanguageAccordion');
         }
         if (has_class(e.target, 'filterByBusinessScaleClass')) {
+            console.log('displaySelectedBusinessScale e.target.getAttribute(data-el)', e.target.getAttribute('data-el'));
             displaySelectedBusinessScale.innerHTML = e.target.getAttribute('data-el')
                 ? getBusinessScaleTitle(e.target.getAttribute('data-el'))
                 : 'Any';

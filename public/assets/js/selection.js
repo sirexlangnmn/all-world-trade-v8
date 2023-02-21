@@ -547,7 +547,7 @@ function displaySearchParameter() {
 }
 
 function getCountryNameUsingCode(code, elementId) {
-    console.log('getCountryNameUsingCode code: ', code);
+    // console.log('getCountryNameUsingCode code: ', code);
     $('#' + elementId).empty();
     // document.getElementById(elementId).innerHTML = '';
 
@@ -659,6 +659,8 @@ async function getTradeCategories() {
 getTradeCategories().then((data) => {
     // tradeCategories.innerHTML +=
     //     '<div class="filterByTradeCategoryClass text-md font-md text-white-900 dark:text-white-300 p-2 hover:bg-gray-50 orbitron" data-el="Trade Everyday">Trade Everyday</div>';
+    tradeCategories.innerHTML +=
+        '<div class="filterByTradeCategoryClass text-md font-md text-white-900 dark:text-white-300 p-2 hover:bg-gray-50 orbitron" data-el="">Any</div>';
     for (var i = 0; i < data.length; i++) {
         tradeCategories.innerHTML +=
             '<div class="filterByTradeCategoryClass text-md font-md text-white-900 dark:text-white-300 p-2 hover:bg-gray-50 orbitron" data-el="' +
@@ -835,10 +837,12 @@ document.getElementById('searchByProductOrCompanyName').onchange = function () {
     if (searchByProductOrCompanyNameValue === 'product_service') {
         document.getElementById('product_service_input').style.display = 'block';
         document.getElementById('company_name_input').style.display = 'none';
+        document.getElementById('company_name_input').value = '';
     }
     if (searchByProductOrCompanyNameValue === 'company_name') {
         document.getElementById('product_service_input').style.display = 'none';
         document.getElementById('company_name_input').style.display = 'block';
+        document.getElementById('product_service_input').value = '';
     }
 };
 
@@ -896,6 +900,14 @@ function getBusinessScaleTitle(id) {
         case 3:
             value = 'Large Scale';
             break;
+        case "1":
+            value = 'Small Scale';
+            break;
+        case "2":
+            value = 'Medium Scale';
+            break;
+        case "3":
+            value = 'Large Scale';
         case '':
             value = 'Any';
             break;
@@ -905,6 +917,7 @@ function getBusinessScaleTitle(id) {
 
     return value;
 }
+
 
 function formattingBusinessTags(string) {
     if (string) {
@@ -1079,7 +1092,18 @@ function selectionSearchParameter() {
     let product_service_input = document.getElementById('product_service_input').value;
     let company_name_input = document.getElementById('company_name_input').value;
 
+    console.log('selectionSearchParameter regionOfOperationCode', regionOfOperationCode);
     console.log('selectionSearchParameter countryCode', countryCode);
+    console.log('selectionSearchParameter selectionState', selectionState);
+    console.log('selectionSearchParameter selectionCity', selectionCity);
+    console.log('selectionSearchParameter language', language);
+    console.log('selectionSearchParameter business_scale', business_scale);
+    console.log('selectionSearchParameter trade_categories', trade_categories);
+    console.log('selectionSearchParameter sub_categories', sub_categories);
+    console.log('selectionSearchParameter minor_sub_categories', minor_sub_categories);
+    console.log('selectionSearchParameter product_service_input', product_service_input);
+    console.log('selectionSearchParameter company_name_input', company_name_input);
+
     $.ajax({
         url: '/api/post/selection-search-parameter',
         type: 'POST',
