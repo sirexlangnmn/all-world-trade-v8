@@ -548,8 +548,8 @@ function displaySearchParameter() {
 
 function getCountryNameUsingCode(code, elementId) {
     console.log('getCountryNameUsingCode code: ', code);
-    // $('#' + elementId).empty();
-    document.getElementById(elementId).innerHTML = '';
+    $('#' + elementId).empty();
+    // document.getElementById(elementId).innerHTML = '';
 
     if (code) {
         fetch('assets/json/countries.json')
