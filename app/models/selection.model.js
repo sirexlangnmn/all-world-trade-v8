@@ -177,12 +177,12 @@ Model.getAllBySearchParameter = (param, result) => {
     }
     if (param.regionOfOperationCode) {
         // query += `AND users_businesses.region_of_operation LIKE '%${param.regionOfOperationCode}%'`;
-        query += `AND users_businesses.region_of_operation = '${param.regionOfOperationCode}'`;
+        query += `OR users_businesses.region_of_operation = '${param.regionOfOperationCode}'`;
     }
     query += `AND users_businesses.isPaid = 1`;
     if (param.countryCode) {
         // query += ` AND users_business.country_of_operation = '${param.countryCode}'`;
-        query += ` AND users_businesses.country_of_operation LIKE '%${param.countryCode}%'`;
+        query += ` OR users_businesses.country_of_operation LIKE '%${param.countryCode}%'`;
     }
     if (param.selectionState) {
         query += ` OR users_businesses.states_of_operation = '${param.selectionState}'`;
