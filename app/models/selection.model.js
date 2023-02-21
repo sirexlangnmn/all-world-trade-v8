@@ -176,7 +176,8 @@ Model.getAllBySearchParameter = (param, result) => {
         //query += `users_business_characteristics.business_major_category = '${param.trade_categories}'`;
     }
     if (param.regionOfOperationCode) {
-        query += `AND users_businesses.region_of_operation LIKE '%${param.regionOfOperationCode}%'`;
+        // query += `AND users_businesses.region_of_operation LIKE '%${param.regionOfOperationCode}%'`;
+        query += `AND users_businesses.region_of_operation = '${param.regionOfOperationCode}'`;
     }
     query += `AND users_businesses.isPaid = 1`;
     if (param.countryCode) {
