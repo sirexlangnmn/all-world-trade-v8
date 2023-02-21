@@ -177,7 +177,7 @@ Model.getAllBySearchParameter = (param, result) => {
     }
     if (param.regionOfOperationCode) {
         // query += `AND users_businesses.region_of_operation LIKE '%${param.regionOfOperationCode}%'`;
-        query += `OR users_businesses.region_of_operation = '${param.regionOfOperationCode}'`;
+        query += `AND users_businesses.region_of_operation = '${param.regionOfOperationCode}'`;
     }
     query += `AND users_businesses.isPaid = 1`;
     if (param.countryCode) {
