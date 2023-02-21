@@ -185,10 +185,10 @@ Model.getAllBySearchParameter = (param, result) => {
         query += ` AND users_businesses.country_of_operation LIKE '%${param.countryCode}%'`;
     }
     if (param.selectionState) {
-        query += ` AND users_businesses.states_of_operation = '${param.selectionState}'`;
+        query += ` OR users_businesses.states_of_operation = '${param.selectionState}'`;
     }
     if (param.selectionCity) {
-        query += ` AND users_businesses.city_of_operation = '${param.selectionCity}'`;
+        query += ` OR users_businesses.city_of_operation = '${param.selectionCity}'`;
     }
     if (param.language) {
         query += ` AND users_businesses.business_language_of_communication LIKE '%${param.language}%'`;
