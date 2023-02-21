@@ -1016,14 +1016,11 @@ function displayTopCompanyDetails(companyName) {
                 document.getElementById('selection-company-region-of-operations').innerHTML = 'N/A';
             }
 
-            // ==============
+          
             const localOperatingTimeId = getId('local-operating-time');
             const uctOperatingTimeId = getId('uct-operating-time');
             const startOperatingHour = companyDetailsJsonObj2[0][i].start_operating_hour;
             const endOperatingHour = companyDetailsJsonObj2[0][i].end_operating_hour;
-
-            console.log('startOperatingHour', startOperatingHour);
-            console.log('endOperatingHour', endOperatingHour);
             
             if (startOperatingHour || endOperatingHour) {
                 localOperatingTimeId.innerHTML =
@@ -1035,7 +1032,7 @@ function displayTopCompanyDetails(companyName) {
                         convertTimeToInternationalEnd(endOperatingHour, 'Philippines', 'UTC')
                         : 'N/A';
             }
-            // ==============
+          
 
             $('#companiesProfilePicture').empty();
             let bannerTitle = getCompaniesProfilePicture(
