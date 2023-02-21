@@ -1,4 +1,5 @@
 module.exports = (app) => {
+    const db = require('../models/db.js');
     const USERS_BUSINESS_MEDIAS = require('../query/users_business_medias.query.js');
 
     const CryptoJS = require('crypto-js');
@@ -15,19 +16,19 @@ module.exports = (app) => {
     // const path = require('path');
 
     // Database connection
-    const db = mysql.createConnection({
-        host: process.env.DB_SERVERHOST,
-        user: process.env.DB_USERNAME,
-        password: process.env.DB_PASSWORD,
-        database: process.env.DB_NAME,
-    });
+    // const db = mysql.createConnection({
+    //     host: process.env.DB_SERVERHOST,
+    //     user: process.env.DB_USERNAME,
+    //     password: process.env.DB_PASSWORD,
+    //     database: process.env.DB_NAME,
+    // });
 
-    db.connect(function (err) {
-        if (err) {
-            return console.error('error: ' + err.message);
-        }
-        console.log('Connected to the MySQL server.');
-    });
+    // db.connect(function (err) {
+    //     if (err) {
+    //         return console.error('error: ' + err.message);
+    //     }
+    //     console.log('Connected to the MySQL server.');
+    // });
 
     //! Use of Multer
     var storage = multer.diskStorage({
