@@ -1145,10 +1145,19 @@ function selectionSearchParameter() {
                         bannerTitle[0].banner +
                         '" alt="" uk-cover>' +
                         '</li>';
+
+                    if(i === 0) {
+                        setTimeout(() => {
+                            const adjustedScreenHeight = window.innerHeight - 125;
+                            // Get the image element
+                            const img = document.querySelector('#companiesProfilePicture li img');
+                            // Remove the height style property
+                            img.style.height = `${adjustedScreenHeight}px`;
+                        }, 500);
+                    }
                 }
                 displayFirstCompanyDetails();
                 displayTopCompany();
-                // displaySearchParameter();
             }
 
             while (dataForDisplaySearchParameter.length > 0) {
