@@ -1132,30 +1132,45 @@ function selectionSearchParameter() {
                 companyDetailsJsonObj2.push(data);
 
                 companiesProfilePicture.innerHTML = '';
-                // for (var i = 0; i < data.length; i++) {
-                for (var i = data.length - 1; i > -1; i--) {
+            
+                // for (var i = data.length - 1; i > -1; i--) {
+                //     let bannerTitle = getCompaniesProfilePicture(data[i]['id'], data[i]['uuid']);
+
+                //     companiesProfilePicture.innerHTML =
+                //         companiesProfilePicture.innerHTML +
+                //         '<li>' +
+                //         '<img src="' +
+                //         host +
+                //         '/uploads/users_upload_files/' +
+                //         bannerTitle[0].banner +
+                //         '" alt="" uk-cover>' +
+                //         '</li>';
+
+                //     if(i === 0) {
+                //         setTimeout(() => {
+                //             const adjustedScreenHeight = window.innerHeight - 125;
+                //             // Get the image element
+                //             const img = document.querySelector('#companiesProfilePicture li img');
+                //             // Remove the height style property
+                //             img.style.height = `${adjustedScreenHeight}px`;
+                //         }, 500);
+                //     }
+                // }
+
+
+                 for (var i = data.length - 1; i > -1; i--) {
                     let bannerTitle = getCompaniesProfilePicture(data[i]['id'], data[i]['uuid']);
-
-                    companiesProfilePicture.innerHTML =
-                        companiesProfilePicture.innerHTML +
-                        '<li>' +
-                        '<img src="' +
-                        host +
-                        '/uploads/users_upload_files/' +
-                        bannerTitle[0].banner +
-                        '" alt="" uk-cover>' +
-                        '</li>';
-
-                    if(i === 0) {
-                        setTimeout(() => {
-                            const adjustedScreenHeight = window.innerHeight - 125;
-                            // Get the image element
-                            const img = document.querySelector('#companiesProfilePicture li img');
-                            // Remove the height style property
-                            img.style.height = `${adjustedScreenHeight}px`;
-                        }, 500);
-                    }
+                    const img = new Image();
+                    img.src = host + '/uploads/users_upload_files/' + bannerTitle[0].banner;
+                    img.onload = function() {
+                        const adjustedScreenHeight = window.innerHeight - 125;
+                        img.style.height = `${adjustedScreenHeight}px`;
+                        const li = document.createElement('li');
+                        li.appendChild(img);
+                        companiesProfilePicture.appendChild(li);
+                    };
                 }
+
                 displayFirstCompanyDetails();
                 displayTopCompany();
             }
@@ -1292,7 +1307,7 @@ function showRandomChoices() {
                 }
             },
         });
-    }, 3 * 1000);
+    }, 1 * 1000);
 }
 
 function emptyCompanyDetailsDiv() {
