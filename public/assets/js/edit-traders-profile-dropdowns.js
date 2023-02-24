@@ -75,6 +75,7 @@ function getUserBusinessCharacteristics() {
             // getMinorSubCategoryOptions(value);
             getTradeCategoriesToBeEditAndOptions(value, 'editTradeCategory');
             getSubCategoriesToBeEditAndOptions(value, 'traderSubCategoryToggleField1', 'traderSubCategoryToggleField2');
+
             getMinorSubCategoryToBeEditAndOptions(
                 value,
                 'minorSubCategories',
@@ -82,6 +83,9 @@ function getUserBusinessCharacteristics() {
                 'minorSubCategoryInput',
             );
             getUsersBusinessScale(value);
+
+            //new
+            getSubCategoriesToBeEditByTradeCategoryId(value);
         },
     });
 }

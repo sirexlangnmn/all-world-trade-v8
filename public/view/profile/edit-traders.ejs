@@ -270,27 +270,6 @@
                         <p class="text-red-500" id="traderSubCategoryValidation"></p>
                       </div>
 
-					  <!-- trial start  -->
-					  	<!-- Create sub category selectpicker -->
-						<select id="sub-category" class="selectpicker" data-live-search="true">
-							<option value="">Select Sub Category</option>
-						</select>
-						
-						<!-- Create minor sub category selectpicker -->
-						<select id="minor-sub-category" class="selectpicker" data-live-search="true">
-							<option value="">Select Minor Sub Category</option>
-						</select>
-						
-						<!-- Create input fields for sub category and minor sub category -->
-						<div id="input-fields" style="display:none;">
-							<label for="new-sub-category">New Sub Category:</label>
-							<input type="text" id="new-sub-category"><br>
-							<label for="new-minor-sub-category">New Minor Sub Category:</label>
-							<input type="text" id="new-minor-sub-category"><br>
-						</div>
-  
-					  <!-- trial end  -->
-
                       <!-- <div>
                         <label for="">Minor Sub Category (Optional)</label>
                         <select id="traderMinorSubCategoryToggleField1" name="traderMinorSubCategoryToggleField">
@@ -311,6 +290,30 @@
                         <label for="minorSubCategory" class="orbitron">Minor Sub Category Input</label>
                         <input type="hidden" name="minorSubCategoryInput" id="minorSubCategoryInput">
                       </div>
+
+
+
+
+					  <!-- trial start  -->
+					  <div>
+                        <label for="" class="orbitron">New Sub Category</label>
+                        <select class="selectpicker" id="sub-category-select" name="sub-category-select"></select>
+						<input type="text" id="sub-category-manual" name="sub-category-manual" style="display: none;">
+                        <p class="text-red-500" id="editTradeCategoryValidation"></p>
+                      </div>
+					  
+					  <div>
+                        <label for="" class="orbitron">New Minor Sub Category</label>
+                        <select class="selectpicker" id="minor-sub-category-select" name="minor-sub-category-select"></select>
+						<input type="text" id="minor-sub-category-manual" name="minor-sub-category-manual" style="display: none;">
+                        <p class="text-red-500" id="editTradeCategoryValidation"></p>
+                      </div>
+
+						
+					  <!-- trial end  -->
+
+
+
                       <!-- <div>
                         <label for="" class="orbitron">Search Keywords (Maximum of 10)</label>
                         <div class="keywords-container flow-root">
