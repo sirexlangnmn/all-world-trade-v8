@@ -158,51 +158,45 @@
                     <div class="flex-1 space-y-4 p-6">
                       <div>
                         <label for="" class="orbitron">Company Tag Line</label>
-                        <input type="text" placeholder="" class="flex-1 px-3 py-2 text-gray-700 with-border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-600" id="tagline" name="tagline">
+                        <input type="text" placeholder="" class="shadow-none with-border" id="tagline" name="tagline">
                         <p class="text-red-500" id="taglineValidation"></p>
-                      </div>                      
+                      </div>
                       <div>
                         <label for="" class="orbitron">Business Website</label>
-                        <input type="text" placeholder="" class="flex-1 px-3 py-2 text-gray-700 with-border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-600" id="website" name="website">
+                        <input type="text" placeholder="" class="shadow-none with-border" id="website" name="website">
                         <p class="text-red-500" id="websiteValidation"></p>
                       </div>
                       <div>
                         <label for="" class="orbitron">Business Email Address</label>
-                        <input type="text" placeholder="" class="flex-1 px-3 py-2 text-gray-700 with-border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-600" id="businessEmailAddress"
+                        <input type="text" placeholder="" class="shadow-none with-border" id="businessEmailAddress"
                           name="businessEmailAddress">
                         <p class="text-red-500" id="businessEmailAddressValidation"></p>
                       </div>
                       <div>
                         <label for="" class="orbitron">Business Contact Number</label>
-                        <input type="text" placeholder="" class="flex-1 px-3 py-2 text-gray-700 with-border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-600" id="businessContactNumber"
+                        <input type="text" placeholder="" class="shadow-none with-border" id="businessContactNumber"
                           name="businessContactNumber">
                         <p class="text-red-500" id="businessContactNumberValidation"></p>
                       </div>
                       <label for="" class="orbitron">Social Media / Messaging App</label>
                       <div class="grid grid-cols-2 gap-3">
-                        <!-- <div>
+                        <div>
                           <select id="businessSocialMediaContactType" name="businessSocialMediaContactType"
                             class="shadow-none selectpicker with-border ">
                             <option value="1">Viber</option>
                             <option value="2">Wechat</option>
                             <option value="3">Whatsapp</option>
                           </select>
-                        </div> -->
-						
-						 <div>
-                          <select id="businessSocialMediaContactType" name="businessSocialMediaContactType"
-                            class="shadow-none selectpicker with-border ">
-                          </select>
-                        </div>  
+                        </div>
                         <div>
-                          <input type="text" placeholder="Mobile Number" class="flex-1 px-3 py-2 text-gray-700 with-border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                          <input type="text" placeholder="Mobile Number" class="shadow-none with-border"
                             id="businessSocialMediaContactNumber" name="businessSocialMediaContactNumber">
                           <p class="text-red-500" id="businessSocialMediaContactNumberValidation"></p>
                         </div>
                       </div>
                       <div>
                         <label for="" class="orbitron">Business Address</label>
-                        <input type="text" placeholder="" class="flex-1 px-3 py-2 text-gray-700 with-border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-600" id="businessAddress"
+                        <input type="text" placeholder="" class="shadow-none with-border" id="businessAddress"
                           name="businessAddress">
                         <p class="text-red-500" id="businessAddressValidation"></p>
                       </div>
@@ -230,13 +224,13 @@
                       <div class="grid grid-cols-2 gap-3">
                         <div>
                           <label for="" class="orbitron">Start of Operating Hour (Local)</label>
-                          <input type="time" class="flex-1 px-3 py-2 text-gray-700 with-border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-600 indent-10px" placeholder=""
+                          <input type="time" class="shadow-none selectpicker with-border indent-10px" placeholder=""
                             id="startOperatingHour" name="startOperatingHour">
                           <p class="text-red-500" id="startOperatingHourValidation"></p>
                         </div>
                         <div>
                           <label for="" class="orbitron">End of Operating Hour (Local)</label>
-                          <input type="time" class="flex-1 px-3 py-2 text-gray-700 with-border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-600 indent-10px" placeholder=""
+                          <input type="time" class="shadow-none selectpicker with-border indent-10px" placeholder=""
                             id="endOperatingHour" name="endOperatingHour">
                           <p class="text-red-500" id="endOperatingHourValidation"></p>
                         </div>
@@ -269,28 +263,6 @@
                         </select>
                         <p class="text-red-500" id="traderSubCategoryValidation"></p>
                       </div>
-
-					  <!-- trial start  -->
-					  	<!-- Create sub category selectpicker -->
-						<select id="sub-category" class="selectpicker" data-live-search="true">
-							<option value="">Select Sub Category</option>
-						</select>
-						
-						<!-- Create minor sub category selectpicker -->
-						<select id="minor-sub-category" class="selectpicker" data-live-search="true">
-							<option value="">Select Minor Sub Category</option>
-						</select>
-						
-						<!-- Create input fields for sub category and minor sub category -->
-						<div id="input-fields" style="display:none;">
-							<label for="new-sub-category">New Sub Category:</label>
-							<input type="text" id="new-sub-category"><br>
-							<label for="new-minor-sub-category">New Minor Sub Category:</label>
-							<input type="text" id="new-minor-sub-category"><br>
-						</div>
-  
-					  <!-- trial end  -->
-
                       <!-- <div>
                         <label for="">Minor Sub Category (Optional)</label>
                         <select id="traderMinorSubCategoryToggleField1" name="traderMinorSubCategoryToggleField">
@@ -311,7 +283,7 @@
                         <label for="minorSubCategory" class="orbitron">Minor Sub Category Input</label>
                         <input type="hidden" name="minorSubCategoryInput" id="minorSubCategoryInput">
                       </div>
-                      <!-- <div>
+                      <div>
                         <label for="" class="orbitron">Search Keywords (Maximum of 10)</label>
                         <div class="keywords-container flow-root">
                           <div class="keyword-input-container">
@@ -321,11 +293,12 @@
                                 class="icon-material-outline-add"></i></button>
                           </div>
                           <div class="keywords-list">
+                            <!-- keywords go here -->
                           </div>
                           <div class="clearfix"></div>
                         </div>
                         <p class="text-red-500" id="traderTagsValidation"></p>
-                      </div> -->
+                      </div>
                       
                       <!-- <div class="flex flex-wrap">
                         <input id="tag-input" name="tags" class="w-full px-3 py-2 mb-2 mr-2 text-gray-700 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" type="text" placeholder="Add tags">
@@ -333,28 +306,26 @@
                       </div>
                       <div id="validation-message" class="hidden text-red-500">You have reached the maximum number of tags (20)</div> -->
 
-						<div>
-							<label for="" class="orbitron">Search Keywords (Maximum of 10)</label>
-							<div class="flex flex-wrap bg-white border rounded-lg shadow-md">
-								<input id="tag-input" name="tags" class="flex-1 px-3 py-2 text-gray-700 border-none rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-600" type="text" placeholder="Add tags">
-								<button id="add-tag-button" class="px-4 py-2 text-white bg-blue-600 rounded-r-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600">
-								Add
-								</button>
-							</div>
-							<div id="tag-list" class="flex flex-wrap mt-2"></div>
-							<div id="validation-message" class="hidden text-red-500">You have reached the maximum number of tags (20)</div>
-						</div>
+                      <div class="flex flex-wrap bg-white border rounded-lg shadow-md">
+                        <input id="tag-input" name="tags" class="flex-1 px-3 py-2 text-gray-700 border-none rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-600" type="text" placeholder="Add tags">
+                        <button id="add-tag-button" class="px-4 py-2 text-white bg-blue-600 rounded-r-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600">
+                          Add
+                        </button>
+                      </div>
+                      <div id="tag-list" class="flex flex-wrap mt-2"></div>
+                      <div id="validation-message" class="hidden text-red-500">You have reached the maximum number of tags (20)</div>
+                      
 
                       <div class="col-span-2" style="display:block;">
                         <label for="" class="mb-0 ml-2 text-gray-600 text-sm">Tag List</label>
                         <textarea type="text" rows="5" class="shadow-none with-border" id="textAreaAddKeywords"
                           name="textAreaAddKeywords" placeholder="" class=""></textarea>
                       </div>
-                      <!-- <div class="col-span-2" style="display:block;">
+                      <div class="col-span-2" style="display:block;">
                         <label for="" class="mb-0 ml-2 text-gray-600 text-sm">Current Tag List</label>
                         <textarea type="text" rows="5" class="shadow-none with-border" id="textAreaCurrentKeywords"
                           name="textAreaCurrentKeywords" placeholder="" class=""></textarea>
-                      </div> -->
+                      </div>
                       <div>
                         <label for="" class="orbitron">How do you rank your own company</label>
                         <select id="editBusinessScale" name="editBusinessScale"
@@ -609,8 +580,7 @@
           <script src="assets/js/getStatesNameToBeDisplayUsingCode.js"></script>
           <script src="assets/js/getCityNameToBeDisplayUsingCode.js"></script>
           <script src="assets/js/tags.js"></script>
-          <script src="assets/js/dropdown-select-option-with-input-other.js"></script>
-		  
+
 
           <script>
             // ----------------------------------------------------

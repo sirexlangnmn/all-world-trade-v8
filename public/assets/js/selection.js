@@ -876,15 +876,19 @@ function getSubCategoriesTitleById(id) {
 }
 
 function getMinorSubCategoriesTitleById(id) {
-    let value;
-    $.ajax({
-        url: host + '/api/get/minor-sub-categories-by-id/' + id,
-        async: false,
-        success: function (data) {
-            value = data[0].title;
-        },
-    });
-    return value;
+    if (id) {
+        let value;
+        $.ajax({
+            url: host + '/api/get/minor-sub-categories-by-id/' + id,
+            async: false,
+            success: function (data) {
+                value = data[0].title;
+            },
+        });
+        return value;
+    } else {
+        return 'None';
+    }
 }
 
 function getBusinessScaleTitle(id) {
@@ -964,6 +968,8 @@ function getLanguageNameByCode(code) {
 function displayTopCompanyDetails(companyName) {
     $('#selection-business-industry-belong').empty();
     $('#selection-business-language-of-communication').empty();
+    $('#selection-business-sub-category').empty();
+    $('#selection-business-minor-sub-category').empty();
     
     let leng = companyDetailsJsonObj2[0].length;
 
@@ -988,10 +994,12 @@ function displayTopCompanyDetails(companyName) {
                     companyDetailsJsonObj2[0][i].business_sub_category,
                 );
             }
-            if (companyDetailsJsonObj2[0][i].business_minor_sub_category) {
-                document.getElementById('selection-business-minor-sub-category').innerHTML =
-                    getMinorSubCategoriesTitleById(companyDetailsJsonObj2[0][i].business_minor_sub_category);
-            }
+           
+            document.getElementById('selection-business-minor-sub-category').innerHTML =
+                companyDetailsJsonObj2[0][i].business_minor_sub_category
+                ? getMinorSubCategoriesTitleById(companyDetailsJsonObj2[0][i].business_minor_sub_category)
+                : 'N/A';
+            
             if (companyDetailsJsonObj2[0][i].business_scale) {
                 document.getElementById('selection-business-scale').innerHTML = getBusinessScaleTitle(
                     companyDetailsJsonObj2[0][i].business_scale,

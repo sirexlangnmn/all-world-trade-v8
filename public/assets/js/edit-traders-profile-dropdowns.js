@@ -21,6 +21,8 @@ $(function () {
 let editLanguagesOfCommunication;
 editLanguagesOfCommunication = getId('editLanguagesOfCommunication');
 
+// $('.selectpicker-custom').selectpicker();
+
 function business_language_of_communication(languages) {
     // consume api to get all languages
     async function getLanguages() {
@@ -80,7 +82,6 @@ function getUserBusinessCharacteristics() {
                 'minorSubCategoryInput',
             );
             getUsersBusinessScale(value);
-            document.getElementById('textAreaCurrentKeywords').value = value[0].business_industry_belong_to;
         },
     });
 }
@@ -132,10 +133,10 @@ document.getElementById('minorSubCategory').addEventListener('blur', function ()
     getMinorSubCategoryForInitialInputValue('minorSubCategory', 'minorSubCategoryInput');
 });
 
-btnAddKeyword.addEventListener('click', addKeyword);
-const keywordData = [];
-function addKeyword() {
-    let add = inputAddKeyword.value;
-    keywordData.push(add);
-    textAreaAddKeywords.value = keywordData;
-}
+// btnAddKeyword.addEventListener('click', addKeyword);
+// const keywordData = [];
+// function addKeyword() {
+//     let add = inputAddKeyword.value;
+//     keywordData.push(add);
+//     textAreaAddKeywords.value = keywordData;
+// }

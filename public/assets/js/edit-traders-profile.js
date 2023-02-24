@@ -23,6 +23,7 @@ let traderSubCategoryToggleField;
 let traderMinorSubCategoryToggleField;
 let businessScale;
 
+
 companyLogoPreview = getId('companyLogoPreview');
 companyBannerPreview = getId('companyBannerPreview');
 companyLogoId = getId('companyLogoId');
@@ -39,6 +40,7 @@ businessSocialMediaContactNumber = getId('businessSocialMediaContactNumber');
 businessAddress = getId('businessAddress');
 currentLanguagesOfCommunication = getId('currentLanguagesOfCommunication');
 
+
 $(function () {
     getUsersLogoAndBanner();
     getUser();
@@ -51,6 +53,7 @@ function getCompanyDetails() {
         url: '/api/get/company-details',
         type: 'POST',
         success: function (data) {
+            console.log('/api/get/company-details data', data);
             businessAddress.value = data[0].business_address;
             currentLanguagesOfCommunication.value = data[0].business_language_of_communication;
             tagline.value = data[0].business_tagline;
@@ -62,7 +65,9 @@ function getCompanyDetails() {
             business_language_of_communication(data[0].business_language_of_communication);
             document.getElementById('startOperatingHour').value = data[0].start_operating_hour;
             document.getElementById('endOperatingHour').value = data[0].end_operating_hour;
-            //document.getElementById("myTime").value = "22:53:05";
+            //document.getElementById("myTime").value = "22:53:05";    
+            const tagsData = data[0].business_industry_belong_to
+            displayTagList(tagsData)
         },
     });
 }
@@ -348,6 +353,10 @@ function getUsersBusinessScale(data) {
 const $form = $('#editCompanyDetails');
 
 btnUpdateCompanyDetails.addEventListener('click', (e) => {
+    // setTimeout(() => {
+    //     console.log('client side tag-input: ', $('#tag-input').val());
+    // }, 5000);
+
     //stop submit the form, we will post it manually.
     e.preventDefault();
 

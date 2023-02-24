@@ -8,13 +8,14 @@ const USERS_BUSINESS = require('../query/users_business.query.js');
 const Tutorial = function (tutorial) {};
 
 Tutorial.getAll = (uuid, result) => {
-    let query = 'SELECT * FROM users_businesses';
+    // let query = 'SELECT * FROM users_businesses';
+    let query = 'SELECT * FROM users_businesses JOIN users_business_characteristics ON users_businesses.uuid = users_business_characteristics.uuid';
 
     const bytes = CryptoJS.AES.decrypt(uuid, JWT_SECRET);
     const originalUuid = bytes.toString(CryptoJS.enc.Utf8);
 
     if (originalUuid) {
-        query += ` WHERE uuid = "${originalUuid}"`;
+        query += ` WHERE users_businesses.uuid = "${originalUuid}"`;
     }
 
     sql.query(query, (err, res) => {
