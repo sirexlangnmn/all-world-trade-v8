@@ -233,8 +233,46 @@ editBusinessStatesLocation.addEventListener('change', function () {
         });
 });
 
+// function getRegionOfOperationFunction(value) {
+//     // consume api to get all trade categories
+//     async function getRegionOfOperations() {
+//         let response = await fetch(host + '/api/get/region-of-operations');
+//         let data = await response.json();
+//         return data;
+//     }
+
+//     // display region of operations in frontend select option
+//     getRegionOfOperations().then((data) => {
+//         let regionOfOperationCode = value[0].region_of_operation;
+
+//         traderRegionOfOperation.innerHTML = '';
+//         if (regionOfOperationCode) {
+//             let arr = regionOfOperationCode.split(',');
+//             for (var i = 0; i < data.length; i++) {
+//                 for (var x = 0; x < arr.length; x++) {
+//                     if (arr[x] == data[i]['iso']) {
+//                         traderRegionOfOperation.innerHTML =
+//                             traderRegionOfOperation.innerHTML +
+//                             '<option value="' +
+//                             data[i]['iso'] +
+//                             '" selected>' +
+//                             data[i]['name'] +
+//                             '</option>';
+//                     }
+//                 }
+
+//                 if (i + 1 == data.length) {
+//                     getRegionOfOperationOption();
+//                 }
+//             }
+//         } else {
+//             getRegionOfOperationOption();
+//         }
+//     });
+// }
+
 function getRegionOfOperationFunction(value) {
-    // consume api to get all trade categories
+    // consume api to get all region of operations
     async function getRegionOfOperations() {
         let response = await fetch(host + '/api/get/region-of-operations');
         let data = await response.json();
@@ -246,28 +284,31 @@ function getRegionOfOperationFunction(value) {
         let regionOfOperationCode = value[0].region_of_operation;
 
         traderRegionOfOperation.innerHTML = '';
+
+        // If regionOfOperationCode is not null or empty, add selected options first
         if (regionOfOperationCode) {
             let arr = regionOfOperationCode.split(',');
-            for (var i = 0; i < data.length; i++) {
-                for (var x = 0; x < arr.length; x++) {
-                    if (arr[x] == data[i]['iso']) {
-                        traderRegionOfOperation.innerHTML =
-                            traderRegionOfOperation.innerHTML +
-                            '<option value="' +
-                            data[i]['iso'] +
-                            '" selected>' +
-                            data[i]['name'] +
-                            '</option>';
-                    }
-                }
 
-                if (i + 1 == data.length) {
-                    getRegionOfOperationOption();
+            for (var i = 0; i < data.length; i++) {
+                if (arr.includes(data[i]['iso'])) {
+                    traderRegionOfOperation.innerHTML +=
+                        '<option value="' + data[i]['iso'] + '" selected>' + data[i]['name'] + '</option>';
                 }
             }
-        } else {
-            getRegionOfOperationOption();
         }
+
+        // Add remaining options
+        for (var i = 0; i < data.length; i++) {
+            if (regionOfOperationCode && regionOfOperationCode.includes(data[i]['iso'])) {
+                // Skip already added options
+                continue;
+            }
+            traderRegionOfOperation.innerHTML +=
+                '<option value="' + data[i]['iso'] + '">' + data[i]['name'] + '</option>';
+        }
+
+        // Refresh selectpicker
+        $(traderRegionOfOperation).selectpicker('refresh');
     });
 }
 
@@ -322,6 +363,8 @@ function getCountryOfOperation(value) {
             }
         });
 }
+
+
 
 function getCountryOfOperationOption() {
     fetch('assets/json/countries.json')

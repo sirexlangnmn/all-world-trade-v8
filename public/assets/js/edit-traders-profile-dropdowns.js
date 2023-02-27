@@ -21,48 +21,76 @@ $(function () {
 let editLanguagesOfCommunication;
 editLanguagesOfCommunication = getId('editLanguagesOfCommunication');
 
-// $('.selectpicker-custom').selectpicker();
+// function business_language_of_communication(languages) {
+//     // consume api to get all languages
+//     async function getLanguages() {
+//         let response = await fetch(host + '/api/get/languages');
+//         let data = await response.json();
+//         return data;
+//     }
 
-function business_language_of_communication(languages) {
+//     // display all languages in frontend select option
+//     getLanguages().then((data) => {
+//         let arr = languages.split(',');
+
+//         editLanguagesOfCommunication.innerHTML = '';
+
+//         for (var i = 0; i < data.length; i++) {
+//             for (var x = 0; x < arr.length; x++) {
+//                 if (arr[x] == data[i]['code']) {
+//                     editLanguagesOfCommunication.innerHTML =
+//                         editLanguagesOfCommunication.innerHTML +
+//                         '<option value="' +
+//                         data[i]['code'] +
+//                         '" selected>' +
+//                         data[i]['name'] +
+//                         '</option>';
+//                 }
+//             }
+
+//             if (i < data.length) {
+//                 $('#editLanguagesOfCommunication').selectpicker('refresh');
+//             }
+//         }
+
+//         for (var i = 0; i < data.length; i++) {
+//             editLanguagesOfCommunication.innerHTML +=
+//                 '<option value="' + data[i]['code'] + '">' + data[i]['name'] + '</option>';
+//             if (i < data.length) {
+//                 $('#editLanguagesOfCommunication').selectpicker('refresh');
+//             }
+//         }
+//     });
+// }
+
+async function business_language_of_communication(languages) {
     // consume api to get all languages
     async function getLanguages() {
-        let response = await fetch(host + '/api/get/languages');
-        let data = await response.json();
+        const response = await fetch(`${host}/api/get/languages`);
+        const data = await response.json();
         return data;
     }
 
-    // display all languages in frontend select option
-    getLanguages().then((data) => {
-        let arr = languages.split(',');
+    try {
+        const data = await getLanguages();
+        const arr = languages.split(',');
 
+        const editLanguagesOfCommunication = document.getElementById('editLanguagesOfCommunication');
         editLanguagesOfCommunication.innerHTML = '';
 
-        for (var i = 0; i < data.length; i++) {
-            for (var x = 0; x < arr.length; x++) {
-                if (arr[x] == data[i]['code']) {
-                    editLanguagesOfCommunication.innerHTML =
-                        editLanguagesOfCommunication.innerHTML +
-                        '<option value="' +
-                        data[i]['code'] +
-                        '" selected>' +
-                        data[i]['name'] +
-                        '</option>';
-                }
-            }
+        const selectedOptions = data
+            .filter((d) => arr.includes(d.code))
+            .map((d) => `<option value="${d.code}" selected>${d.name}</option>`);
+        const unselectedOptions = data
+            .filter((d) => !arr.includes(d.code))
+            .map((d) => `<option value="${d.code}">${d.name}</option>`);
 
-            if (i < data.length) {
-                $('#editLanguagesOfCommunication').selectpicker('refresh');
-            }
-        }
+        editLanguagesOfCommunication.innerHTML = selectedOptions.concat(unselectedOptions).join('');
 
-        for (var i = 0; i < data.length; i++) {
-            editLanguagesOfCommunication.innerHTML +=
-                '<option value="' + data[i]['code'] + '">' + data[i]['name'] + '</option>';
-            if (i < data.length) {
-                $('#editLanguagesOfCommunication').selectpicker('refresh');
-            }
-        }
-    });
+        $(`#editLanguagesOfCommunication`).selectpicker('refresh');
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 function getUserBusinessCharacteristics() {
@@ -86,6 +114,7 @@ function getUserBusinessCharacteristics() {
 
             //new
             getSubCategoriesToBeEditByTradeCategoryId(value);
+            getMinorSubCategoriesToBeEditByTradeCategoryId(value);
         },
     });
 }
@@ -98,6 +127,7 @@ editTradeCategory.addEventListener('change', function () {
     $('#minorSubCategories').empty();
 
     getSubCategoriesOptionsWhenTradeCategoryChange(tradeCategoryId, 'traderSubCategoryToggleField1');
+    getSubCategoriesOptionsWhenTradeCategoriesChange(tradeCategoryId);
 });
 
 traderSubCategoryToggleField1.addEventListener('change', function () {

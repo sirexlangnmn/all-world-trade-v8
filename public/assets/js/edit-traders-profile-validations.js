@@ -12,7 +12,7 @@ let startOperatingHourValidation;
 let endOperatingHourValidation;
 let editLanguagesOfCommunicationValidation;
 let editTradeCategoryValidation;
-let traderSubCategoryValidation;
+// let traderSubCategoryValidation;
 
 taglineValidation = getId('taglineValidation');
 websiteValidation = getId('websiteValidation');
@@ -27,7 +27,7 @@ startOperatingHourValidation = getId('startOperatingHourValidation');
 endOperatingHourValidation = getId('endOperatingHourValidation');
 editLanguagesOfCommunicationValidation = getId('editLanguagesOfCommunicationValidation');
 editTradeCategoryValidation = getId('editTradeCategoryValidation');
-traderSubCategoryValidation = getId('traderSubCategoryValidation');
+// traderSubCategoryValidation = getId('traderSubCategoryValidation');
 
 function updateTradersProfileValidation() {
     let output = 'true';
@@ -97,10 +97,10 @@ function updateTradersProfileValidation() {
         editTradeCategoryValidation.innerHTML = 'Trade Category is required';
     }
 
-    if (traderSubCategoryToggleField1.value.length == 0 && traderSubCategoryToggleField2.value.length == 0) {
-        output = 'empty Sub Category';
-        traderSubCategoryValidation.innerHTML = 'Sub Category is required';
-    }
+    // if (traderSubCategoryToggleField1.value.length == 0 && traderSubCategoryToggleField2.value.length == 0) {
+    //     output = 'empty Sub Category';
+    //     traderSubCategoryValidation.innerHTML = 'Sub Category is required';
+    // }
 
 
 
@@ -181,29 +181,29 @@ businessAddress.onkeyup = function () {
 //     required(startOperatingHour, startOperatingHourValidation, 'Start Operating Hour is required');
 // };
 
-document.getElementById('startOperatingHour').addEventListener('change', function () {
-    required(startOperatingHour, startOperatingHourValidation, 'Start Operating Hour is required');
-});
+// document.getElementById('startOperatingHour').addEventListener('change', function () {
+//     required(startOperatingHour, startOperatingHourValidation, 'Start Operating Hour is required');
+// });
 
 // endOperatingHour.onchange = function () {
 //     required(endOperatingHour, endOperatingHourValidation, 'End Operating Hour is required');
 // };
 
-document.getElementById('endOperatingHour').addEventListener('change', function () {
-    required(endOperatingHour, endOperatingHourValidation, 'End Operating Hour is required');
-});
+// document.getElementById('endOperatingHour').addEventListener('change', function () {
+//     required(endOperatingHour, endOperatingHourValidation, 'End Operating Hour is required');
+// });
 
 editLanguagesOfCommunication.onchange = function () {
     required(editLanguagesOfCommunication, editLanguagesOfCommunicationValidation, 'Languages Of Communication is required');
 };
 
-traderSubCategoryToggleField1.onchange = function () {
-    required(traderSubCategoryToggleField1, traderSubCategoryValidation, 'Sub Category is required');
-};
+// traderSubCategoryToggleField1.onchange = function () {
+//     required(traderSubCategoryToggleField1, traderSubCategoryValidation, 'Sub Category is required');
+// };
 
-traderSubCategoryToggleField2.onkeyup = function () {
-    required(traderSubCategoryToggleField2, traderSubCategoryValidation, 'Sub Category is required');
-};
+// traderSubCategoryToggleField2.onkeyup = function () {
+//     required(traderSubCategoryToggleField2, traderSubCategoryValidation, 'Sub Category is required');
+// };
 
 
 

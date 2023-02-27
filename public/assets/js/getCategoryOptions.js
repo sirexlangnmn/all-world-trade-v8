@@ -1,22 +1,47 @@
-function getTradeCategoriesToBeEditAndOptions(value, elementId) {
+// function getTradeCategoriesToBeEditAndOptions(value, elementId) {
+//     async function getTradeCategories() {
+//         let response = await fetch(host + '/api/get/categories');
+//         let data = await response.json();
+//         return data;
+//     }
+
+//     getTradeCategories().then((data) => {
+//         let tradeCategoryId = value[0].business_major_category;
+//         let filtered = data.filter((d) => d.id == tradeCategoryId);
+
+//         document.getElementById(elementId).innerHTML = '<option value="' + filtered[0].id + '">' + filtered[0].title + '</option>';
+//         for (var i = 0; i < data.length; i++) {
+//             document.getElementById(elementId).innerHTML =
+//             document.getElementById(elementId).innerHTML + '<option value="' + data[i]['id'] + '">' + data[i]['title'] + '</option>';
+//         }
+
+//         $('#' + elementId).selectpicker('refresh');
+//     });
+// }
+
+async function getTradeCategoriesToBeEditAndOptions(value, elementId) {
     async function getTradeCategories() {
-        let response = await fetch(host + '/api/get/categories');
-        let data = await response.json();
+        const response = await fetch(`${host}/api/get/categories`);
+        const data = await response.json();
         return data;
     }
 
-    getTradeCategories().then((data) => {
-        let tradeCategoryId = value[0].business_major_category;
-        let filtered = data.filter((d) => d.id == tradeCategoryId);
+    try {
+        const data = await getTradeCategories();
+        const tradeCategoryId = value[0].business_major_category;
+        const selectedOption = data.find((d) => d.id == tradeCategoryId);
+        const unselectedOptions = data.filter((d) => d.id != tradeCategoryId);
 
-        document.getElementById(elementId).innerHTML = '<option value="' + filtered[0].id + '">' + filtered[0].title + '</option>';
-        for (var i = 0; i < data.length; i++) {
-            document.getElementById(elementId).innerHTML =
-            document.getElementById(elementId).innerHTML + '<option value="' + data[i]['id'] + '">' + data[i]['title'] + '</option>';
-        }
+        const optionsHTML =
+            `<option value="${selectedOption.id}">${selectedOption.title}</option>` +
+            unselectedOptions.map((d) => `<option value="${d.id}">${d.title}</option>`).join('');
 
-        $('#' + elementId).selectpicker('refresh');
-    });
+        document.getElementById(elementId).innerHTML = optionsHTML;
+
+        $(`#${elementId}`).selectpicker('refresh');
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 function getSubCategoriesToBeEditAndOptions(value, dropdownElementId, inputElementId) {
@@ -41,7 +66,7 @@ function getSubCategoriesToBeEditAndOptions(value, dropdownElementId, inputEleme
                 '<option value="' + filtered[0].id + '">' + filtered[0].title + '</option>';
             for (var i = 0; i < data.length; i++) {
                 document.getElementById(dropdownElementId).innerHTML =
-                document.getElementById(dropdownElementId).innerHTML +
+                    document.getElementById(dropdownElementId).innerHTML +
                     '<option value="' +
                     data[i]['id'] +
                     '">' +
@@ -49,7 +74,7 @@ function getSubCategoriesToBeEditAndOptions(value, dropdownElementId, inputEleme
                     '</option>';
             }
             document.getElementById(dropdownElementId).innerHTML =
-            document.getElementById(dropdownElementId).innerHTML +
+                document.getElementById(dropdownElementId).innerHTML +
                 '<option value="customOption">Other (Type a custom value)</option><input type="text" class="shadow-none with-border" id="traderSubCategoryToggleField2" name="editSubCategory" style="display:none;" disabled="disabled" >';
 
             // $('#' + dropdownElementId).selectpicker('refresh');
@@ -64,7 +89,6 @@ function getSubCategoriesToBeEditAndOptions(value, dropdownElementId, inputEleme
     });
 }
 
-
 function getSubCategoriesOptionsWhenTradeCategoryChange(tradeCategoryId, dropdownElementId) {
     async function getSubCategoriesByTradeCategoryId() {
         let response = await fetch(host + '/api/get/sub-categories-by-trade-category-id/' + tradeCategoryId);
@@ -78,7 +102,7 @@ function getSubCategoriesOptionsWhenTradeCategoryChange(tradeCategoryId, dropdow
         document.getElementById(dropdownElementId).innerHTML = '<option value=""> Select </option>';
         for (var i = 0; i < data.length; i++) {
             document.getElementById(dropdownElementId).innerHTML =
-            document.getElementById(dropdownElementId).innerHTML +
+                document.getElementById(dropdownElementId).innerHTML +
                 '<option value="' +
                 data[i]['id'] +
                 '">' +
@@ -86,7 +110,7 @@ function getSubCategoriesOptionsWhenTradeCategoryChange(tradeCategoryId, dropdow
                 '</option>';
         }
         document.getElementById(dropdownElementId).innerHTML =
-        document.getElementById(dropdownElementId).innerHTML +
+            document.getElementById(dropdownElementId).innerHTML +
             '<option value="customOption">Other (Type a custom value)</option><input id="traderSubCategoryToggleField2" name="traderSubCategoryToggleField" style="display:none;" disabled="disabled" >';
     });
 }
@@ -112,7 +136,6 @@ function getMinorSubCategoriesOptionsWhenSubCategoryChange(subCategoryId, dropdo
     }
 }
 
-
 // NOTE: if choose to input manually the sub category, empty the minor sub category
 function getMinorSubCategoryToBeEditAndOptions(value, datalistOptionElementId, datalistInputElementId, inputElementId) {
     async function getMinorSubCategoriesById() {
@@ -129,7 +152,6 @@ function getMinorSubCategoryToBeEditAndOptions(value, datalistOptionElementId, d
         let subCategoryId = value[0].business_sub_category;
         let minorSubCategoryId = value[0].business_minor_sub_category;
         let minorSubCategoryString = value[0].business_minor_sub_category_str;
-
 
         if (minorSubCategoryString) {
             document.getElementById(datalistInputElementId).value = minorSubCategoryString;
@@ -162,7 +184,6 @@ function getMinorSubCategoryToBeEditAndOptions(value, datalistOptionElementId, d
         }
     });
 }
-
 
 function getMinorSubCategoryForInitialInputValue(datalistInputElementId, inputElementId) {
     let minorSubCategoryInitialInput = document.getElementById(datalistInputElementId).value;

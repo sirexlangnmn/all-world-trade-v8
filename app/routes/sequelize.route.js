@@ -23,6 +23,8 @@ module.exports = (app) => {
     const usersBusinessesController = controllers.users_businesses;
     const usersAccountsController = controllers.users_accounts;
 
+    const updateTraders = controllers.update_traders;
+
     const testController = controllers.testValidation; // I used support_links table for my input tests 
     const testValidation = middleware.testValidation;
 
@@ -73,6 +75,8 @@ module.exports = (app) => {
     app.get(['/api/v2/get/number-of-trader-members'], usersBusinessesController.numberOfTraderMembers);
 
     app.get(['/api/v2/get/number-of-visitor-members'], usersAccountsController.numberOfVisitorMembers);
+
+    app.post(['/api/v2/post/update-company-details'], updateTraders.update);
 
 
     

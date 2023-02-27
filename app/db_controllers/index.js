@@ -11,5 +11,6 @@ controller.communicator = require('./communicator.controller.js');
 controller.users_businesses = require('./users-businesses.controller.js');
 controller.users_accounts = require('./users-accounts.controller.js');
 controller.testValidation = require('./testValidation.controller.js');
+controller.update_traders = require('./update-traders.controller.js');
 
 module.exports = controller;

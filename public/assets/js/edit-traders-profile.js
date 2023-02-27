@@ -5,6 +5,8 @@ let companyBannerId;
 
 let btnUpdateCompanyDetails;
 
+let displayBusinessNameH1;
+let displayBusinessTagLineH1;
 let tagline;
 let website;
 let businessEmailAddress;
@@ -23,7 +25,6 @@ let traderSubCategoryToggleField;
 let traderMinorSubCategoryToggleField;
 let businessScale;
 
-
 companyLogoPreview = getId('companyLogoPreview');
 companyBannerPreview = getId('companyBannerPreview');
 companyLogoId = getId('companyLogoId');
@@ -31,6 +32,8 @@ companyBannerId = getId('companyBannerId');
 
 btnUpdateCompanyDetails = getId('btnUpdateCompanyDetails');
 
+displayBusinessNameH1 = getId('displayBusinessNameH1');
+displayBusinessTagLineH1 = getId('displayBusinessTagLineH1');
 tagline = getId('tagline');
 website = getId('website');
 businessEmailAddress = getId('businessEmailAddress');
@@ -39,7 +42,6 @@ businessSocialMediaContactType = getId('businessSocialMediaContactType');
 businessSocialMediaContactNumber = getId('businessSocialMediaContactNumber');
 businessAddress = getId('businessAddress');
 currentLanguagesOfCommunication = getId('currentLanguagesOfCommunication');
-
 
 $(function () {
     getUsersLogoAndBanner();
@@ -54,6 +56,9 @@ function getCompanyDetails() {
         type: 'POST',
         success: function (data) {
             console.log('/api/get/company-details data', data);
+            displayBusinessNameH1.innerHTML = data[0].business_name;
+            displayBusinessTagLineH1.innerHTML = data[0].business_tagline;
+
             businessAddress.value = data[0].business_address;
             currentLanguagesOfCommunication.value = data[0].business_language_of_communication;
             tagline.value = data[0].business_tagline;
@@ -65,37 +70,52 @@ function getCompanyDetails() {
             business_language_of_communication(data[0].business_language_of_communication);
             document.getElementById('startOperatingHour').value = data[0].start_operating_hour;
             document.getElementById('endOperatingHour').value = data[0].end_operating_hour;
-            //document.getElementById("myTime").value = "22:53:05";    
-            const tagsData = data[0].business_industry_belong_to
-            displayTagList(tagsData)
+            //document.getElementById("myTime").value = "22:53:05";
+            const tagsData = data[0].business_industry_belong_to;
+            displayTagList(tagsData);
         },
     });
 }
 
 function getBusinessSocialMediaContactType(value) {
-    let jsonObj =
-        '{ "companyDetails" : [' +
-        '{ "id":"1" , "title":"Viber" },' +
-        '{ "id":"2" , "title":"Wechat" },' +
-        '{ "id":"3" , "title":"Whatsapp" } ]}';
-
-    const parsedObj = JSON.parse(jsonObj);
-    let companyDetails = parsedObj.companyDetails;
-
-    let filtered = companyDetails.filter((d) => d.id == value);
-
-    businessSocialMediaContactType.innerHTML =
-        '<option value="' + filtered[0].id + '">' + filtered[0].title + '</option>';
-    for (var i = 0; i < companyDetails.length; i++) {
-        businessSocialMediaContactType.innerHTML =
-            businessSocialMediaContactType.innerHTML +
-            '<option value="' +
-            companyDetails[i]['id'] +
-            '">' +
-            companyDetails[i]['title'] +
-            '</option>';
+    const jsonObj = {
+      companyDetails: [
+        { id: '', title: 'None' },
+        { id: '1', title: 'Viber' },
+        { id: '2', title: 'Wechat' },
+        { id: '3', title: 'Whatsapp' },
+      ],
+    };
+    const parsedObj = JSON.parse(JSON.stringify(jsonObj)); // create a deep copy to avoid mutation
+    const companyDetails = parsedObj.companyDetails;
+    
+    if (value == '' || value == null) {
+      businessSocialMediaContactType.innerHTML = `
+        ${companyDetails.map(
+            (d) => `
+            <option value="${d.id}">${d.title}</option>
+        `,
+        ).join('')}
+      `;
+    } else {
+      const filtered = companyDetails.find((d) => d.id == value);
+      const businessSocialMediaContactType = document.getElementById('businessSocialMediaContactType');
+      businessSocialMediaContactType.innerHTML = `
+        <option value="${filtered.id}">${filtered.title}</option>
+        ${companyDetails
+            .filter((d) => d.id != value)
+            .map(
+                (d) => `
+                <option value="${d.id}">${d.title}</option>
+            `,
+            )
+            .join('')}
+      `;
+      
     }
-}
+    $('#businessSocialMediaContactType').selectpicker('refresh');
+  }
+  
 
 function getUsersLogoAndBanner() {
     $.ajax({
@@ -208,8 +228,6 @@ function getMinorSubCategoriesTitleById(id) {
 }
 
 function getBusinessScaleTitle(id) {
-    
-    console.log('getBusinessScaleTitle id', id);
     let value;
 
     switch (id) {
@@ -316,11 +334,6 @@ function getUsersBusinessScale(data) {
     let x = getBusinessScaleTitle(value);
     document.getElementById('editBusinessScale').innerHTML = '<option value="' + value + '">' + x + '</option>';
 
-    
-    console.log('getUsersBusinessScale(data)', data);
-    console.log('getUsersBusinessScale data[0].business_scale', data[0].business_scale);
-    console.log('getUsersBusinessScale value', value);
-
     let jsonObj =
         '{ "companyDetails" : [' +
         '{ "id":"1" , "title":"Small Scale" },' +
@@ -331,10 +344,6 @@ function getUsersBusinessScale(data) {
     let companyDetails = parsedObj.companyDetails;
     let leng = companyDetails.length;
 
-    console.log('getUsersBusinessScale companyDetails', companyDetails);
-    console.log('getUsersBusinessScale leng', leng);
-    console.log('getUsersBusinessScale x', x);
-
     for (let i = 0; i < leng; i++) {
         document.getElementById('editBusinessScale').innerHTML =
             document.getElementById('editBusinessScale').innerHTML +
@@ -344,32 +353,33 @@ function getUsersBusinessScale(data) {
             companyDetails[i]['title'] +
             '</option>';
 
-            if (i + 1 == leng) {
-                $('#editBusinessScale').selectpicker('refresh');
-            }
+        if (i + 1 == leng) {
+            $('#editBusinessScale').selectpicker('refresh');
+        }
     }
 }
 
 const $form = $('#editCompanyDetails');
 
 btnUpdateCompanyDetails.addEventListener('click', (e) => {
-    // setTimeout(() => {
-    //     console.log('client side tag-input: ', $('#tag-input').val());
-    // }, 5000);
-
     //stop submit the form, we will post it manually.
     e.preventDefault();
 
     let validation = updateTradersProfileValidation();
-
+    console.log('btnUpdateCompanyDetails', validation);
     if (validation === 'true') {
         $.ajax({
-            url: '/api/post/update-company-details',
+            // url: '/api/post/update-company-details',
+            url: '/api/v2/post/update-company-details',
             type: 'post',
             data: $form.serialize(),
         }).done((response) => {
             if (response === 'success') {
+                Swal.fire('Success', 'Update Successful.', 'success');
                 location.replace(host + '/profile');
+                setTimeout(() => {
+                    location.replace(host + '/profile');
+                }, 1500);
             }
         });
     } else {

@@ -1,68 +1,140 @@
-144256
-150093
-
-selectedState
-selectedCity
-
-pdfServiceForTrader traderData:  {
-  business_name: 'Little Twinkle Star',
-  business_website: 'dadadad05270418.com',
-  business_email: 'potolinfederex01@gmail.com',
-  business_contact: '05260753',
-  business_address: 'eqewqeqeqwewq',
-  business_country: 'Afghanistan',
-  business_states: 'Badakhshan',
-  business_city: 'Ashkāsham',
-  trade_categories: 'Human Development',
-  sub_categories: 'Franchising',
-  minor_sub_categories: 'N/A',
-  tags: [ ' ada', ' sdaas', ' asdadas' ],
-  businessScale: 'N/A',
-  region_of_operation: 'N/A',
-  country_of_operation: [ ' American Samoa', ' Philippines' ],
-  state_of_operation: undefined,
-  date_created: '2023-02-11 11:13:36'
+update inputData Model {
+  uuid: '98a3556c-3318-42f6-bc42-ed869430db95',
+  business_tagline: 'A Better Way Of Lighting',
+  business_website: 'diversifiedlightningenterprises.com',
+  business_social_media_contact_type: '3',
+  start_operating_hour: '08:40',
+  end_operating_hour: '17:40',
+  business_email: 'sirrhedcruz@gmail.com',
+  business_contact: '05270309',
+  business_language_of_communication: 'en,tl,af,sq',
+  business_social_media_contact_number: '342342343242',
+  business_address: 'eqewqeqeqwewq 05261022',
+  business_country: 'PH',
+  business_states: '1347',
+  business_city: '83375',
+  region_of_operation: null,
+  country_of_operation: null,
+  country_for_state: '',
+  states_of_operation: '1347',
+  city_of_operation: null,
+  business_industry_belong_to: 'diversified,elegant,beautiful,lightning',
+  business_major_category: '6',
+  business_sub_category: '24',
+  business_sub_category_str: null,
+  business_minor_sub_category: 326,
+  business_minor_sub_category_str: null,
+  business_scale: '3',
+  i_operate_on_a_world_wide_level: 0,
+  i_operate_on_a_global_regional_level: 0,
+  i_operate_on_a_national_level: 0,
+  i_operate_on_a_state_level: 1
 }
-pdfServiceForTrader sessionData:  Session {
-  cookie: {
-    path: '/',
-    _expires: 2024-02-11T03:13:36.045Z,
-    originalMaxAge: 31535999998,
-    httpOnly: true,
-    sameSite: 'strict'
-  },
-  user: {
-    uuid: 'U2FsdGVkX198+TJryznvLqrLrj5FkJQJGONXBDVCLwprHC56DffAYziQHL2EEED7WtUhINUPXcKSpZpNE2AVlg==',
-    email_or_social_media: 'sirrhedcruz@gmail.com',
-    type: 1,
-    first_name: 'Rhed',
-    last_name: 'Cruz',
-    country: 'PH',
-    state_or_province: '1324'
-  },
-  current_trader_date_created: '2023-02-11 11:13:36',
-  current_trader_business_characteristics: {
-    business_major_category: '1',
-    business_sub_category: '8',
-    business_minor_sub_category: '51',
-    business_sub_category_str: null,
-    business_minor_sub_category_str: null,
-    business_industry_belong_to: 'ada,sdaas,asdadas',
-    business_scale: 2
-  },
-  current_trader_sub_category: 'Franchising',
-  current_trader_major_category: 'Human Development',
-  current_trader: {
-    business_name: 'Little Twinkle Star',
-    business_website: 'dadadad05270418.com',
-    business_email: 'potolinfederex01@gmail.com',
-    business_contact: '05260753',
-    business_address: 'eqewqeqeqwewq',
-    business_country: 'AF',
-    business_states: '3901',
-    business_city: '52',
-    region_of_operation: null,
-    country_of_operation: 'AS,PH',
-    states_of_operation: ''
-  }
+
+
+update inputData ito ba talaga?:  Model {
+  uuid: '98a3556c-3318-42f6-bc42-ed869430db95',
+  business_tagline: 'A Better Way Of Lighting',
+  business_website: 'diversifiedlightningenterprises.com',
+  business_social_media_contact_type: '3',
+  start_operating_hour: '08:40',
+  end_operating_hour: '17:40',
+  business_email: 'sirrhedcruz@gmail.com',
+  business_contact: '05270309',
+  business_language_of_communication: 'en,tl,af,sq',
+  business_social_media_contact_number: '342342343242',
+  business_address: 'eqewqeqeqwewq 05261022',
+  business_country: 'PH',
+  business_states: '1347',
+  business_city: '83375',
+  region_of_operation: null,
+  country_of_operation: null,
+  country_for_state: '',
+  states_of_operation: '1347',
+  city_of_operation: null,
+  business_industry_belong_to: 'diversified,elegant,beautiful,lightning',
+  business_major_category: '1',
+  business_sub_category: null,
+  business_sub_category_str: 'other',
+  business_minor_sub_category: 1,
+  business_minor_sub_category_str: null,
+  business_scale: '3',
+  i_operate_on_a_world_wide_level: 0,
+  i_operate_on_a_global_regional_level: 0,
+  i_operate_on_a_national_level: 0,
+  i_operate_on_a_state_level: 1
+}
+
+
+update req.body ito ba talaga? :  {
+  tagline: 'A Better Way Of Lighting',
+  website: 'diversifiedlightningenterprises.com',
+  businessEmailAddress: 'sirrhedcruz@gmail.com',
+  businessContactNumber: '05270309',
+  businessSocialMediaContactType: '3',
+  businessSocialMediaContactNumber: '342342343242',
+  businessAddress: 'eqewqeqeqwewq 05261022',
+  editBusinessCountryLocation: 'PH',
+  editBusinessStatesLocation: '1347',
+  editBusinessCityLocation: '83375',
+  startOperatingHour: '08:40',
+  endOperatingHour: '17:40',
+  editLanguagesOfCommunication: [ 'en', 'tl', 'af', 'sq' ],
+  currentLanguagesOfCommunication: 'en,tl,af,sq',
+  editTradeCategory: '1',
+  traderSubCategoryToggleField: '',
+  minorSubCategory: '',
+  minorSubCategoryInput: '',
+  subCategorySelect: '1',
+  subCategoryManual: '',
+  minorSubCategorySelect: '1',
+  minorSubCategoryManual: '',
+  tags: '',
+  textAreaAddKeywords: 'diversified,elegant,beautiful,lightning',
+  editBusinessScale: '3',
+  traderCountryOfOperation: [ 'AS', 'PH' ],
+  iOperateOnAStateLevelRadioButton: 'on',
+  traderCountryOfOperation2: '',
+  traderStatesOfOperation: '1347',
+  traderCityOfOperation: ''
+}
+
+
+// IF MANUAL INPUT CATEGORY AND SUB CATEGORY
+usersBusinessObjects {
+  business_email: 'sirrhedcruz@gmail.com',
+  business_contact: '05270309',
+  business_language_of_communication: [ 'en', 'tl', 'af', 'sq' ],
+  business_tagline: 'A Better Way Of Lighting',
+  business_website: 'diversifiedlightningenterprises.com',
+  business_social_media_contact_type: '3',
+  business_social_media_contact_number: '342342343242',
+  business_address: 'eqewqeqeqwewq 05261022',
+  business_country: 'PH',
+  business_states: '1347',
+  business_city: '83375',
+  region_of_operation: undefined,
+  country_of_operation: [ 'AS', 'PH' ],
+  country_for_state: '',
+  states_of_operation: '',
+  start_operating_hour: '08:40',
+  end_operating_hour: '17:40',
+  uuid: '98a3556c-3318-42f6-bc42-ed869430db95'
+}
+usersBusinessCharacteristicsObjects {
+  business_industry_belong_to: 'diversified,elegant,beautiful,lightning',
+  business_major_category: '6',
+  business_sub_category: undefined,
+  business_sub_category_str: 'New Sub Category',
+  business_minor_sub_category: undefined,
+  business_minor_sub_category_str: 'New Minor Sub Category',
+  business_scale: '3',
+  uuid: '98a3556c-3318-42f6-bc42-ed869430db95'
+}
+usersBusinessVisibilityObjects {
+  i_operate_on_a_world_wide_level: 0,
+  i_operate_on_a_global_regional_level: 0,
+  i_operate_on_a_national_level: 1,
+  i_operate_on_a_state_level: 0,
+  uuid: '98a3556c-3318-42f6-bc42-ed869430db95'
 }
