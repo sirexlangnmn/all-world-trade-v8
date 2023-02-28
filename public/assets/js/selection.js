@@ -473,11 +473,11 @@ function displayFirstCompanyDetails() {
 function displayTopCompany() {
     $(companiesProfilePicture).empty();
     const elementId = document.getElementById('top-selection-results');
-    elementId.innerHTML = '';
+    $(elementId).empty();
+    // elementId.innerHTML = '';
 
     const leng = companyDetailsJsonObj2[0].length;
-    // for (let i = leng - 1; i >= 0; i--) {
-    let count = 0;
+   
     for (let i = 0; i < leng; i++) {
         elementId.innerHTML += `<div class="flex items-center space-x-4 rounded-md -mx-2 p-2 hover:bg-gray-50">
                 <div class="flex-1">
@@ -486,24 +486,22 @@ function displayTopCompany() {
                     </a>
                 </div>
             </div>`;
-            count ++;
     }
    
-    // if (count == leng) {
-        // for (let i = leng - 1; i >= 0; i--) {
-        for (let i = leng - 1; i > -1; i--) {
-            let bannerTitle = getCompaniesProfilePicture(companyDetailsJsonObj2[0][i].id, companyDetailsJsonObj2[0][i].uuid);
-            const img = new Image();
-            img.src = host + '/uploads/users_upload_files/' + bannerTitle[0].banner;
-            img.onload = function() {
-              const adjustedScreenHeight = window.innerHeight - 125;
-              img.style.height = `${adjustedScreenHeight}px`;
-              const li = document.createElement('li');
-              li.appendChild(img);
-              companiesProfilePicture.insertBefore(li, companiesProfilePicture.firstChild);
-            };
-        }
-    // }
+    
+    for (let i = leng - 1; i > -1; i--) {
+        let bannerTitle = getCompaniesProfilePicture(companyDetailsJsonObj2[0][i].id, companyDetailsJsonObj2[0][i].uuid);
+        const img = new Image();
+        img.src = host + '/uploads/users_upload_files/' + bannerTitle[0].banner;
+        img.onload = function() {
+            const adjustedScreenHeight = window.innerHeight - 125;
+            img.style.height = `${adjustedScreenHeight}px`;
+            const li = document.createElement('li');
+            li.appendChild(img);
+            companiesProfilePicture.insertBefore(li, companiesProfilePicture.firstChild);
+        };
+    }
+   
 }
 
 function displaySearchParameter() {
