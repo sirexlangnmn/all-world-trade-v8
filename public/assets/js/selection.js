@@ -1182,11 +1182,12 @@ function selectionSearchParameter() {
                     // fragment.appendChild(li);
                     li.appendChild(img);
                     fragment.appendChild(li);
-                    console.log('li: ', li);
-                    console.log('fragment', fragment);
                     if (i == data.length - 1) {
                         li.classList.add('uk-active', 'uk-transition-active');
                     }
+                    
+                    console.log('li: ', li);
+                    console.log('fragment', fragment);
 
                 }
 
