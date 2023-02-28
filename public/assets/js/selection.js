@@ -544,7 +544,7 @@ function displayTopCompanyImage() {
             // for (let i = leng - 1; i >= 0; i--) {
             for (var i = leng - 1; i > -1; i--) {
                 let bannerTitle2 = getCompaniesProfilePicture(companyDetailsJsonObj2[0][i].id, companyDetailsJsonObj2[0][i].uuid);
-                if(bannerTitle1 != bannerTitle2) {
+                if(bannerTitle1[0].banner != bannerTitle2[0].banner) {
                     console.log('displayTopCompanyImage bannerTitle2:', i +' - '+ bannerTitle2);
                     console.log('displayTopCompanyImage business_name2:', i +' - '+ companyDetailsJsonObj2[0][i].business_name);
                     const img = new Image();
@@ -556,6 +556,9 @@ function displayTopCompanyImage() {
                         li.appendChild(img);
                         companiesProfilePicture.appendChild(li);
                     };
+                } else {
+                    console.log('displayTopCompanyImage same bannerTitle1[0].banner:', bannerTitle1[0].banner);
+                    console.log('displayTopCompanyImage same bannerTitle2[0].banner:', bannerTitle2[0].banner);
                 }
             }
         }, 500);
