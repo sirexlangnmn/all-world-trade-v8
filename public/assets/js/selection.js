@@ -471,6 +471,7 @@ function displayFirstCompanyDetails() {
 }
 
 function displayTopCompany() {
+    $(companiesProfilePicture).empty();
     const elementId = document.getElementById('top-selection-results');
     elementId.innerHTML = '';
 
@@ -920,8 +921,7 @@ function getBusinessScaleTitle(id) {
             value = 'N/A';
     }
 
-    // console.log('getBusinessScaleTitle potek ka id', id);
-    // console.log('getBusinessScaleTitle potek ka value', value);
+    
 
     return value;
 }
