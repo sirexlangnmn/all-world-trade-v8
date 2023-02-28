@@ -471,7 +471,7 @@ function displayFirstCompanyDetails() {
 }
 
 function displayTopCompany() {
-    // $(companiesProfilePicture).empty();
+    $(companiesProfilePicture).empty();
     const elementId = document.getElementById('top-selection-results');
     elementId.innerHTML = '';
 
