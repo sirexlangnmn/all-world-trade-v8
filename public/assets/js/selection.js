@@ -1152,17 +1152,19 @@ function selectionSearchParameter() {
                     companyDetailsJsonObj2.pop();
                 }
                 companyDetailsJsonObj2.push(data);
-                $(companiesProfilePicture).empty();
+               
                 const adjustedScreenHeight = window.innerHeight - 125;
 
                 let adjustedScreenHeight2 = (window.innerHeight - 125) / 2;
                 document.getElementById('selections-prev-slide').style.top = `${adjustedScreenHeight2}px`;
                 document.getElementById('selections-next-slide').style.top = `${adjustedScreenHeight2}px`;
 
-                // companiesProfilePicture.innerHTML = '';
+                companiesProfilePicture.innerHTML = '';
+                
                 const fragment = document.createDocumentFragment();
                 console.log('/api/post/selection-search-parameter data', data);
 
+                let activeLiIndex = 0;
                 let prevLi = null;
                 for (let i = data.length - 1; i >= 0; i--) {
                     const bannerTitle = getCompaniesProfilePicture(data[i]['id'], data[i]['uuid']);
@@ -1192,6 +1194,12 @@ function selectionSearchParameter() {
                     // add "uk-active uk-transition-active" classes to the first li element
                     if (i == 0) {
                         li.classList.add('uk-active', 'uk-transition-active');
+                    }
+
+                    if (i === activeLiIndex) {
+                        li.classList.add('uk-active', 'uk-transition-active');
+                    } else {
+                        li.classList.remove('uk-active', 'uk-transition-active');
                     }
                     
                     // update the previous li element to the current li element
