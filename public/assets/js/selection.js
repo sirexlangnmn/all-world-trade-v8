@@ -1152,19 +1152,10 @@ function selectionSearchParameter() {
                 companyDetailsJsonObj2.push(data);
 
                 const adjustedScreenHeight = window.innerHeight - 125;
-                const img = new Image();
-                img.className = 'companyBannerPreview';
-                img.id = 'companyBannerPreview';
-                img.onload = function() {
-                    this.style.height = '';
-                    this.style.height = `${adjustedScreenHeight}px`;
-                };
-
 
                 let adjustedScreenHeight2 = (window.innerHeight - 125) / 2;
                 document.getElementById('selections-prev-slide').style.top = `${adjustedScreenHeight2}px`;
                 document.getElementById('selections-next-slide').style.top = `${adjustedScreenHeight2}px`;
-
 
                 companiesProfilePicture.innerHTML = '';
                 const fragment = document.createDocumentFragment();
@@ -1172,14 +1163,23 @@ function selectionSearchParameter() {
                 for (let i = data.length - 1; i >= 0; i--) {
                     const bannerTitle = getCompaniesProfilePicture(data[i]['id'], data[i]['uuid']);
                     const bannerSrc = host + '/uploads/users_upload_files/' + bannerTitle[0].banner;
-                  
+
+                    const img = new Image();
+                    img.className = 'companyBannerPreview';
+                    img.id = 'companyBannerPreview';
+                    img.onload = function() {
+                        this.style.height = '';
+                        this.style.height = `${adjustedScreenHeight}px`;
+                    };
                     img.src = bannerSrc;
+
                     const li = document.createElement('li');
-                    li.appendChild(img.cloneNode());
+                    li.appendChild(img);
                     fragment.appendChild(li);
                 }
-                  
+
                 companiesProfilePicture.appendChild(fragment);
+
 
                 // displayFirstCompanyDetails();
                 displayTopCompany();
