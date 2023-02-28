@@ -471,7 +471,7 @@ function displayFirstCompanyDetails() {
 }
 
 function displayTopCompany() {
-    $(companiesProfilePicture).empty();
+    // $(companiesProfilePicture).empty();
     const elementId = document.getElementById('top-selection-results');
     elementId.innerHTML = '';
 
@@ -1180,7 +1180,7 @@ function selectionSearchParameter() {
                     companyDetailsJsonObj2.pop();
                 }
                 companyDetailsJsonObj2.push(data);
-
+                $(companiesProfilePicture).empty();
                 companiesProfilePicture.innerHTML = '';
             
                 // for (var i = data.length - 1; i > -1; i--) {
