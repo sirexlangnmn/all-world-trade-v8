@@ -1178,10 +1178,10 @@ function selectionSearchParameter() {
                     img.src = bannerSrc;
 
                     const li = document.createElement('li');
-                    li.appendChild(img.cloneNode());
-                    fragment.appendChild(li);
-                    // li.appendChild(img);
+                    // li.appendChild(img.cloneNode());
                     // fragment.appendChild(li);
+                    li.appendChild(img);
+                    fragment.appendChild(li);
 
                 }
 
