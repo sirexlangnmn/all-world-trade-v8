@@ -1180,7 +1180,7 @@ function selectionSearchParameter() {
                     companyDetailsJsonObj2.pop();
                 }
                 companyDetailsJsonObj2.push(data);
-                $(companiesProfilePicture).empty();
+             
                 companiesProfilePicture.innerHTML = '';
             
                 // for (var i = data.length - 1; i > -1; i--) {
