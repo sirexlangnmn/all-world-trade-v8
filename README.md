@@ -59,4 +59,4 @@ companiesProfilePicture.innerHTML = '';
 
 
 
-					
+					displayTopCompanyImage

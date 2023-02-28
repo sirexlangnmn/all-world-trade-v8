@@ -487,6 +487,71 @@ function displayTopCompany() {
                 </div>
             </div>`;
     }
+    
+
+}
+
+function displayTopCompanyImage() {
+
+    // const leng = companyDetailsJsonObj2[0].length;
+    // const adjustedScreenHeight = window.innerHeight - 125;
+    // const img = new Image();
+    // img.className = 'companyBannerPreview';
+    // img.id = 'companyBannerPreview';
+    // img.onload = function() {
+    //     this.style.height = '';
+    //     this.style.height = `${adjustedScreenHeight}px`;
+    // };
+
+
+    // let adjustedScreenHeight2 = (window.innerHeight - 125) / 2;
+    // document.getElementById('selections-prev-slide').style.top = `${adjustedScreenHeight2}px`;
+    // document.getElementById('selections-next-slide').style.top = `${adjustedScreenHeight2}px`;
+
+
+    //companiesProfilePicture.innerHTML = '';
+    // const fragment = document.createDocumentFragment();
+
+    // for (let i = leng - 1; i >= 0; i--) {
+    //     // const bannerTitle = getCompaniesProfilePicture(data[i]['id'], data[i]['uuid']);
+    //     const bannerTitle = getCompaniesProfilePicture(companyDetailsJsonObj2[0][i].id, companyDetailsJsonObj2[0][i].uuid);
+    //     const bannerSrc = host + '/uploads/users_upload_files/' + bannerTitle[0].banner;
+        
+    //     img.src = bannerSrc;
+    //     const li = document.createElement('li');
+    //     li.appendChild(img.cloneNode());
+    //     fragment.appendChild(li);
+    // }
+        
+    // companiesProfilePicture.appendChild(fragment);
+    companiesProfilePicture.innerHTML = '';
+    
+        let bannerTitle = getCompaniesProfilePicture(companyDetailsJsonObj2[0][0].id, companyDetailsJsonObj2[0][0].uuid);
+        const img = new Image();
+        img.src = host + '/uploads/users_upload_files/' + bannerTitle[0].banner;
+        img.onload = function() {
+            const adjustedScreenHeight = window.innerHeight - 125;
+            img.style.height = `${adjustedScreenHeight}px`;
+            const li = document.createElement('li');
+            li.appendChild(img);
+            companiesProfilePicture.appendChild(li);
+        };
+
+        const leng = companyDetailsJsonObj2[0].length;
+        for (var i = leng - 1; i > -1; i--) {
+            let bannerTitle = getCompaniesProfilePicture(companyDetailsJsonObj2[0][i].id, companyDetailsJsonObj2[0][i].uuid);
+            const img = new Image();
+            img.src = host + '/uploads/users_upload_files/' + bannerTitle[0].banner;
+            img.onload = function() {
+                const adjustedScreenHeight = window.innerHeight - 125;
+                img.style.height = `${adjustedScreenHeight}px`;
+                const li = document.createElement('li');
+                li.appendChild(img);
+                companiesProfilePicture.appendChild(li);
+            };
+        }
+    
+
 }
 
 function displaySearchParameter() {
@@ -1153,94 +1218,15 @@ function selectionSearchParameter() {
                 }
                 companyDetailsJsonObj2.push(data);
                
-                const adjustedScreenHeight = window.innerHeight - 125;
-
-                let adjustedScreenHeight2 = (window.innerHeight - 125) / 2;
-                document.getElementById('selections-prev-slide').style.top = `${adjustedScreenHeight2}px`;
-                document.getElementById('selections-next-slide').style.top = `${adjustedScreenHeight2}px`;
-
                 companiesProfilePicture.innerHTML = '';
-                
-                const fragment = document.createDocumentFragment();
-                console.log('/api/post/selection-search-parameter data', data);
-
-                let count = 0;
-                let activeLiIndex = 0;
-                let prevLi = null;
-                for (let i = data.length - 1; i >= 0; i--) {
-                    const bannerTitle = getCompaniesProfilePicture(data[i]['id'], data[i]['uuid']);
-                    const bannerSrc = host + '/uploads/users_upload_files/' + bannerTitle[0].banner;
-                    console.log('bannerSrc: ', i +' - '+ bannerSrc);
-                    console.log('business_name: ', i +' - '+ data[i]['business_name']);
-                    const img = new Image();
-                    img.className = 'companyBannerPreview';
-                    img.id = 'companyBannerPreview';
-                    img.onload = function() {
-                        this.style.height = '';
-                        this.style.height = `${adjustedScreenHeight}px`;
-                    };
-                    img.src = bannerSrc;
-
-                    const li = document.createElement('li');
-                    // li.appendChild(img.cloneNode());
-                    // fragment.appendChild(li);
-                    li.appendChild(img);
-                    fragment.appendChild(li);
-
-                    // remove "uk-active uk-transition-active" classes from the previous li element
-                    if (prevLi) {
-                        prevLi.classList.remove('uk-active', 'uk-transition-active');
-                    }
-
-                    // add "uk-active uk-transition-active" classes to the first li element
-                    if (i == 0) {
-                        li.classList.add('uk-active', 'uk-transition-active');
-                    }
-
-                    if (i == activeLiIndex) {
-                        li.classList.add('uk-active', 'uk-transition-active');
-                        li.classList.add('uk-active');
-                        li.classList.add('uk-transition-active');
-                    } else {
-                        li.classList.remove('uk-active', 'uk-transition-active');
-                        li.classList.remove('uk-active');
-                        li.classList.remove('uk-transition-active');
-                    }
-                    
-                    // update the previous li element to the current li element
-                    prevLi = li;
-                    console.log('li: ', li);
-                    console.log('fragment', fragment);
-                    count ++;
-                }
-
-                companiesProfilePicture.appendChild(fragment);
-                console.log('companiesProfilePicture appendChild:', companiesProfilePicture);
-
-                const companiesProfilePictureEl = document.getElementById('companiesProfilePicture');
-                // Remove uk-active uk-transition-active from all li
-                const allLi = companiesProfilePictureEl.querySelectorAll('li');
-                allLi.forEach(li => {
-                    li.classList.remove('uk-active', 'uk-transition-active');
-                    li.classList.remove('uk-active');
-                    li.classList.remove('uk-transition-active');
-                });
-
-                if (count == data.length) {
-                    const companyBannersEl = document.querySelectorAll('#companiesProfilePicture li');
-                    companyBannersEl.forEach((bannerEl, i) => {
-                    if (i == 0) {
-                        bannerEl.classList.add('uk-active', 'uk-transition-active');
-                    } else {
-                        bannerEl.classList.remove('uk-active', 'uk-transition-active');
-                    }
-                    });
-                }
-                
-
-
+        
                 displayFirstCompanyDetails();
                 displayTopCompany();
+                displayTopCompanyImage();
+                // setTimeout(() => {
+                    
+                //     displayTopCompanyImage();
+                // }, 500);
             }
 
             while (dataForDisplaySearchParameter.length > 0) {
