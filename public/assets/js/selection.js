@@ -484,18 +484,22 @@ function displayTopCompany() {
                     </a>
                 </div>
             </div>`;
-
-            let bannerTitle = getCompaniesProfilePicture(companyDetailsJsonObj2[0][i].id, companyDetailsJsonObj2[0][i].uuid);
-            const img = new Image();
-            img.src = host + '/uploads/users_upload_files/' + bannerTitle[0].banner;
-            img.onload = function() {
-                const adjustedScreenHeight = window.innerHeight - 125;
-                img.style.height = `${adjustedScreenHeight}px`;
-                const li = document.createElement('li');
-                li.appendChild(img);
-                companiesProfilePicture.appendChild(li);
-            };
     }
+    
+    for (let i = 0; i < leng; i++) {
+        let bannerTitle = getCompaniesProfilePicture(companyDetailsJsonObj2[0][i].id, companyDetailsJsonObj2[0][i].uuid);
+        const img = new Image();
+        img.src = host + '/uploads/users_upload_files/' + bannerTitle[0].banner;
+        img.onload = function() {
+          const adjustedScreenHeight = window.innerHeight - 125;
+          img.style.height = `${adjustedScreenHeight}px`;
+          const li = document.createElement('li');
+          li.appendChild(img);
+          companiesProfilePicture.appendChild(li);
+        };
+    }
+      
+    
 }
 
 function displaySearchParameter() {
