@@ -1152,17 +1152,17 @@ function selectionSearchParameter() {
                     companyDetailsJsonObj2.pop();
                 }
                 companyDetailsJsonObj2.push(data);
-
+                $(companiesProfilePicture).empty();
                 const adjustedScreenHeight = window.innerHeight - 125;
 
                 let adjustedScreenHeight2 = (window.innerHeight - 125) / 2;
                 document.getElementById('selections-prev-slide').style.top = `${adjustedScreenHeight2}px`;
                 document.getElementById('selections-next-slide').style.top = `${adjustedScreenHeight2}px`;
 
-                companiesProfilePicture.innerHTML = '';
+                // companiesProfilePicture.innerHTML = '';
                 const fragment = document.createDocumentFragment();
                 console.log('/api/post/selection-search-parameter data', data);
-                
+
                 for (let i = data.length - 1; i >= 0; i--) {
                     const bannerTitle = getCompaniesProfilePicture(data[i]['id'], data[i]['uuid']);
                     const bannerSrc = host + '/uploads/users_upload_files/' + bannerTitle[0].banner;
