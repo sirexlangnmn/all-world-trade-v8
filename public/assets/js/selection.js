@@ -1216,14 +1216,22 @@ function selectionSearchParameter() {
                 companiesProfilePicture.appendChild(fragment);
                 console.log('companiesProfilePicture appendChild:', companiesProfilePicture);
 
-                //const companiesProfilePicture = document.getElementById('companiesProfilePicture');
-
+                const companiesProfilePictureEl = document.getElementById('companiesProfilePicture');
                 // Remove uk-active uk-transition-active from all li
-                const allLi = companiesProfilePicture.querySelectorAll('li');
+                const allLi = companiesProfilePictureEl.querySelectorAll('li');
                 allLi.forEach(li => {
                     li.classList.remove('uk-active', 'uk-transition-active');
                     li.classList.remove('uk-active');
                     li.classList.remove('uk-transition-active');
+                });
+
+                const companyBannersEl = document.querySelectorAll('#companiesProfilePicture li');
+                companyBannersEl.forEach((bannerEl, i) => {
+                if (i == 0) {
+                    bannerEl.classList.add('uk-active', 'uk-transition-active');
+                } else {
+                    bannerEl.classList.remove('uk-active', 'uk-transition-active');
+                }
                 });
 
 
