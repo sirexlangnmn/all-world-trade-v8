@@ -476,7 +476,8 @@ function displayTopCompany() {
     elementId.innerHTML = '';
 
     const leng = companyDetailsJsonObj2[0].length;
-    for (let i = leng - 1; i >= 0; i--) {
+    // for (let i = leng - 1; i >= 0; i--) {
+    for (let i = 0; i < leng; i++) {
         elementId.innerHTML += `<div class="flex items-center space-x-4 rounded-md -mx-2 p-2 hover:bg-gray-50">
                 <div class="flex-1">
                     <a href="#" onclick="displayTopCompanyDetails('${companyDetailsJsonObj2[0][i].business_name}')" class="text-base font-semibold capitalize">
