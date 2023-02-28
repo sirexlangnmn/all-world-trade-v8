@@ -1182,6 +1182,10 @@ function selectionSearchParameter() {
                     // fragment.appendChild(li);
                     li.appendChild(img);
                     fragment.appendChild(li);
+
+                    // remove "uk-active uk-transition-active" classes from any li element
+                    li.classList.remove('uk-active', 'uk-transition-active');
+
                     if (i == data.length - 1) {
                         li.classList.add('uk-active', 'uk-transition-active');
                     }
