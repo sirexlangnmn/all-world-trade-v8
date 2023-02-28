@@ -404,7 +404,7 @@ function displayCompanyDetailsUsingImageName(filename) {
 }
 
 function displayFirstCompanyDetails() {
-    const [firstCompany] = companyDetailsJsonObj2[0];
+    const [firstCompany] = companyDetailsJsonObj2[0][0];
 
     if (firstCompany === undefined) {
         replaceDashCompanyDetailsDiv();
@@ -1181,7 +1181,7 @@ function selectionSearchParameter() {
                 companiesProfilePicture.appendChild(fragment);
 
 
-                // displayFirstCompanyDetails();
+                displayFirstCompanyDetails();
                 displayTopCompany();
             }
 
