@@ -407,6 +407,7 @@ function displayFirstCompanyDetails() {
     const [firstCompany] = companyDetailsJsonObj2[0];
     console.log('displayFirstCompanyDetails firstCompany: ', firstCompany);
     console.log('displayFirstCompanyDetails firstCompany companyDetailsJsonObj2[0].length: ', companyDetailsJsonObj2[0].length);
+    console.log('displayFirstCompanyDetails companyDetailsJsonObj2[0]: ', companyDetailsJsonObj2[0]);
 
     if (firstCompany === undefined) {
         replaceDashCompanyDetailsDiv();
@@ -922,8 +923,7 @@ function getBusinessScaleTitle(id) {
             value = 'N/A';
     }
 
-    console.log('getBusinessScaleTitle potek ka id', id);
-    console.log('getBusinessScaleTitle potek ka value', value);
+  
 
     return value;
 }
