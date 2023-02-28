@@ -543,8 +543,8 @@ function displayTopCompanyImage() {
             const leng = companyDetailsJsonObj2[0].length;
             for (var i = leng - 1; i > -1; i--) {
                 let bannerTitle = getCompaniesProfilePicture(companyDetailsJsonObj2[0][i].id, companyDetailsJsonObj2[0][i].uuid);
-                console.log('displayTopCompanyImage bannerTitle2:', bannerTitle);
-                console.log('displayTopCompanyImage business_name2:', companyDetailsJsonObj2[0][i].business_name);
+                console.log('displayTopCompanyImage bannerTitle2:', i +' - '+ bannerTitle);
+                console.log('displayTopCompanyImage business_name2:', i +' - '+ companyDetailsJsonObj2[0][i].business_name);
                 const img = new Image();
                 img.src = host + '/uploads/users_upload_files/' + bannerTitle[0].banner;
                 img.onload = function() {
