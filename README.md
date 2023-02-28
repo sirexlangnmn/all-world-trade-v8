@@ -1,5 +1,6 @@
 function selectionSearchParameter() {
 function displayTopCompany() {
+function getCompaniesRelatedToCurrentUser() {
 $(companiesProfilePicture).empty();
 for (var i = data.length - 1; i > -1; i--) {
                     let bannerTitle = getCompaniesProfilePicture(data[i]['id'], data[i]['uuid']);
@@ -31,3 +32,19 @@ for (let i = leng - 1; i >= 0; i--) {
 		companiesProfilePicture.appendChild(li);
 	};
 }
+
+
+companiesProfilePicture.innerHTML = '';
+                const fragment = document.createDocumentFragment();
+
+                for (let i = data.length - 1; i >= 0; i--) {
+                    const bannerTitle = getCompaniesProfilePicture(data[i]['id'], data[i]['uuid']);
+                    const bannerSrc = host + '/uploads/users_upload_files/' + bannerTitle[0].banner;
+                  
+                    img.src = bannerSrc;
+                    const li = document.createElement('li');
+                    li.appendChild(img.cloneNode());
+                    fragment.appendChild(li);
+                }
+                  
+                companiesProfilePicture.appendChild(fragment);
