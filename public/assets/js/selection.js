@@ -493,77 +493,68 @@ function displayTopCompany() {
 
 function displayTopCompanyImage() {
 
-    // const leng = companyDetailsJsonObj2[0].length;
-    // const adjustedScreenHeight = window.innerHeight - 125;
-    // const img = new Image();
-    // img.className = 'companyBannerPreview';
-    // img.id = 'companyBannerPreview';
-    // img.onload = function() {
-    //     this.style.height = '';
-    //     this.style.height = `${adjustedScreenHeight}px`;
-    // };
-
-
-    // let adjustedScreenHeight2 = (window.innerHeight - 125) / 2;
-    // document.getElementById('selections-prev-slide').style.top = `${adjustedScreenHeight2}px`;
-    // document.getElementById('selections-next-slide').style.top = `${adjustedScreenHeight2}px`;
-
-
-    //companiesProfilePicture.innerHTML = '';
-    // const fragment = document.createDocumentFragment();
-
-    // for (let i = leng - 1; i >= 0; i--) {
-    //     // const bannerTitle = getCompaniesProfilePicture(data[i]['id'], data[i]['uuid']);
-    //     const bannerTitle = getCompaniesProfilePicture(companyDetailsJsonObj2[0][i].id, companyDetailsJsonObj2[0][i].uuid);
-    //     const bannerSrc = host + '/uploads/users_upload_files/' + bannerTitle[0].banner;
-        
-    //     img.src = bannerSrc;
-    //     const li = document.createElement('li');
-    //     li.appendChild(img.cloneNode());
-    //     fragment.appendChild(li);
-    // }
-        
-    // companiesProfilePicture.appendChild(fragment);
     companiesProfilePicture.innerHTML = '';
     
-        let bannerTitle1 = getCompaniesProfilePicture(companyDetailsJsonObj2[0][0].id, companyDetailsJsonObj2[0][0].uuid);
-        console.log('displayTopCompanyImage bannerTitle1:', bannerTitle1);
-        console.log('displayTopCompanyImage business_name2:', companyDetailsJsonObj2[0][0].business_name);
-        const img = new Image();
-        img.src = host + '/uploads/users_upload_files/' + bannerTitle1[0].banner;
-        img.onload = function() {
-            const adjustedScreenHeight = window.innerHeight - 125;
-            img.style.height = `${adjustedScreenHeight}px`;
-            const li = document.createElement('li');
-            li.appendChild(img);
-            companiesProfilePicture.appendChild(li);
-        };
+    // let bannerTitle1 = getCompaniesProfilePicture(companyDetailsJsonObj2[0][0].id, companyDetailsJsonObj2[0][0].uuid);
+    // console.log('displayTopCompanyImage bannerTitle1:', bannerTitle1);
+    // console.log('displayTopCompanyImage business_name2:', companyDetailsJsonObj2[0][0].business_name);
+    // const img = new Image();
+    // img.src = host + '/uploads/users_upload_files/' + bannerTitle1[0].banner;
+    // img.onload = function() {
+    //     const adjustedScreenHeight = window.innerHeight - 125;
+    //     img.style.height = `${adjustedScreenHeight}px`;
+    //     const li = document.createElement('li');
+    //     li.appendChild(img);
+    //     companiesProfilePicture.appendChild(li);
+    // };
 
-        setTimeout(() => {            
-            const leng = companyDetailsJsonObj2[0].length;
-            // for (let i = leng - 1; i >= 0; i--) {
-            for (var i = leng - 1; i > -1; i--) {
-                let bannerTitle2 = getCompaniesProfilePicture(companyDetailsJsonObj2[0][i].id, companyDetailsJsonObj2[0][i].uuid);
-                //if(bannerTitle1[0].banner != bannerTitle2[0].banner) {
-                    console.log('displayTopCompanyImage bannerTitle2:', i +' - '+ bannerTitle2);
-                    console.log('displayTopCompanyImage business_name2:', i +' - '+ companyDetailsJsonObj2[0][i].business_name);
-                    const img = new Image();
-                    img.src = host + '/uploads/users_upload_files/' + bannerTitle2[0].banner;
-                    img.onload = function() {
-                        const adjustedScreenHeight = window.innerHeight - 125;
-                        img.style.height = `${adjustedScreenHeight}px`;
-                        const li = document.createElement('li');
-                        li.appendChild(img);
-                        companiesProfilePicture.appendChild(li);
-                    };
-                // } else {
-                //     console.log('displayTopCompanyImage same bannerTitle1[0].banner:', bannerTitle1[0].banner);
-                //     console.log('displayTopCompanyImage same bannerTitle2[0].banner:', bannerTitle2[0].banner);
-                // }
-            }
-        }, 500);
+    // setTimeout(() => {            
+    //     const leng = companyDetailsJsonObj2[0].length;
+    //     // for (let i = leng - 1; i >= 0; i--) {
+    //     for (var i = leng - 1; i > -1; i--) {
+    //         let bannerTitle2 = getCompaniesProfilePicture(companyDetailsJsonObj2[0][i].id, companyDetailsJsonObj2[0][i].uuid);
+    //         //if(bannerTitle1[0].banner != bannerTitle2[0].banner) {
+    //             console.log('displayTopCompanyImage bannerTitle2:', i +' - '+ bannerTitle2);
+    //             console.log('displayTopCompanyImage business_name2:', i +' - '+ companyDetailsJsonObj2[0][i].business_name);
+    //             const img = new Image();
+    //             img.src = host + '/uploads/users_upload_files/' + bannerTitle2[0].banner;
+    //             img.onload = function() {
+    //                 const adjustedScreenHeight = window.innerHeight - 125;
+    //                 img.style.height = `${adjustedScreenHeight}px`;
+    //                 const li = document.createElement('li');
+    //                 li.appendChild(img);
+    //                 companiesProfilePicture.appendChild(li);
+    //             };
+    //         // } else {
+    //         //     console.log('displayTopCompanyImage same bannerTitle1[0].banner:', bannerTitle1[0].banner);
+    //         //     console.log('displayTopCompanyImage same bannerTitle2[0].banner:', bannerTitle2[0].banner);
+    //         // }
+    //     }
+    // }, 500);
         
-    
+    const adjustedScreenHeight = window.innerHeight - 125;
+    const companiesProfilePicture = document.getElementById("companiesProfilePicture");
+    const bannerTitle1 = getCompaniesProfilePicture(companyDetailsJsonObj2[0][0].id, companyDetailsJsonObj2[0][0].uuid);
+    const bannerTitle2Array = companyDetailsJsonObj2[0].slice().reverse();
+    let loadedImageCount = 0;
+
+    bannerTitle2Array.forEach(function(company, index) {
+    const img = new Image();
+    img.src = host + '/uploads/users_upload_files/' + bannerTitle2Array[index].banner;
+    img.onload = function() {
+        loadedImageCount++;
+        img.style.height = `${adjustedScreenHeight}px`;
+        const li = document.createElement('li');
+        li.appendChild(img);
+        if (loadedImageCount === bannerTitle2Array.length) {
+        companiesProfilePicture.appendChild(li);
+        } else {
+        companiesProfilePicture.insertBefore(li, companiesProfilePicture.firstChild);
+        }
+    };
+    });
+
+
 
 }
 
