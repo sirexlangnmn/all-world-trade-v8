@@ -1216,6 +1216,14 @@ function selectionSearchParameter() {
                 companiesProfilePicture.appendChild(fragment);
                 console.log('companiesProfilePicture appendChild:', companiesProfilePicture);
 
+                //const companiesProfilePicture = document.getElementById('companiesProfilePicture');
+
+                // Remove uk-active uk-transition-active from all li
+                const allLi = companiesProfilePicture.querySelectorAll('li');
+                allLi.forEach(li => {
+                    li.classList.remove('uk-active', 'uk-transition-active');
+                });
+
 
                 displayFirstCompanyDetails();
                 displayTopCompany();
