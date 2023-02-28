@@ -1,6 +1,6 @@
 function selectionSearchParameter() {
 function displayTopCompany() {
-
+$(companiesProfilePicture).empty();
 for (var i = data.length - 1; i > -1; i--) {
                     let bannerTitle = getCompaniesProfilePicture(data[i]['id'], data[i]['uuid']);
                     const img = new Image();
