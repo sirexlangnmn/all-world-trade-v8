@@ -1222,6 +1222,8 @@ function selectionSearchParameter() {
                 const allLi = companiesProfilePicture.querySelectorAll('li');
                 allLi.forEach(li => {
                     li.classList.remove('uk-active', 'uk-transition-active');
+                    li.classList.remove('uk-active');
+                    li.classList.remove('uk-transition-active');
                 });
 
 
