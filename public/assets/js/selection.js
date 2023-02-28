@@ -500,8 +500,7 @@ function displayTopCompany() {
               img.style.height = `${adjustedScreenHeight}px`;
               const li = document.createElement('li');
               li.appendChild(img);
-            //   companiesProfilePicture.insertBefore(li, companiesProfilePicture.firstChild);
-            companiesProfilePicture.appendChild(li);
+              companiesProfilePicture.insertBefore(li, companiesProfilePicture.firstChild);
             };
         }
     // }
