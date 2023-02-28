@@ -1184,8 +1184,8 @@ function selectionSearchParameter() {
                     fragment.appendChild(li);
                     console.log('li: ', li);
                     console.log('fragment', fragment);
-                    if (i == 0) {
-                        img.classList.add('uk-active', 'uk-transition-active');
+                    if (i == data.length - 1) {
+                        li.classList.add('uk-active', 'uk-transition-active');
                     }
 
                 }
