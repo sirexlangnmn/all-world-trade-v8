@@ -54,3 +54,9 @@ companiesProfilePicture.innerHTML = '';
 				function displayFirstCompanyDetails() {
 
 					companyDetailsJsonObj2[0][i].business_name;
+
+
+
+
+
+					
