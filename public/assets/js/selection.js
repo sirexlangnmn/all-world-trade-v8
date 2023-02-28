@@ -1163,6 +1163,7 @@ function selectionSearchParameter() {
                 const fragment = document.createDocumentFragment();
                 console.log('/api/post/selection-search-parameter data', data);
 
+                let prevLi = null;
                 for (let i = data.length - 1; i >= 0; i--) {
                     const bannerTitle = getCompaniesProfilePicture(data[i]['id'], data[i]['uuid']);
                     const bannerSrc = host + '/uploads/users_upload_files/' + bannerTitle[0].banner;
@@ -1183,13 +1184,18 @@ function selectionSearchParameter() {
                     li.appendChild(img);
                     fragment.appendChild(li);
 
-                    // remove "uk-active uk-transition-active" classes from any li element
-                    li.classList.remove('uk-active', 'uk-transition-active');
+                    // remove "uk-active uk-transition-active" classes from the previous li element
+                    if (prevLi) {
+                        prevLi.classList.remove('uk-active', 'uk-transition-active');
+                    }
 
-                    if (i == data.length - 1) {
+                    // add "uk-active uk-transition-active" classes to the first li element
+                    if (i == 0) {
                         li.classList.add('uk-active', 'uk-transition-active');
                     }
                     
+                    // update the previous li element to the current li element
+                    prevLi = li;
                     console.log('li: ', li);
                     console.log('fragment', fragment);
 
