@@ -1164,6 +1164,7 @@ function selectionSearchParameter() {
                 const fragment = document.createDocumentFragment();
                 console.log('/api/post/selection-search-parameter data', data);
 
+                let count = 0;
                 let activeLiIndex = 0;
                 let prevLi = null;
                 for (let i = data.length - 1; i >= 0; i--) {
@@ -1196,7 +1197,7 @@ function selectionSearchParameter() {
                         li.classList.add('uk-active', 'uk-transition-active');
                     }
 
-                    if (i === activeLiIndex) {
+                    if (i == activeLiIndex) {
                         li.classList.add('uk-active', 'uk-transition-active');
                         li.classList.add('uk-active');
                         li.classList.add('uk-transition-active');
@@ -1210,7 +1211,7 @@ function selectionSearchParameter() {
                     prevLi = li;
                     console.log('li: ', li);
                     console.log('fragment', fragment);
-
+                    count ++;
                 }
 
                 companiesProfilePicture.appendChild(fragment);
@@ -1225,14 +1226,17 @@ function selectionSearchParameter() {
                     li.classList.remove('uk-transition-active');
                 });
 
-                const companyBannersEl = document.querySelectorAll('#companiesProfilePicture li');
-                companyBannersEl.forEach((bannerEl, i) => {
-                if (i == 0) {
-                    bannerEl.classList.add('uk-active', 'uk-transition-active');
-                } else {
-                    bannerEl.classList.remove('uk-active', 'uk-transition-active');
+                if (count == data.length) {
+                    const companyBannersEl = document.querySelectorAll('#companiesProfilePicture li');
+                    companyBannersEl.forEach((bannerEl, i) => {
+                    if (i == 0) {
+                        bannerEl.classList.add('uk-active', 'uk-transition-active');
+                    } else {
+                        bannerEl.classList.remove('uk-active', 'uk-transition-active');
+                    }
+                    });
                 }
-                });
+                
 
 
                 displayFirstCompanyDetails();
