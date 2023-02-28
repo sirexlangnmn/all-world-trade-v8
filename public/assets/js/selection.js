@@ -471,59 +471,19 @@ function displayFirstCompanyDetails() {
 }
 
 function displayTopCompany() {
-    $(companiesProfilePicture).empty();
     const elementId = document.getElementById('top-selection-results');
     elementId.innerHTML = '';
 
     const leng = companyDetailsJsonObj2[0].length;
-   
-    // for (let i = 0; i < leng; i++) {
-    //     elementId.innerHTML += `<div class="flex items-center space-x-4 rounded-md -mx-2 p-2 hover:bg-gray-50">
-    //             <div class="flex-1">
-    //                 <a href="#" onclick="displayTopCompanyDetails('${companyDetailsJsonObj2[0][i].business_name}')" class="text-base font-semibold capitalize">
-    //                     ${companyDetailsJsonObj2[0][i].business_name}
-    //                 </a>
-    //             </div>
-    //         </div>`;
-    // }
-   
-    
-    // for (let i = leng - 1; i > -1; i--) {
-    //     let bannerTitle = getCompaniesProfilePicture(companyDetailsJsonObj2[0][i].id, companyDetailsJsonObj2[0][i].uuid);
-    //     const img = new Image();
-    //     img.src = host + '/uploads/users_upload_files/' + bannerTitle[0].banner;
-    //     img.onload = function() {
-    //         const adjustedScreenHeight = window.innerHeight - 125;
-    //         img.style.height = `${adjustedScreenHeight}px`;
-    //         const li = document.createElement('li');
-    //         li.appendChild(img);
-    //         companiesProfilePicture.insertBefore(li, companiesProfilePicture.firstChild);
-    //     };
-    // }
-
-    for (let i = 0; i < leng; i++) {
-        let businessName = companyDetailsJsonObj2[0][i].business_name;
+    for (let i = leng - 1; i >= 0; i--) {
         elementId.innerHTML += `<div class="flex items-center space-x-4 rounded-md -mx-2 p-2 hover:bg-gray-50">
-            <div class="flex-1">
-                <a href="#" onclick="displayTopCompanyDetails('${businessName}')" class="text-base font-semibold capitalize">
-                    ${businessName}
-                </a>
-            </div>
-        </div>`;
-    
-        let bannerTitle = getCompaniesProfilePicture(companyDetailsJsonObj2[0][i].id, companyDetailsJsonObj2[0][i].uuid);
-        const img = new Image();
-        img.src = host + '/uploads/users_upload_files/' + bannerTitle[0].banner;
-        img.onload = function() {
-            const adjustedScreenHeight = window.innerHeight - 125;
-            img.style.height = `${adjustedScreenHeight}px`;
-            const li = document.createElement('li');
-            li.appendChild(img);
-            companiesProfilePicture.insertBefore(li, companiesProfilePicture.firstChild);
-        };
+                <div class="flex-1">
+                    <a href="#" onclick="displayTopCompanyDetails('${companyDetailsJsonObj2[0][i].business_name}')" class="text-base font-semibold capitalize">
+                        ${companyDetailsJsonObj2[0][i].business_name}
+                    </a>
+                </div>
+            </div>`;
     }
-    
-   
 }
 
 function displaySearchParameter() {
@@ -960,7 +920,8 @@ function getBusinessScaleTitle(id) {
             value = 'N/A';
     }
 
-    
+    // console.log('getBusinessScaleTitle potek ka id', id);
+    // console.log('getBusinessScaleTitle potek ka value', value);
 
     return value;
 }
@@ -1189,7 +1150,7 @@ function selectionSearchParameter() {
                     companyDetailsJsonObj2.pop();
                 }
                 companyDetailsJsonObj2.push(data);
-             
+
                 companiesProfilePicture.innerHTML = '';
             
                 // for (var i = data.length - 1; i > -1; i--) {
@@ -1217,18 +1178,18 @@ function selectionSearchParameter() {
                 // }
 
 
-                // for (var i = data.length - 1; i > -1; i--) {
-                //     let bannerTitle = getCompaniesProfilePicture(data[i]['id'], data[i]['uuid']);
-                //     const img = new Image();
-                //     img.src = host + '/uploads/users_upload_files/' + bannerTitle[0].banner;
-                //     img.onload = function() {
-                //         const adjustedScreenHeight = window.innerHeight - 125;
-                //         img.style.height = `${adjustedScreenHeight}px`;
-                //         const li = document.createElement('li');
-                //         li.appendChild(img);
-                //         companiesProfilePicture.appendChild(li);
-                //     };
-                // }
+                for (var i = data.length - 1; i > -1; i--) {
+                    let bannerTitle = getCompaniesProfilePicture(data[i]['id'], data[i]['uuid']);
+                    const img = new Image();
+                    img.src = host + '/uploads/users_upload_files/' + bannerTitle[0].banner;
+                    img.onload = function() {
+                        const adjustedScreenHeight = window.innerHeight - 125;
+                        img.style.height = `${adjustedScreenHeight}px`;
+                        const li = document.createElement('li');
+                        li.appendChild(img);
+                        companiesProfilePicture.appendChild(li);
+                    };
+                }
 
                 displayFirstCompanyDetails();
                 displayTopCompany();
