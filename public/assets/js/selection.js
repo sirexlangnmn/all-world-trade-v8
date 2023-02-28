@@ -1181,7 +1181,7 @@ function selectionSearchParameter() {
                   
                 companiesProfilePicture.appendChild(fragment);
 
-                displayFirstCompanyDetails();
+                // displayFirstCompanyDetails();
                 displayTopCompany();
             }
 
