@@ -1166,8 +1166,8 @@ function selectionSearchParameter() {
                 for (let i = data.length - 1; i >= 0; i--) {
                     const bannerTitle = getCompaniesProfilePicture(data[i]['id'], data[i]['uuid']);
                     const bannerSrc = host + '/uploads/users_upload_files/' + bannerTitle[0].banner;
-                    console.log('bannerSrc', i +' - '+ bannerSrc);
-                    console.log('bannerSrc', i +' - '+ data[i]['business_name']);
+                    console.log('bannerSrc: ', i +' - '+ bannerSrc);
+                    console.log('business_name: ', i +' - '+ data[i]['business_name']);
                     const img = new Image();
                     img.className = 'companyBannerPreview';
                     img.id = 'companyBannerPreview';
@@ -1182,6 +1182,8 @@ function selectionSearchParameter() {
                     // fragment.appendChild(li);
                     li.appendChild(img);
                     fragment.appendChild(li);
+                    console.log('li: ', li);
+                    console.log('fragment', fragment);
 
                 }
 
