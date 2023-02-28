@@ -1214,6 +1214,7 @@ function selectionSearchParameter() {
                 }
 
                 companiesProfilePicture.appendChild(fragment);
+                console.log('companiesProfilePicture appendChild:', companiesProfilePicture);
 
 
                 displayFirstCompanyDetails();
