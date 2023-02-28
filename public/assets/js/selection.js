@@ -1161,7 +1161,7 @@ function selectionSearchParameter() {
 
                 companiesProfilePicture.innerHTML = '';
                 const fragment = document.createDocumentFragment();
-
+                console.log('/api/post/selection-search-parameter data', data);
                 for (let i = data.length - 1; i > -1; i--) {
                 // for (let i = data.length - 1; i >= 0; i--) {
                     const bannerTitle = getCompaniesProfilePicture(data[i]['id'], data[i]['uuid']);
