@@ -1164,7 +1164,7 @@ function selectionSearchParameter() {
                 console.log('/api/post/selection-search-parameter data', data);
                 // for (let i = data.length - 1; i > -1; i--) {
                 // for (let i = data.length - 1; i >= 0; i--) {
-                for (let i = 0; i < data.length; i++) {
+                for (let i = data.length - 1; i >= 0; i--) {
                     const bannerTitle = getCompaniesProfilePicture(data[i]['id'], data[i]['uuid']);
                     const bannerSrc = host + '/uploads/users_upload_files/' + bannerTitle[0].banner;
 
@@ -1178,8 +1178,11 @@ function selectionSearchParameter() {
                     img.src = bannerSrc;
 
                     const li = document.createElement('li');
-                    li.appendChild(img);
+                    li.appendChild(img.cloneNode());
                     fragment.appendChild(li);
+                    // li.appendChild(img);
+                    // fragment.appendChild(li);
+
                 }
 
                 companiesProfilePicture.appendChild(fragment);
