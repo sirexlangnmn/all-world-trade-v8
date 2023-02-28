@@ -404,7 +404,8 @@ function displayCompanyDetailsUsingImageName(filename) {
 }
 
 function displayFirstCompanyDetails() {
-    const [firstCompany] = companyDetailsJsonObj2[0][0];
+    const [firstCompany] = companyDetailsJsonObj2[0];
+    console.log('displayFirstCompanyDetails firstCompany: ', firstCompany);
 
     if (firstCompany === undefined) {
         replaceDashCompanyDetailsDiv();
