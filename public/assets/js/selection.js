@@ -1198,8 +1198,12 @@ function selectionSearchParameter() {
 
                     if (i === activeLiIndex) {
                         li.classList.add('uk-active', 'uk-transition-active');
+                        li.classList.add('uk-active');
+                        li.classList.add('uk-transition-active');
                     } else {
                         li.classList.remove('uk-active', 'uk-transition-active');
+                        li.classList.remove('uk-active');
+                        li.classList.remove('uk-transition-active');
                     }
                     
                     // update the previous li element to the current li element
