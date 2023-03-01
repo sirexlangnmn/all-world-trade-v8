@@ -155,7 +155,7 @@ module.exports = (app) => {
 
     app.post(['/api/post/update-medium-scale-company'], mediumScaleCompany.update);
 
-    app.post(['/api/post/update-large-scale-company'], largeScaleCompany.update);
+    // app.post(['/api/post/update-large-scale-company'], largeScaleCompany.update);
 
     app.post(['/api/post/upgrade-plan-to-medium-scale-company'], upgradeToMediumScaleCompany.update);
 

@@ -27,7 +27,7 @@ exports.update = async (req, res) => {
     let editLanguagesOfCommunication = req.body.editLanguagesOfCommunication;
     let uniqueChars = [...new Set(editLanguagesOfCommunication)];
     languages = uniqueChars.toString();
-    business_language_of_communication = languages;
+    let business_language_of_communication = languages;
 
     let business_social_media_contact_number = req.body.businessSocialMediaContactNumber;
     let business_address = req.body.businessAddress;

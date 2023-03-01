@@ -12,5 +12,6 @@ controller.users_businesses = require('./users-businesses.controller.js');
 controller.users_accounts = require('./users-accounts.controller.js');
 controller.testValidation = require('./testValidation.controller.js');
 controller.update_traders = require('./update-traders.controller.js');
+controller.update_large_scale_company = require('./update-large-scale-company.controller.js');
 
 module.exports = controller;

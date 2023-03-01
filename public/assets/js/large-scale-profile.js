@@ -183,6 +183,7 @@ function getMinorSubCategoriesTitleById(id, str) {
 function displayBusinessSocialMediaContactType(value, elementId) {
     let jsonObj =
         '{ "socialMediaContactType" : [' +
+        '{ "id":"" , "title":"None" },' +
         '{ "id":"1" , "title":"Viber" },' +
         '{ "id":"2" , "title":"Wechat" },' +
         '{ "id":"3" , "title":"Whatsapp" } ]}';
@@ -192,7 +193,11 @@ function displayBusinessSocialMediaContactType(value, elementId) {
 
     let filtered = data.filter((d) => d.id == value);
 
-    document.getElementById(elementId).innerHTML = filtered[0].title;
+    if (filtered.length > 0) {
+        document.getElementById(elementId).innerHTML = filtered[0].title;
+    } else {
+        document.getElementById(elementId).innerHTML = parsedObj.socialMediaContactType[0].title;
+    }
 }
 
 function editProfile() {

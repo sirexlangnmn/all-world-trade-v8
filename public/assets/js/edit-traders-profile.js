@@ -114,7 +114,7 @@ function getBusinessSocialMediaContactType(value) {
       
     }
     $('#businessSocialMediaContactType').selectpicker('refresh');
-  }
+}
   
 
 function getUsersLogoAndBanner() {

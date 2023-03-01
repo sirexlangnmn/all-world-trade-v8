@@ -38,7 +38,10 @@ function getUsersAccount() {
         type: 'POST',
         success: function (data) {
             document.getElementById('personalSocialMediaContactNumber').value = data[0].contact_number;
-            getSocialMediaContactType(data[0].social_media_contact_type, 'personalSocialMediaContactType');
+            // new
+            // getSocialMediaContactType(data[0].social_media_contact_type, 'personalSocialMediaContactType');
+            // old
+            getBusinessSocialMediaContactType(data[0].social_media_contact_type, 'personalSocialMediaContactType');
         },
     });
 }
@@ -56,9 +59,10 @@ function getCompanyDetails() {
             document.getElementById('businessContactNumber').value = data[0].business_contact;
             document.getElementById('businessSocialMediaContactNumber').value =
                 data[0].business_social_media_contact_number;
-            document.getElementById('currentLanguagesOfCommunication').value =
-                data[0].business_language_of_communication;
-            getBusinessSocialMediaContactType(data[0].business_social_media_contact_type);
+            // document.getElementById('currentLanguagesOfCommunication').value =
+            //     data[0].business_language_of_communication;
+            business_language_of_communication(data[0].business_language_of_communication, 'editLanguagesOfCommunication');
+            getBusinessSocialMediaContactType(data[0].business_social_media_contact_type, 'businessSocialMediaContactType');
             getBusinessCountryLocationToBeEditAndOptions(data, 'businessCountryLocation');
             getBusinessStatesLocationToBeEditAndOptions(data, 'businessStatesLocation');
             getBusinessCityLocationToBeEditAndOptions(data, 'businessCityLocation');
@@ -87,6 +91,38 @@ getLanguages().then((data) => {
     }
     $("#editLanguagesOfCommunication").selectpicker('refresh');
 });
+
+async function business_language_of_communication(languages, elementId) {
+    //const editLanguagesOfCommunication = document.getElementById('editLanguagesOfCommunication');
+    const languageElementId = document.getElementById(elementId);
+    // consume api to get all languages
+    async function getLanguages() {
+        const response = await fetch(`${host}/api/get/languages`);
+        const data = await response.json();
+        return data;
+    }
+
+    try {
+        const data = await getLanguages();
+        const arr = languages.split(',');
+
+        // const editLanguagesOfCommunication = document.getElementById('editLanguagesOfCommunication');
+        languageElementId.innerHTML = '';
+
+        const selectedOptions = data
+            .filter((d) => arr.includes(d.code))
+            .map((d) => `<option value="${d.code}" selected>${d.name}</option>`);
+        const unselectedOptions = data
+            .filter((d) => !arr.includes(d.code))
+            .map((d) => `<option value="${d.code}">${d.name}</option>`);
+
+            languageElementId.innerHTML = selectedOptions.concat(unselectedOptions).join('');
+
+        $(languageElementId).selectpicker('refresh');
+    } catch (error) {
+        console.error(error);
+    }
+}
 
 document.getElementById('businessCountryLocation').addEventListener('change', function () {
     $('#businessStatesLocation').empty();
@@ -196,63 +232,79 @@ function getUserBusinessCharacteristics() {
             // getMinorSubCategoriesByIdFunction(value);
             // getTradeCategoriesFunction(value);
             getTradeCategoriesToBeEditAndOptions(value, 'editTradeCategory');
-            getSubCategoriesToBeEditAndOptions(value, 'traderSubCategoryToggleField1', 'traderSubCategoryToggleField2');
-            getMinorSubCategoryToBeEditAndOptions(
-                value,
-                'minorSubCategories',
-                'minorSubCategory',
-                'minorSubCategoryInput',
-            );
+            // getSubCategoriesToBeEditAndOptions(value, 'traderSubCategoryToggleField1', 'traderSubCategoryToggleField2');
+            // getMinorSubCategoryToBeEditAndOptions(
+            //     value,
+            //     'minorSubCategories',
+            //     'minorSubCategory',
+            //     'minorSubCategoryInput',
+            // );
+
+
+            // new
+            getSubCategoriesToBeEditByTradeCategoryId(value);
+            getMinorSubCategoriesToBeEditByTradeCategoryId(value);
         },
     });
 }
 
+// ito yung ni comment ko
+// editTradeCategory.addEventListener('change', function () {
+//     let tradeCategoryId = this.value;
+
+//     document.getElementById('minorSubCategory').value = '';
+//     document.getElementById('minorSubCategoryInput').value = '';
+//     $('#minorSubCategories').empty();
+
+//     getSubCategoriesOptionsWhenTradeCategoryChange(tradeCategoryId, 'traderSubCategoryToggleField1');
+// });
+
 editTradeCategory.addEventListener('change', function () {
     let tradeCategoryId = this.value;
 
-    document.getElementById('minorSubCategory').value = '';
-    document.getElementById('minorSubCategoryInput').value = '';
-    $('#minorSubCategories').empty();
+    document.getElementById('minor-sub-category-select').value = '';
+    document.getElementById('minor-sub-category-manual').value = '';
+    $('#minor-sub-category-select').empty();
 
-    getSubCategoriesOptionsWhenTradeCategoryChange(tradeCategoryId, 'traderSubCategoryToggleField1');
+    getSubCategoriesOptionsWhenTradeCategoriesChange(tradeCategoryId);
 });
 
-traderSubCategoryToggleField1.addEventListener('change', function () {
-    let subCategoryId = this.value;
+// traderSubCategoryToggleField1.addEventListener('change', function () {
+//     let subCategoryId = this.value;
 
-    document.getElementById('minorSubCategory').value = '';
-    document.getElementById('minorSubCategoryInput').value = '';
-    $('#minorSubCategories').empty();
+//     document.getElementById('minorSubCategory').value = '';
+//     document.getElementById('minorSubCategoryInput').value = '';
+//     $('#minorSubCategories').empty();
 
-    if (this.options[this.selectedIndex].value == 'customOption') {
-        toggleField(this, this.nextSibling);
-        this.selectedIndex = '0';
-    }
+//     if (this.options[this.selectedIndex].value == 'customOption') {
+//         toggleField(this, this.nextSibling);
+//         this.selectedIndex = '0';
+//     }
 
-    getMinorSubCategoriesOptionsWhenSubCategoryChange(subCategoryId, 'minorSubCategories');
-});
+//     getMinorSubCategoriesOptionsWhenSubCategoryChange(subCategoryId, 'minorSubCategories');
+// });
 
-traderSubCategoryToggleField2.addEventListener('blur', function () {
-    if (this.value == '') {
-        toggleField(this, this.previousSibling);
-    }
-});
+// traderSubCategoryToggleField2.addEventListener('blur', function () {
+//     if (this.value == '') {
+//         toggleField(this, this.previousSibling);
+//     }
+// });
 
-function toggleField(hideObj, showObj) {
-    hideObj.disabled = true;
-    hideObj.style.display = 'none';
-    showObj.disabled = false;
-    showObj.style.display = 'inline';
-    showObj.focus();
-}
+// function toggleField(hideObj, showObj) {
+//     hideObj.disabled = true;
+//     hideObj.style.display = 'none';
+//     showObj.disabled = false;
+//     showObj.style.display = 'inline';
+//     showObj.focus();
+// }
 
-document.getElementById('minorSubCategory').addEventListener('change', function () {
-    getMinorSubCategoryForInitialInputValue('minorSubCategory', 'minorSubCategoryInput');
-});
+// document.getElementById('minorSubCategory').addEventListener('change', function () {
+//     getMinorSubCategoryForInitialInputValue('minorSubCategory', 'minorSubCategoryInput');
+// });
 
-document.getElementById('minorSubCategory').addEventListener('blur', function () {
-    getMinorSubCategoryForInitialInputValue('minorSubCategory', 'minorSubCategoryInput');
-});
+// document.getElementById('minorSubCategory').addEventListener('blur', function () {
+//     getMinorSubCategoryForInitialInputValue('minorSubCategory', 'minorSubCategoryInput');
+// });
 
 function getCountryLocation(value, elementId) {
     fetch('assets/json/countries.json')
@@ -440,29 +492,71 @@ document.getElementById('states').addEventListener('change', function () {
         });
 });
 
-function getBusinessSocialMediaContactType(value) {
-    let jsonObj =
-        '{ "companyDetails" : [' +
-        '{ "id":"1" , "title":"Viber" },' +
-        '{ "id":"2" , "title":"Wechat" },' +
-        '{ "id":"3" , "title":"Whatsapp" } ]}';
+// function getBusinessSocialMediaContactType(value) {
+//     let jsonObj =
+//         '{ "companyDetails" : [' +
+//         '{ "id":"1" , "title":"Viber" },' +
+//         '{ "id":"2" , "title":"Wechat" },' +
+//         '{ "id":"3" , "title":"Whatsapp" } ]}';
 
-    const parsedObj = JSON.parse(jsonObj);
-    let companyDetails = parsedObj.companyDetails;
+//     const parsedObj = JSON.parse(jsonObj);
+//     let companyDetails = parsedObj.companyDetails;
 
-    let filtered = companyDetails.filter((d) => d.id == value);
+//     let filtered = companyDetails.filter((d) => d.id == value);
 
-    document.getElementById('businessSocialMediaContactType').innerHTML =
-        '<option value="' + filtered[0].id + '">' + filtered[0].title + '</option>';
-    for (var i = 0; i < companyDetails.length; i++) {
-        document.getElementById('businessSocialMediaContactType').innerHTML =
-            document.getElementById('businessSocialMediaContactType').innerHTML +
-            '<option value="' +
-            companyDetails[i]['id'] +
-            '">' +
-            companyDetails[i]['title'] +
-            '</option>';
+//     document.getElementById('businessSocialMediaContactType').innerHTML =
+//         '<option value="' + filtered[0].id + '">' + filtered[0].title + '</option>';
+//     for (var i = 0; i < companyDetails.length; i++) {
+//         document.getElementById('businessSocialMediaContactType').innerHTML =
+//             document.getElementById('businessSocialMediaContactType').innerHTML +
+//             '<option value="' +
+//             companyDetails[i]['id'] +
+//             '">' +
+//             companyDetails[i]['title'] +
+//             '</option>';
+//     }
+// }
+
+function getBusinessSocialMediaContactType(value, elementId) {
+    // const businessSocialMediaContactType = document.getElementById(elementId);
+    const socialMediaContactTypeId = document.getElementById(elementId);
+
+    const jsonObj = {
+      companyDetails: [
+        { id: '', title: 'None' },
+        { id: '1', title: 'Viber' },
+        { id: '2', title: 'Wechat' },
+        { id: '3', title: 'Whatsapp' },
+      ],
+    };
+    const parsedObj = JSON.parse(JSON.stringify(jsonObj)); // create a deep copy to avoid mutation
+    const companyDetails = parsedObj.companyDetails;
+    
+    if (value == '' || value == null) {
+        socialMediaContactTypeId.innerHTML = `
+        ${companyDetails.map(
+            (d) => `
+            <option value="${d.id}">${d.title}</option>
+        `,
+        ).join('')}
+      `;
+    } else {
+      const filtered = companyDetails.find((d) => d.id == value);
+    //   const businessSocialMediaContactType = document.getElementById('businessSocialMediaContactType');
+    socialMediaContactTypeId.innerHTML = `
+        <option value="${filtered.id}">${filtered.title}</option>
+        ${companyDetails
+            .filter((d) => d.id != value)
+            .map(
+                (d) => `
+                <option value="${d.id}">${d.title}</option>
+            `,
+            )
+            .join('')}
+      `;
+      
     }
+    $(socialMediaContactTypeId).selectpicker('refresh');
 }
 
 function getSocialMediaContactType(value, elementId) {
@@ -498,12 +592,19 @@ document.getElementById('btnUpdateLargeScale').addEventListener('click', (e) => 
     e.preventDefault();
 
     $.ajax({
-        url: '/api/post/update-large-scale-company',
+        // url: '/api/post/update-large-scale-company',
+        url: '/api/v2/post/update-large-scale-company',
         type: 'post',
         data: $form.serialize(),
     }).done((response) => {
         if (response === 'success') {
+            Swal.fire('Success', 'Update Successful.', 'success');
             location.replace(host + '/profile');
+            setTimeout(() => {
+                location.replace(host + '/profile');
+            }, 1500);
+        } else {
+            Swal.fire('Warning', 'Something went wrong. Please call the administrator', 'warning');
         }
     });
 });
