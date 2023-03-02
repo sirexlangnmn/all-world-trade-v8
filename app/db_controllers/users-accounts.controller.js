@@ -15,3 +15,18 @@ exports.numberOfVisitorMembers = async (req, res) => {
             return 'Some error occurred while retrieving number Of Trader Members.';
         }); 
 };
+
+
+exports.tradersData = async (req, res) => {
+    condition1 = { type: 4 }
+    const smallScale = await Users_accounts.findAll( {where: condition1});
+    const mediumScale = await Users_accounts.findAll( {where: condition1});
+    const largeScale = await Users_accounts.findAll( {where: condition1});
+    const tradersWithNoPicture = await Users_accounts.findAll( {where: condition1});
+    const traders = await Users_accounts.findAll( {where: condition1});
+
+    let data = [];
+    data = {'Number of Small Scale: ': smallScale.length}
+    
+    res.send(data);
+};

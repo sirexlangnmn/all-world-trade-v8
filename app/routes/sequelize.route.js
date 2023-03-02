@@ -77,6 +77,9 @@ module.exports = (app) => {
 
     app.get(['/api/v2/get/number-of-visitor-members'], usersAccountsController.numberOfVisitorMembers);
 
+    // api for data aggregation and data checking
+    app.get(['/api/v2/get/traders-data'], usersAccountsController.tradersData);
+
     app.post(['/api/v2/post/update-company-details'], updateTraders.update);
     app.post(['/api/v2/post/update-large-scale-company'], updateLarge.update);
     
