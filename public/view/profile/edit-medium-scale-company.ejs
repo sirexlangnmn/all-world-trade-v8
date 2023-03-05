@@ -4,10 +4,10 @@
     <!-- Navbar goes here -->
     <%- include('../includes/nav/primary-navigation.ejs') %>
 
-    <div id="wrapper" class="is-collapse is-active">
-      <!-- === HEADER - START === -->
-     
-      <!-- === HEADER - END === -->
+      <div id="wrapper" class="is-collapse is-active">
+        <!-- === HEADER - START === -->
+
+        <!-- === HEADER - END === -->
 
         <!-- Main Contents -->
         <div class="main_content">
@@ -18,8 +18,8 @@
             <!-- Profile cover -->
             <div class="profile user-profile">
               <div class="profiles_banner image-upload">
-                <form action="javascript:void(0);" method="POST" id="editcompanyBanner"
-                  name="editcompanyBanner" enctype="multipart/form-data" accept-charset="utf-8">
+                <form action="javascript:void(0);" method="POST" id="editcompanyBanner" name="editcompanyBanner"
+                  enctype="multipart/form-data" accept-charset="utf-8">
                   <label for="companyBanner">
                     <img id="companyBannerPreview" src="uploads/placeholder/banner-placeholder2.jpg" />
                   </label>
@@ -57,7 +57,8 @@
               <div class="flex justify-between lg:border-t border-gray-100 flex-col-reverse lg:flex-row pt-2">
                 <nav class="responsive-nav pl-3">
                   <ul uk-switcher="connect: #timeline-tab; animation: uk-animation-fade">
-                    <li class="active orbitron" id="liTabCompanyDetails"><a href="#" id="tabCompanyDetails">About</a></li>
+                    <li class="active orbitron" id="liTabCompanyDetails"><a href="#" id="tabCompanyDetails">About</a>
+                    </li>
                     <!-- <li id="liTabMediaFiles"><a href="#" id="tabMediaFiles">Brochure </a></li>
                     <li id="liTabVideos"><a href="#" id="tabVideos">Videos</a></li>
                     <li><a href="#0">Dashboard</a></li>
@@ -68,7 +69,7 @@
                 <!-- button actions -->
                 <!-- === button_action.ejs - START === -->
                 <%- include('../includes/profile/button_action.ejs') %>
-                <!-- === button_action.ejs - END === -->
+                  <!-- === button_action.ejs - END === -->
 
               </div>
 
@@ -77,7 +78,7 @@
             <!-- BANNER LOGO AND NAV DIV - END  -->
             <!-- =============================  -->
             <form action="javascript:void(0);" method="POST" id="editMediumScaleForm" name="editMediumScaleForm"
-            enctype="multipart/form-data" accept-charset="utf-8">
+              enctype="multipart/form-data" accept-charset="utf-8">
               <div class="lg:flex lg:space-x-10 mt-2.5">
                 <!-- ===============================  -->
                 <!-- Company Details Display - START  -->
@@ -88,7 +89,8 @@
                       <div>
                         <h2 class="text-lg font-semibold">Company Details
                           <a class="hover:border-gray-100" href="#">
-                            <span class="icon-feather-info" style="font-size: 16px; font-family: inherit" uk-tooltip="title: Company Details Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.; pos: right">
+                            <span class="icon-feather-info" style="font-size: 16px; font-family: inherit"
+                              uk-tooltip="title: Company Details Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.; pos: right">
                             </span>
                           </a>
                         </h2>
@@ -99,32 +101,35 @@
                     <div class="flex-1 space-y-4 p-6">
                       <div id="new">
                         <label for="" class="orbitron"> Company Name: </label>
-                        <input type="text" placeholder="" class="shadow-none with-border" id="companyName" name="companyName">
+                        <input type="text" placeholder=""
+                        class="flex-1 px-3 py-2 text-gray-700 with-border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-600" id="companyName"
+                        name="companyName">
                         <p class="text-red-500" id="companyNameValidation"></p>
                       </div>
-                      <!-- <div>
-                        <label for=""> Company Tag Line: </label>
-                        <input type="text" placeholder="" class="shadow-none with-border" id="traderCompanyTagline" name="traderCompanyTagline">
-                        <p class="text-red-500" id="traderCompanyTaglineValidation"></p>
-                      </div> -->
                       <div>
                         <label for="" class="orbitron"> Business Website: </label>
-                        <input type="text" placeholder="" class="shadow-none with-border" id="businessWebsite" name="businessWebsite">
+                        <input type="text" placeholder=""
+                          class="flex-1 px-3 py-2 text-gray-700 with-border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-600" id="businessWebsite"
+                          name="businessWebsite">
                         <p class="text-red-500" id="businessWebsiteValidation"></p>
                       </div>
                       <div>
                         <label for="" class="orbitron"> Business Email Address: </label>
-                        <input type="text" placeholder="" class="shadow-none with-border" id="businessEmailAddress" name="businessEmailAddress">
+                        <input type="text" placeholder=""
+                        class="flex-1 px-3 py-2 text-gray-700 with-border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-600" id="businessEmailAddress"
+                          name="businessEmailAddress">
                         <p class="text-red-500" id="businessEmailAddressValidation"></p>
                       </div>
                       <div>
                         <label for="" class="orbitron"> Business Contact Number: </label>
-                        <input type="text" placeholder="" class="shadow-none with-border" id="businessContactNumber" name="businessContactNumber">
+                        <input type="text" placeholder="" class="flex-1 px-3 py-2 text-gray-700 with-border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-600" id="businessContactNumber"
+                          name="businessContactNumber" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
                         <p class="text-red-500" id="businessContactNumberValidation"></p>
                       </div>
                       <label for="" class="orbitron"> Social Media / Messaging App </label>
                       <div>
-                        <select id="businessSocialMediaContactType" name="businessSocialMediaContactType" class="shadow-none selectpicker with-border ">
+                        <select id="businessSocialMediaContactType" name="businessSocialMediaContactType"
+                          class="shadow-none selectpicker with-border ">
                           <option value="1">Viber</option>
                           <option value="2">Wechat</option>
                           <option value="3">Whatsapp</option>
@@ -132,24 +137,29 @@
                       </div>
                       <label for="" class="orbitron"> Mobile Number </label>
                       <div>
-                        <input type="text" placeholder="Mobile Number" class="shadow-none with-border" id="businessSocialMediaContactNumber" name="businessSocialMediaContactNumber">
+                        <input type="text" placeholder="Mobile Number" class="flex-1 px-3 py-2 text-gray-700 with-border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                          id="businessSocialMediaContactNumber" name="businessSocialMediaContactNumber"
+                          oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
                         <p class="text-red-500" id="businessSocialMediaContactNumberValidation"></p>
                       </div>
                       <div>
                         <label for="" class="orbitron">Business Country Location: </label>
-                        <select id="businessCountryLocation" name="businessCountryLocation" class="shadow-none selectpicker with-border ">
+                        <select id="businessCountryLocation" name="businessCountryLocation"
+                          class="shadow-none selectpicker with-border ">
                         </select>
                         <p class="text-red-500" id="businessCountryLocationValidation"></p>
                       </div>
                       <div>
                         <label for="" class="orbitron">Business States Location: </label>
-                        <select id="businessStatesLocation" name="businessStatesLocation" class="shadow-none selectpicker with-border ">
+                        <select id="businessStatesLocation" name="businessStatesLocation"
+                          class="shadow-none selectpicker with-border ">
                         </select>
                         <p class="text-red-500" id="businessStatesLocationValidation"></p>
                       </div>
                       <div>
                         <label for="" class="orbitron">Business City Location: </label>
-                        <select id="businessCityLocation" name="businessCityLocation" class="shadow-none selectpicker with-border ">
+                        <select id="businessCityLocation" name="businessCityLocation"
+                          class="shadow-none selectpicker with-border ">
                         </select>
                         <p class="text-red-500" id="businessCityLocationValidation"></p>
                       </div>
@@ -158,12 +168,6 @@
                         <select class="selectpicker" id="language" name="language" multiple>
                         </select>
                         <p class="text-red-500" id="languageValidation"></p>
-                      </div>
-                      <div class="col-span-2" style="display:none;">
-                        <label for="" class="mb-0 ml-2 text-gray-600 text-sm"> Languages of communication </label>
-                        <textarea type="text" rows="5" class="shadow-none with-border"
-                          id="currentLanguagesOfCommunication" name="currentLanguagesOfCommunication" placeholder=""
-                          class=""></textarea>
                       </div>
                     </div>
                     <!-- =============================  -->
@@ -174,7 +178,7 @@
                 <!-- ===============================  -->
                 <!-- Company Details Display - END  -->
                 <!-- ===============================  -->
-    
+
                 <!-- ===============================  -->
                 <!-- Company Representative - START  -->
                 <!-- ===============================  -->
@@ -186,7 +190,8 @@
                       <div>
                         <h2 class="text-lg font-semibold">Representative
                           <a class="hover:border-gray-100" href="#">
-                            <span class="icon-feather-info" style="font-size: 16px; font-family: inherit" uk-tooltip="title: Representative Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.; pos: right">
+                            <span class="icon-feather-info" style="font-size: 16px; font-family: inherit"
+                              uk-tooltip="title: Representative Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.; pos: right">
                             </span>
                           </a>
                         </h2>
@@ -200,17 +205,19 @@
                     <div class="flex-1 space-y-4 p-6">
                       <div>
                         <label for="" class="orbitron"> First Name </label>
-                        <input type="text" placeholder="" class="shadow-none with-border" id="firstName" name="firstName">
+                        <input type="text" placeholder="" class="flex-1 px-3 py-2 text-gray-700 with-border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-600" id="firstName"
+                          name="firstName">
                         <p class="text-red-500" id="firstNameValidation"></p>
                       </div>
                       <div>
                         <label for="" class="orbitron"> Last Name </label>
-                        <input type="text" placeholder="" class="shadow-none with-border" id="lastName" name="lastName">
+                        <input type="text" placeholder="" class="flex-1 px-3 py-2 text-gray-700 with-border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-600" id="lastName" name="lastName">
                         <p class="text-red-500" id="lastNameValidation"></p>
                       </div>
                       <div>
                         <label for="" class="orbitron"> Middle Name </label>
-                        <input type="text" placeholder="" class="shadow-none with-border" id="middleName" name="middleName">
+                        <input type="text" placeholder="" class="flex-1 px-3 py-2 text-gray-700 with-border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-600" id="middleName"
+                          name="middleName">
                         <p class="text-red-500" id="middleNameValidation"></p>
                       </div>
                       <div>
@@ -233,7 +240,8 @@
                       </div>
                       <label for="" class="orbitron"> Social Media / Messaging App (Optional) </label>
                       <div>
-                        <select id="personalSocialMediaContactType" name="personalSocialMediaContactType" class="shadow-none selectpicker with-border ">
+                        <select id="personalSocialMediaContactType" name="personalSocialMediaContactType"
+                          class="shadow-none selectpicker with-border ">
                           <option value="1">Viber</option>
                           <option value="2">Wechat</option>
                           <option value="3">Whatsapp</option>
@@ -241,7 +249,9 @@
                       </div>
                       <label for="" class="orbitron"> Mobile Number (Optional)</label>
                       <div>
-                        <input type="text" placeholder="Mobile Number" class="shadow-none with-border" id="personalSocialMediaContactNumber" name="personalSocialMediaContactNumber">
+                        <input type="text" placeholder="Mobile Number" class="flex-1 px-3 py-2 text-gray-700 with-border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                          id="personalSocialMediaContactNumber" name="personalSocialMediaContactNumber"
+                          oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
                         <p class="text-red-500" id="personalSocialMediaContactNumberValidation"></p>
                       </div>
                     </div>
@@ -252,7 +262,7 @@
                 <!-- ===============================  -->
               </div>
             </form>
-  
+
 
 
 
@@ -260,69 +270,69 @@
         </div>
 
 
-    </div>
-    <%- include('../includes/scripts/index.ejs') %>
-      <script  src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.3.0/sweetalert2.min.js"></script>
-      <script  src="assets/js/edit-medium-scale-profile.js"></script>
-      <script  src="assets/js/edit-medium-scale-profile-countries.js"></script>
-      <script  src="assets/js/getBusinessCountryLocationToBeEditAndOptions.js"></script>
-      <script  src="assets/js/getBusinessStatesLocationToBeEditAndOptions.js"></script>
-      <script  src="assets/js/getBusinessCityLocationToBeEditAndOptions.js"></script>
+      </div>
+      <%- include('../includes/scripts/index.ejs') %>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.3.0/sweetalert2.min.js"></script>
+        <script src="assets/js/edit-medium-scale-profile.js"></script>
+        <script src="assets/js/edit-medium-scale-profile-countries.js"></script>
+        <script src="assets/js/getBusinessCountryLocationToBeEditAndOptions.js"></script>
+        <script src="assets/js/getBusinessStatesLocationToBeEditAndOptions.js"></script>
+        <script src="assets/js/getBusinessCityLocationToBeEditAndOptions.js"></script>
 
-      <script  type="text/javascript">
-        function calcTime(city, offset) {
-          var b = new Date()
-          var utc = b.getTime() + (b.getTimezoneOffset() * 60000);
-          var nd = new Date(utc + (3600000 * offset));
-          return "the local time of " + city + " is" + nd.toLocaleString();
+        <script type="text/javascript">
+          function calcTime(city, offset) {
+            var b = new Date()
+            var utc = b.getTime() + (b.getTimezoneOffset() * 60000);
+            var nd = new Date(utc + (3600000 * offset));
+            return "the local time of " + city + " is" + nd.toLocaleString();
 
-        }
+          }
 
-        //get specific country time
-        console.log(calcTime('argentina', '-3'))
-        console.log(calcTime('afganistan', '+4.3'))
-        console.log(calcTime('Denmark', '+2'))
-        console.log(calcTime('japan', '+9'))
+          //get specific country time
+          console.log(calcTime('argentina', '-3'))
+          console.log(calcTime('afganistan', '+4.3'))
+          console.log(calcTime('Denmark', '+2'))
+          console.log(calcTime('japan', '+9'))
 
 
-        // ----------------------------------------------------
-        // for profile_dropdown [START]
-        // ----------------------------------------------------
-        // let sessionUuid =  `<%= data.uuid %>`;
-        let sessionType =  `<%= data.type %>`;
-        let sessionFirstName =  `<%= data.first_name %>`;
-        let sessionLastName =  `<%= data.last_name %>`;
-        let sessionEmail =  `<%= data.email %>`;
-        
-        sessionFirstName ? document.getElementById('user-name').innerHTML = sessionFirstName + ' ' + sessionLastName : '';
-        if (sessionType == 1) {
+          // ----------------------------------------------------
+          // for profile_dropdown [START]
+          // ----------------------------------------------------
+          // let sessionUuid =  `<%= data.uuid %>`;
+          let sessionType = `<%= data.type %>`;
+          let sessionFirstName = `<%= data.first_name %>`;
+          let sessionLastName = `<%= data.last_name %>`;
+          let sessionEmail = `<%= data.email %>`;
+
+          sessionFirstName ? document.getElementById('user-name').innerHTML = sessionFirstName + ' ' + sessionLastName : '';
+          if (sessionType == 1) {
             $('#upgrade-account').prop('disabled', true);
             document.getElementById('upgrade-account').style.display = 'none';
             document.getElementById('user-type').innerHTML = 'Trader';
             document.getElementById('userType').innerHTML = 'Trader';
-            
-        }
-        if (sessionType == 2) {
+
+          }
+          if (sessionType == 2) {
             $('#upgrade-account').prop('disabled', false);
             document.getElementById('upgrade-account').style.display = 'block';
             document.getElementById('user-type').innerHTML = 'Large Scale';
             document.getElementById('userType').innerHTML = 'Large Scale';
-        }
-        if (sessionType == 3) {
+          }
+          if (sessionType == 3) {
             $('#upgrade-account').prop('disabled', false);
             document.getElementById('upgrade-account').style.display = 'block';
             document.getElementById('user-type').innerHTML = 'Medium Scale';
             document.getElementById('userType').innerHTML = 'Medium Scale';
-        }
-        if (sessionType == 4) {
+          }
+          if (sessionType == 4) {
             document.getElementById('user-type').innerHTML = 'Small Scale';
             document.getElementById('userType').innerHTML = 'Small Scale';
-        }
+          }
 
         // ----------------------------------------------------
         // for profile_dropdown [END]
         // ----------------------------------------------------
-      </script>
+        </script>
 
   </body>
 

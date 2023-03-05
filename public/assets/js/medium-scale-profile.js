@@ -31,7 +31,8 @@ function getUserAddress() {
 
 function getCompanyDetails() {
     $.ajax({
-        url: '/api/get/company-details',
+        // url: '/api/get/company-details',
+        url: '/api/get/users-business',
         type: 'POST',
         success: function (data) {
             document.getElementById('displayBusinessNameH1').innerHTML = data[0].business_name;
@@ -103,9 +104,26 @@ function getLanguageNameByCode(code) {
     return value;
 }
 
+// function displayBusinessSocialMediaContactType(value, elementId) {
+//     let jsonObj =
+//         '{ "socialMediaContactType" : [' +
+//         '{ "id":"1" , "title":"Viber" },' +
+//         '{ "id":"2" , "title":"Wechat" },' +
+//         '{ "id":"3" , "title":"Whatsapp" } ]}';
+
+//     const parsedObj = JSON.parse(jsonObj);
+//     let data = parsedObj.socialMediaContactType;
+
+//     let filtered = data.filter((d) => d.id == value);
+
+//     document.getElementById(elementId).innerHTML = filtered[0].title;
+
+// }
+
 function displayBusinessSocialMediaContactType(value, elementId) {
     let jsonObj =
         '{ "socialMediaContactType" : [' +
+        '{ "id":"" , "title":"None" },' +
         '{ "id":"1" , "title":"Viber" },' +
         '{ "id":"2" , "title":"Wechat" },' +
         '{ "id":"3" , "title":"Whatsapp" } ]}';
@@ -115,8 +133,11 @@ function displayBusinessSocialMediaContactType(value, elementId) {
 
     let filtered = data.filter((d) => d.id == value);
 
-    document.getElementById(elementId).innerHTML = filtered[0].title;
-
+    if (filtered.length > 0) {
+        document.getElementById(elementId).innerHTML = filtered[0].title;
+    } else {
+        document.getElementById(elementId).innerHTML = parsedObj.socialMediaContactType[0].title;
+    }
 }
 
 function editProfile() {

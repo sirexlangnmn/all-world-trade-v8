@@ -531,7 +531,7 @@ function getBusinessSocialMediaContactType(value, elementId) {
     };
     const parsedObj = JSON.parse(JSON.stringify(jsonObj)); // create a deep copy to avoid mutation
     const companyDetails = parsedObj.companyDetails;
-    
+
     if (value == '' || value == null) {
         socialMediaContactTypeId.innerHTML = `
         ${companyDetails.map(
@@ -554,36 +554,36 @@ function getBusinessSocialMediaContactType(value, elementId) {
             )
             .join('')}
       `;
-      
+
     }
     $(socialMediaContactTypeId).selectpicker('refresh');
 }
 
-function getSocialMediaContactType(value, elementId) {
-    let jsonObj =
-        '{ "companyDetails" : [' +
-        '{ "id":"1" , "title":"Viber" },' +
-        '{ "id":"2" , "title":"Wechat" },' +
-        '{ "id":"3" , "title":"Whatsapp" } ]}';
+// function getSocialMediaContactType(value, elementId) {
+//     let jsonObj =
+//         '{ "companyDetails" : [' +
+//         '{ "id":"1" , "title":"Viber" },' +
+//         '{ "id":"2" , "title":"Wechat" },' +
+//         '{ "id":"3" , "title":"Whatsapp" } ]}';
 
-    const parsedObj = JSON.parse(jsonObj);
-    let companyDetails = parsedObj.companyDetails;
+//     const parsedObj = JSON.parse(jsonObj);
+//     let companyDetails = parsedObj.companyDetails;
 
-    let filtered = companyDetails.filter((d) => d.id == value);
+//     let filtered = companyDetails.filter((d) => d.id == value);
 
-    document.getElementById(elementId).innerHTML =
-        '<option value="' + filtered[0].id + '">' + filtered[0].title + '</option>';
-    for (var i = 0; i < companyDetails.length; i++) {
-        document.getElementById(elementId).innerHTML =
-            document.getElementById(elementId).innerHTML +
-            '<option value="' +
-            companyDetails[i]['id'] +
-            '">' +
-            companyDetails[i]['title'] +
-            '</option>';
-    }
-    $('#' + elementId).selectpicker('refresh');
-}
+//     document.getElementById(elementId).innerHTML =
+//         '<option value="' + filtered[0].id + '">' + filtered[0].title + '</option>';
+//     for (var i = 0; i < companyDetails.length; i++) {
+//         document.getElementById(elementId).innerHTML =
+//             document.getElementById(elementId).innerHTML +
+//             '<option value="' +
+//             companyDetails[i]['id'] +
+//             '">' +
+//             companyDetails[i]['title'] +
+//             '</option>';
+//     }
+//     $('#' + elementId).selectpicker('refresh');
+// }
 
 const $form = $('#editLargeScaleForm');
 
@@ -599,7 +599,6 @@ document.getElementById('btnUpdateLargeScale').addEventListener('click', (e) => 
     }).done((response) => {
         if (response === 'success') {
             Swal.fire('Success', 'Update Successful.', 'success');
-            location.replace(host + '/profile');
             setTimeout(() => {
                 location.replace(host + '/profile');
             }, 1500);

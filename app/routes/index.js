@@ -102,6 +102,8 @@ module.exports = (app) => {
     // Retrieve all Company Details
     app.post(['/api/get/company-details'], usersBusiness.findAll);
 
+    app.post(['/api/get/users-business'], usersBusiness.findUsersBusiness);
+
     app.post(['/api/get/business-location-code'], usersBusiness.findBusinessLocationCode);
 
     // Retrieve user

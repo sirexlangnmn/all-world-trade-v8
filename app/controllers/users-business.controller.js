@@ -28,6 +28,19 @@ exports.findAll = (req, res) => {
     });
 };
 
+
+exports.findUsersBusiness = (req, res) => {
+    const uuid = req.session.user.uuid;
+
+    Tutorial.getUsersBusiness(uuid, (err, data) => {
+        if (err)
+            res.status(500).send({
+                message: err.message || 'Some error occurred while retrieving data.',
+            });
+        else res.send(data);
+    });
+};
+
 exports.findBusinessLocationCode = (req, res) => {
     const uuid = req.session.user.uuid;
 

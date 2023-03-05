@@ -28,6 +28,24 @@ Tutorial.getAll = (uuid, result) => {
     });
 };
 
+Tutorial.getUsersBusiness = (uuid, result) => {
+    let query = 'SELECT * FROM users_businesses';
+    const originalUuid = CryptoJS.AES.decrypt(uuid, JWT_SECRET).toString(CryptoJS.enc.Utf8);
+
+    if (originalUuid) {
+        query += ` WHERE uuid = "${originalUuid}"`;
+    }
+
+    sql.query(query, (err, res) => {
+        if (err) {
+            result(null, err);
+            return;
+        }
+
+        result(null, res);
+    });
+};
+
 Tutorial.getBusinessLocationCode = (uuid, result) => {
     let query =
         'SELECT business_country, business_states, business_city, region_of_operation, country_of_operation, country_for_state, states_of_operation, city_of_operation FROM users_businesses';

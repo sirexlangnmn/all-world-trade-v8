@@ -118,8 +118,8 @@
                       </div>
                       <div>
                         <label for="" class="orbitron">Business Contact Number</label>
-                        <input type="text" placeholder="" class="flex-1 px-3 py-2 text-gray-700 with-border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-600" id="businessContactNumber"
-                          name="businessContactNumber">
+                        <input type="text" placeholder="" class="flex-1 px-3 py-2 text-gray-700 with-border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-600" id="businessContactNumber" name="businessContactNumber"
+                          oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
                         <p class="text-red-500" id="businessContactNumberValidation"></p>
                       </div>
                       <label for="" class="orbitron"> Social Media / Messaging App </label>
@@ -129,13 +129,13 @@
                       </div>
                       <label for="" class="orbitron"> Social Media / Messaging App Contact Number</label>
                       <div>
-                        <input type="text" placeholder="Mobile Number" class="shadow-none with-border"
-                          id="businessSocialMediaContactNumber" name="businessSocialMediaContactNumber">
+                        <input type="text" placeholder="Mobile Number" class="flex-1 px-3 py-2 text-gray-700 with-border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-600" id="businessSocialMediaContactNumber" name="businessSocialMediaContactNumber"
+                          oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" >
                         <p class="text-red-500" id="businessSocialMediaContactNumberValidation"></p>
                       </div>
                       <div>
                         <label for="" class="orbitron">Business Address</label>
-                        <input type="text" placeholder="" class="shadow-none with-border" id="businessAddress"
+                        <input type="text" placeholder="" class="flex-1 px-3 py-2 text-gray-700 with-border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-600" id="businessAddress"
                           name="businessAddress">
                         <p class="text-red-500" id="businessAddressValidation"></p>
                       </div>
@@ -257,17 +257,17 @@
                     <div class="flex-1 space-y-4 p-6">
                       <div>
                         <label for="" class="orbitron"> First Name </label>
-                        <input type="text" placeholder="" class="shadow-none with-border" id="firstName" name="firstName">
+                        <input type="text" placeholder="" class="flex-1 px-3 py-2 text-gray-700 with-border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-600" id="firstName" name="firstName">
                         <p class="text-red-500" id="firstNameValidation"></p>
                       </div>
                       <div>
                         <label for="" class="orbitron"> Last Name </label>
-                        <input type="text" placeholder="" class="shadow-none with-border" id="lastName" name="lastName">
+                        <input type="text" placeholder="" class="flex-1 px-3 py-2 text-gray-700 with-border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-600" id="lastName" name="lastName">
                         <p class="text-red-500" id="lastNameValidation"></p>
                       </div>
                       <div>
                         <label for="" class="orbitron"> Middle Name </label>
-                        <input type="text" placeholder="" class="shadow-none with-border" id="middleName" name="middleName">
+                        <input type="text" placeholder="" class="flex-1 px-3 py-2 text-gray-700 with-border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-600" id="middleName" name="middleName">
                         <p class="text-red-500" id="middleNameValidation"></p>
                       </div>
                       <div>
@@ -295,7 +295,8 @@
                       </div>
                       <label for="" class="orbitron"> Mobile Number (Optional)</label>
                       <div>
-                        <input type="text" placeholder="Mobile Number" class="shadow-none with-border" id="personalSocialMediaContactNumber" name="personalSocialMediaContactNumber">
+                        <input type="text" placeholder="Mobile Number" class="flex-1 px-3 py-2 text-gray-700 with-border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-600" id="personalSocialMediaContactNumber" name="personalSocialMediaContactNumber"
+                        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" >
                         <p class="text-red-500" id="personalSocialMediaContactNumberValidation"></p>
                       </div>
                     </div>

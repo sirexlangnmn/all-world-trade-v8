@@ -40,7 +40,8 @@ function getUsersAccount() {
 
 function getCompanyDetails() {
     $.ajax({
-        url: '/api/get/company-details',
+        // url: '/api/get/company-details',
+        url: '/api/get/users-business',
         type: 'POST',
         success: function (data) {
             if (data[0].business_social_media_contact_type) {

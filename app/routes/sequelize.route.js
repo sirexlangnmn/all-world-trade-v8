@@ -25,8 +25,9 @@ module.exports = (app) => {
 
     const updateTraders = controllers.update_traders;
     const updateLarge = controllers.update_large_scale_company;
+    const updateMedium = controllers.update_medium_scale_company;
 
-    const testController = controllers.testValidation; // I used support_links table for my input tests 
+    const testController = controllers.testValidation; // I used support_links table for my input tests
     const testValidation = middleware.testValidation;
 
     app.post(
@@ -82,9 +83,9 @@ module.exports = (app) => {
 
     app.post(['/api/v2/post/update-company-details'], updateTraders.update);
     app.post(['/api/v2/post/update-large-scale-company'], updateLarge.update);
-    
+    app.post(['/api/v2/post/update-medium-scale-company',], updateMedium.update);
 
-    
+
     // app.post(
     //     ['/api/v2/test/post/file-and-input-test'],
     //     testValidation,
@@ -100,10 +101,10 @@ module.exports = (app) => {
         if (!errors.isEmpty()) {
           return res.status(422).json({ errors: errors.array() });
         }
-        
+
         // const text = req.body.text;
         // console.log('req.body.text', text);
-        
+
         // your code to save the file and text
       });
 };

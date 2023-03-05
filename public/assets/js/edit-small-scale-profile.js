@@ -32,7 +32,8 @@ function getUserAddress() {
 
 function getCompanyDetails() {
     $.ajax({
-        url: '/api/get/company-details',
+        // url: '/api/get/company-details',
+        url: '/api/get/users-business',
         type: 'POST',
         success: function (data) {
             document.getElementById('currentLanguagesOfCommunication').value =
