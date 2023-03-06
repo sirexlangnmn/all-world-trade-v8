@@ -1,25 +1,3 @@
-const companyDetailsJsonObj2 = [];
-const dataForDisplaySearchParameter = [];
-var intervalId = null;
-var varCounter = 0;
-
-$(function () {
-    getCompaniesRelatedToCurrentUser();
-    displayFirstCompanyDetails();
-    displayTopCompany();
-});
-
-$(window).scroll(function (e) {
-    var $el = $('.fixed-top-mid');
-    var isPositionFixed = $el.css('position') == 'fixed';
-    if ($(this).scrollTop() > 200 && !isPositionFixed) {
-        $el.css({ position: 'fixed', top: '0px' });
-    }
-    if ($(this).scrollTop() < 200 && isPositionFixed) {
-        $el.css({ position: 'static', top: '0px' });
-    }
-});
-
 let tradeCategories;
 let subCategories;
 let minorSubCategories;
@@ -96,78 +74,69 @@ selectedTradeCategories = getId('selectedTradeCategories');
 selectedSubCategories = getId('selectedSubCategories');
 selectedMinorSubCategories = getId('selectedMinorSubCategories');
 
+const fixedTopMid = document.querySelector('.fixed-top-mid');
+
+const companyDetailsJsonObj2 = [];
+const dataForDisplaySearchParameter = [];
+var intervalId = null;
+var varCounter = 0;
+
+$(function () {
+    getCompaniesRelatedToCurrentUser();
+    displayFirstCompanyDetails();
+    displayTopCompany();
+});
+
+window.addEventListener('scroll', handleScroll);
+
+function handleScroll() {
+    const isPositionFixed = window.getComputedStyle(fixedTopMid).getPropertyValue('position') === 'fixed';
+
+    if (window.scrollY > 200 && !isPositionFixed) {
+        fixedTopMid.style.position = 'fixed';
+        fixedTopMid.style.top = '0';
+    }
+
+    if (window.scrollY < 200 && isPositionFixed) {
+        fixedTopMid.style.position = 'static';
+        fixedTopMid.style.top = '0';
+    }
+}
+
 // ============================================
 // responsiveness of height in selection [start]
 // ============================================
+window.addEventListener('load', handleSelectionPageResize);
+window.addEventListener('resize', handleSelectionPageResize);
 
-addEventListener('load', (event) => {
-    let screenHeight = window.innerHeight;
-    let adjustedScreenHeight = screenHeight - 125;
-    let adjustedScreenHeight2 = (screenHeight - 125) / 2;
+function handleSelectionPageResize() {
+    console.log('selection resize:');
+    const screenHeight = window.innerHeight;
+    const adjustedScreenHeight = screenHeight - 125;
+    const adjustedScreenHeight2 = (screenHeight - 125) / 2;
 
-    let customStyles = {
-        height: adjustedScreenHeight + 'px',
+    const customStyles = {
+        height: `${adjustedScreenHeight}px`,
     };
 
-    let customStyles2 = {
-        height: adjustedScreenHeight2 + 'px',
+    const customStyles2 = {
+        height: `${adjustedScreenHeight2}px`,
     };
 
-    Object.assign(selectionLeftColumn.style, customStyles);
-    Object.assign(companiesProfilePicture.style, customStyles);
-    Object.assign(selectionMidColumnCompanyBanner.style, customStyles);
-    Object.assign(cardForDetailsOfSpecificCompany.style, customStyles2);
-    Object.assign(cardForCompanySearchResult.style, customStyles2);
+    selectionLeftColumn.style.height = customStyles.height;
+    companiesProfilePicture.style.height = customStyles.height;
+    selectionMidColumnCompanyBanner.style.height = customStyles.height;
+    cardForDetailsOfSpecificCompany.style.height = customStyles2.height;
+    cardForCompanySearchResult.style.height = customStyles2.height;
+    selectionsPrevSlide.style.top = customStyles2.height;
+    selectionsNextSlide.style.top = customStyles2.height;
 
-    //=========================================================
-    // initializations of image height in selection [START]
-    //=========================================================
-    // Get all the images inside the ul element with class 'uk-slideshow-items'
+    // Initialize image height in selection
     const images = document.querySelectorAll('.uk-slideshow-items img');
-
-    // Loop through each image and set its height to 1000px
     images.forEach((image) => {
         image.style.height = `${adjustedScreenHeight}px`;
     });
-    //=========================================================
-    // initializations of image height in selection [END]
-    //=========================================================
-});
-
-addEventListener('resize', (event) => {
-    let screenHeight = window.innerHeight;
-    let adjustedScreenHeight = screenHeight - 125;
-    let adjustedScreenHeight2 = (screenHeight - 125) / 2;
-
-    let customStyles = {
-        height: adjustedScreenHeight + 'px',
-    };
-
-    let customStyles2 = {
-        height: adjustedScreenHeight2 + 'px',
-    };
-
-    Object.assign(selectionLeftColumn.style, customStyles);
-    Object.assign(companiesProfilePicture.style, customStyles);
-    Object.assign(selectionMidColumnCompanyBanner.style, customStyles);
-    Object.assign(cardForDetailsOfSpecificCompany.style, customStyles2);
-    Object.assign(cardForCompanySearchResult.style, customStyles2);
-
-    //=========================================================
-    // initializations of image height in selection [START]
-    //=========================================================
-    // Get all the images inside the ul element with class 'uk-slideshow-items'
-    const images = document.querySelectorAll('.uk-slideshow-items img');
-
-    // Loop through each image and set its height to 1000px
-    images.forEach((image) => {
-        image.style.height = `${adjustedScreenHeight}px`;
-    });
-    //=========================================================
-    // initializations of image height in selection [END]
-    //=========================================================
-});
-
+}
 // ============================================
 // responsiveness of height in selection [end]
 // ============================================
