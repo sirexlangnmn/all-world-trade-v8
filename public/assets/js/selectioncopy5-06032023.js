@@ -74,29 +74,12 @@ selectedTradeCategories = getId('selectedTradeCategories');
 selectedSubCategories = getId('selectedSubCategories');
 selectedMinorSubCategories = getId('selectedMinorSubCategories');
 
-let businessIndustryBelongId = getId('selection-business-industry-belong');
-let businessLanguageOfCommunicationId = getId('selection-business-language-of-communication');
-let companyNameId = getId('selection-company-name');
-let companyTaglineId = getId('selection-company-tagline');
-let businessMajorCategoryId = getId('selection-business-major-category');
-let businessSubCategoryId = getId('selection-business-sub-category');
-let businessMinorSubCategoryId = getId('selection-business-minor-sub-category');
-let businessScaleId = getId('selection-business-scale');
-let companyRegionOfOperationsId = getId('selection-company-region-of-operations');
-let countryOfOperationsId = getId('selection-company-country-of-operations');
-let stateOfOperationsId = getId('selection-company-state-of-operations');
-let localOperatingTimeId = getId('local-operating-time');
-let uctOperatingTimeId = getId('uct-operating-time');
-
-
 const fixedTopMid = document.querySelector('.fixed-top-mid');
 
 const companyDetailsJsonObj2 = [];
 const dataForDisplaySearchParameter = [];
-let intervalId = null;
-let varCounter = 0;
-let timer;
-let num = 0;
+var intervalId = null;
+var varCounter = 0;
 
 $(function () {
     getCompaniesRelatedToCurrentUser();
@@ -120,13 +103,14 @@ function handleScroll() {
     }
 }
 
-// ===============================================
+// ============================================
 // responsiveness of height in selection [start]
-// ===============================================
+// ============================================
 window.addEventListener('load', handleSelectionPageResize);
 window.addEventListener('resize', handleSelectionPageResize);
 
 function handleSelectionPageResize() {
+    console.log('selection resize:');
     const screenHeight = window.innerHeight;
     const adjustedScreenHeight = screenHeight - 125;
     const adjustedScreenHeight2 = (screenHeight - 125) / 2;
@@ -157,22 +141,65 @@ function handleSelectionPageResize() {
 // responsiveness of height in selection [end]
 // ============================================
 
-selectionsNextSlide.addEventListener('mouseleave', handleSelectionsSlideClickV2);
-selectionsPrevSlide.addEventListener('mouseleave', handleSelectionsSlideClickV2);
+// selectionsPrevSlide.onmouseup = function () {
+//     varCounter = 0;
+//     intervalId = setInterval(getImageName, 1500);
+// };
 
-function handleSelectionsSlideClickV2(e) {
+// selectionsPrevSlide.onmousedown = function () {
+//     varCounter = 0;
+//     intervalId = setInterval(getImageName, 1500);
+// };
+
+// selectionsPrevSlide.onkeyup = function () {
+//     varCounter = 0;
+//     intervalId = setInterval(getImageName, 1500);
+// };
+
+// selectionsPrevSlide.addEventListener('click', (e) => {
+//     varCounter = 0;
+//     intervalId = setInterval(getImageName, 1500);
+// });
+
+selectionsPrevSlide.addEventListener('mouseleave', (e) => {
     varCounter = 0;
     intervalId = setInterval(getImageName, 1000);
-}
+});
 
-selectionsNextSlide.addEventListener('click', handleSelectionsSlideClickV1);
-selectionsPrevSlide.addEventListener('click', handleSelectionsSlideClickV1);
+// selectionsPrevSlide.onmouseover = function () {
+//     varCounter = 0;
+//     intervalId = setInterval(getImageName, 1500);
+// };
 
-function handleSelectionsSlideClickV1() {
+// selectionsNextSlide.onmouseup = function () {
+//     varCounter = 0;
+//     intervalId = setInterval(getImageName, 1500);
+// };
+
+// selectionsNextSlide.onmousedown = function () {
+//     varCounter = 0;
+//     intervalId = setInterval(getImageName, 1500);
+// };
+
+//not working
+// selectionsNextSlide.onkeyup = function () {
+//     varCounter = 0;
+//     intervalId = setInterval(getImageName, 1500);
+// };
+
+// selectionsNextSlide.addEventListener('click', (e) => {
+//     varCounter = 0;
+//     intervalId = setInterval(getImageName, 1500);
+// });
+
+var timer,
+    num = 0;
+
+$('#selections-prev-slide').click(function () {
     varCounter = 0;
 
-    // This condition is required because 2 click events are fired for each dblclick
-    // but we only want to record the time of the first click
+    /*This condition is required because 2 click events are fired for each
+    dblclick but we only want to record the time of the first click*/
     if (num % 2 === 0) {
         if (num === 0) {
             timer = new Date().getTime() - 2000;
@@ -181,8 +208,8 @@ function handleSelectionsSlideClickV1() {
         }
     }
 
-    const time2 = new Date().getTime();
-    const dblClickTime = time2 - timer;
+    let time2 = new Date().getTime(),
+        dblClickTime = time2 - timer;
     console.log('dblClickTime: ', dblClickTime);
     console.log('time2: ', time2);
     console.log('timer: ', timer);
@@ -193,12 +220,49 @@ function handleSelectionsSlideClickV1() {
     } else {
         console.log('too fast: ', dblClickTime);
     }
-
     num++;
-}
+});
 
-selectionsNextSlide.addEventListener('transitionend', getImageName);
-selectionsPrevSlide.addEventListener('transitionend', getImageName);
+$('#selections-next-slide').click(function () {
+    varCounter = 0;
+
+    /*This condition is required because 2 click events are fired for each
+    dblclick but we only want to record the time of the first click*/
+    if (num % 2 === 0) {
+        if (num === 0) {
+            timer = new Date().getTime() - 2000;
+        } else {
+            timer = new Date().getTime();
+        }
+    }
+
+    let time2 = new Date().getTime(),
+        dblClickTime = time2 - timer;
+    // console.log('dblClickTime: ', dblClickTime);
+    // console.log('time2: ', time2);
+    // console.log('timer: ', timer);
+
+    if (dblClickTime > 1000) {
+        // console.log('good: ', dblClickTime);
+        intervalId = setInterval(getImageName, 1500);
+    } else {
+        // console.log('too fast: ', dblClickTime);
+    }
+    num++;
+});
+
+selectionsNextSlide.addEventListener('mouseleave', (e) => {
+    varCounter = 0;
+    intervalId = setInterval(getImageName, 1000);
+});
+
+// selectionsNextSlide.onmouseover = function () {
+//     varCounter = 0;
+//     intervalId = setInterval(getImageName, 1500);
+// };
+
+document.getElementById('selections-next-slide').addEventListener('transitionend', getImageName);
+document.getElementById('selections-prev-slide').addEventListener('transitionend', getImageName);
 
 let isTransitioning = false;
 function getImageName() {
@@ -221,12 +285,12 @@ function getImageName() {
         //=========================================================
 
         const activeDivOfCarousel = getSl('.uk-active.uk-transition-active');
-        if (activeDivOfCarousel) {
-            const activeImageOfCarousel = activeDivOfCarousel.getElementsByTagName('img')[0];
-            const imageSrcOfActiveImageInCarousel = activeImageOfCarousel.src;
-            const imageNameOfActiveImageInCarousel = imageSrcOfActiveImageInCarousel.split('/').pop();
-            displayCompanyDetailsUsingImageName(imageNameOfActiveImageInCarousel);
-        }
+        const activeImageOfCarousel = activeDivOfCarousel.getElementsByTagName('img')[0];
+        const imageSrcOfActiveImageInCarousel = activeImageOfCarousel.src;
+        const imageNameOfActiveImageInCarousel = imageSrcOfActiveImageInCarousel.split('/').pop();
+
+        console.log('imageNameOfActiveImageInCarousel: ', imageNameOfActiveImageInCarousel);
+        displayCompanyDetailsUsingImageName(imageNameOfActiveImageInCarousel);
 
         setTimeout(() => {
             isTransitioning = false;
@@ -236,111 +300,39 @@ function getImageName() {
     }
 }
 
-// function displayCompanyDetailsUsingImageName(filename) {
-//     const companyDetails = companyDetailsJsonObj2[0].find((details) => details.banner === filename);
-
-//     const {
-//         business_name,
-//         business_tagline,
-//         business_language_of_communication, // businessLanguageOfCommunication,
-//         business_major_category, // businessMajorCategory,
-//         business_sub_category, // businessSubCategory,
-//         business_minor_sub_category, // businessMinorSubCategory,
-//         business_scale, // businessScale,
-//         business_industry_belong_to, // businessIndustryBelongTo,
-//         country_of_operation, // countryOfOperation,
-//         states_of_operation, // statesOfOperation,
-//         city_of_operation, // cityOfOperation,
-//         region_of_operation, // regionOfOperation,
-//         start_operating_hour, // startOperatingHour,
-//         end_operating_hour, // endOperatingHour,
-//     } = companyDetails;
-
-//     const businessIndustryBelongId = getId('selection-business-industry-belong');
-//     const businessLanguageOfCommunicationId = getId('selection-business-language-of-communication');
-//     const companyNameId = getId('selection-company-name');
-//     const companyTaglineId = getId('selection-company-tagline');
-//     const businessMajorCategoryId = getId('selection-business-major-category');
-//     const businessSubCategoryId = getId('selection-business-sub-category');
-//     const businessMinorSubCategoryId = getId('selection-business-minor-sub-category');
-//     const businessScaleId = getId('selection-business-scale');
-//     const companyRegionOfOperationsId = getId('selection-company-region-of-operations');
-//     const countryOfOperationsId = getId('selection-company-country-of-operations');
-//     const stateOfOperationsId = getId('selection-company-state-of-operations');
-//     const localOperatingTimeId = getId('local-operating-time');
-//     const uctOperatingTimeId = getId('uct-operating-time');
-
-//     businessIndustryBelongId.innerHTML = '';
-//     businessLanguageOfCommunicationId.innerHTML = '';
-//     companyRegionOfOperationsId.innerHTML = '';
-//     countryOfOperationsId.innerHTML = '';
-//     stateOfOperationsId.innerHTML = '';
-
-//     if (!companyDetails) return;
-//     console.log('companyDetails', companyDetails);
-//     companyNameId.innerHTML = business_name; //businessName;
-//     companyTaglineId.innerHTML = business_tagline || '';
-//     businessMajorCategoryId.innerHTML = business_major_category
-//         ? getTradeCategoriesTitleById(business_major_category)
-//         : 'N/A';
-//     businessSubCategoryId.innerHTML = business_sub_category ? getSubCategoriesTitleById(business_sub_category) : 'N/A';
-//     businessMinorSubCategoryId.innerHTML = business_minor_sub_category
-//         ? getMinorSubCategoriesTitleById(business_minor_sub_category)
-//         : 'N/A';
-//     businessScaleId.innerHTML = business_scale ? getBusinessScaleTitle(business_scale) : 'N/A';
-//     business_language_of_communication ? formattingLanguageName(business_language_of_communication) : '';
-//     business_industry_belong_to ? formattingBusinessTags(business_industry_belong_to) : '';
-//     country_of_operation
-//         ? getCountryNameUsingCode(country_of_operation, 'selection-company-country-of-operations')
-//         : '';
-//     states_of_operation
-//         ? getStatesNameToBeDisplayUsingCode(states_of_operation, 'selection-company-state-of-operations')
-//         : '';
-//     city_of_operation ? getCityNameToBeDisplayUsingCode(city_of_operation, 'selection-company-city-of-operations') : '';
-//     companyRegionOfOperationsId.innerHTML = region_of_operation ? region_of_operation : 'N/A';
-//     localOperatingTimeId.innerHTML =
-//         start_operating_hour && end_operating_hour ? `${start_operating_hour} - ${end_operating_hour}` : 'N/A';
-//     uctOperatingTimeId.innerHTML =
-//         start_operating_hour && end_operating_hour
-//             ? convertTimeToInternationalStart(start_operating_hour, 'Philippines', 'UTC') +
-//               ' - ' +
-//               convertTimeToInternationalEnd(end_operating_hour, 'Philippines', 'UTC')
-//             : 'N/A';
-// }
-
 function displayCompanyDetailsUsingImageName(filename) {
     const companyDetails = companyDetailsJsonObj2[0].find((details) => details.banner === filename);
 
     const {
-        business_name, // businessName,
-        business_tagline, //  businessTagline,
-        business_language_of_communication, //  businessLanguageOfCommunication,
-        business_major_category, //  businessMajorCategory,
-        business_sub_category, //  businessSubCategory,
-        business_minor_sub_category, //  businessMinorSubCategory,
-        business_scale, //  businessScale,
-        business_industry_belong_to, //  businessIndustryBelongTo,
-        country_of_operation, //  countryOfOperation,
-        states_of_operation, //  statesOfOperation,
-        city_of_operation, //  cityOfOperation,
-        region_of_operation, //  regionOfOperation,
-        start_operating_hour, //  startOperatingHour,
-        end_operating_hour, //  endOperatingHour,
+        business_name: businessName,
+        business_tagline: businessTagline,
+        business_language_of_communication: businessLanguageOfCommunication,
+        business_major_category: businessMajorCategory,
+        business_sub_category: businessSubCategory,
+        business_minor_sub_category: businessMinorSubCategory,
+        business_scale: businessScale,
+        business_industry_belong_to: businessIndustryBelongTo,
+        country_of_operation: countryOfOperation,
+        states_of_operation: statesOfOperation,
+        city_of_operation: cityOfOperation,
+        region_of_operation: regionOfOperation,
+        start_operating_hour: startOperatingHour,
+        end_operating_hour: endOperatingHour,
     } = companyDetails;
 
-    // const businessIndustryBelongId = getId('selection-business-industry-belong');
-    // const businessLanguageOfCommunicationId = getId('selection-business-language-of-communication');
-    // const companyNameId = getId('selection-company-name');
-    // const companyTaglineId = getId('selection-company-tagline');
-    // const businessMajorCategoryId = getId('selection-business-major-category');
-    // const businessSubCategoryId = getId('selection-business-sub-category');
-    // const businessMinorSubCategoryId = getId('selection-business-minor-sub-category');
-    // const businessScaleId = getId('selection-business-scale');
-    // const companyRegionOfOperationsId = getId('selection-company-region-of-operations');
-    // const countryOfOperationsId = getId('selection-company-country-of-operations');
-    // const stateOfOperationsId = getId('selection-company-state-of-operations');
-    // const localOperatingTimeId = getId('local-operating-time');
-    // const uctOperatingTimeId = getId('uct-operating-time');
+    const businessIndustryBelongId = getId('selection-business-industry-belong');
+    const businessLanguageOfCommunicationId = getId('selection-business-language-of-communication');
+    const companyNameId = getId('selection-company-name');
+    const companyTaglineId = getId('selection-company-tagline');
+    const businessMajorCategoryId = getId('selection-business-major-category');
+    const businessSubCategoryId = getId('selection-business-sub-category');
+    const businessMinorSubCategoryId = getId('selection-business-minor-sub-category');
+    const businessScaleId = getId('selection-business-scale');
+    const companyRegionOfOperationsId = getId('selection-company-region-of-operations');
+    const countryOfOperationsId = getId('selection-company-country-of-operations');
+    const stateOfOperationsId = getId('selection-company-state-of-operations');
+    const localOperatingTimeId = getId('local-operating-time');
+    const uctOperatingTimeId = getId('uct-operating-time');
 
     businessIndustryBelongId.innerHTML = '';
     businessLanguageOfCommunicationId.innerHTML = '';
@@ -350,31 +342,31 @@ function displayCompanyDetailsUsingImageName(filename) {
 
     if (!companyDetails) return;
     console.log('companyDetails', companyDetails);
-    companyNameId.innerHTML = business_name;
-    companyTaglineId.innerHTML = business_tagline || '';
-    businessMajorCategoryId.innerHTML = business_major_category
-        ? getTradeCategoriesTitleById(business_major_category)
+    companyNameId.innerHTML = businessName;
+    companyTaglineId.innerHTML = businessTagline || '';
+    businessMajorCategoryId.innerHTML = businessMajorCategory
+        ? getTradeCategoriesTitleById(businessMajorCategory)
         : 'N/A';
-    businessSubCategoryId.innerHTML = business_sub_category ? getSubCategoriesTitleById(business_sub_category) : 'N/A';
-    businessMinorSubCategoryId.innerHTML = business_minor_sub_category
-        ? getMinorSubCategoriesTitleById(business_minor_sub_category)
+    businessSubCategoryId.innerHTML = businessSubCategory ? getSubCategoriesTitleById(businessSubCategory) : 'N/A';
+    businessMinorSubCategoryId.innerHTML = businessMinorSubCategory
+        ? getMinorSubCategoriesTitleById(businessMinorSubCategory)
         : 'N/A';
-    businessScaleId.innerHTML = business_scale ? getBusinessScaleTitle(business_scale) : 'N/A';
-    business_language_of_communication ? formattingLanguageName(business_language_of_communication) : '';
-    business_industry_belong_to ? formattingBusinessTags(business_industry_belong_to) : '';
-    country_of_operation ? getCountryNameUsingCode(country_of_operation, 'selection-company-country-of-operations') : '';
-    states_of_operation
-        ? getStatesNameToBeDisplayUsingCode(states_of_operation, 'selection-company-state-of-operations')
+    businessScaleId.innerHTML = businessScale ? getBusinessScaleTitle(businessScale) : 'N/A';
+    businessLanguageOfCommunication ? formattingLanguageName(businessLanguageOfCommunication) : '';
+    businessIndustryBelongTo ? formattingBusinessTags(businessIndustryBelongTo) : '';
+    countryOfOperation ? getCountryNameUsingCode(countryOfOperation, 'selection-company-country-of-operations') : '';
+    statesOfOperation
+        ? getStatesNameToBeDisplayUsingCode(statesOfOperation, 'selection-company-state-of-operations')
         : '';
-    city_of_operation ? getCityNameToBeDisplayUsingCode(city_of_operation, 'selection-company-city-of-operations') : '';
-    companyRegionOfOperationsId.innerHTML = region_of_operation ? region_of_operation : 'N/A';
+    cityOfOperation ? getCityNameToBeDisplayUsingCode(cityOfOperation, 'selection-company-city-of-operations') : '';
+    companyRegionOfOperationsId.innerHTML = regionOfOperation ? regionOfOperation : 'N/A';
     localOperatingTimeId.innerHTML =
-    start_operating_hour && end_operating_hour ? `${start_operating_hour} - ${end_operating_hour}` : 'N/A';
+        startOperatingHour && endOperatingHour ? `${startOperatingHour} - ${endOperatingHour}` : 'N/A';
     uctOperatingTimeId.innerHTML =
-    start_operating_hour && end_operating_hour
-            ? convertTimeToInternationalStart(start_operating_hour, 'Philippines', 'UTC') +
+        startOperatingHour && endOperatingHour
+            ? convertTimeToInternationalStart(startOperatingHour, 'Philippines', 'UTC') +
               ' - ' +
-              convertTimeToInternationalEnd(end_operating_hour, 'Philippines', 'UTC')
+              convertTimeToInternationalEnd(endOperatingHour, 'Philippines', 'UTC')
             : 'N/A';
 }
 
@@ -409,17 +401,17 @@ function displayFirstCompanyDetails() {
         end_operating_hour: endOperatingHour,
     } = firstCompany;
 
-    // const businessIndustryBelongId = getId('selection-business-industry-belong');
-    // const businessLanguageOfCommunicationId = getId('selection-business-language-of-communication');
-    // const companyNameId = getId('selection-company-name');
-    // const companyTaglineId = getId('selection-company-tagline');
-    // const businessMajorCategoryId = getId('selection-business-major-category');
-    // const businessSubCategoryId = getId('selection-business-sub-category');
-    // const businessMinorSubCategoryId = getId('selection-business-minor-sub-category');
-    // const businessScaleId = getId('selection-business-scale');
-    // const companyRegionOfOperationsId = getId('selection-company-region-of-operations');
-    // const localOperatingTimeId = getId('local-operating-time');
-    // const uctOperatingTimeId = getId('uct-operating-time');
+    const businessIndustryBelongId = getId('selection-business-industry-belong');
+    const businessLanguageOfCommunicationId = getId('selection-business-language-of-communication');
+    const companyNameId = getId('selection-company-name');
+    const companyTaglineId = getId('selection-company-tagline');
+    const businessMajorCategoryId = getId('selection-business-major-category');
+    const businessSubCategoryId = getId('selection-business-sub-category');
+    const businessMinorSubCategoryId = getId('selection-business-minor-sub-category');
+    const businessScaleId = getId('selection-business-scale');
+    const companyRegionOfOperationsId = getId('selection-company-region-of-operations');
+    const localOperatingTimeId = getId('local-operating-time');
+    const uctOperatingTimeId = getId('uct-operating-time');
 
     companyNameId.innerHTML = businessName;
     companyTaglineId.innerHTML = businessTagline || 'N/A';

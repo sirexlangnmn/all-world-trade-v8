@@ -314,19 +314,28 @@ document.addEventListener(
 
 
         
-        else if (has_class(e.target, 'test')) {
-        }
+        // else if (has_class(e.target, 'test')) {
+        // }
 
     },
     false,
 );
 
+// function has_class(elem, className) {
+//     // console.log('elem', elem);
+//     // console.log('className', className);
+//     // console.log('elem.className.split', elem.className.split(' ').indexOf(className) > -1);
+//     return elem.className.split(' ').indexOf(className) > -1;
+// }
+
 function has_class(elem, className) {
-    // console.log('elem', elem);
-    // console.log('className', className);
-    // console.log('elem.className.split', elem.className.split(' ').indexOf(className) > -1);
-    return elem.className.split(' ').indexOf(className) > -1;
-}
+    try {
+      return elem.className.split(' ').indexOf(className) > -1;
+    } catch (error) {
+    //   console.error('Error in has_class function:', error);
+      return false;
+    }
+  }
 
 function carouselOptionsRemoveActiveClass(className) {
     var elements = document.querySelectorAll('.' + className);
