@@ -493,7 +493,7 @@ function displaySearchParameter() {
         <a href="index.html">Home</a>
       </li>
       <li class="active">
-        <a href="#">Selection </a>
+        <a href="" onclick="return false;">Selection </a>
       </li>
     `;
     const data = dataForDisplaySearchParameter[0];
@@ -501,28 +501,28 @@ function displaySearchParameter() {
     if (data.business_major_category) {
         html += `
         <li class="">
-          <a href="#">${getTradeCategoriesTitleById(data.business_major_category)}</a>
+          <a href="" onclick="return false;">${getTradeCategoriesTitleById(data.business_major_category)}</a>
         </li>
       `;
     }
     if (data.business_sub_category) {
         html += `
         <li class="">
-          <a href="#">${getSubCategoriesTitleById(data.business_sub_category)}</a>
+          <a href="" onclick="return false;">${getSubCategoriesTitleById(data.business_sub_category)}</a>
         </li>
       `;
     }
     if (data.business_minor_sub_category) {
         html += `
         <li class="">
-          <a href="#">${getMinorSubCategoriesTitleById(data.business_minor_sub_category)}</a>
+          <a href="" onclick="return false;">${getMinorSubCategoriesTitleById(data.business_minor_sub_category)}</a>
         </li>
       `;
     }
     if (data.region_of_operation) {
         html += `
         <li class="">
-          <a href="#">${data.region_of_operation}</a>
+          <a href="" onclick="return false;">${data.region_of_operation}</a>
         </li>
       `;
     }

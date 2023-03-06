@@ -119,7 +119,6 @@ addEventListener('load', (event) => {
     Object.assign(cardForDetailsOfSpecificCompany.style, customStyles2);
     Object.assign(cardForCompanySearchResult.style, customStyles2);
 
-
     //=========================================================
     // initializations of image height in selection [START]
     //=========================================================
@@ -127,7 +126,7 @@ addEventListener('load', (event) => {
     const images = document.querySelectorAll('.uk-slideshow-items img');
 
     // Loop through each image and set its height to 1000px
-    images.forEach(image => {
+    images.forEach((image) => {
         image.style.height = `${adjustedScreenHeight}px`;
     });
     //=========================================================
@@ -161,7 +160,7 @@ addEventListener('resize', (event) => {
     const images = document.querySelectorAll('.uk-slideshow-items img');
 
     // Loop through each image and set its height to 1000px
-    images.forEach(image => {
+    images.forEach((image) => {
         image.style.height = `${adjustedScreenHeight}px`;
     });
     //=========================================================
@@ -309,13 +308,13 @@ function getImageName() {
         const adjustedScreenHeight = window.innerHeight - 125;
 
         // Loop through all images inside the ul element and set their height to 1000px
-        document.querySelectorAll('.uk-slideshow-items img').forEach(img => {
+        document.querySelectorAll('.uk-slideshow-items img').forEach((img) => {
             img.style.height = `${adjustedScreenHeight}px`;
         });
         //=========================================================
         // SET image height in selection [END]
         //=========================================================
-        
+
         const activeDivOfCarousel = getSl('.uk-active.uk-transition-active');
         const activeImageOfCarousel = activeDivOfCarousel.getElementsByTagName('img')[0];
         const imageSrcOfActiveImageInCarousel = activeImageOfCarousel.src;
@@ -351,7 +350,6 @@ function displayCompanyDetailsUsingImageName(filename) {
         start_operating_hour: startOperatingHour,
         end_operating_hour: endOperatingHour,
     } = companyDetails;
-
 
     const businessIndustryBelongId = getId('selection-business-industry-belong');
     const businessLanguageOfCommunicationId = getId('selection-business-language-of-communication');
@@ -406,7 +404,10 @@ function displayCompanyDetailsUsingImageName(filename) {
 function displayFirstCompanyDetails() {
     const [firstCompany] = companyDetailsJsonObj2[0];
     console.log('displayFirstCompanyDetails firstCompany: ', firstCompany);
-    console.log('displayFirstCompanyDetails firstCompany companyDetailsJsonObj2[0].length: ', companyDetailsJsonObj2[0].length);
+    console.log(
+        'displayFirstCompanyDetails firstCompany companyDetailsJsonObj2[0].length: ',
+        companyDetailsJsonObj2[0].length,
+    );
     console.log('displayFirstCompanyDetails companyDetailsJsonObj2[0]: ', companyDetailsJsonObj2[0]);
 
     if (firstCompany === undefined) {
@@ -487,20 +488,17 @@ function displayTopCompany() {
                 </div>
             </div>`;
     }
-    
-
 }
 
 function displayTopCompanyImage() {
-
     companiesProfilePicture.innerHTML = '';
-    
+
     let bannerTitle1 = getCompaniesProfilePicture(companyDetailsJsonObj2[0][0].id, companyDetailsJsonObj2[0][0].uuid);
     console.log('displayTopCompanyImage bannerTitle1:', bannerTitle1);
     console.log('displayTopCompanyImage business_name2:', companyDetailsJsonObj2[0][0].business_name);
     const img = new Image();
     img.src = host + '/uploads/users_upload_files/' + bannerTitle1[0].banner;
-    img.onload = function() {
+    img.onload = function () {
         const adjustedScreenHeight = window.innerHeight - 125;
         img.style.height = `${adjustedScreenHeight}px`;
         const li = document.createElement('li');
@@ -508,32 +506,35 @@ function displayTopCompanyImage() {
         companiesProfilePicture.appendChild(li);
     };
 
-    setTimeout(() => {            
+    setTimeout(() => {
         const leng = companyDetailsJsonObj2[0].length;
         // for (let i = leng - 1; i >= 0; i--) {
         for (var i = leng - 1; i > -1; i--) {
-            let bannerTitle2 = getCompaniesProfilePicture(companyDetailsJsonObj2[0][i].id, companyDetailsJsonObj2[0][i].uuid);
+            let bannerTitle2 = getCompaniesProfilePicture(
+                companyDetailsJsonObj2[0][i].id,
+                companyDetailsJsonObj2[0][i].uuid,
+            );
             //if(bannerTitle1[0].banner != bannerTitle2[0].banner) {
-                console.log('displayTopCompanyImage bannerTitle2:', i +' - '+ bannerTitle2);
-                console.log('displayTopCompanyImage business_name2:', i +' - '+ companyDetailsJsonObj2[0][i].business_name);
-                const img = new Image();
-                img.src = host + '/uploads/users_upload_files/' + bannerTitle2[0].banner;
-                img.onload = function() {
-                    const adjustedScreenHeight = window.innerHeight - 125;
-                    img.style.height = `${adjustedScreenHeight}px`;
-                    const li = document.createElement('li');
-                    li.appendChild(img);
-                    companiesProfilePicture.appendChild(li);
-                };
+            console.log('displayTopCompanyImage bannerTitle2:', i + ' - ' + bannerTitle2);
+            console.log(
+                'displayTopCompanyImage business_name2:',
+                i + ' - ' + companyDetailsJsonObj2[0][i].business_name,
+            );
+            const img = new Image();
+            img.src = host + '/uploads/users_upload_files/' + bannerTitle2[0].banner;
+            img.onload = function () {
+                const adjustedScreenHeight = window.innerHeight - 125;
+                img.style.height = `${adjustedScreenHeight}px`;
+                const li = document.createElement('li');
+                li.appendChild(img);
+                companiesProfilePicture.appendChild(li);
+            };
             // } else {
             //     console.log('displayTopCompanyImage same bannerTitle1[0].banner:', bannerTitle1[0].banner);
             //     console.log('displayTopCompanyImage same bannerTitle2[0].banner:', bannerTitle2[0].banner);
             // }
         }
     }, 500);
-        
-    
-
 }
 
 function displaySearchParameter() {
@@ -543,7 +544,7 @@ function displaySearchParameter() {
         <a href="index.html">Home</a>
       </li>
       <li class="active">
-        <a href="#">Selection </a>
+        <a href="" onclick="return false;">Selection </a>
       </li>
     `;
     const data = dataForDisplaySearchParameter[0];
@@ -551,28 +552,28 @@ function displaySearchParameter() {
     if (data.business_major_category) {
         html += `
         <li class="">
-          <a href="#">${getTradeCategoriesTitleById(data.business_major_category)}</a>
+          <a href="" onclick="return false;">${getTradeCategoriesTitleById(data.business_major_category)}</a>
         </li>
       `;
     }
     if (data.business_sub_category) {
         html += `
         <li class="">
-          <a href="#">${getSubCategoriesTitleById(data.business_sub_category)}</a>
+          <a href="" onclick="return false;">${getSubCategoriesTitleById(data.business_sub_category)}</a>
         </li>
       `;
     }
     if (data.business_minor_sub_category) {
         html += `
         <li class="">
-          <a href="#">${getMinorSubCategoriesTitleById(data.business_minor_sub_category)}</a>
+          <a href="" onclick="return false;">${getMinorSubCategoriesTitleById(data.business_minor_sub_category)}</a>
         </li>
       `;
     }
     if (data.region_of_operation) {
         html += `
         <li class="">
-          <a href="#">${data.region_of_operation}</a>
+          <a href="" onclick="return false;">${data.region_of_operation}</a>
         </li>
       `;
     }
@@ -836,21 +837,18 @@ function getCompaniesRelatedToCurrentUser() {
                 companyDetailsJsonObj2.push(data);
                 dataForDisplaySearchParameter.push(data[0]);
 
-
                 const adjustedScreenHeight = window.innerHeight - 125;
                 const img = new Image();
                 img.className = 'companyBannerPreview';
                 img.id = 'companyBannerPreview';
-                img.onload = function() {
+                img.onload = function () {
                     this.style.height = '';
                     this.style.height = `${adjustedScreenHeight}px`;
                 };
 
-
                 let adjustedScreenHeight2 = (window.innerHeight - 125) / 2;
                 document.getElementById('selections-prev-slide').style.top = `${adjustedScreenHeight2}px`;
                 document.getElementById('selections-next-slide').style.top = `${adjustedScreenHeight2}px`;
-
 
                 companiesProfilePicture.innerHTML = '';
                 const fragment = document.createDocumentFragment();
@@ -858,13 +856,13 @@ function getCompaniesRelatedToCurrentUser() {
                 for (let i = data.length - 1; i >= 0; i--) {
                     const bannerTitle = getCompaniesProfilePicture(data[i]['id'], data[i]['uuid']);
                     const bannerSrc = host + '/uploads/users_upload_files/' + bannerTitle[0].banner;
-                  
+
                     img.src = bannerSrc;
                     const li = document.createElement('li');
                     li.appendChild(img.cloneNode());
                     fragment.appendChild(li);
                 }
-                  
+
                 companiesProfilePicture.appendChild(fragment);
 
                 displaySearchParameter();
@@ -954,13 +952,13 @@ function getBusinessScaleTitle(id) {
         case 3:
             value = 'Large Scale';
             break;
-        case "1":
+        case '1':
             value = 'Small Scale';
             break;
-        case "2":
+        case '2':
             value = 'Medium Scale';
             break;
-        case "3":
+        case '3':
             value = 'Large Scale';
             break;
         case '':
@@ -970,11 +968,8 @@ function getBusinessScaleTitle(id) {
             value = 'N/A';
     }
 
-  
-
     return value;
 }
-
 
 function formattingBusinessTags(string) {
     if (string) {
@@ -1019,7 +1014,7 @@ function displayTopCompanyDetails(companyName) {
     $('#selection-business-language-of-communication').empty();
     $('#selection-business-sub-category').empty();
     $('#selection-business-minor-sub-category').empty();
-    
+
     let leng = companyDetailsJsonObj2[0].length;
 
     for (let i = 0; i < leng; i++) {
@@ -1043,12 +1038,12 @@ function displayTopCompanyDetails(companyName) {
                     companyDetailsJsonObj2[0][i].business_sub_category,
                 );
             }
-           
-            document.getElementById('selection-business-minor-sub-category').innerHTML =
-                companyDetailsJsonObj2[0][i].business_minor_sub_category
+
+            document.getElementById('selection-business-minor-sub-category').innerHTML = companyDetailsJsonObj2[0][i]
+                .business_minor_sub_category
                 ? getMinorSubCategoriesTitleById(companyDetailsJsonObj2[0][i].business_minor_sub_category)
                 : 'N/A';
-            
+
             if (companyDetailsJsonObj2[0][i].business_scale) {
                 document.getElementById('selection-business-scale').innerHTML = getBusinessScaleTitle(
                     companyDetailsJsonObj2[0][i].business_scale,
@@ -1077,23 +1072,21 @@ function displayTopCompanyDetails(companyName) {
                 document.getElementById('selection-company-region-of-operations').innerHTML = 'N/A';
             }
 
-          
             const localOperatingTimeId = getId('local-operating-time');
             const uctOperatingTimeId = getId('uct-operating-time');
             const startOperatingHour = companyDetailsJsonObj2[0][i].start_operating_hour;
             const endOperatingHour = companyDetailsJsonObj2[0][i].end_operating_hour;
-            
+
             if (startOperatingHour || endOperatingHour) {
                 localOperatingTimeId.innerHTML =
-                startOperatingHour && endOperatingHour ? `${startOperatingHour} - ${endOperatingHour}` : 'N/A';
+                    startOperatingHour && endOperatingHour ? `${startOperatingHour} - ${endOperatingHour}` : 'N/A';
                 uctOperatingTimeId.innerHTML =
                     startOperatingHour && endOperatingHour
                         ? convertTimeToInternationalStart(startOperatingHour, 'Philippines', 'UTC') +
-                        ' - ' +
-                        convertTimeToInternationalEnd(endOperatingHour, 'Philippines', 'UTC')
+                          ' - ' +
+                          convertTimeToInternationalEnd(endOperatingHour, 'Philippines', 'UTC')
                         : 'N/A';
             }
-          
 
             // $('#companiesProfilePicture').empty();
             // let bannerTitle = getCompaniesProfilePicture(
@@ -1111,7 +1104,6 @@ function displayTopCompanyDetails(companyName) {
             //     '" alt="" uk-cover>' +
             //     '</li>';
 
-
             // setTimeout(() => {
             //     const adjustedScreenHeight = window.innerHeight - 125;
             //     // Get the image element
@@ -1120,19 +1112,20 @@ function displayTopCompanyDetails(companyName) {
             //     img.style.height = `${adjustedScreenHeight}px`;
             // }, 500);
 
-
             $('#companiesProfilePicture').empty();
-            let bannerTitle = getCompaniesProfilePicture(companyDetailsJsonObj2[0][i].id, companyDetailsJsonObj2[0][i].uuid);
+            let bannerTitle = getCompaniesProfilePicture(
+                companyDetailsJsonObj2[0][i].id,
+                companyDetailsJsonObj2[0][i].uuid,
+            );
             const img = new Image();
             img.src = host + '/uploads/users_upload_files/' + bannerTitle[0].banner;
-            img.onload = function() {
+            img.onload = function () {
                 const adjustedScreenHeight = window.innerHeight - 125;
                 img.style.height = `${adjustedScreenHeight}px`;
                 const li = document.createElement('li');
                 li.appendChild(img);
                 companiesProfilePicture.appendChild(li);
             };
-
         }
     }
 }
@@ -1199,14 +1192,14 @@ function selectionSearchParameter() {
                     companyDetailsJsonObj2.pop();
                 }
                 companyDetailsJsonObj2.push(data);
-               
+
                 companiesProfilePicture.innerHTML = '';
-        
+
                 displayFirstCompanyDetails();
                 displayTopCompany();
                 displayTopCompanyImage();
                 // setTimeout(() => {
-                    
+
                 //     displayTopCompanyImage();
                 // }, 500);
             }
@@ -1254,7 +1247,6 @@ function selectionSearchParameter() {
 //     showRandomChoices();
 // }
 
-
 function replaceDashCompanyDetailsDiv() {
     // $('#companiesProfilePicture').empty();
     $('#top-selection-results').empty();
@@ -1282,25 +1274,25 @@ function replaceDashCompanyDetailsDiv() {
 
 function replaceNACompanyDetailsDiv() {
     const ids = [
-      'selection-company-name',
-      'selection-company-tagline',
-      'selection-business-language-of-communication',
-      'selection-business-major-category',
-      'selection-business-sub-category',
-      'selection-business-minor-sub-category',
-      'selection-business-industry-belong',
-      'selection-company-country-of-operations',
-      'selection-company-state-of-operations',
-      'selection-company-city-of-operations',
-      'selection-company-region-of-operations',
-      'selection-business-scale',
-      'local-operating-time'
+        'selection-company-name',
+        'selection-company-tagline',
+        'selection-business-language-of-communication',
+        'selection-business-major-category',
+        'selection-business-sub-category',
+        'selection-business-minor-sub-category',
+        'selection-business-industry-belong',
+        'selection-company-country-of-operations',
+        'selection-company-state-of-operations',
+        'selection-company-city-of-operations',
+        'selection-company-region-of-operations',
+        'selection-business-scale',
+        'local-operating-time',
     ];
-  
-    ids.forEach(id => {
-      document.getElementById(id).innerHTML = '';
+
+    ids.forEach((id) => {
+        document.getElementById(id).innerHTML = '';
     });
-  }
+}
 
 function noRecordFoundImageSrc() {
     let noRecordFoundImageSrc = host + '/uploads/placeholder/no-record-found.jpg';

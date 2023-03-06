@@ -6,8 +6,8 @@ body {
     background: #92bde7;
     color: #485e74;
     line-height: 1.6;
-    /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
-    font-family: 'Orbitron' !important;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* font-family: 'Orbitron' !important; */
     padding: 1em;
 }
 

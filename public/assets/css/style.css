@@ -10,7 +10,7 @@
 ----------------------------------------------------------------- */
 /* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap'); */
 /* @import url('/public/assets/fonts/Demo-Nasalization/Demo_Fonts/Fontspring-DEMO-nasalization-rg.otf'); */
-@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap'); */
 
 /* @font-face {
     font-family: 'nasalizationregular';
@@ -835,9 +835,9 @@ body {
     color: #666;
     font-size: 15px;
     line-height: 27px;
-    /* font-family: Inter, sans-serif !important; */
+    font-family: Inter, sans-serif !important;
     /* font-family: 'nasalizationregular' !important; */
-    font-family: 'Orbitron' !important;
+    /* font-family: 'Orbitron' !important; */
     text-transform: none;
 }
 
@@ -853,37 +853,37 @@ h3,
 h4,
 h5,
 h6 {
-    /* font-family: Inter, sans-serif !important; */
-    font-family: 'Orbitron' !important;
+    font-family: Inter, sans-serif !important;
+    /* font-family: 'Orbitron' !important; */
     text-transform: none;
 }
 
 input[type='text'],
 input[type='password'],
 input[type='email'] {
-    /* font-family: Inter, sans-serif !important; */
-    font-family: 'Orbitron' !important;
+    font-family: Inter, sans-serif !important;
+    /* font-family: 'Orbitron' !important; */
     text-transform: none;
 }
 
 textarea,
 select {
-    /* font-family: Inter, sans-serif !important; */
-    font-family: 'Orbitron' !important;
+    font-family: Inter, sans-serif !important;
+    /* font-family: 'Orbitron' !important; */
     text-transform: none;
 }
 
 input[type='button'],
 input[type='submit'] {
-    /* font-family: Inter, sans-serif !important; */
-    font-family: 'Orbitron' !important;
+    font-family: Inter, sans-serif !important;
+    /* font-family: 'Orbitron' !important; */
     text-transform: none;
 }
 
 button,
 body .pac-container {
-    /* font-family: Inter, sans-serif !important; */
-    font-family: 'Orbitron' !important;
+    font-family: Inter, sans-serif !important;
+    /* font-family: 'Orbitron' !important; */
     text-transform: none;
 }
 

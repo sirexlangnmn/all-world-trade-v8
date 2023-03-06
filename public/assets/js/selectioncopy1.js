@@ -471,12 +471,12 @@ function displaySearchParameter() {
     document.getElementById('displaySearchParameter').innerHTML += '<a href="index.html">Home</a>';
     document.getElementById('displaySearchParameter').innerHTML += '</li>';
     document.getElementById('displaySearchParameter').innerHTML += '<li class="active">';
-    document.getElementById('displaySearchParameter').innerHTML += '<a href="#">Selection </a>';
+    document.getElementById('displaySearchParameter').innerHTML += '<a href="" onclick="return false;">Selection </a>';
     document.getElementById('displaySearchParameter').innerHTML += '</li>';
     if (dataForDisplaySearchParameter[0].business_major_category) {
         document.getElementById('displaySearchParameter').innerHTML += '<li class="">';
         document.getElementById('displaySearchParameter').innerHTML +=
-            '<a href="#">' +
+            '<a href="" onclick="return false;">' +
             getTradeCategoriesTitleById(dataForDisplaySearchParameter[0].business_major_category) +
             '</a>';
         document.getElementById('displaySearchParameter').innerHTML += '</li>';
@@ -484,14 +484,14 @@ function displaySearchParameter() {
     if (dataForDisplaySearchParameter[0].business_sub_category) {
         document.getElementById('displaySearchParameter').innerHTML += '<li class="">';
         document.getElementById('displaySearchParameter').innerHTML +=
-            '<a href="#">' + getSubCategoriesTitleById(dataForDisplaySearchParameter[0].business_sub_category) + '</a>';
+            '<a href="" onclick="return false;">' + getSubCategoriesTitleById(dataForDisplaySearchParameter[0].business_sub_category) + '</a>';
         document.getElementById('displaySearchParameter').innerHTML += '</li>';
     }
 
     if (dataForDisplaySearchParameter[0].business_minor_sub_category) {
         document.getElementById('displaySearchParameter').innerHTML += '<li class="">';
         document.getElementById('displaySearchParameter').innerHTML +=
-            '<a href="#">' +
+            '<a href="" onclick="return false;">' +
             getMinorSubCategoriesTitleById(dataForDisplaySearchParameter[0].business_minor_sub_category) +
             '</a>';
         document.getElementById('displaySearchParameter').innerHTML += '</li>';
@@ -499,7 +499,7 @@ function displaySearchParameter() {
     if (dataForDisplaySearchParameter[0].region_of_operation) {
         document.getElementById('displaySearchParameter').innerHTML += '<li class="">';
         document.getElementById('displaySearchParameter').innerHTML +=
-            '<a href="#">' + dataForDisplaySearchParameter[0].region_of_operation + '</a>';
+            '<a href="" onclick="return false;">' + dataForDisplaySearchParameter[0].region_of_operation + '</a>';
         document.getElementById('displaySearchParameter').innerHTML += '</li>';
     }
     if (dataForDisplaySearchParameter[0].country_of_operation) {
