@@ -260,7 +260,7 @@ document.addEventListener(
             } else {
                 selectedTradeCategories.value = '';
             }
-            getSubCategory('selectedTradeCategories', 'sub-categories')
+            getSubCategory('selectedTradeCategories', 'sub-categories');
             carouselOptionsRemoveActiveClass('filterByTradeCategoryClass');
             e.target.classList.add('bg-gray-200');
             selectionSearchParameter();

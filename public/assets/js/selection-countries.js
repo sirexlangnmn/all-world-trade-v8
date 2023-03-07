@@ -283,11 +283,13 @@ document.addEventListener(
                 selectedTradeCategories.value = '';
             }
             getSubCategory('selectedTradeCategories', 'sub-categories')
+            minorSubCategories.innerHTML = '';
+            minorSubCategories.innerHTML = 'Any';
             carouselOptionsRemoveActiveClass('filterByTradeCategoryClass');
             e.target.classList.add('bg-gray-200');
             selectionSearchParameter();
             closeAccordion('selectionTradeCategoriesAccordion');
-        } 
+        }
         if (has_class(e.target, 'filterBySubCategoryClass')) {
             displaySelectedSubCategories.innerHTML = e.target.getAttribute('data-el')
                 ? getSubCategoriesTitleById(e.target.getAttribute('data-el'))
@@ -300,7 +302,6 @@ document.addEventListener(
             selectionSearchParameter();
             closeAccordion('selectionSubCategoriesAccordion');
         }
-        
         if (has_class(e.target, 'filterByMinorSubCategoryClass')) {
             displaySelectedMinorSubCategories.innerHTML = e.target.getAttribute('data-el')
                 ? getMinorSubCategoriesTitleById(e.target.getAttribute('data-el'))
