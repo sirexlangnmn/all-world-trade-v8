@@ -1,55 +1,82 @@
-// PREV NEXT ICONS IN SLIDES
-let selectionsNextSlide = getId('selections-next-slide');
-let selectionsPrevSlide = getId('selections-prev-slide');
+let tradeCategories;
+let subCategories;
+let minorSubCategories;
 
-//CARD LAYOUT OF SELECTION (lef,tmid,right)
-let selectionLeftColumn = getId('selectionLeftColumn');
-let selectionMidColumnCompanyBanner = getId('selectionMidColumnCompanyBanner');
-let cardForDetailsOfSpecificCompany = getId('cardForDetailsOfSpecificCompany');
-let cardForCompanySearchResult = getId('cardForCompanySearchResult');
+let companiesProfilePicture;
 
-// SCOPE OF OPERATION
-let selectionRegionOfOperation = getId('selectionRegionOfOperation');
-let displayselectedRegionOfOperation = getId('displayselectedRegionOfOperation');
-let displaySelectedCountry = getId('displaySelectedCountry');
-let displaySelectedState = getId('displaySelectedState');
-let displaySelectedCity = getId('displaySelectedCity');
-let selectedRegionOfOperation = getId('selectedRegionOfOperation');
-let selectedCountry = getId('selectedCountry');
-let selectedState = getId('selectedState');
-let selectedCity = getId('selectedCity');
+// to get the active image in carousel
+let selectionsNextSlide;
+let selectionsPrevSlide;
+let activeDivOfCarousel;
+let activeImageOfCarousel;
+let imageSrcOfActiveImageInCarousel;
+let imageNameOfActiveImageInCarousel;
+let fileNameOfActiveImageInCarousel;
 
-// IN THE BOTTOM PART OF REGION OF OPERATION BUT IDEPENDENT IDENTITY
-let displaySelectedBusinessScale = getId('displaySelectedBusinessScale');
-let selectedBusinessScale = getId('selectedBusinessScale');
+//cards of selection column
+let selectionLeftColumn;
+let cardForDetailsOfSpecificCompany;
+let cardForCompanySearchResult;
+let selectionMidColumnCompanyBanner;
 
-let displaySelectedlanguage = getId('displaySelectedlanguage');
-let selectedLanguage = getId('selectedLanguage');
-let languageDiv = getId('language');
+// for selection/filter (left column)
+let selectionRegionOfOperation;
+let displayselectedRegionOfOperation;
+let displaySelectedCountry;
+let displaySelectedState;
+let displaySelectedCity;
+let displaySelectedlanguage;
+let displaySelectedBusinessScale;
+let displaySelectedTradeCategories;
+let displaySelectedSubCategories;
+let displaySelectedMinorSubCategories;
+let selectedRegionOfOperation;
+let selectedCountry;
+let selectedState;
+let selectedCity;
+let selectedLanguage;
+let selectedBusinessScale;
+let selectedTradeCategories;
+let selectedSubCategories;
+let selectedMinorSubCategories;
 
-// SELECTION CATEGORY
-let tradeCategories = getId('trade-categories');
-let subCategories = getId('sub-categories');
-let minorSubCategories = getId('minor-sub-categories');
-let displaySelectedTradeCategories = getId('displaySelectedTradeCategories');
-let displaySelectedSubCategories = getId('displaySelectedSubCategories');
-let displaySelectedMinorSubCategories = getId('displaySelectedMinorSubCategories');
-let selectedTradeCategories = getId('selectedTradeCategories');
-let selectedSubCategories = getId('selectedSubCategories');
-let selectedMinorSubCategories = getId('selectedMinorSubCategories');
+tradeCategories = getId('trade-categories');
+subCategories = getId('sub-categories');
+minorSubCategories = getId('minor-sub-categories');
 
-// SEARCH BY
-let product_service_input = getId('product_service_input');
-let company_name_input = getId('company_name_input');
-let searchByProductOrCompanyName = getId('searchByProductOrCompanyName');
+companiesProfilePicture = getId('companiesProfilePicture');
 
-// ul kung saan nag concatenate yung mga image sa carousel
-let companiesProfilePicture = getId('companiesProfilePicture');
+selectionsNextSlide = getId('selections-next-slide');
+selectionsPrevSlide = getId('selections-prev-slide');
 
-// BREADCRUMB
+selectionLeftColumn = getId('selectionLeftColumn');
+selectionMidColumnCompanyBanner = getId('selectionMidColumnCompanyBanner');
+cardForDetailsOfSpecificCompany = getId('cardForDetailsOfSpecificCompany');
+cardForCompanySearchResult = getId('cardForCompanySearchResult');
+
+selectionRegionOfOperation = getId('selectionRegionOfOperation');
+displayselectedRegionOfOperation = getId('displayselectedRegionOfOperation');
+displaySelectedCountry = getId('displaySelectedCountry');
+displaySelectedState = getId('displaySelectedState');
+displaySelectedCity = getId('displaySelectedCity');
+displaySelectedlanguage = getId('displaySelectedlanguage');
+displaySelectedBusinessScale = getId('displaySelectedBusinessScale');
+displaySelectedTradeCategories = getId('displaySelectedTradeCategories');
+displaySelectedSubCategories = getId('displaySelectedSubCategories');
+displaySelectedMinorSubCategories = getId('displaySelectedMinorSubCategories');
+selectedRegionOfOperation = getId('selectedRegionOfOperation');
+selectedCountry = getId('selectedCountry');
+selectedState = getId('selectedState');
+selectedCity = getId('selectedCity');
+selectedLanguage = getId('selectedLanguage');
+selectedBusinessScale = getId('selectedBusinessScale');
+selectedTradeCategories = getId('selectedTradeCategories');
+selectedSubCategories = getId('selectedSubCategories');
+selectedMinorSubCategories = getId('selectedMinorSubCategories');
+
+let topSelectionResultsId = getId('top-selection-results');
 let displaySearchParameterId = getId('displaySearchParameter');
 
-// COMPANY DETAILS
 let businessIndustryBelongId = getId('selection-business-industry-belong');
 let businessLanguageOfCommunicationId = getId('selection-business-language-of-communication');
 let companyNameId = getId('selection-company-name');
@@ -64,14 +91,7 @@ let stateOfOperationsId = getId('selection-company-state-of-operations');
 let localOperatingTimeId = getId('local-operating-time');
 let uctOperatingTimeId = getId('uct-operating-time');
 
-// RESULT
-let topSelectionResultsId = getId('top-selection-results');
-
-// di ko gets kung para saan itong fixed-top-mid
 const fixedTopMid = document.querySelector('.fixed-top-mid');
-
-product_service_input.style.display = 'block';
-company_name_input.style.display = 'none';
 
 const companyDetailsJsonObj2 = [];
 const dataForDisplaySearchParameter = [];
@@ -86,21 +106,21 @@ $(function () {
     displayTopCompany();
 });
 
-// window.addEventListener('scroll', handleScroll);
+window.addEventListener('scroll', handleScroll);
 
-// function handleScroll() {
-//     const isPositionFixed = window.getComputedStyle(fixedTopMid).getPropertyValue('position') === 'fixed';
+function handleScroll() {
+    const isPositionFixed = window.getComputedStyle(fixedTopMid).getPropertyValue('position') === 'fixed';
 
-//     if (window.scrollY > 200 && !isPositionFixed) {
-//         fixedTopMid.style.position = 'fixed';
-//         fixedTopMid.style.top = '0';
-//     }
+    if (window.scrollY > 200 && !isPositionFixed) {
+        fixedTopMid.style.position = 'fixed';
+        fixedTopMid.style.top = '0';
+    }
 
-//     if (window.scrollY < 200 && isPositionFixed) {
-//         fixedTopMid.style.position = 'static';
-//         fixedTopMid.style.top = '0';
-//     }
-// }
+    if (window.scrollY < 200 && isPositionFixed) {
+        fixedTopMid.style.position = 'static';
+        fixedTopMid.style.top = '0';
+    }
+}
 
 // ===============================================
 // responsiveness of height in selection [start]
@@ -139,12 +159,16 @@ function handleSelectionPageResize() {
 // responsiveness of height in selection [end]
 // ============================================
 
-selectionsNextSlide.addEventListener('click', handleSelectionsSlideClickV1);
-selectionsPrevSlide.addEventListener('click', handleSelectionsSlideClickV1);
 selectionsNextSlide.addEventListener('mouseleave', handleSelectionsSlideClickV2);
 selectionsPrevSlide.addEventListener('mouseleave', handleSelectionsSlideClickV2);
-selectionsNextSlide.addEventListener('transitionend', getImageName);
-selectionsPrevSlide.addEventListener('transitionend', getImageName);
+
+function handleSelectionsSlideClickV2(e) {
+    varCounter = 0;
+    intervalId = setInterval(getImageName, 1000);
+}
+
+selectionsNextSlide.addEventListener('click', handleSelectionsSlideClickV1);
+selectionsPrevSlide.addEventListener('click', handleSelectionsSlideClickV1);
 
 function handleSelectionsSlideClickV1() {
     varCounter = 0;
@@ -161,24 +185,22 @@ function handleSelectionsSlideClickV1() {
 
     const time2 = new Date().getTime();
     const dblClickTime = time2 - timer;
-    // console.log('dblClickTime: ', dblClickTime);
-    // console.log('time2: ', time2);
-    // console.log('timer: ', timer);
+    console.log('dblClickTime: ', dblClickTime);
+    console.log('time2: ', time2);
+    console.log('timer: ', timer);
 
     if (dblClickTime > 1000) {
-        // console.log('good: ', dblClickTime);
+        console.log('good: ', dblClickTime);
         intervalId = setInterval(getImageName, 1500);
     } else {
-        // console.log('too fast: ', dblClickTime);
+        console.log('too fast: ', dblClickTime);
     }
 
     num++;
 }
 
-function handleSelectionsSlideClickV2(e) {
-    varCounter = 0;
-    intervalId = setInterval(getImageName, 1000);
-}
+selectionsNextSlide.addEventListener('transitionend', getImageName);
+selectionsPrevSlide.addEventListener('transitionend', getImageName);
 
 let isTransitioning = false;
 function getImageName() {
@@ -243,7 +265,7 @@ function displayCompanyDetailsUsingImageName(filename) {
     stateOfOperationsId.innerHTML = '';
 
     if (!companyDetails) return;
-    // console.log('companyDetails', companyDetails);
+    console.log('companyDetails', companyDetails);
     companyNameId.innerHTML = business_name;
     companyTaglineId.innerHTML = business_tagline || '';
     businessMajorCategoryId.innerHTML = business_major_category
@@ -526,7 +548,7 @@ async function getCityNameToBeDisplayUsingCode(code, elementId) {
             const response = await fetch('assets/json/cities.json');
             const data = await response.json();
 
-            const filtered = data.find((d) => d.id == code);
+            const filtered = data.find((d) => d.id === code);
             if (filtered) {
                 document.getElementById(elementId).textContent = filtered.name;
             } else {
@@ -552,58 +574,26 @@ function getCompaniesProfilePicture(id, uuid) {
     return value;
 }
 
-// // consume api to get all trade categories
-// async function getTradeCategories() {
-//     let response = await fetch(host + '/api/get/trade-categories-for-today');
-//     let data = await response.json();
-//     return data;
-// }
-
-// // display all trade categories in frontend select option
-// getTradeCategories().then((data) => {
-//     tradeCategories.innerHTML +=
-//         '<div class="filterByTradeCategoryClass text-md font-md text-white-900 dark:text-white-300 p-2 hover:bg-gray-50 orbitron" data-el="">Any</div>';
-//     for (var i = 0; i < data.length; i++) {
-//         tradeCategories.innerHTML +=
-//             '<div class="filterByTradeCategoryClass text-md font-md text-white-900 dark:text-white-300 p-2 hover:bg-gray-50 orbitron" data-el="' +
-//             data[i]['id'] +
-//             '">' +
-//             data[i]['title'] +
-//             '</div>';
-//     }
-// });
-
+// consume api to get all trade categories
 async function getTradeCategories() {
-    try {
-        const response = await fetch(`${host}/api/get/trade-categories-for-today`);
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error('Error fetching trade categories:', error);
-        throw error;
-    }
+    let response = await fetch(host + '/api/get/trade-categories-for-today');
+    let data = await response.json();
+    return data;
 }
 
-getTradeCategories()
-    .then((data) => {
-        const categories = data
-            .map(
-                (category) => `
-        <div class="filterByTradeCategoryClass text-md font-md text-white-900 dark:text-white-300 p-2 hover:bg-gray-50 orbitron"
-          data-el="${category.id}">${category.title}</div>`,
-            )
-            .join('');
-        tradeCategories.insertAdjacentHTML(
-            'beforeend',
-            `<div class="filterByTradeCategoryClass text-md font-md text-white-900 dark:text-white-300 p-2 hover:bg-gray-50 orbitron" data-el="">Any</div>${categories}`,
-        );
-    })
-    .catch((error) => {
-        console.error('Error rendering trade categories:', error);
-    });
+// display all trade categories in frontend select option
+getTradeCategories().then((data) => {
+    tradeCategories.innerHTML +=
+        '<div class="filterByTradeCategoryClass text-md font-md text-white-900 dark:text-white-300 p-2 hover:bg-gray-50 orbitron" data-el="">Any</div>';
+    for (var i = 0; i < data.length; i++) {
+        tradeCategories.innerHTML +=
+            '<div class="filterByTradeCategoryClass text-md font-md text-white-900 dark:text-white-300 p-2 hover:bg-gray-50 orbitron" data-el="' +
+            data[i]['id'] +
+            '">' +
+            data[i]['title'] +
+            '</div>';
+    }
+});
 
 // function getSubCategory(tradeCategoriesElementId, subCategoriesElementId) {
 //     $('#' + subCategoriesElementId).empty();
@@ -662,6 +652,7 @@ function getSubCategory(tradeCategoriesElementId, subCategoriesElementId) {
     }
 }
 
+
 // mukhang hindi na ito ginagamit, burahin na siguro
 // subCategories.addEventListener('change', async function () {
 //     // const minorSubCategoriesElement = document.getElementById('minor-sub-categories');
@@ -689,72 +680,55 @@ function getSubCategory(tradeCategoriesElementId, subCategoriesElementId) {
 //     $(minorSubCategories).selectpicker('refresh');
 // });
 
-async function getMinorCategory(subCategoriesElementId, minorSubCategoriesElementId) {
-    const minorSubCategories = document.querySelector(`#${minorSubCategoriesElementId}`);
-    minorSubCategories.innerHTML = '';
+function getMinorCategory(subCategoriesElementId, minorSubCategoriesElementId) {
+    $('#' + minorSubCategoriesElementId).empty();
+    let subCategoryId = document.getElementById(subCategoriesElementId).value;
+    if (subCategoryId) {
+        async function getMinorSubCategoriesByTradeCategoryId() {
+            let response = await fetch(host + '/api/get/minor-sub-categories-by-sub-category-id/' + subCategoryId);
+            let data = await response.json();
+            return data;
+        }
 
-    const subCategoryId = document.querySelector(`#${subCategoriesElementId}`).value;
-    if (!subCategoryId) {
-        return;
+        getMinorSubCategoriesByTradeCategoryId().then((data) => {
+            minorSubCategories.innerHTML =
+                '<div class="filterByMinorSubCategoryClass text-md font-md text-white-900 dark:text-white-300 p-2 hover:bg-gray-50" data-el="">Any</div>';
+            for (var i = 0; i < data.length; i++) {
+                minorSubCategories.innerHTML +=
+                    '<div class="filterByMinorSubCategoryClass text-md font-md text-white-900 dark:text-white-300 p-2 hover:bg-gray-50" data-el="' +
+                    data[i]['id'] +
+                    '">' +
+                    data[i]['title'] +
+                    '</div>';
+            }
+        });
+    } else {
+        displaySelectedMinorSubCategories.innerHTML = '';
     }
-
-    const response = await fetch(`${host}/api/get/minor-sub-categories-by-sub-category-id/${subCategoryId}`);
-    const data = await response.json();
-
-    const minorSubCategoriesHTML = data
-        .map(
-            ({ id, title }) => `
-      <div class="filterByMinorSubCategoryClass text-md font-md text-white-900 dark:text-white-300 p-2 hover:bg-gray-50" data-el="${id}">
-        ${title}
-      </div>
-    `,
-        )
-        .join('');
-
-    minorSubCategories.innerHTML = `
-      <div class="filterByMinorSubCategoryClass text-md font-md text-white-900 dark:text-white-300 p-2 hover:bg-gray-50" data-el="">Any</div>
-      ${minorSubCategoriesHTML}
-    `;
 }
 
-//consume api to get all languages
+// consume api to get all languages
 async function getLanguages() {
-    const response = await fetch(`${host}/api/get/languages`);
-    const data = await response.json();
+    let response = await fetch(host + '/api/get/languages');
+    let data = await response.json();
     return data;
 }
 
 // display all languages in frontend select option
 getLanguages().then((data) => {
-    const defaultOption = document.createElement('div');
-    defaultOption.classList.add(
-        'filterByLanguageClass',
-        'text-md',
-        'font-md',
-        'text-white-900',
-        'dark:text-white-300',
-        'p-2',
-        'hover:bg-gray-50',
-    );
-    defaultOption.setAttribute('data-el', '');
-    defaultOption.textContent = 'Any';
-    languageDiv.appendChild(defaultOption);
+    document.getElementById('language').selectedIndex = 0;
 
-    data.forEach((language) => {
-        const option = document.createElement('div');
-        option.classList.add(
-            'filterByLanguageClass',
-            'text-md',
-            'font-md',
-            'text-white-900',
-            'dark:text-white-300',
-            'p-2',
-            'hover:bg-gray-50',
-        );
-        option.setAttribute('data-el', language.code);
-        option.textContent = language.name;
-        languageDiv.appendChild(option);
-    });
+    document.getElementById('language').innerHTML =
+        '<div class="filterByLanguageClass text-md font-md text-white-900 dark:text-white-300 p-2 hover:bg-gray-50" data-el="">Any</div>';
+    for (var i = 0; i < data.length; i++) {
+        document.getElementById('language').innerHTML =
+            document.getElementById('language').innerHTML +
+            '<div class="filterByLanguageClass text-md font-md text-white-900 dark:text-white-300 p-2 hover:bg-gray-50" data-el="' +
+            data[i]['code'] +
+            '">' +
+            data[i]['name'] +
+            '</div>';
+    }
 });
 
 function getCompaniesRelatedToCurrentUser() {
@@ -777,19 +751,24 @@ function getCompaniesRelatedToCurrentUser() {
                 };
 
                 let adjustedScreenHeight2 = (window.innerHeight - 125) / 2;
-                selectionsPrevSlide.style.top = `${adjustedScreenHeight2}px`;
-                selectionsNextSlide.style.top = `${adjustedScreenHeight2}px`;
+                document.getElementById('selections-prev-slide').style.top = `${adjustedScreenHeight2}px`;
+                document.getElementById('selections-next-slide').style.top = `${adjustedScreenHeight2}px`;
 
                 companiesProfilePicture.innerHTML = '';
                 const fragment = document.createDocumentFragment();
 
                 for (let i = data.length - 1; i >= 0; i--) {
                     const bannerTitle = getCompaniesProfilePicture(data[i]['id'], data[i]['uuid']);
+                    console.log(
+                        '🚀 ~ file: selection.js:750 ~ getCompaniesRelatedToCurrentUser ~ bannerTitle:',
+                        bannerTitle,
+                    );
                     if (bannerTitle) {
                         const bannerSrc = host + '/uploads/users_upload_files/' + bannerTitle[0].banner;
                         img.src = bannerSrc;
                     }
 
+                    //img.src = bannerSrc;
                     const li = document.createElement('li');
                     li.appendChild(img.cloneNode());
                     fragment.appendChild(li);
@@ -808,24 +787,21 @@ function getCompaniesRelatedToCurrentUser() {
     });
 }
 
-// document.getElementById('product_service_input').style.display = 'block';
-// document.getElementById('company_name_input').style.display = 'none';
-// const searchByProductOrCompanyName = document.getElementById('searchByProductOrCompanyName');
-// const productServiceInput = document.getElementById('product_service_input');
-// const companyNameInput = document.getElementById('company_name_input');
+document.getElementById('product_service_input').style.display = 'block';
+document.getElementById('company_name_input').style.display = 'none';
 
-searchByProductOrCompanyName.onchange = function () {
+document.getElementById('searchByProductOrCompanyName').onchange = function () {
     let searchByProductOrCompanyNameValue = this.value;
 
     if (searchByProductOrCompanyNameValue === 'product_service') {
-        product_service_input.style.display = 'block';
-        company_name_input.style.display = 'none';
-        company_name_input.value = '';
+        document.getElementById('product_service_input').style.display = 'block';
+        document.getElementById('company_name_input').style.display = 'none';
+        document.getElementById('company_name_input').value = '';
     }
     if (searchByProductOrCompanyNameValue === 'company_name') {
-        product_service_input.style.display = 'none';
-        company_name_input.style.display = 'block';
-        product_service_input.value = '';
+        document.getElementById('product_service_input').style.display = 'none';
+        document.getElementById('company_name_input').style.display = 'block';
+        document.getElementById('product_service_input').value = '';
     }
 };
 
@@ -1065,26 +1041,30 @@ function displayTopCompanyDetails(companyName) {
     }
 }
 
-product_service_input.addEventListener('change', function () {
+document.getElementById('product_service_input').addEventListener('change', function () {
     selectionSearchParameter();
 });
 
-company_name_input.addEventListener('change', function () {
+document.getElementById('company_name_input').addEventListener('change', function () {
+    selectionSearchParameter();
+});
+
+document.getElementById('trade-categories').addEventListener('change', function () {
     selectionSearchParameter();
 });
 
 function selectionSearchParameter() {
-    let regionOfOperationCode = selectedRegionOfOperation.value;
-    let countryCode = selectedCountry.value;
-    let selectionState = selectedState.value;
-    let selectionCity = selectedCity.value;
-    let language = selectedLanguage.value;
-    let business_scale = selectedBusinessScale.value;
-    let trade_categories = selectedTradeCategories.value;
-    let sub_categories = selectedSubCategories.value;
-    let minor_sub_categories = selectedMinorSubCategories.value;
-    let productServiceInput = product_service_input.value;
-    let companyNameInput = company_name_input.value;
+    let regionOfOperationCode = document.getElementById('selectedRegionOfOperation').value;
+    let countryCode = document.getElementById('selectedCountry').value;
+    let selectionState = document.getElementById('selectedState').value;
+    let selectionCity = document.getElementById('selectedCity').value;
+    let language = document.getElementById('selectedLanguage').value;
+    let business_scale = document.getElementById('selectedBusinessScale').value;
+    let trade_categories = document.getElementById('selectedTradeCategories').value;
+    let sub_categories = document.getElementById('selectedSubCategories').value;
+    let minor_sub_categories = document.getElementById('selectedMinorSubCategories').value;
+    let product_service_input = document.getElementById('product_service_input').value;
+    let company_name_input = document.getElementById('company_name_input').value;
 
     console.log('selectionSearchParameter regionOfOperationCode', regionOfOperationCode);
     console.log('selectionSearchParameter countryCode', countryCode);
@@ -1095,8 +1075,8 @@ function selectionSearchParameter() {
     console.log('selectionSearchParameter trade_categories', trade_categories);
     console.log('selectionSearchParameter sub_categories', sub_categories);
     console.log('selectionSearchParameter minor_sub_categories', minor_sub_categories);
-    console.log('selectionSearchParameter product_service_input', productServiceInput);
-    console.log('selectionSearchParameter company_name_input', companyNameInput);
+    console.log('selectionSearchParameter product_service_input', product_service_input);
+    console.log('selectionSearchParameter company_name_input', company_name_input);
 
     $.ajax({
         url: '/api/post/selection-search-parameter',
@@ -1111,8 +1091,8 @@ function selectionSearchParameter() {
             trade_categories: trade_categories,
             sub_categories: sub_categories,
             minor_sub_categories: minor_sub_categories,
-            product_service_input: productServiceInput,
-            company_name_input: companyNameInput,
+            product_service_input: product_service_input,
+            company_name_input: company_name_input,
         },
         success: function (data) {
             if (data.length == 0) {
@@ -1296,14 +1276,14 @@ function emptyCompanyDetailsDiv() {
 
 $('#companiesProfilePicture').click(function () {
     // get the active parent div to get the active image
-    const activeDivOfCarousel = getEcN('uk-active uk-transition-active')[0];
+    activeDivOfCarousel = getEcN('uk-active uk-transition-active')[0];
     // console.log("getEcN('uk-active uk-transition-active')[0]: ", activeDivOfCarousel);
     // get the active image inside parent div
-    const activeImageOfCarousel = activeDivOfCarousel.getElementsByTagName('img')[0];
+    activeImageOfCarousel = activeDivOfCarousel.getElementsByTagName('img')[0];
     // get the image src
-    const imageSrcOfActiveImageInCarousel = activeImageOfCarousel.getAttribute('src');
+    imageSrcOfActiveImageInCarousel = activeImageOfCarousel.getAttribute('src');
     // remove "uploads/" part of image src name
-    const imageNameOfActiveImageInCarousel = imageSrcOfActiveImageInCarousel.split('/').pop();
+    imageNameOfActiveImageInCarousel = imageSrcOfActiveImageInCarousel.split('/').pop();
     // exclude extension from filename
     //fileNameOfActiveImageInCarousel = imageNameOfActiveImageInCarousel.split('.').slice(0, -1).join('.');
 
@@ -1385,124 +1365,4 @@ function downloadCurrentTraderData(trader_uuid) {
             window.location = host + '/download-current-trader-data';
         },
     });
-}
-
-
-
-async function getStatesOptions(countryElementId, stateElementId, cityElementId) {
-    const stateElement = document.getElementById(stateElementId);
-    const cityElement = document.getElementById(cityElementId);
-    stateElement.innerHTML = '';
-    cityElement.innerHTML = '';
-
-    const countryElement = document.getElementById(countryElementId);
-    const countryCode = countryElement.value;
-
-    if (countryCode) {
-        try {
-            const response = await fetch('assets/json/states.json');
-            const data = await response.json();
-            const filtered = data.filter((d) => d.country_code === countryCode);
-            if (filtered.length > 0) {
-                stateElement.innerHTML = `
-          <div class="filterByStateClass text-md font-md text-white-900 dark:text-white-300 p-2 hover:bg-gray-50" data-el="">Any</div>
-          ${filtered
-              .map(
-                  (d) =>
-                      `<div class="filterByStateClass text-md font-md text-white-900 dark:text-white-300 p-2 hover:bg-gray-50" data-el="${d.id}">${d.name}</div>`,
-              )
-              .join('')}
-        `;
-
-                cityElement.innerHTML = `
-          <div class="filterByCityClass text-md font-md text-white-900 dark:text-white-300 p-2 hover:bg-gray-50 orbitron" data-el="">Any</div>
-        `;
-            } else {
-                displaySelectedState.innerHTML = 'No States Found';
-                displaySelectedCity.innerHTML = 'No Cities Found';
-
-                stateElement.innerHTML = `
-          <div class="filterByStateClass text-md font-md text-white-900 dark:text-white-300 p-2 hover:bg-gray-50" data-el="No States Found">No States Found</div>
-        `;
-                cityElement.innerHTML = `
-          <div class="filterByCityClass text-md font-md text-white-900 dark:text-white-300 p-2 hover:bg-gray-50" data-el="No Cities Found">No Cities Found</div>
-        `;
-            }
-
-            $(`#${stateElementId}`).selectpicker('refresh');
-
-            const selectedState = document.getElementById(stateElementId).value;
-
-            if (selectedState === 'No States Found') {
-                displaySelectedState.innerHTML = 'No States Found';
-                displaySelectedCity.innerHTML = 'No Cities Found';
-                cityElement.innerHTML = `
-          <div class="filterByCityClass text-md font-md text-white-900 dark:text-white-300 p-2 hover:bg-gray-50" data-el="No Cities Found">No Cities Found</div>
-        `;
-            }
-        } catch (error) {
-            console.error('Error fetching states:', error);
-        }
-    } else {
-        displaySelectedState.innerHTML = 'Any';
-        displaySelectedCity.innerHTML = 'Any';
-        stateElement.innerHTML = (
-            `<div
-                class="filterByStateClass text-md font-md text-white-900 dark:text-white-300 p-2 hover:bg-gray-50 orbitron"
-                data-el=""
-            >
-                Any
-            </div>`
-        );
-        cityElement.innerHTML = (
-            `<div
-                class="filterByCityClass text-md font-md text-white-900 dark:text-white-300 p-2 hover:bg-gray-50 orbitron"
-                data-el=""
-            >
-                Any
-            </div>`
-        );
-    }
-}
-
-async function getCitiesOptions(countryElementId, stateElementId, cityElementId) {
-    const cityElement = document.getElementById(cityElementId);
-    cityElement.innerHTML = '';
-
-    try {
-        const response = await fetch('assets/json/cities.json');
-        const data = await response.json();
-
-        const countryCode = document.getElementById(countryElementId).value;
-        const stateId = document.getElementById(stateElementId).value;
-        const filtered = data.filter((d) => d.country_code == countryCode);
-
-        if (filtered.length > 0 && stateId !== 'No States Found' && stateId !== '') {
-            const cities = filtered.filter((d) => d.state_id == stateId);
-            cityElement.insertAdjacentHTML(
-                'beforeend',
-                '<div class="filterByCityClass text-md font-md text-white-900 dark:text-white-300 p-2 hover:bg-gray-50" data-el="">Any</div>',
-            );
-            cities.forEach((city) => {
-                cityElement.insertAdjacentHTML(
-                    'beforeend',
-                    `<div class="filterByCityClass text-md font-md text-white-900 dark:text-white-300 p-2 hover:bg-gray-50" data-el="${city.id}">${city.name}</div>`,
-                );
-            });
-        } else if (stateId === '') {
-            displaySelectedCity.innerHTML = 'Any';
-            cityElement.insertAdjacentHTML(
-                'beforeend',
-                '<div class="filterByCityClass text-md font-md text-white-900 dark:text-white-300 p-2 hover:bg-gray-50" data-el="">Any</div>',
-            );
-        } else {
-            displaySelectedCity.innerHTML = 'No Cities Found';
-            cityElement.insertAdjacentHTML(
-                'beforeend',
-                '<div class="filterByCityClass text-md font-md text-white-900 dark:text-white-300 p-2 hover:bg-gray-50" data-el="No Cities Found">No Cities Found</div>',
-            );
-        }
-    } catch (error) {
-        console.error(error);
-    }
 }

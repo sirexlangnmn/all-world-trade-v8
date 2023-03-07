@@ -271,6 +271,9 @@ document.addEventListener(
             closeAccordion('selectionBusinessScaleAccordion');
         }
         if (has_class(e.target, 'filterByTradeCategoryClass')) {
+            selectedSubCategories.value = '';
+            selectedMinorSubCategories.value = '';
+
             displaySelectedTradeCategories.innerHTML = e.target.getAttribute('data-el')
                 ? getTradeCategoriesTitleById(e.target.getAttribute('data-el'))
                 : 'Any';
@@ -291,6 +294,8 @@ document.addEventListener(
             closeAccordion('selectionTradeCategoriesAccordion');
         }
         if (has_class(e.target, 'filterBySubCategoryClass')) {
+            selectedMinorSubCategories.value = '';
+
             displaySelectedSubCategories.innerHTML = e.target.getAttribute('data-el')
                 ? getSubCategoriesTitleById(e.target.getAttribute('data-el'))
                 : 'Any';
@@ -314,7 +319,7 @@ document.addEventListener(
         }
 
 
-        
+
         // else if (has_class(e.target, 'test')) {
         // }
 
