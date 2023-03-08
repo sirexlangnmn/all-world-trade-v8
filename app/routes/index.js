@@ -48,6 +48,7 @@ module.exports = (app) => {
     const visitorsOfTraders = require('../controllers/visitors-of-traders.controller.js');
     const helpAndSupport = require('../controllers/help-and-support.controller.js');
     const helpAndSupportLogin = require('../controllers/help-and-support-login.controller.js');
+    const getCount = require('../controllers/get-count.controller.js');
 
     // Retrieve all Tutorials
     app.get(['/api/get/tutorials'], tutorials.findAll);
@@ -137,7 +138,7 @@ module.exports = (app) => {
     app.post(['/api/get/companies-profile-picture'], usersBusinessMedias.companiesProfilePictureInSelection);
 
     app.post(['/api/get/get-companies-related-to-current-user'], selection.findCompaniesRelatedToCurrentUser);
-    
+
     app.post(['/api/get/get-random-companies'], selection.findRandomCompanies);
 
     app.post(['/api/post/selection-search-parameter'], selection.findAllBySearchParameter);
@@ -146,7 +147,7 @@ module.exports = (app) => {
     //app.post(['/api/post/trader-registration'], traderRegistrationValidation, traderRegistration.create);
 
     app.post(['/api/post/looking-for-small-scale-company-registration'], smallScaleCompanyRegistration.create);
-    
+
     app.post(['/api/post/looking-for-medium-scale-company-registration'], mediumScaleCompanyRegistration.create);
 
     app.post(['/api/post/looking-for-large-scale-company-registration'], largeScaleCompanyRegistration.create);
@@ -168,12 +169,16 @@ module.exports = (app) => {
     app.post(['/api/post/get-current-visitor'], visitorsOfTraders.findCurrentVisitor);
 
     app.post(['/api/post/get-current-trader'], visitorsOfTraders.findCurrentTrader);
-    
+
     app.post(['/api/post/record-the-meeting-of-visitor-and-trader'], visitorsOfTraders.connectVisitorAndTrader);
 
     // app.get('/api/v2/get/communicator-link/:link', usersBusiness.findCommunicator);
 
     app.post(['/api/get/create-communicator-link'], usersBusiness.createCommunicatorLink);
+
+    app.get(['/api/v2/get/traders-with-picture'], getCount.tradersWithPicture);
+    app.get(['/api/v2/get/traders-with-no-picture'], getCount.tradersWithNoPicture);
+    app.get(['/api/v2/get/traders-with-no-picture-no-company'], getCount.tradersWithNoPictureAndCompany);
 
 
 };
