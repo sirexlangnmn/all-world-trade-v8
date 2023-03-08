@@ -17,11 +17,11 @@ const Model = function (model) {
 Model.getCurrentVisitor = (newModel, result) => {
     const bytes = CryptoJS.AES.decrypt(newModel.uuid, JWT_SECRET);
     const trader_uuid = bytes.toString(CryptoJS.enc.Utf8);
-  
+
     sql.query(TRADERS_VISITORS.SELECT_CURRENT_VISITOR, [trader_uuid], (err, res) => {
         if (res.length > 0) {
             let visitor_uuid = res[0].visitor_id;
-            
+
             newModel.session.current_visitor_date_created = res[0].date_created;
 
             if (err) {
@@ -53,11 +53,10 @@ Model.getCurrentVisitor = (newModel, result) => {
                         result(null, res);
                     }
                 });
-            } 
+            }
         } else {
             result(null, res);
         }
-       
     });
 };
 
@@ -79,8 +78,15 @@ Model.connectVisitorAndTrader = (newModel, result) => {
                 throw err;
             });
         } else {
+            sql.query(USERS_BUSINESS.GET_TRADER_COMMUNICATOR, [newModel.trader_uuid], (err, res) => {
+                if (err) {
+                    result(null, err);
+                } else {
+                    console.log('GET_TRADER_COMMUNICATOR: ', res);
+                    result(null, res);
+                }
+            });
         }
-        result(null, { id: rows.insertId, ...newModel });
     });
 };
 
@@ -89,7 +95,7 @@ Model.getCurrentTrader = (newModel, result) => {
     newModel.session.items = [];
 
     let trader_uuid = newModel.trader_uuid;
-  
+
     newModel.session.current_trader_date_created = date_time();
     sql.query(USERS_BUSINESS_CHARACTERISTICS.BUSINESS_CHARACTERISTIC, [trader_uuid], (err, res) => {
         if (err) return;
@@ -103,18 +109,18 @@ Model.getCurrentTrader = (newModel, result) => {
                         console.log('fetchTitle err' + table + ': ', err);
                     } else {
                         console.log('fetchTitle res[0]' + table + ': ', res[0]);
-                        newModel.session.items.push(({[target]: res[0].title}));
+                        newModel.session.items.push({ [target]: res[0].title });
                     }
                 });
             } else {
                 newModel.session[target] = null;
             }
         };
-        
-        fetchTitle("trade_categories", business_major_category, "current_trader_major_category");
-        fetchTitle("sub_categories", business_sub_category, "current_trader_sub_category");
-        fetchTitle("minor_sub_categories", business_minor_sub_category, "current_trader_minor_sub_category");
-        
+
+        fetchTitle('trade_categories', business_major_category, 'current_trader_major_category');
+        fetchTitle('sub_categories', business_sub_category, 'current_trader_sub_category');
+        fetchTitle('minor_sub_categories', business_minor_sub_category, 'current_trader_minor_sub_category');
+
         setTimeout(() => {
             sql.query(USERS_BUSINESS.DETAILS, [trader_uuid], (err, res) => {
                 if (err) {
@@ -127,59 +133,8 @@ Model.getCurrentTrader = (newModel, result) => {
                 }
             });
         }, 1500);
-        
     });
-    
 };
-
-
-
-
-// Model.getCurrentTrader = (newModel, result) => {
-//     newModel.session.items = [];
-
-//     let trader_uuid = newModel.trader_uuid;
-  
-//     newModel.session.current_trader_date_created = date_time();
-//     sql.query(USERS_BUSINESS_CHARACTERISTICS.BUSINESS_CHARACTERISTIC, [trader_uuid], (err, res) => {
-//         if (err) return;
-//         let { business_major_category, business_sub_category, business_minor_sub_category } = res[0];
-//         newModel.session.current_trader_business_characteristics = res[0];
-//         const fetchTitle = (table, id, target) => {
-//             // if (!id) return;
-//             if (id && id != null) {
-//                 sql.query(`SELECT title FROM ${table} WHERE id = "${id}"`, (err, res) => {
-//                     if (err) {
-//                         console.log('fetchTitle err' + table + ': ', err);
-//                     } else {
-//                         console.log('fetchTitle res[0]' + table + ': ', res[0]);
-//                         newModel.session.items.push(({[target]: res[0].title}));
-//                     }
-//                 });
-//             } else {
-//                 newModel.session[target] = null;
-//             }
-//         };
-        
-//         fetchTitle("trade_categories", business_major_category, "current_trader_major_category");
-//         fetchTitle("sub_categories", business_sub_category, "current_trader_sub_category");
-//         fetchTitle("minor_sub_categories", business_minor_sub_category, "current_trader_minor_sub_category");
-        
-//         sql.query(USERS_BUSINESS.DETAILS, [trader_uuid], (err, res) => {
-//             if (err) {
-//                 newModel.session.current_trader = null;
-//                 result(null, err);
-//             } else {
-//                 newModel.session.current_trader = res[0];
-//                 newModel.session.items.push(res[0]);
-//                 result(null, res);
-//             }
-//         });
-//     });
-    
-// };
-
-
 
 function date_time() {
     let date_ob = new Date();

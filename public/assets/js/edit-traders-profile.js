@@ -25,6 +25,7 @@ let traderSubCategoryToggleField;
 let traderMinorSubCategoryToggleField;
 let businessScale;
 
+let isAvatar = getId('is_avatar');
 companyLogoPreview = getId('companyLogoPreview');
 companyBannerPreview = getId('companyBannerPreview');
 companyLogoId = getId('companyLogoId');
@@ -130,14 +131,17 @@ function getUsersLogoAndBanner() {
                 }
                 if (data[0].logo) {
                     companyLogoPreview.src = host + '/uploads/users_upload_files/' + data[0].logo;
+                    isAvatar.src = host + '/uploads/users_upload_files/' + data[0].logo;
                 } else {
                     companyLogoPreview.src = host + '/uploads/placeholder/logo-placeholder.jpg';
+                    isAvatar.src = host + '/uploads/placeholder/logo-placeholder.jpg';
                 }
                 companyLogoId.value = data[0].id;
                 companyBannerId.value = data[0].id;
             } else {
                 companyBannerPreview.src = host + '/uploads/placeholder/banner-placeholder.png';
                 companyLogoPreview.src = host + '/uploads/placeholder/logo-placeholder.jpg';
+                isAvatar.src = host + '/uploads/placeholder/logo-placeholder.jpg';
             }
         },
     });

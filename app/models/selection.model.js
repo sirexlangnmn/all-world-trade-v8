@@ -121,8 +121,8 @@ Model.getCompaniesRelatedToCurrentUser = (param, result) => {
         AND users_businesses.isPaid = 1
         AND users_business_medias.banner != ''
         OR users_business_medias.banner != null
-        ORDER BY RAND()  
-        LIMIT 50`,
+        ORDER BY RAND()`,
+        //LIMIT 50`,
         (err, res) => {
             if (err) {
                 result(null, err);

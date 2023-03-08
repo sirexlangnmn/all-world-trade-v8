@@ -70,6 +70,11 @@ const QUERY = {
             communicator = ?
             WHERE uuid = ?`,
 
+	GET_TRADER_COMMUNICATOR: `SELECT
+			communicator
+			FROM users_businesses
+			WHERE uuid = ? `,
+
 	// GET_COMMUNICATOR: `SELECT
 	// 		communicator
 	// 		FROM users_businesses 

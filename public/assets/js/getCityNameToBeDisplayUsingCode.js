@@ -9,7 +9,11 @@ function getCityNameToBeDisplayUsingCode(code, elementId) {
                 })
                 .then(function (data) {
                     let filtered = data.filter((d) => d.id == code);
-                    document.getElementById(elementId).innerHTML = filtered[0].name + ', ';
+                    if(filtered.length > 0) {
+                        document.getElementById(elementId).innerHTML = filtered[0].name + ', ';
+                    } else {
+                    document.getElementById(elementId).innerHTML = '';
+                    }
                 });
         }
     } else {
