@@ -1087,6 +1087,7 @@ function selectionSearchParameter() {
                             if (bannerTitle) {
                                 const bannerSrc = host + '/uploads/users_upload_files/' + bannerTitle[0].banner;
                                 console.log('bannerSrc: ', bannerSrc);
+                                console.log('bannerSrc i: ', i);
                                 img.src = bannerSrc;
                             }
                         }
