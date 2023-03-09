@@ -1144,7 +1144,7 @@ function replaceDashCompanyDetailsDiv() {
 }
 
 function replaceDashCompanyDetailsDivV2() {
-    // $('#companiesProfilePicture').empty();
+    $('#companiesProfilePicture').empty();
     // $('#top-selection-results').empty();
     // $('#selections-next-slide').hide();
     // $('#selections-prev-slide').hide();
@@ -1201,93 +1201,26 @@ function showRandomChoices() {
             type: 'POST',
             async: false,
             success: function (data) {
-                // if (data.length > 0) {
-                //     emptyCompanyDetailsDiv();
-                //     while (companyDetailsJsonObj2.length > 0) {
-                //         companyDetailsJsonObj2.pop();
-                //     }
-                //     companyDetailsJsonObj2.push(data);
-                //     companiesProfilePicture.innerHTML = '';
-                //     for (var i = data.length - 1; i > -1; i--) {
-                //         let bannerTitle = getCompaniesProfilePicture(data[i]['id'], data[i]['uuid']);
-
-                //         companiesProfilePicture.innerHTML =
-                //             companiesProfilePicture.innerHTML +
-                //             '<li>' +
-                //             '<img src="' +
-                //             host +
-                //             '/uploads/users_upload_files/' +
-                //             bannerTitle[0].banner +
-                //             '"  id="companyBannerPreview" alt="" uk-cover>' +
-                //             '</li>';
-                //     }
-                //     displayFirstCompanyDetails();
-                //     displayTopCompany();
-                // }
-
                 if (data.length > 0) {
                     emptyCompanyDetailsDiv();
                     while (companyDetailsJsonObj2.length > 0) {
                         companyDetailsJsonObj2.pop();
                     }
-                    while (dataForDisplaySearchParameter.length > 0) {
-                        dataForDisplaySearchParameter.pop();
-                    }
                     companyDetailsJsonObj2.push(data);
-                    dataForDisplaySearchParameter.push(data[0]);
-    
-                    selectionsNextSlide.style.display = 'block';
-                    selectionsPrevSlide.style.display = 'block';
                     companiesProfilePicture.innerHTML = '';
-    
-                    const bannerTitle1 = getCompaniesProfilePicture(data[0]['id'], data[0]['uuid']);
-                    const img = new Image();
-                    img.className = 'companyBannerPreview';
-                    img.id = 'companyBannerPreview';
-    
-                    let adjustedScreenHeight2 = (window.innerHeight - 125) / 2;
-                    selectionsPrevSlide.style.top = `${adjustedScreenHeight2}px`;
-                    selectionsNextSlide.style.top = `${adjustedScreenHeight2}px`;
-    
-                    const fragment = document.createDocumentFragment();
-    
-                    if (bannerTitle1) {
-                        const bannerSrc = host + '/uploads/users_upload_files/' + bannerTitle1[0].banner;
-                        img.src = bannerSrc;
-                        img.onload = function () {
-                            const adjustedScreenHeight = window.innerHeight - 125;
-                            img.style.height = `${adjustedScreenHeight}px`;
-                            const li = document.createElement('li');
-                            li.appendChild(img.cloneNode());
-                            fragment.appendChild(li);
-                            companiesProfilePicture.appendChild(fragment);
-                        };
+                    for (var i = data.length - 1; i > -1; i--) {
+                        let bannerTitle = getCompaniesProfilePicture(data[i]['id'], data[i]['uuid']);
+
+                        companiesProfilePicture.innerHTML =
+                            companiesProfilePicture.innerHTML +
+                            '<li>' +
+                            '<img src="' +
+                            host +
+                            '/uploads/users_upload_files/' +
+                            bannerTitle[0].banner +
+                            '"  id="companyBannerPreview" alt="" uk-cover>' +
+                            '</li>';
                     }
-    
-                    console.log('showRandomChoices companiesProfilePicture1: ', companiesProfilePicture);
-                    setTimeout(() => {
-                        for (let i = data.length - 1; i >= 1; i--) {
-                            const bannerTitle1 = getCompaniesProfilePicture(data[0]['id'], data[0]['uuid']);
-                            const bannerTitle = getCompaniesProfilePicture(data[i]['id'], data[i]['uuid']);
-                            if(bannerTitle != bannerTitle1) {
-                                if (bannerTitle) {
-                                    const bannerSrc = host + '/uploads/users_upload_files/' + bannerTitle[0].banner;
-                                    console.log('showRandomChoices bannerSrc: ', bannerSrc);
-                                    console.log('showRandomChoices bannerSrc i: ', i);
-                                    img.src = bannerSrc;
-                                }
-                            }
-    
-                            const li = document.createElement('li');
-                            li.appendChild(img.cloneNode());
-                            fragment.appendChild(li);
-                        }
-                        companiesProfilePicture.appendChild(fragment);
-                        console.log('showRandomChoices companiesProfilePicture2: ', companiesProfilePicture);
-                    }, 500);
-    
-    
-                    displaySearchParameter();
                     displayFirstCompanyDetails();
                     displayTopCompany();
                 }
