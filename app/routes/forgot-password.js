@@ -156,6 +156,8 @@ module.exports = (app) => {
 
     // app.get(['/reset-password/:token'], (req, res) => {
     app.get(['/reset-password/:token'], async function (req, res, next) {
+
+        console.log('/reset-password/:token | req.session.forgotPassword', req.session.forgotPassword);
         const token = req.params.token;
         //res.send(req.params)
 

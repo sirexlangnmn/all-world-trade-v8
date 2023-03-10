@@ -8,6 +8,7 @@ const Model = function (model) {
 
 Model.create = (newModel, result) => {
     let email = newModel.email_or_social_media;
+    newModel.session.forgotPassword = null;
 
     sql.query(USERS_ACCOUNTS.GET_BY_EMAIL, [email], (err, res) => {
         if (err) {
